@@ -60,7 +60,7 @@ const User = () => {
                         />
                     </>
             }
-            <div className="container bg-body my-5">
+            <div className="container bg-light my-5">
                 <div className="text-center my-5">
                     <h2 className="mt-5" style={{ fontFamily: "Playfair Display,serif", fontStyle: "italic", transition: "color .1s" }}>
                         My Account
