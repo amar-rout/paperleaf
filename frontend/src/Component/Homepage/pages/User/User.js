@@ -176,7 +176,7 @@ function AccountLink({ to, ...props }) {
     const isActive = useMatch({ path: resolvedPath.pathname, end: true })
 
     return (
-        <span className={isActive ? "active text-muted fw-semibold border-start border-2 border-warning" : ""}>
+        <span className={isActive ? "active text-muted fw-semibold border-start border-1 border-warning" : ""}>
             <Link to={to} {...props} />
         </span>
     )
