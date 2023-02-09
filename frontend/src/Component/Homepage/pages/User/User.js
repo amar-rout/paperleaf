@@ -61,10 +61,12 @@ const User = () => {
                     </>
             }
             <div className="bg-light">
+
+
                 <div className="container bg-body my-5">
                     <div className="text-center my-5">
-                        <h2 className="mt-5" style={{ fontFamily: "Playfair Display,serif", fontStyle: "italic", transition: "color .1s" }}>
-                            My Account
+                        <h2 className="mt-5" style={{ letterSpacing: "", fontFamily: "Playfair Display,serif", fontStyle: "italic", transition: "color .1s" }}>
+                            <span className="border-bottom border-4 border-warning">My Account</span>
                         </h2>
                     </div>
                     {/* <div className="row my-4 d-flex flex-0 justify-content-start align-items-center">
@@ -85,15 +87,15 @@ const User = () => {
 
                 </div> */}
                     {/* <hr /> */}
-                    <div className="row mx-1 my-4">
+                    <div className="row mx-1 my-2">
                         <div className="col-12 col-md-4 col-lg-3">
                             <div class="card text-center">
                                 <div class="card-header bg-body">
                                     <div className="text-center my-3">
                                         <div className="mb-3 position-relative">
-                                            <img className="rounded-circle border border-dark border-1 " src="http://192.168.29.178:3000/assets/images/user-thumbnail.jpg" alt="Profile" width="120" height="120" />
+                                            <img className="rounded-circle border border-dark border-1 " src="/assets/images/user-thumbnail.jpg" alt="Profile" width="120" height="120" />
                                         </div>
-                                        <h2 className="mb-1">Amarendra Rout</h2>
+                                        <span className="mb-1 h4">Amarendra Rout</span>
                                         <h4 className="small text-secondary fw-semibold">
                                             amarendrarout@gmail.com <i class='bx bxs-badge-check text-success' ></i>
                                         </h4>
@@ -106,28 +108,28 @@ const User = () => {
                                     {/* <h5 class="card-title">Special title treatment</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                                 <a href="/" class="btn btn-primary">Go somewhere</a> */}
-                                    <ul class="list-group list-group-flush text-start py-2">
-                                        <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userProfile">
+                                    <ul class="list-group list-group-flush text-start py-1">
+                                        <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userProfile">
                                             <span className="p-0 pe-2 pt-1"><i className='bx bx-user' style={{ fontSize: "20px" }}></i></span>
                                             My Profile
                                         </AccountLink>
-                                        <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userAddress">
+                                        <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userAddress">
                                             <span className="p-0 pe-2 pt-1"><i class='bx bx-target-lock' style={{ fontSize: "20px" }}></i></span>
                                             My Addresses
                                         </AccountLink>
-                                        <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userOrders">
+                                        <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userOrders">
                                             <span className="p-0 pe-2 pt-1"><i class='bx bx-book' style={{ fontSize: "20px" }}></i></span>
                                             My Orders
                                         </AccountLink>
-                                        <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userPrivacyAndSafety">
+                                        <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userPrivacyAndSafety">
                                             <span className="p-0 pe-2 pt-1"><i class='bx bx-shield-quarter' style={{ fontSize: "20px" }}></i></span>
                                             Privacy and Safety
                                         </AccountLink>
-                                        <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userSettings">
+                                        <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userSettings">
                                             <span className="p-0 pe-2 pt-1"><i className='bx bxs-truck' style={{ fontSize: "20px" }}></i></span>
                                             Settings
                                         </AccountLink>
-                                        <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userOrderHelp">
+                                        <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userOrderHelp">
                                             <span className="p-0 pe-2 pt-1 bg-dark-soft"><i className='bx bx-question-mark' style={{ fontSize: "20px" }}></i></span>
                                             Need help on recent order
                                         </AccountLink>
@@ -167,18 +169,18 @@ const User = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </>
-    )
+                {/* </div> */}
+            </>
+            )
 }
-function AccountLink({ to, ...props }) {
+            function AccountLink({to, ...props }) {
     const resolvedPath = useResolvedPath(to)
-    const isActive = useMatch({ path: resolvedPath.pathname, end: true })
+            const isActive = useMatch({path: resolvedPath.pathname, end: true })
 
-    return (
-        <span className={isActive ? "active text-muted fw-semibold border-start border-4 border-warning" : ""}>
-            <Link to={to} {...props} />
-        </span>
-    )
+            return (
+            <span className={isActive ? "active text-muted fw-semibold border-start border-2 border-warning" : ""}>
+                <Link to={to} {...props} />
+            </span>
+            )
 }
-export default User;
+            export default User;

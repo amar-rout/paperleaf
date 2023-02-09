@@ -34,6 +34,7 @@ import UserOrders from './Component/Homepage/pages/User/UserOrders/UserOrders';
 import UnderConstruction from './Component/Homepage/UnderConstruction/UnderConstruction';
 import Help from './Component/Homepage/pages/Help/Help';
 import UserProfile from './Component/Homepage/pages/User/UserProfile/UserProfile';
+import UserAddress from './Component/Homepage/pages/User/UserProfile/UserAddress';
 
 
 const NoMatch = () => {
@@ -63,6 +64,7 @@ function App() {
               <Route index element={<UserProfile />} />
               <Route path="userProfile" element={<UserProfile />} />
               <Route path="userOrders" element={<UserOrders />} />
+              <Route path="userAddress" element={<UserAddress />} />
               <Route path="*" element={<NoMatch />} />
             </Route>
 
