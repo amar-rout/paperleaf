@@ -1,0 +1,81 @@
+/*********************************************/
+/*              MEDIA QUERIES CSS           "/
+/*********************************************/
+ 
+@media only screen and (min-width: 994px) and (max-width: 1398px) and (-webkit-min-device-pixel-ratio: 1) {
+    .form-box #box-title {
+        padding: 5px 20px 20px 20px;
+    }
+}
+ 
+@media only screen and (min-width: 767px) and (max-width: 1196px) and (-webkit-min-device-pixel-ratio: 1) {
+    .form-box #box-title {
+        padding: 0px;
+    }
+    .fill-form .form-box__content {
+        padding: 50px 50px 60px 50px;
+    }
+}
+ 
+@media only screen and (min-width: 500px) and (max-width: 766px) and (-webkit-min-device-pixel-ratio: 1) {
+    .form-box #box-title {
+        padding: 0px;
+    }
+    .fill-form .form-box__content {
+        padding: 50px 50px 60px 50px;
+    }
+    h3.brand {
+        font-size: 30px;
+    }
+    .caption-text h4 {
+        font-size: 14px;
+    }
+    .caption-text {
+        margin-top: 110px;
+    }
+    footer {
+        margin-bottom: 30px;
+    }
+    .form-box__img {
+        display: none;
+    }
+}
+ 
+@media only screen and (min-width: 360px) and (max-width: 499px) and (-webkit-min-device-pixel-ratio: 1) {
+    .caption-text {
+        margin-top: 30px;
+    }
+    h3.brand {
+        font-size: 19px;
+    }
+    .banner {
+        min-height: 400px;
+    }
+    .form-box__img {
+        display: none;
+    }
+    footer {
+        margin-bottom: 10px;
+    }
+}
+ 
+@media only screen and (max-width: 359px) {
+    .caption-text {
+        margin-top: 30px;
+    }
+    h3.brand {
+        font-size: 17px;
+    }
+    .caption-text h4 {
+        font-size: 12px;
+    }
+    .banner {
+        min-height: 400px;
+    }
+    .form-box__img {
+        display: none;
+    }
+    .form-box #box-title {
+        padding: 0px 30px 30px;
+    }
+}
