@@ -34,7 +34,7 @@ import UserOrders from './Component/Homepage/pages/User/UserOrders/UserOrders';
 import UnderConstruction from './Component/Homepage/UnderConstruction/UnderConstruction';
 import Help from './Component/Homepage/pages/Help/Help';
 import UserProfile from './Component/Homepage/pages/User/UserProfile/UserProfile';
-import UserAddress from './Component/Homepage/pages/User/UserProfile/UserAddress';
+import UserAddress from './Component/Homepage/pages/User/UserAddress/UserAddress';
 
 
 const NoMatch = () => {

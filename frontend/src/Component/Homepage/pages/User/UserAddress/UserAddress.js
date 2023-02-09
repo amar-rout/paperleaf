@@ -1,84 +1,104 @@
 import React from 'react';
-import Breadcrumb from '../../Breadcrumb/Breadcrumb';
+// import Breadcrumb from '../../Breadcrumb/Breadcrumb';
 import Meta from '../../Meta';
 
 const UserAddress = () => {
     return (
         <>
             <Meta title="User Orders" />
-            <Breadcrumb
+            {/* <Breadcrumb
                 links={[
                     { name: 'Home', link: '/', active: false },
                     { name: 'User', link: '/user', active: false },
                     { name: 'Address', link: '/user/address', active: true }
                 ]}
-            />
-            <div className="container my-5 text-center">
-                <h4>User Address</h4>
-                <div>
-                    <div className="py-6 p-md-6 p-lg-10">
-                        <div className="d-flex justify-content-between mb-6">
-                            <h2 className="mb-0">Address</h2>
-                            <a href="#" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addAddressModal">
-                                Add a new address
-                            </a>
-                        </div>
-                        <div className="row">
-                            <div className="col-lg-5 col-xxl-4 col-12 mb-4">
-                                {/* <!-- form --> */}
-                                <div className="card">
-                                    <div className="card-body p-6">
-                                        <div className="form-check mb-4">
-                                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="homeRadio" checked="" />
-                                            <label className="form-check-label text-dark fw-semi-bold" for="homeRadio">
-                                                Home
-                                            </label>
-                                        </div>
-                                        {/* <!-- address --> */}
-                                        <p className="mb-6">Jitu Chauhan<br />
-                                            4450 North Avenue Oakland, <br />
-                                            Nebraska, United States,<br />
-                                            402-776-1106
-                                        </p>
-                                        {/* <!-- btn --> */}
-                                        <a href="#" className="btn btn-light btn-disable btn-sm">Default address</a>
-                                        <div className="mt-4">
-                                            <a href="#" className="text-inherit">Edit </a>
-                                            <a href="#" className="text-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+            /> */}
+            <div className="container mt-2">
+                <div className="d-flex justify-content-start align-items-center gap-5 mb-4">
+                    <h4 className="mb-">Address</h4>
+                    <a href="/" className="btn btn-md btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addAddressModal">
+                        <i class="bi bi-plus-lg"/> Add address
+                    </a>
+                </div>
+                <div className="row">
+                    <div className="col-lg-5 col-xxl-4 col-12 mb-4">
+                        <div className="card border-info">
+                            <div className="card-header bg-info-subtle border-0 p-0 m-0 px-2 py-2">
+                                <span className="h6">Home</span>
                             </div>
-                            <div className="col-lg-5 col-xxl-4 col-12 mb-4">
-                                <div className="card">
-                                    <div className="card-body p-6">
-                                        <div className="form-check mb-4">
-                                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="officeRadio" />
-                                            <label className="form-check-label text-dark fw-semi-bold" for="officeRadio">
-                                                Office
-                                            </label>
-                                        </div>
-                                        <p className="mb-6">Nitu Chauhan<br />
-                                            3853 Coal Road <br />
-                                            Tannersville, Pennsylvania, 18372, United States <br />
-                                            402-776-1106
-                                        </p>
-                                        <a href="#" className="link-primary">Set as Default</a>
-                                        <div className="mt-4">
-                                            <a href="#" className="text-inherit">Edit </a>
-                                            <a href="#" className="text-danger ms-3" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div className="card-body p-2">
+                                <p className="mb-2 fw-semibold">Amarendra Rout</p>
+                                <p className="mb-1">
+                                    Plot no 1520, Snow House,<br/>
+                                    CDA Sector-6, Cuttack, Odisha<br/>
+                                    INDIA, 753006
+                                </p>
+                                <p className="mb-1">+91 7043096106</p>
+                                <p><small><span className="fw-semibold">Availability : </span> 06.00 AM - 10.00 PM</small></p>
+                            </div>
+                            <div className="card-footer bg-body border-0 top-0 d-flex justify-content-start align-items-center gap-2">
+                                <a href="/" className="btn btn-sm btn-outline-dark rounded rounded-3">
+                                    <i class="bi bi-pencil" /> Edit
+                                </a>
+                                <a href="/" className="btn btn-sm btn-outline-danger rounded rounded-3" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                    <i class="bi bi-trash" /> Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-5 col-xxl-4 col-12 mb-4">
+                        <div className="card">
+                            <div className="card-header bg-light-subtle border-0 p-0 m-0 px-2 py-2">
+                                <span className="h6">Office</span>
+                            </div>
+                            <div className="card-body p-2">
+                                <p className="mb-2 fw-semibold">Amarendra Rout</p>
+                                <p className="mb-1">
+                                    Plot no 1520, Snow House,<br/>
+                                    CDA Sector-6, Cuttack, Odisha<br/>
+                                    INDIA, 753006
+                                </p>
+                                <p className="mb-1">+91 7043096106</p>
+                                <p><small><span className="fw-semibold">Availability : </span> 10.00 AM - 04.00 PM</small></p>
+                            </div>
+                            <div className="card-footer bg-body border-0 top-0 d-flex justify-content-start align-items-center gap-2">
+                                <a href="/" className="btn btn-sm btn-outline-dark rounded rounded-3">
+                                    <i class="bi bi-pencil" /> Edit
+                                </a>
+                                <a href="/" className="btn btn-sm btn-outline-danger rounded rounded-3" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                    <i class="bi bi-trash" /> Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-lg-5 col-xxl-4 col-12 mb-4">
+                        <div className="card">
+                            <div className="card-header bg-light-subtle border-0 p-0 m-0 px-2 py-2">
+                                <span className="h6">Other</span>
+                            </div>
+                            <div className="card-body p-2">
+                                <p className="mb-2 fw-semibold">Amarendra Rout</p>
+                                <p className="mb-1">
+                                    Plot no 1520, Snow House,<br/>
+                                    CDA Sector-6, Cuttack, Odisha<br/>
+                                    INDIA, 753006
+                                </p>
+                                <p className="mb-1">+91 7043096106</p>
+                                <p><small><span className="fw-semibold">Availability : </span> 10.00 AM - 04.00 PM</small></p>
+                            </div>
+                            <div className="card-footer bg-body border-0 top-0 d-flex justify-content-start align-items-center gap-2">
+                                <a href="/" className="btn btn-sm btn-outline-dark rounded rounded-3">
+                                    <i class="bi bi-pencil" /> Edit
+                                </a>
+                                <a href="/" className="btn btn-sm btn-outline-danger rounded rounded-3" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                    <i class="bi bi-trash" /> Delete
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </>
-
     )
 }
 
