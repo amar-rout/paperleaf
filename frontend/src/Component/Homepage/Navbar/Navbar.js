@@ -11,7 +11,6 @@ const Navbar = () => {
 
     return (
         <>
-            {/* Top Header */}
             <header className="bg-warning bg-opacity-50 text-center p-1">
                 <div className="container p-1 text-dark">
                     <span className="top-header-text">
@@ -20,20 +19,18 @@ const Navbar = () => {
                     </span>
                 </div>
             </header>
-            {/* Logo Header */}
             <header className="navbar-bg text-center p-1">
                 <div className="container p-1 text-dark">
                     <Link to="/" className="navbar-brand m-0 p-0 mb-2 mb-md-0">
-                        <img src={ clientURL + "/assets/images/logo/logo-1.png" } alt="logo" className="nav-logo-img" />
+                        <img src={clientURL + "/assets/images/logo/logo-1.png"} alt="logo" className="nav-logo-img" />
                     </Link>
                 </div>
             </header>
-            {/* Home Navigation */}
             <nav className="navbar navbar-expand-lg navbar-body border-bottom" aria-label="Offcanvas navbar large" style={{ backgroundColor: "" }}>
                 <div className="container align-items-center justify-content-between py-1">
-                    <div className="d-grid" style={{ gridTemplateColumns: '1fr 6fr' }}>
+                    <div className="d-grid" style={{ gridTemplateColumns: '1fr 8fr' }}>
                         <div className="justify-content-between align-items-center">
-                            <button className="navbar-toggler justify-content-center border-0 px-1 mt-1 align-items-center shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
+                            <button className="navbar-toggler justify-content-center border-0 ps-1 mt-1 align-items-center shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
                                 <span className="navbar-toggler-icon" style={{ width: '24px', height: '24px', marginTop: '-4px' }}></span>
                             </button>
                             <div className="offcanvas offcanvas-start text-bg-dark bg-body d-inline-block" tabIndex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
@@ -64,7 +61,14 @@ const Navbar = () => {
                         </div>
                         <div className="d-flex justify-content-end align-items-right ms-md-4">
                             <form action="/search" className="me-2" role="search">
-                                <input type="search" className="form-control rounded-pill shadow-none px-3" placeholder="Search..." aria-label="Search" width="50%" />
+                                <div class="input-group ">
+                                    <input class="form-control shadow-none rounded-0 rounded-pill rounded-end px-3" type="search" placeholder="Search for products" />
+                                    <span class="input-group-append">
+                                        <button class="btn btn-light shadow-none border border-start-0 ms-n10 rounded rounded-pill rounded-start px-3" type="button">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
                             </form>
                             <div className="d-flex ms-sm-2 justify-content-around align-items-center">
                                 <button className="btn btn-sm position-relative p-1 me-1 me-sm-2 me-md-3" onClick={() => navigate("/wishlists")}>
@@ -81,7 +85,7 @@ const Navbar = () => {
                                 </button>
                                 <div className="dropdown position-relative ms-2">
                                     <a href="/" className="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src={ clientURL + "/assets/images/user-thumbnail.jpg"} alt="mdo" width="24" height="24" className="rounded-circle" />
+                                        <img src={clientURL + "/assets/images/user-thumbnail.jpg"} alt="mdo" width="24" height="24" className="rounded-circle" />
                                     </a>
                                     <ul className="dropdown-menu dropdown-menu-end my-3 text-small shadow text-overflow-hidden">
                                         <li>
@@ -115,18 +119,6 @@ const Navbar = () => {
                                                 Track My Order
                                             </Link>
                                         </li>
-                                        {/* <li>
-                                            <a className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center" href="/">
-                                                <span className="p-0 pe-2 pt-1"><i className='bx bx-heart' style={{ fontSize: "16px" }}></i></span>
-                                                My Watchlists
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center" href="/">
-                                                <span className="p-0 pe-2 pt-1"><i className='bx bx-cart' style={{ fontSize: "16px" }}></i></span>
-                                                My Carts
-                                            </a>
-                                        </li> */}
                                         <li className="mx-2"><hr className="dropdown-divider text-muteed" /></li>
                                         <li>
                                             <Link to="/user/userSettings" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
@@ -156,10 +148,10 @@ const Navbar = () => {
                     </div>
                 </div>
             </nav>
-            {/* Scroll Header */}
             <header className="sticky-top bg-body top-0 py-1 shadow-sm">
                 <div className="container nav-scroller bg-body">
                     <nav className="nav navcat-link position-relative pt-1" aria-label="Secondary navigation">
+                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/browseAll">All products</NavCatLink>
                         <NavCatLink className="nav-link ps-0 pe-4" to="/category/newInStore">
                             New In Store
                             <span className="position-absolute badge text-danger fw-bold translate-middle top-25 start-75 fw-normal"><small>New</small></span>
@@ -170,7 +162,6 @@ const Navbar = () => {
                         <NavCatLink className="nav-link ps-0 pe-4" to="/category/pants">Pants/Palazzo</NavCatLink>
                         <NavCatLink className="nav-link ps-0 pe-4" to="/category/fabrics">Fabrics</NavCatLink>
                         <NavCatLink className="nav-link ps-0 pe-4" to="/category/jewellery">Jewellery</NavCatLink>
-                        {/* <NavCatLink className="nav-link ps-0 pe-4 text-danger" to="/category/onSale">On Sale</NavCatLink> */}
                     </nav>
                 </div>
             </header>

@@ -21,7 +21,7 @@ const UserAddress = () => {
                     </a>
                 </div>
                 <div className="d-flex justify-content-between align-items-center gap-5 mb-4">
-                    <h4 className="mb-">Address</h4>
+                    <h4 className="mb-0">Address</h4>
                     <a href="/" className="btn btn-md btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addAddressModal">
                         <i class="bi bi-plus-lg" /> Add address
                     </a>
@@ -29,7 +29,7 @@ const UserAddress = () => {
                 <div className="row">
                     <div className="col-lg-5 col-xxl-4 col-12 mb-4">
                         <div className="card border-info">
-                        <div className="card-header bg-info-subtle d-flex flex-0 justify-content-between align-items-center p-1 m-0">
+                        <div className="card-header bg-info-subtle d-flex flex-0 justify-content-between align-items-center p-2 m-0">
                                 <span className="h6 mt-2">Home</span>
                                 <a href="/" className="btn btn-sm disabled bg-light btn-outline-light text-muted rounded rounded-3" data-bs-toggle="modal" data-bs-target="#deleteModal">
                                     Set default
@@ -57,7 +57,7 @@ const UserAddress = () => {
                     </div>
                     <div className="col-lg-5 col-xxl-4 col-12 mb-4">
                         <div className="card">
-                            <div className="card-header bg-light-subtle d-flex flex-0 justify-content-between align-items-center p-1 m-0">
+                            <div className="card-header bg-light-subtle d-flex flex-0 justify-content-between align-items-center p-2 m-0">
                                 <span className="h6 mt-2">Office</span>
                                 <a href="/" className="btn btn-sm btn-outline-info rounded rounded-3" data-bs-toggle="modal" data-bs-target="#deleteModal">
                                     Set default
@@ -85,7 +85,7 @@ const UserAddress = () => {
                     </div>
                     <div className="col-lg-5 col-xxl-4 col-12 mb-4">
                         <div className="card">
-                        <div className="card-header bg-light-subtle d-flex flex-0 justify-content-between align-items-center p-1 m-0">
+                        <div className="card-header bg-light-subtle d-flex flex-0 justify-content-between align-items-center p-2 m-0">
                                 <span className="h6 mt-2">Other</span>
                                 <a href="/" className="btn btn-sm btn-outline-info rounded rounded-3" data-bs-toggle="modal" data-bs-target="#deleteModal">
                                     Set default

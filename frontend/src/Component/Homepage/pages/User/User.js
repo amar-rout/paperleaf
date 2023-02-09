@@ -86,30 +86,46 @@ const User = () => {
                             </div>
                             <div class="card-body">
                                 <ul class="list-group list-group-flush text-start py-1">
-                                    <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userProfile">
-                                        <span className="p-0 pe-2 pt-1"><i className='bx bx-user' style={{ fontSize: "20px" }}></i></span>
-                                        My Profile
+                                    <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
+                                                 to="/user/userProfile">
+                                        <span className="p-0 pe-4"><i className="bi bi-person"></i></span>
+                                        Profile
                                     </AccountLink>
-                                    <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userAddress">
-                                        <span className="p-0 pe-2 pt-1"><i class='bx bx-target-lock' style={{ fontSize: "20px" }}></i></span>
-                                        My Addresses
+                                    <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
+                                                 to="/user/userAddress">
+                                        <span className="p-0 pe-4"><i class="bi bi-geo-alt"></i></span>
+                                        Address
                                     </AccountLink>
-                                    <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userOrders">
-                                        <span className="p-0 pe-2 pt-1"><i class='bx bx-book' style={{ fontSize: "20px" }}></i></span>
-                                        My Orders
+                                    <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
+                                                 to="/user/userOrders">
+                                        <span className="p-0 pe-4"><i class="bi bi-journal-text"></i></span>
+                                        Orders
                                     </AccountLink>
-                                    <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userPrivacyAndSafety">
-                                        <span className="p-0 pe-2 pt-1"><i class='bx bx-shield-quarter' style={{ fontSize: "20px" }}></i></span>
+                                    <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
+                                                 to="/user/userPayment">
+                                        <span className="p-0 pe-4"><i class="bi bi-credit-card"></i></span>
+                                        Payment Method
+                                    </AccountLink>
+                                    <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
+                                                 to="/user/userNotification">
+                                        <span className="p-0 pe-4"><i class="bi bi-bell"></i></span>
+                                        Notification
+                                    </AccountLink>
+                                    <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
+                                                 to="/user/userPrivacyAndSafety">
+                                        <span className="p-0 pe-4"><i class="bi bi-shield"></i></span>
                                         Privacy and Safety
                                     </AccountLink>
-                                    <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userSettings">
-                                        <span className="p-0 pe-2 pt-1"><i className='bx bxs-truck' style={{ fontSize: "20px" }}></i></span>
+                                    <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
+                                                 to="/user/userSettings">
+                                        <span className="p-0 pe-4"><i class="bi bi-gear"></i></span>
                                         Settings
                                     </AccountLink>
-                                    <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userOrderHelp">
+                                    {/* <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
+                                                 to="/user/userOrderHelp">
                                         <span className="p-0 pe-2 pt-1 bg-dark-soft"><i className='bx bx-question-mark' style={{ fontSize: "20px" }}></i></span>
                                         Need help on recent order
-                                    </AccountLink>
+                                    </AccountLink> */}
                                 </ul>
                             </div>
 

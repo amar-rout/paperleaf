@@ -8,6 +8,7 @@ import CategoryItems from "./CategoryItems/CategoryItems";
 const Category = () => {
 
     const urlParams = {
+        browseAll: "All products",
         newInStore: "New In Store",
         kurtis: "Kurtis",
         dupattas: "Dupattas",
@@ -37,7 +38,7 @@ const Category = () => {
                         <Breadcrumb
                             links={[
                                 { name: 'Home', link: '/', active: false },
-                                { name: 'All Category', link: catLink, active: true }
+                                { name: 'Category', link: catLink, active: true }
                             ]}
                         />
                         <HomeCategory />

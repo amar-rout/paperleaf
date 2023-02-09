@@ -35,6 +35,8 @@ import UnderConstruction from './Component/Homepage/UnderConstruction/UnderConst
 import Help from './Component/Homepage/pages/Help/Help';
 import UserProfile from './Component/Homepage/pages/User/UserProfile/UserProfile';
 import UserAddress from './Component/Homepage/pages/User/UserAddress/UserAddress';
+import UserNotification from './Component/Homepage/pages/User/UserNotification/UserNotification';
+import UserPayment from './Component/Homepage/pages/User/UserPayment/UserPayment';
 
 
 const NoMatch = () => {
@@ -65,6 +67,8 @@ function App() {
               <Route path="userProfile" element={<UserProfile />} />
               <Route path="userOrders" element={<UserOrders />} />
               <Route path="userAddress" element={<UserAddress />} />
+              <Route path="userNotification" element={<UserNotification />} />
+              <Route path="userPayment" element={<UserPayment />} />
               <Route path="*" element={<NoMatch />} />
             </Route>
 
