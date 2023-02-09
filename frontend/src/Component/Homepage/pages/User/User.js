@@ -169,18 +169,19 @@ const User = () => {
                         </div>
                     </div>
                 </div>
-                {/* </div> */}
-            </>
-            )
+            </div>
+        </>
+    )
 }
-            function AccountLink({to, ...props }) {
+function AccountLink({ to, ...props }) {
     const resolvedPath = useResolvedPath(to)
-            const isActive = useMatch({path: resolvedPath.pathname, end: true })
+    const isActive = useMatch({ path: resolvedPath.pathname, end: true })
 
-            return (
-            <span className={isActive ? "active text-muted fw-semibold border-start border-2 border-warning" : ""}>
-                <Link to={to} {...props} />
-            </span>
-            )
+    return (
+        <span className={isActive ? "active text-muted fw-semibold border-start border-2 border-warning" : ""}>
+            <Link to={to} {...props} />
+        </span>
+    )
 }
-            export default User;
+
+export default User;
