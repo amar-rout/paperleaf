@@ -1,0 +1,17 @@
+/*********************************************/
+/*          CUSTOMIZED DEFAULTS         */
+/*********************************************/
+ 
+$body-bg: #cccccc;
+$body-color: #999999;
+$font-family-sans-serif: "Poppins", sans-serif;
+$primary: #000000;
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+
+
+/*********************************************/
+/*      MARGIN TOP CUSTOM UTILITY       */
+/*********************************************/
+ 
+$utilities: ( "custom-margin-top": ( property: margin-top, class: mt, values: ( 0: 0, 1: 0.4rem, 2: 0.8rem, 3: 1.2rem, 4: 1.6rem, 5: 2rem, ), ), );

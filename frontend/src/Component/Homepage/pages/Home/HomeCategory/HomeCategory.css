@@ -1,0 +1,28 @@
+.cat-btn {
+    opacity: 1 !important;
+}
+.category-img {
+    width: 140px;
+    height:140px;
+    transition-duration: 0.2s;
+}
+
+@media (min-width: 576px) {
+    .category-img {
+        width: 140px;
+        height: 140px;
+    }
+}
+@media (min-width: 768px) {
+    .category-img {
+        width: 170px;
+        height: 170px;
+    }
+}
+
+@media (min-width: 992px) {
+    .category-img {
+        width: 200px;
+        height: 200px;
+    }
+}

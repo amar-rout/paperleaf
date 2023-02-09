@@ -1,0 +1,10 @@
+.mycard {
+    min-width: 400px;;
+    max-width: 400px;
+    height: 400px;
+    margin: 20px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    text-align: center;
+}

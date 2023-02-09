@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build": "cd backend && npm install  && cd ../frontend && npm install && npm run build",
-    "start": "node backend/server.js",
+    "start": "node backend/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amar-rout/paperleaf.git"
   },
-  "author": "",
+  "author": "Amarendra Rout",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/amar-rout/paperleaf/issues"
