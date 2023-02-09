@@ -60,13 +60,14 @@ const User = () => {
                         />
                     </>
             }
-            <div className="container bg-body my-5">
-                <div className="text-center my-5">
-                    <h2 className="mt-5" style={{ fontFamily: "Playfair Display,serif", fontStyle: "italic", transition: "color .1s" }}>
-                        My Account
-                    </h2>
-                </div>
-                {/* <div className="row my-4 d-flex flex-0 justify-content-start align-items-center">
+            <div className="bg-light">
+                <div className="container bg-body my-5">
+                    <div className="text-center my-5">
+                        <h2 className="mt-5" style={{ fontFamily: "Playfair Display,serif", fontStyle: "italic", transition: "color .1s" }}>
+                            My Account
+                        </h2>
+                    </div>
+                    {/* <div className="row my-4 d-flex flex-0 justify-content-start align-items-center">
                     <div className="col-1">
                         <div className="position-relative">
                             <img src="http://localhost:3000/assets/images/user-thumbnail.jpg" alt="mdo" width="100" height="100" className="rounded-circle border border-1 border-secondary" />
