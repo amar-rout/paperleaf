@@ -60,7 +60,7 @@ const User = () => {
                         />
                     </>
             }
-            <div className="container bg-light my-5">
+            <div className="container bg-body my-5">
                 <div className="text-center my-5">
                     <h2 className="mt-5" style={{ fontFamily: "Playfair Display,serif", fontStyle: "italic", transition: "color .1s" }}>
                         My Account
@@ -83,54 +83,54 @@ const User = () => {
                     </div>
 
                 </div> */}
-                {/* <hr /> */}
-                <div className="row mx-1 my-4">
-                    <div className="col-12 col-md-4 col-lg-3">
-                        <div class="card text-center">
-                            <div class="card-header bg-body">
-                                <div className="text-center my-3">
-                                    <div className="mb-3 position-relative">
-                                        <img className="rounded-circle border border-dark border-1 " src="http://192.168.29.178:3000/assets/images/user-thumbnail.jpg" alt="Profile" width="120" height="120" />
+                    {/* <hr /> */}
+                    <div className="row mx-1 my-4">
+                        <div className="col-12 col-md-4 col-lg-3">
+                            <div class="card text-center">
+                                <div class="card-header bg-body">
+                                    <div className="text-center my-3">
+                                        <div className="mb-3 position-relative">
+                                            <img className="rounded-circle border border-dark border-1 " src="http://192.168.29.178:3000/assets/images/user-thumbnail.jpg" alt="Profile" width="120" height="120" />
+                                        </div>
+                                        <h2 className="mb-1">Amarendra Rout</h2>
+                                        <h4 className="small text-secondary fw-semibold">
+                                            amarendrarout@gmail.com <i class='bx bxs-badge-check text-success' ></i>
+                                        </h4>
+                                        <h4 className="small text-secondary fw-semibold">
+                                            +91 70430 96106 <i class='bx bxs-badge-check text-success' ></i>
+                                        </h4>
                                     </div>
-                                    <h2 className="mb-1">Amarendra Rout</h2>
-                                    <h4 className="small text-secondary fw-semibold">
-                                        amarendrarout@gmail.com <i class='bx bxs-badge-check text-success' ></i>
-                                    </h4>
-                                    <h4 className="small text-secondary fw-semibold">
-                                        +91 70430 96106 <i class='bx bxs-badge-check text-success' ></i>
-                                    </h4>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                {/* <h5 class="card-title">Special title treatment</h5>
+                                <div class="card-body">
+                                    {/* <h5 class="card-title">Special title treatment</h5>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                                 <a href="/" class="btn btn-primary">Go somewhere</a> */}
-                                <ul class="list-group list-group-flush text-start py-2">
-                                    <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userProfile">
-                                        <span className="p-0 pe-2 pt-1"><i className='bx bx-user' style={{ fontSize: "20px" }}></i></span>
-                                        My Profile
-                                    </AccountLink>
-                                    <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userAddress">
-                                        <span className="p-0 pe-2 pt-1"><i class='bx bx-target-lock' style={{ fontSize: "20px" }}></i></span>
-                                        My Addresses
-                                    </AccountLink>
-                                    <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userOrders">
-                                        <span className="p-0 pe-2 pt-1"><i class='bx bx-book' style={{ fontSize: "20px" }}></i></span>
-                                        My Orders
-                                    </AccountLink>
-                                    <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userPrivacyAndSafety">
-                                        <span className="p-0 pe-2 pt-1"><i class='bx bx-shield-quarter' style={{ fontSize: "20px" }}></i></span>
-                                        Privacy and Safety
-                                    </AccountLink>
-                                    <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userSettings">
-                                        <span className="p-0 pe-2 pt-1"><i className='bx bxs-truck' style={{ fontSize: "20px" }}></i></span>
-                                        Settings
-                                    </AccountLink>
-                                    <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userOrderHelp">
-                                        <span className="p-0 pe-2 pt-1 bg-dark-soft"><i className='bx bx-question-mark' style={{ fontSize: "20px" }}></i></span>
-                                        Need help on recent order
-                                    </AccountLink>
-                                    {/* <li class="px-0 list-group-item border-0">
+                                    <ul class="list-group list-group-flush text-start py-2">
+                                        <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userProfile">
+                                            <span className="p-0 pe-2 pt-1"><i className='bx bx-user' style={{ fontSize: "20px" }}></i></span>
+                                            My Profile
+                                        </AccountLink>
+                                        <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userAddress">
+                                            <span className="p-0 pe-2 pt-1"><i class='bx bx-target-lock' style={{ fontSize: "20px" }}></i></span>
+                                            My Addresses
+                                        </AccountLink>
+                                        <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userOrders">
+                                            <span className="p-0 pe-2 pt-1"><i class='bx bx-book' style={{ fontSize: "20px" }}></i></span>
+                                            My Orders
+                                        </AccountLink>
+                                        <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userPrivacyAndSafety">
+                                            <span className="p-0 pe-2 pt-1"><i class='bx bx-shield-quarter' style={{ fontSize: "20px" }}></i></span>
+                                            Privacy and Safety
+                                        </AccountLink>
+                                        <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userSettings">
+                                            <span className="p-0 pe-2 pt-1"><i className='bx bxs-truck' style={{ fontSize: "20px" }}></i></span>
+                                            Settings
+                                        </AccountLink>
+                                        <AccountLink className="list-group-item py-3 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center" to="/user/userOrderHelp">
+                                            <span className="p-0 pe-2 pt-1 bg-dark-soft"><i className='bx bx-question-mark' style={{ fontSize: "20px" }}></i></span>
+                                            Need help on recent order
+                                        </AccountLink>
+                                        {/* <li class="px-0 list-group-item border-0">
                                         <AccountLink className="text-dark link-warning" to="/user/userProfile">My Profile</AccountLink>
                                     </li>
                                     <li class="px-0 list-group-item border-0">
@@ -148,21 +148,22 @@ const User = () => {
                                     <li class="px-0 list-group-item border-0">
 
                                     </li> */}
-                                </ul>
-                            </div>
+                                    </ul>
+                                </div>
 
-                            <div class="card-footer bg-body text-center">
-                                <button className="btn btn-default text-dark bg-light px-4 rounded rounded-3 link-warning" to="/logout">
-                                    <span className="p-0 pe-2 pt-2">
-                                        <i className='bx bx-log-out-circle' style={{ fontSize: "16px" }}></i>
-                                    </span>
-                                    Logout
-                                </button>
+                                <div class="card-footer bg-body text-center">
+                                    <button className="btn btn-default text-dark bg-light px-4 rounded rounded-3 link-warning" to="/logout">
+                                        <span className="p-0 pe-2 pt-2">
+                                            <i className='bx bx-log-out-circle' style={{ fontSize: "16px" }}></i>
+                                        </span>
+                                        Logout
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-12 col-md-8 col-lg-9 my-4 my-md-0">
-                        <Outlet />
+                        <div className="col-12 col-md-8 col-lg-9 my-4 my-md-0">
+                            <Outlet />
+                        </div>
                     </div>
                 </div>
             </div>
