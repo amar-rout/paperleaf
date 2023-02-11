@@ -108,8 +108,9 @@ const Login = () => {
                             </button>
                         </div>
                         <div className="d-flex justify-content-between align-items center mb-4">
-                            <div className="form-check my-2">
-                                <input type="checkbox" className="form-check-input checked-bg-dark p-2 shadow-none" id="remember" />
+                            <div className="form-check my-2 d-flex align-items-center">
+                                <input type="checkbox" className="form-check-input bg-dark border-0 shadow-none me-2" id="remember"
+                                       style={{width:"24px", height:"24px"}} />
                                 <label className="form-check-label" htmlFor="remember">
                                     Remember me
                                 </label>

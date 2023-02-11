@@ -119,6 +119,7 @@ const SectionInfo = () => {
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="d-flex mb-4 mb-md-0">
                             <i class="bi bi-shield-lock fs-4 text-warning"></i>
+                            {/* <i class="bi bi-shield-check"></i> */}
                             <div class="ms-4">
                                 <h6 class="mb-1">
                                     SECURE SHOPPING

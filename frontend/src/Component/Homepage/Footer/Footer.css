@@ -50,22 +50,22 @@ color:black;
 a:hover {
 color:#206a59;
 } */
-a {
+/* a {
     text-decoration: none;
     color: black;
 }
 
 a:hover {
     color: rgba(200, 160, 40, 1)
-}
+} */
 
-input[type="email"] {
+/* input[type="email"] {
     font-size: 0.875rem;
 }
 
 input[type="email"]:focus {
     box-shadow: 0 1px 4px hsla(175, 65%, 8%, 0.8) !important;
-}
+} */
 
 .whatsappChat {
     position: fixed;

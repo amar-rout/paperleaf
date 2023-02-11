@@ -61,13 +61,13 @@ const User = () => {
                     </>
             }
             <div className="container bg-body my-5">
-                <div className="my-5 text-md-center px-2 px-md-0">
+                <div className="my-5 text-center px-2 px-md-0">
                     <h2 className="" style={{ letterSpacing: "", fontFamily: "Playfair Display,serif", fontStyle: "italic", transition: "color .1s" }}>
                         My Account
-                        <span className="d-md-none float-end pe-2"><i class="bi bi-chevron-down"></i></span>
+                        {/* <span className="d-md-none float-end pe-2"><i class="bi bi-chevron-down"></i></span> */}
                     </h2>
                 </div>
-                <div className="row my-2">
+                <div className="row my-2 px-4">
                     <div className="col-12 col-md-4 col-lg-3">
                         <div class="card text-center">
                             <div class="card-header bg-body">
