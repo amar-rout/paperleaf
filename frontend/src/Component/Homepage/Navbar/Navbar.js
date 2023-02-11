@@ -61,11 +61,11 @@ const Navbar = () => {
                         </div>
                         <div className="d-flex justify-content-end align-items-right ms-md-4">
                             <form action="/search" className="me-2" role="search">
-                                <div class="input-group ">
-                                    <input class="form-control shadow-none rounded-0 rounded-pill rounded-end px-3" type="search" placeholder="Search for products" />
-                                    <span class="input-group-append">
-                                        <button class="btn btn-light shadow-none border border-start-0 ms-n10 rounded rounded-pill rounded-start px-3" type="button">
-                                            <i class="bi bi-search"></i>
+                                <div className="input-group ">
+                                    <input className="form-control shadow-none rounded-0 rounded-pill rounded-end px-3" type="search" placeholder="Search for products" />
+                                    <span className="input-group-append">
+                                        <button className="btn border border-start-0 ms-n10 rounded rounded-pill rounded-start text-dark link-warning px-3" type="button">
+                                            <i className="bi bi-search"></i>
                                         </button>
                                     </span>
                                 </div>
@@ -103,7 +103,7 @@ const Navbar = () => {
                                         </li>
                                         <li>
                                             <Link to="/user/userAddresses" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
-                                                <span className="p-0 pe-2 pt-1"><i class='bx bx-target-lock' style={{ fontSize: "16px" }}></i></span>
+                                                <span className="p-0 pe-2 pt-1"><i className='bx bx-target-lock' style={{ fontSize: "16px" }}></i></span>
                                                 My Address
                                             </Link>
                                         </li>
