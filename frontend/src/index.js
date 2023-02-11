@@ -10,7 +10,7 @@ import reportWebVitals from './reportWebVitals';
 // import "bootstrap/dist/css/bootstrap.css"
 
 // import "bootstrap/dist/css/bootstrap.min.css";
-// // Bootstrap Bundle JS 
+// // Bootstrap Bundle JS
 // import "bootstrap/dist/js/bootstrap.bundle.min.js";
 // // Bootstrap icons
 // import "bootstrap-icons/font/bootstrap-icons.css";
