@@ -41,7 +41,12 @@ import UserPayment from './Component/Homepage/pages/User/UserPayment/UserPayment
 
 const NoMatch = () => {
   return (
-    <p>No Match</p>
+    <div className="position-relative text-center my-5 py-md-5">
+      <div class="position-absolute top-50 start-50 translate-middle">
+        <h5>404 Error</h5>
+        <p>Sorry, the page you're looking for cannot be found</p>
+      </div>
+    </div>
   );
 };
 
@@ -84,7 +89,7 @@ function App() {
             <Route path="faqs" element={<Help />} />
 
           </Route>
-          
+
           <Route path="underConstruction" element={<UnderConstruction />} />
           <Route path="noMatch" element={<NoMatch />} />
           <Route path="*" element={<ComingSoon />} />

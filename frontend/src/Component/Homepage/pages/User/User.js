@@ -129,14 +129,14 @@ const User = () => {
                                 </ul>
                             </div>
 
-                            <div class="card-footer bg-body text-center">
+                            {/* <div class="card-footer bg-body text-center">
                                 <button className="btn btn-default text-dark bg-light px-4 rounded rounded-3 link-warning" to="/logout">
                                     <span className="p-0 pe-2 pt-2">
                                         <i className='bx bx-log-out-circle' style={{ fontSize: "16px" }}></i>
                                     </span>
                                     Logout
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className="col-12 col-md-8 col-lg-9 my-4 my-md-0">
