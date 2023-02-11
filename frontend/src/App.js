@@ -35,15 +35,17 @@ import UnderConstruction from './Component/Homepage/UnderConstruction/UnderConst
 import Help from './Component/Homepage/pages/Help/Help';
 import UserProfile from './Component/Homepage/pages/User/UserProfile/UserProfile';
 import UserAddress from './Component/Homepage/pages/User/UserAddress/UserAddress';
+import AddAddress from './Component/Homepage/pages/User/UserAddress/AddAddress';
+import EditAddress from './Component/Homepage/pages/User/UserAddress/EditAddress';
 import UserNotification from './Component/Homepage/pages/User/UserNotification/UserNotification';
 import UserPayment from './Component/Homepage/pages/User/UserPayment/UserPayment';
 
 
-const NoMatch = () => {
+const PageNotFound = () => {
   return (
-    <div className="position-relative text-center my-5 py-md-5">
-      <div class="position-absolute top-50 start-50 translate-middle">
-        <h5>404 Error</h5>
+    <div className="container my-5">
+      <div className="text-center my-5 p-5 py-md-5">
+        <h2>404 Error</h2>
         <p>Sorry, the page you're looking for cannot be found</p>
       </div>
     </div>
@@ -65,16 +67,18 @@ function App() {
 
             <Route path="category" element={<Category />}>
               <Route exact path=":id" element={<Category />} />
-              <Route path="*" element={<NoMatch />} />
+              <Route path="*" element={<PageNotFound />} />
             </Route>
             <Route path="user" element={<User />}>
               <Route index element={<UserProfile />} />
-              <Route path="userProfile" element={<UserProfile />} />
-              <Route path="userOrders" element={<UserOrders />} />
-              <Route path="userAddress" element={<UserAddress />} />
-              <Route path="userNotification" element={<UserNotification />} />
-              <Route path="userPayment" element={<UserPayment />} />
-              <Route path="*" element={<NoMatch />} />
+              <Route path="profile" element={<UserProfile />} />
+              <Route path="orders" element={<UserOrders />} />
+              <Route path="address" element={<UserAddress />} />
+              <Route path="addAddress" element={<AddAddress />} />
+              <Route path="editAddress" element={<EditAddress />} />
+              <Route path="notification" element={<UserNotification />} />
+              <Route path="paymentMethods" element={<UserPayment />} />
+              <Route path="*" element={<ComingSoon />} />
             </Route>
 
             <Route path="/carts" element={<Cart />} />
@@ -91,8 +95,8 @@ function App() {
           </Route>
 
           <Route path="underConstruction" element={<UnderConstruction />} />
-          <Route path="noMatch" element={<NoMatch />} />
-          <Route path="*" element={<ComingSoon />} />
+          <Route path="noMatch" element={<ComingSoon />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
     </HelmetProvider>

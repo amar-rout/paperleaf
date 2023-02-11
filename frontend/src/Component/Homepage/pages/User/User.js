@@ -87,37 +87,37 @@ const User = () => {
                             <div class="card-body">
                                 <ul class="list-group list-group-flush text-start py-1">
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
-                                                 to="/user/userProfile">
+                                                 to="/user/profile">
                                         <span className="p-0 pe-4"><i className="bi bi-person"></i></span>
                                         Profile
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
-                                                 to="/user/userAddress">
+                                                 to="/user/address">
                                         <span className="p-0 pe-4"><i class="bi bi-geo-alt"></i></span>
                                         Address
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
-                                                 to="/user/userOrders">
+                                                 to="/user/orders">
                                         <span className="p-0 pe-4"><i class="bi bi-journal-text"></i></span>
                                         Orders
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
-                                                 to="/user/userPayment">
+                                                 to="/user/paymentMethods">
                                         <span className="p-0 pe-4"><i class="bi bi-credit-card"></i></span>
                                         Payment Method
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
-                                                 to="/user/userNotification">
+                                                 to="/user/notifications">
                                         <span className="p-0 pe-4"><i class="bi bi-bell"></i></span>
                                         Notification
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
-                                                 to="/user/userPrivacyAndSafety">
+                                                 to="/user/privacyAndSafety">
                                         <span className="p-0 pe-4"><i class="bi bi-shield"></i></span>
                                         Privacy and Safety
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
-                                                 to="/user/userSettings">
+                                                 to="/user/settings">
                                         <span className="p-0 pe-4"><i class="bi bi-gear"></i></span>
                                         Settings
                                     </AccountLink>
@@ -129,14 +129,11 @@ const User = () => {
                                 </ul>
                             </div>
 
-                            {/* <div class="card-footer bg-body text-center">
-                                <button className="btn btn-default text-dark bg-light px-4 rounded rounded-3 link-warning" to="/logout">
-                                    <span className="p-0 pe-2 pt-2">
-                                        <i className='bx bx-log-out-circle' style={{ fontSize: "16px" }}></i>
-                                    </span>
-                                    Logout
+                            <div class="card-footer bg-body text-center">
+                                <button className="btn btn-outline-dark px-4 py-2 rounded-3" to="/logout">
+                                    <i className='bx bx-log-out-circle'></i> Logout
                                 </button>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                     <div className="col-12 col-md-8 col-lg-9 my-4 my-md-0">

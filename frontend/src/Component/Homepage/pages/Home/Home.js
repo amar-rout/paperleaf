@@ -22,12 +22,27 @@ const Home = () => {
                     // { name: match.params.cat, link: '/category/' + match.params.cat, active: true },
                 ]}
             /> */}
-            <h6 className="container my-4" style={{ fontSize: "14px" }}>
+            {/* <h6 className="container my-4" style={{ fontSize: "14px" }}>
                 <span className="text-dark">Welcome to</span> <strong style={{ color: "rgba(200, 160, 40)" }}>Paperleaf</strong>.
-            </h6>
+            </h6> */}
+            
+            <div class="py-3 bg-dark bg-pattern mb-4">
+                <div class="container">
+                    <div class="row bg-dark">
+                        <div class="col-12">
+                            <div class="text-center text-white">
+                                <span class="fs-6 ls-1">
+                                ⚡️ &nbsp;&nbsp;&nbsp;&nbsp; Happy Holiday Deals on Everything &nbsp;&nbsp;&nbsp;&nbsp; ⚡️
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <HomeCarousel />
             <HomeCategory />
             <HomeTopRatedProducts />
+            <SectionInfo />
             {/* <RecentlyViewedProducts /> */}
             {/* <SliderView /> */}
             {/* <section class="banners mb-15">
@@ -69,6 +84,69 @@ const Home = () => {
         </main>
     );
 }
+
+const SectionInfo = () => {
+    return (
+        <section class="bg-light-subtle border-top">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="d-flex mb-4 mb-lg-0">
+                            <i class="bi bi-truck fs-4 text-warning"></i>
+                            <div class="ms-4 ms-md-4 ">
+                                <h6 class="mb-1">
+                                    FREE SHIPPING
+                                </h6>
+                                <p class="mb-0 fs-sm text-muted">
+                                    From all orders over <span className="fw-semibold">₹</span>1000
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="d-flex mb-4 mb-lg-0">
+                            <i class="bi bi-repeat fs-4 text-warning"></i>
+                            <div class="ms-4">
+                                <h6 class="mb-1">
+                                    FREE RETURNS
+                                </h6>
+                                <p class="mb-0 fs-sm text-muted">
+                                    Return money within 30 days
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="d-flex mb-4 mb-md-0">
+                            <i class="bi bi-shield-lock fs-4 text-warning"></i>
+                            <div class="ms-4">
+                                <h6 class="mb-1">
+                                    SECURE SHOPPING
+                                </h6>
+                                <p class="mb-0 fs-sm text-muted">
+                                    You're in safe hands
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="d-flex">
+                            <i class="bi bi-tag fs-4 text-warning"></i>
+                            <div class="ms-4">
+                                <h6 class="mb-1">
+                                    OVER 1,000 STYLES
+                                </h6>
+                                <p class="mb-0 fs-sm text-muted">
+                                    We have everything you need
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
 
 export default Home;
 
