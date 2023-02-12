@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import Breadcrumb from '../../Breadcrumb/Breadcrumb';
 import Meta from '../../Meta';
 
@@ -13,79 +14,81 @@ const UserPayment = () => {
                     { name: 'Payment', link: '/user/payment', active: true }
                 ]}
             /> */}
-            <div className="container">
+            <div className="container-fluid container-md">
                 <div className="py-3">
                     <div className="d-flex justify-content-between mb-6 align-items-center mb-4">
-                        <h4 className="mb-0">Payment Methods</h4>
-                        <a href="/" className="btn btn-md btn-outline-info" data-bs-toggle="modal" data-bs-target="#paymentModal">
-                            <i className="bi bi-plus-lg"></i> Add Payment
+                        <h4 className="mb-0">Payments</h4>
+                        <a href="/" className="btn btn-outline-info px-2 px-md-4 py-3" data-bs-toggle="modal" data-bs-target="#paymentModal">
+                            <i className="bi bi-plus-lg"></i> Add New Payment
                         </a>
                     </div>
-                    <ul className="list-group list-group-flush mb-3 gap-4">
-                        <li className="list-group-item bg-light-subtle py-2 border-0">
-                            <div className="d-flex flex-0 justify-content-between align-items-center">
-                                <div className="d-flex px-md-3">
-                                    {/* <img className="" src="../assets/images/svg-graphics/visa.svg" alt="" /> */}
-                                    <div className="ms-2 ms-md-4">
-                                        <h5 className="mb-0 h6">**** 1234</h5>
-                                        <p className="mb-0 small">Expires in 10/2023</p>
-                                    </div>
+                </div>
+                <ul className="list-group list-group-flush mb-3">
+                    <li className="list-group-item bg-light-subtle mb-4 py-2 border-0">
+                        <div className="d-flex flex-0 justify-content-between align-items-center">
+                            <div className="d-flex px-md-3">
+                                {/* <img className="" src="../assets/images/svg-graphics/visa.svg" alt="" /> */}
+                                <div className="ms-md-4">
+                                    <p className="mb-0 h6">**** 1234</p>
+                                    <p className="mb-0 small">Expires in 10/2023</p>
                                 </div>
-                                <a href="/" className="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Remove</a>
                             </div>
-                        </li>
-                        <li className="list-group-item bg-light-subtle py-2 border-0">
-                            <div className="d-flex flex-0 justify-content-between align-items-center">
-                                <div className="d-flex px-md-3">
-                                    <img src="../assets/images/svg-graphics/visa.svg" alt="" />
-                                    <div className="ms-2 ms-md-4">
-                                        <h5 className="mb-0 h6">Mastercard ending in 1234</h5>
-                                        <p className="mb-0 small">Expires in 03/2026</p>
-                                    </div>
+                            <Link to="/" className="btn btn-outline-danger"><i class="bi bi-trash"></i> Remove</Link>
+                        </div>
+                    </li>
+                    <li className="list-group-item bg-light-subtle mb-4 py-2 border-0">
+                        <div className="d-flex flex-0 justify-content-between align-items-center">
+                            <div className="d-flex px-md-3">
+                                <img src="../assets/images/svg-graphics/visa.svg" alt="" />
+                                <div className="ms-md-4">
+                                    <p className="mb-0 h6">Master Card<br/>Ending in **** 1234</p>
+                                    <p className="mb-0 small">Expires in 03/2026</p>
                                 </div>
-                                <a href="/" className="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Remove</a>
                             </div>
-                        </li>
-                        <li className="list-group-item bg-light-subtle py-2 border-0">
-                            <div className="d-flex flex-0 justify-content-between align-items-center">
-                                <div className="d-flex px-1 px-md-3">
-                                    <img src="../assets/images/svg-graphics/visa.svg" alt="" />
-                                    <div className="ms-2 ms-md-4">
-                                        <h5 className="mb-0 h6">Discover ending in 1234</h5>
-                                        <p className="mb-0 small">Expires in 07/2020</p>
-                                        <span className="badge bg-warning-subtle text-dark">
-                                            This card is expired.
-                                        </span>
-                                    </div>
+                            <Link to="/" className="btn btn-outline-danger"><i class="bi bi-trash"></i> Remove</Link>
+                        </div>
+                    </li>
+                    <li className="list-group-item bg-light-subtle mb-4 py-2 border-0">
+                        <div className="d-flex flex-0 justify-content-between align-items-center">
+                            <div className="d-flex px-1 px-md-3">
+                                <img src="../assets/images/svg-graphics/visa.svg" alt="" />
+                                <div className="ms-md-4">
+                                    <p className="mb-0 h6">Discover Card <br/>Ending in **** 1234</p>
+                                    <p className="mb-0 small">Expires in 07/2020</p>
+                                    <span className="badge bg-warning-subtle text-dark">
+                                        This card is expired.
+                                    </span>
                                 </div>
-                                <a href="/" className="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Remove</a>
                             </div>
-                        </li>
-                        <li className="list-group-item bg-light-subtle py-2 border-0">
-                            <div className="d-flex flex-0 justify-content-between align-items-center">
-                                <div className="d-flex px-1 px-md-3">
-                                    <img src="../assets/images/svg-graphics/visa.svg" alt="" />
-                                    <div className="ms-2 ms-md-4">
-                                        <h6 className="mb-0">American Express<br/> ending in 1234</h6>
-                                        <p className="mb-0 small">Expires in 12/2021</p>
-                                    </div>
+                            <Link to="/" className="btn btn-outline-danger"><i class="bi bi-trash"></i> Remove</Link>
+                        </div>
+                    </li>
+                    <li className="list-group-item bg-light-subtle mb-4 py-2 border-0">
+                        <div className="d-flex flex-0 justify-content-between align-items-center">
+                            <div className="d-flex px-1 px-md-3">
+                                <img src="../assets/images/svg-graphics/visa.svg" alt="" />
+                                <div className="ms-md-4">
+                                    <p className="mb-0 h6 text-wrap">American Express Card</p>
+                                    <p className="mb-0 small fw-semibold">Ending in **** 1234</p>
+                                    <p className="mb-0 small">Expires in 12/2021</p>
                                 </div>
-                                <a href="/" className="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Remove</a>
                             </div>
-                        </li>
-                        <li className="list-group-item bg-secondary py-2 border-0">
-                            <div className="d-flex flex-0 justify-content-between align-items-center">
-                                <div className="d-flex px-md-3">
-                                    <img src="../assets/images/svg-graphics/visa.svg" alt="" />
-                                    <div className="ms-md-4">
-                                        <h6 className="mb-0">Mastercard<br/>ending in 1234</h6>
-                                        <p className="mb-0 small">Expires in 03/2026</p>
-                                    </div>
+                            <Link to="/" className="btn btn-outline-danger"><i class="bi bi-trash"></i> Remove</Link>
+                        </div>
+                    </li>
+                    <li className="list-group-item bg-light-subtle mb-4 py-2 border-0">
+                        <div className="d-flex flex-0 justify-content-between align-items-center">
+                            <div className="d-flex px-md-3">
+                                <img src="../assets/images/svg-graphics/visa.svg" alt="" />
+                                <div className="ms-md-4">
+                                    <p className="mb-0 h6">Master Card<br/>ending in 1234</p>
+                                    <p className="mb-0 small">Expires in 03/2026</p>
                                 </div>
-                                <a href="/" className="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Remove</a>
                             </div>
-                        </li>
-                        {/* <li className="list-group-item px-0 py-4">
+                            <Link to="/" className="btn btn-outline-danger"><i class="bi bi-trash"></i> Remove</Link>
+                        </div>
+                    </li>
+                    {/* <li className="list-group-item px-0 py-4">
                             <div className="d-flex justify-content-between">
                                 <div className="d-flex">
                                     <img src="../assets/images/svg-graphics/mastercard.svg" alt="" className="me-3" />
@@ -142,8 +145,7 @@ const UserPayment = () => {
                                 </div>
                             </div>
                         </li> */}
-                    </ul>
-                </div>
+                </ul>
             </div>
         </>
 

@@ -70,15 +70,15 @@ const UserProfile = () => {
                     </div>
                     <div className="my-2">
                         <button class="btn px-5 py-3 bg-dark text-white" type="submit">
-                            Update profile
+                            Update Profile
                         </button>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row mt-3">
                     <div className="d-flex justify-content-between align-items-center mt-4 mb-2">
-                        <h5 className="mb-0">Update password</h5>
+                        <h5 className="mb-0">Update Password</h5>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 mt-3">
                         <div class="form-group">
                             <label class="form-label" for="accountPassword">
                                 Current Password *
@@ -104,7 +104,7 @@ const UserProfile = () => {
                     </div>
                     <div className="my-4">
                         <button class="btn px-5 py-3 bg-dark text-white" type="submit">
-                            Update password
+                            Update Password
                         </button>
                     </div>
                 </div>

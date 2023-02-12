@@ -96,50 +96,50 @@ const Navbar = () => {
                                         </li>
                                         <li className="mx-2"><hr className="dropdown-divider text-muteed" /></li>
                                         <li>
-                                            <Link to="/user/userProfile" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
+                                            <Link to="/user/profile" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
                                                 <span className="p-0 pe-2 pt-1"><i className='bx bx-user' style={{ fontSize: "16px" }}></i></span>
                                                 My Profile
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to="/user/userAddresses" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
+                                            <Link to="/user/address" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
                                                 <span className="p-0 pe-2 pt-1"><i className='bx bx-target-lock' style={{ fontSize: "16px" }}></i></span>
                                                 My Address
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to="/user/userOrders" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
+                                            <Link to="/user/orders" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
                                                 <span className="p-0 pe-2 pt-1"><i className='bx bx-book' style={{ fontSize: "16px" }}></i></span>
                                                 My Orders
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to="/user/trackRecentOrder" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
+                                            <Link to="/user/trackOrder" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
                                                 <span className="p-0 pe-2 pt-1"><i className='bx bxs-truck' style={{ fontSize: "16px" }}></i></span>
                                                 Track My Order
                                             </Link>
                                         </li>
                                         <li className="mx-2"><hr className="dropdown-divider text-muteed" /></li>
                                         <li>
-                                            <Link to="/user/userSettings" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
+                                            <Link to="/user/settings" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
                                                 <span className="p-0 pe-2 pt-1"><i className='bx bx-cog' style={{ fontSize: "16px" }}></i></span>
                                                 Notifications & Settings
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to="/user/helpOnOrder" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
+                                            <Link to="/user/help" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
                                                 <span className="p-0 pe-2 pt-1"><i className='bx bx-question-mark' style={{ fontSize: "16px" }}></i></span>
                                                 Need Help
                                             </Link>
                                         </li>
                                         <li className="mx-2"><hr className="dropdown-divider text-muteed" /></li>
                                         <li>
-                                            <a className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center" href="/">
+                                            <Link to="/logout" className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
                                                 <span className="p-0 pe-2 pt-1">
                                                     <i className='bx bx-log-out-circle' style={{ fontSize: "16px" }}></i>
                                                 </span>
                                                 Signout
-                                            </a>
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>

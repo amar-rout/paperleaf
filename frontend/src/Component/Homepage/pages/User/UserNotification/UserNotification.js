@@ -2,6 +2,8 @@ import React from 'react';
 // import Breadcrumb from '../../Breadcrumb/Breadcrumb';
 import Meta from '../../Meta';
 
+import "./UserNotification.css";
+
 const UserNotification = () => {
     return (
         <>
@@ -30,7 +32,7 @@ const UserNotification = () => {
                                 </p>
                             </div>
                             <div className="form-check form-switch">
-                                <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                <input className="form-check-input form_check_input shadow-none" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
                                 <label className="form-check-label" for="flexSwitchCheckDefault"></label>
                             </div>
                         </div>
@@ -42,7 +44,7 @@ const UserNotification = () => {
                                 </p>
                             </div>
                             <div className="form-check form-switch">
-                                <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                                <input className="form-check-input form_check_input shadow-none" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
                                 <label className="form-check-label" for="flexSwitchCheckChecked"></label>
                             </div>
                         </div>
@@ -59,7 +61,7 @@ const UserNotification = () => {
                                 </p>
                             </div>
                             <div className="form-check form-switch">
-                                <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault2" checked />
+                                <input className="form-check-input form_check_input shadow-none" type="checkbox" role="switch" id="flexSwitchCheckDefault2" />
                                 <label className="form-check-label" for="flexSwitchCheckDefault2"></label>
                             </div>
                         </div>
@@ -71,7 +73,7 @@ const UserNotification = () => {
                             </div>
 
                             <div className="form-check form-switch">
-                                <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked2" checked />
+                                <input className="form-check-input form_check_input shadow-none " type="checkbox" role="switch" id="flexSwitchCheckChecked2" />
                                 <label className="form-check-label" for="flexSwitchCheckChecked2"></label>
                             </div>
                         </div>
@@ -82,36 +84,36 @@ const UserNotification = () => {
                         </div>
                         <div>
                             <div className="form-check mb-2">
-                                <input className="form-check-input" type="checkbox" value="" id="flexCheckFollower" checked />
-                                <label className="form-check-label" for="flexCheckFollower">
+                                <input className="form-check-input form_check_input_checkbox shadow-none" type="checkbox" value="" id="flexCheckFollower" />
+                                <label className="form-check-label ms-2" for="flexCheckFollower">
                                     New Follower
                                 </label>
                             </div>
 
                             <div className="form-check mb-2">
-                                <input className="form-check-input" type="checkbox" value="" id="flexCheckPost" />
-                                <label className="form-check-label" for="flexCheckPost">
+                                <input className="form-check-input form_check_input_checkbox shadow-none" type="checkbox" value="" id="flexCheckPost" />
+                                <label className="form-check-label ms-2" for="flexCheckPost">
                                     Post Like
                                 </label>
                             </div>
 
                             <div className="form-check mb-2">
-                                <input className="form-check-input" type="checkbox" value="" id="flexCheckPosted" />
-                                <label className="form-check-label" for="flexCheckPosted">
+                                <input className="form-check-input form_check_input_checkbox shadow-none" type="checkbox" value="" id="flexCheckPosted" />
+                                <label className="form-check-label ms-2" for="flexCheckPosted">
                                     Someone you followed posted
                                 </label>
                             </div>
 
                             <div className="form-check mb-2">
-                                <input className="form-check-input" type="checkbox" value="" id="flexCheckCollection" />
-                                <label className="form-check-label" for="flexCheckCollection">
+                                <input className="form-check-input form_check_input_checkbox shadow-none" type="checkbox" value="" id="flexCheckCollection" />
+                                <label className="form-check-label ms-2" for="flexCheckCollection">
                                     Post added to collection
                                 </label>
                             </div>
 
                             <div className="form-check mb-2">
-                                <input className="form-check-input" type="checkbox" value="" id="flexCheckOrder" checked />
-                                <label className="form-check-label" for="flexCheckOrder">
+                                <input className="form-check-input form_check_input_checkbox shadow-none" type="checkbox" value="" id="flexCheckOrder" />
+                                <label className="form-check-label ms-2" for="flexCheckOrder">
                                     Order Delivery
                                 </label>
                             </div>

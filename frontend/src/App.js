@@ -76,7 +76,7 @@ function App() {
               <Route path="address" element={<UserAddress />} />
               <Route path="addAddress" element={<AddAddress />} />
               <Route path="editAddress" element={<EditAddress />} />
-              <Route path="notification" element={<UserNotification />} />
+              <Route path="notifications" element={<UserNotification />} />
               <Route path="paymentMethods" element={<UserPayment />} />
               <Route path="*" element={<ComingSoon />} />
             </Route>

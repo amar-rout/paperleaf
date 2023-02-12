@@ -67,7 +67,7 @@ const User = () => {
                         {/* <span className="d-md-none float-end pe-2"><i class="bi bi-chevron-down"></i></span> */}
                     </h2>
                 </div>
-                <div className="row my-2 px-4">
+                <div className="row my-2">
                     <div className="col-12 col-md-4 col-lg-3">
                         <div class="card text-center">
                             <div class="card-header bg-body">
@@ -130,9 +130,9 @@ const User = () => {
                             </div>
 
                             <div class="card-footer bg-body text-center">
-                                <button className="btn btn-outline-dark px-4 py-2 rounded-3" to="/logout">
+                                <Link to="/logout" className="btn btn-outline-dark px-4 py-2 rounded-3">
                                     <i className='bx bx-log-out-circle'></i> Logout
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
