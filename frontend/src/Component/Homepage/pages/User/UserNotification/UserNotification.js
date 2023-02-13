@@ -119,6 +119,9 @@ const UserNotification = () => {
                             </div>
                         </div>
                     </div>
+                    <div className="mb-5">
+                        <button class="btn bg-dark text-white px-4 py-3" type="button">Save changes</button>
+                    </div>
                 </div>
             </div>
         </>

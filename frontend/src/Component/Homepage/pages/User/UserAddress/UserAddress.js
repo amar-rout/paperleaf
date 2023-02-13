@@ -40,7 +40,7 @@ const UserAddress = () => {
                         <div className="card border-info">
                             <div className="card-header bg-info-subtle d-flex flex-0 justify-content-between align-items-center p-2 m-0">
                                 <span className="h6 mt-2">Home</span>
-                                <button className="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#setDefaultModal"
+                                <button className="btn btn-outline-dark disabled" data-bs-toggle="modal" data-bs-target="#setDefaultModal"
                                     onClick={handleSetDefaultAddress}>
                                     Set default address
                                 </button>

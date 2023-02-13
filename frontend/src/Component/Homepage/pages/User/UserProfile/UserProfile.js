@@ -7,11 +7,11 @@ const UserProfile = () => {
         <>
             <Meta title="User Profile" />
             <div className="container">
-                <div className="d-flex justify-content-between align-items-center mb-4">
+                <div className="d-flex justify-content-between align-items-center mb-3">
                     <h4 className="mb-0">My Profile</h4>
                 </div>
                 <div class="row border border-1 rounded-4">
-                    <div className="mt-4 mb-2">
+                    <div className="mt-3 mb-2">
                         <span className="mb-0 h5">Basic Information</span>
                     </div>
                     <div class="col-12 col-md-6">
@@ -78,7 +78,7 @@ const UserProfile = () => {
                     </div>
                 </div>
                 <div className="row mt-3 border border-1 rounded-4">
-                    <div className="d-flex justify-content-between align-items-center mt-4 mb-2">
+                    <div className="d-flex justify-content-between align-items-center mt-3 mb-2">
                         <span className="mb-0 h5">Update profile photo</span>
                     </div>
                     <div class="col-12">
@@ -99,7 +99,7 @@ const UserProfile = () => {
                     </div>
                 </div>
                 <div className="row mt-3 border border-1 rounded-4">
-                    <div className="mt-4 mb-2">
+                    <div className="mt-3 mb-2">
                         <span className="mb-0 h5">Update Email ID</span><br />
                         <span className="mb-0">Your current Email ID : </span>
                         <span className='mb-0 h6'>amarendra.rout@gmail.com</span>
@@ -119,7 +119,7 @@ const UserProfile = () => {
                     </div>
                 </div>
                 <div className="row border border-1 rounded-4 mt-3">
-                    <div className="d-flex justify-content-between align-items-center mt-4 mb-2">
+                    <div className="d-flex justify-content-between align-items-center mt-3 mb-2">
                         <h5 className="mb-0">Update Password</h5>
                     </div>
                     <div class="col-12">
