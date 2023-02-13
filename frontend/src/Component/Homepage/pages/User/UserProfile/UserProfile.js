@@ -78,12 +78,33 @@ const UserProfile = () => {
                     </div>
                 </div>
                 <div className="row mt-3 border border-1 rounded-4">
+                    <div className="d-flex justify-content-between align-items-center mt-4 mb-2">
+                        <span className="mb-0 h5">Update profile photo</span>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="form-label" for="accountAvatar">
+                                Upload your profile photo *
+                            </label>
+                            <input class="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-3 mb-3 text-decoration-none shadow-none" id="accountAvatar" type="file" placeholder="Select your avatar" />
+                        </div>
+                        <div className="">
+                            <button class="btn me-2 px-3 mb-3 px-md-5 py-3 bg-dark text-white" type="submit">
+                                Upload Profile Photo
+                            </button>
+                            <button class="btn px-3 mb-3 px-md-5 py-3 bg-danger text-white" type="submit">
+                                Remove Profile Photo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div className="row mt-3 border border-1 rounded-4">
                     <div className="mt-4 mb-2">
                         <span className="mb-0 h5">Update Email ID</span><br />
                         <span className="mb-0">Your current Email ID : </span>
                         <span className='mb-0 h6'>amarendra.rout@gmail.com</span>
                     </div>
-                    <div class="col-12 mt-3">
+                    <div class="col-12">
                         <div class="form-group">
                             <div class="form-group">
                                 <label class="form-label" for="emailAddress">Email Address *</label>
@@ -101,7 +122,7 @@ const UserProfile = () => {
                     <div className="d-flex justify-content-between align-items-center mt-4 mb-2">
                         <h5 className="mb-0">Update Password</h5>
                     </div>
-                    <div class="col-12 mt-3">
+                    <div class="col-12">
                         <div class="form-group">
                             <label class="form-label" for="accountPassword">
                                 Current Password *
@@ -129,27 +150,6 @@ const UserProfile = () => {
                         <button class="btn px-5 py-3 mb-3 bg-dark text-white" type="submit">
                             Update Password
                         </button>
-                    </div>
-                </div>
-                <div className="row mt-3 border border-1 rounded-4">
-                    <div className="d-flex justify-content-between align-items-center mt-4 mb-2">
-                        <span className="mb-0 h5">Update profile photo</span>
-                    </div>
-                    <div class="col-12 mt-3">
-                        <div class="form-group">
-                            <label class="form-label" for="accountAvatar">
-                                Upload your profile photo *
-                            </label>
-                            <input class="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-3 mb-3 text-decoration-none shadow-none" id="accountAvatar" type="file" placeholder="Select your avatar" />
-                        </div>
-                        <div className="">
-                            <button class="btn me-2 px-3 mb-3 px-md-5 py-3 bg-dark text-white" type="submit">
-                                Upload Profile Photo
-                            </button>
-                            <button class="btn px-3 mb-3 px-md-5 py-3 bg-danger text-white" type="submit">
-                                Remove Profile Photo
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
