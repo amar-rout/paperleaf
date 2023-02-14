@@ -9,18 +9,18 @@ const Breadcrumb = ({ links }) => {
             <div className="container py-2">
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb m-0 my-2">
-                        {links.map((linkTo) => (
-                            <>
+                        {links.map((linkTo, link) => (
+                            <span key={link}>
                                 {!linkTo.active ?
-                                    <li key={linkTo.link} className="breadcrumb-item" >
-                                        <Link to={linkTo.link}>{linkTo.name}</Link>
+                                    <li className="breadcrumb-item fs-6" >
+                                        <Link to={linkTo.link}>{linkTo.name} / </Link>
                                     </li>
                                     :
-                                    <li key={linkTo.link} className="breadcrumb-item active" >
+                                    <li className="breadcrumb-item fs-6 active" >
                                         {linkTo.name}
                                     </li>
                                 }
-                            </>
+                            </span>
                         ))}
                     </ol>
                 </nav>

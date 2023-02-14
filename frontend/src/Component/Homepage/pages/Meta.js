@@ -1,13 +1,15 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 export default function Meta({ title, description, keywords }) {
   return (
-    <Helmet>
-      <title>PAPER LEAF - {title}</title>
-      <meta name="description" content={description} />
-      <meta name="keyword" content={keywords} />
-    </Helmet>
+    <HelmetProvider>
+      <Helmet>
+        <title>PAPER LEAF - {title}</title>
+        <meta name="description" content={description} />
+        <meta name="keyword" content={keywords} />
+      </Helmet>
+    </HelmetProvider>
   );
 }
 

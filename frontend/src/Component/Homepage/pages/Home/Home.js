@@ -26,12 +26,12 @@ const Home = () => {
                 <span className="text-dark">Welcome to</span> <strong style={{ color: "rgba(200, 160, 40)" }}>Paperleaf</strong>.
             </h6> */}
             
-            <div class="py-3 bg-dark bg-pattern mb-4">
-                <div class="container">
-                    <div class="row bg-dark">
-                        <div class="col-12">
-                            <div class="text-center text-white">
-                                <span class="fs-6 ls-1">
+            <div className="py-3 bg-dark bg-pattern mb-4">
+                <div className="container">
+                    <div className="row bg-dark">
+                        <div className="col-12">
+                            <div className="text-center text-white">
+                                <span className="fs-6 ls-1">
                                 ⚡️ &nbsp;&nbsp;&nbsp;&nbsp; Happy Holiday Deals on Everything &nbsp;&nbsp;&nbsp;&nbsp; ⚡️
                                 </span>
                             </div>
@@ -45,36 +45,36 @@ const Home = () => {
             <SectionInfo />
             {/* <RecentlyViewedProducts /> */}
             {/* <SliderView /> */}
-            {/* <section class="banners mb-15">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="banner-img wow fadeIn animated animated animated" style={{ visibility: "visible" }}>
+            {/* <section className="banners mb-15">
+                <div className="container">
+                    <div className="row">
+                        <div className="col">
+                            <div className="banner-img wow fadeIn animated animated animated" style={{ visibility: "visible" }}>
                                 <img src="./assets/images/bannerImages/banner-1.png" alt="" />
-                                    <div class="banner-text">
+                                    <div className="banner-text">
                                         <span>Smart Offer</span>
                                         <h4>Save 20% on <br/>Woman Bag</h4>
-                                        <a href="shop-grid-right.html">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                                        <a href="shop-grid-right.html">Shop Now <i className="fi-rs-arrow-right"></i></a>
                                     </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="banner-img wow fadeIn animated animated animated" style={{ visibility: "visible" }}>
+                        <div className="col">
+                            <div className="banner-img wow fadeIn animated animated animated" style={{ visibility: "visible" }}>
                                 <img src="./assets/images/bannerImages/banner-2.jpeg" alt="" />
-                                    <div class="banner-text">
+                                    <div className="banner-text">
                                         <span>Sale off</span>
                                         <h4>Great Summer <br/>Collection</h4>
-                                        <a href="shop-grid-right.html">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                                        <a href="shop-grid-right.html">Shop Now <i className="fi-rs-arrow-right"></i></a>
                                     </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="banner-img wow fadeIn animated  mb-sm-0 animated animated" style={{ visibility: "visible" }}>
+                        <div className="col">
+                            <div className="banner-img wow fadeIn animated  mb-sm-0 animated animated" style={{ visibility: "visible" }}>
                                 <img src="./assets/images/bannerImages/banner-1.jpeg" alt="" />
-                                    <div class="banner-text">
+                                    <div className="banner-text">
                                         <span>New Arrivals</span>
                                         <h4>Shop Today’s <br/>Deals &amp; Offers</h4>
-                                        <a href="shop-grid-right.html">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                                        <a href="shop-grid-right.html">Shop Now <i className="fi-rs-arrow-right"></i></a>
                                     </div>
                             </div>
                         </div>
@@ -87,57 +87,57 @@ const Home = () => {
 
 const SectionInfo = () => {
     return (
-        <section class="bg-light-subtle border-top">
-            <div class="container">
-                <div class="row p-5">
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="d-flex mb-4 mb-lg-0">
-                            <i class="bi bi-truck fs-4 text-warning"></i>
-                            <div class="ms-4 ms-md-4 ">
-                                <h6 class="mb-1">
+        <section className="bg-light-subtle border-top">
+            <div className="container">
+                <div className="row p-5">
+                    <div className="col-12 col-md-6 col-lg-3">
+                        <div className="d-flex mb-4 mb-lg-0">
+                            <i className="bi bi-truck fs-4 text-warning"></i>
+                            <div className="ms-4 ms-md-4 ">
+                                <h6 className="mb-1">
                                     FREE SHIPPING
                                 </h6>
-                                <p class="mb-0 fs-sm text-muted">
+                                <p className="mb-0 fs-sm text-muted">
                                     From all orders over <span className="fw-semibold">₹</span>1000
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="d-flex mb-4 mb-lg-0">
-                            <i class="bi bi-repeat fs-4 text-warning"></i>
-                            <div class="ms-4">
-                                <h6 class="mb-1">
+                    <div className="col-12 col-md-6 col-lg-3">
+                        <div className="d-flex mb-4 mb-lg-0">
+                            <i className="bi bi-repeat fs-4 text-warning"></i>
+                            <div className="ms-4">
+                                <h6 className="mb-1">
                                     FREE RETURNS
                                 </h6>
-                                <p class="mb-0 fs-sm text-muted">
+                                <p className="mb-0 fs-sm text-muted">
                                     Return money within 30 days
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="d-flex mb-4 mb-md-0">
-                            <i class="bi bi-shield-lock fs-4 text-warning"></i>
-                            {/* <i class="bi bi-shield-check"></i> */}
-                            <div class="ms-4">
-                                <h6 class="mb-1">
+                    <div className="col-12 col-md-6 col-lg-3">
+                        <div className="d-flex mb-4 mb-md-0">
+                            <i className="bi bi-shield-lock fs-4 text-warning"></i>
+                            {/* <i className="bi bi-shield-check"></i> */}
+                            <div className="ms-4">
+                                <h6 className="mb-1">
                                     SECURE SHOPPING
                                 </h6>
-                                <p class="mb-0 fs-sm text-muted">
+                                <p className="mb-0 fs-sm text-muted">
                                     You're in safe hands
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 col-lg-3">
-                        <div class="d-flex">
-                            <i class="bi bi-tag fs-4 text-warning"></i>
-                            <div class="ms-4">
-                                <h6 class="mb-1">
+                    <div className="col-12 col-md-6 col-lg-3">
+                        <div className="d-flex">
+                            <i className="bi bi-tag fs-4 text-warning"></i>
+                            <div className="ms-4">
+                                <h6 className="mb-1">
                                     OVER 1,000 STYLES
                                 </h6>
-                                <p class="mb-0 fs-sm text-muted">
+                                <p className="mb-0 fs-sm text-muted">
                                     We have everything you need
                                 </p>
                             </div>
@@ -152,9 +152,9 @@ const SectionInfo = () => {
 export default Home;
 
 
-/* <form class="form-inline" role="search">
-    <div class="form-group">
-        <select class="selectpicker" multiple data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true">
+/* <form className="form-inline" role="search">
+    <div className="form-group">
+        <select className="selectpicker" multiple data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true">
             <optgroup label="filter1">
                 <option>option1</option>
                 <option>option2</option>

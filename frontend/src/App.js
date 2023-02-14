@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
 
 import './App.css';
 
@@ -55,7 +54,6 @@ const PageNotFound = () => {
 
 function App() {
   return (
-    <HelmetProvider>
       <div className="App">
         <Routes>
           <Route path="/" element={<Homepage />}>
@@ -65,7 +63,6 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/search" element={<Search />} />
-
             <Route path="category" element={<Category />}>
               <Route exact path=":id" element={<Category />} />
               <Route path="*" element={<PageNotFound />} />
@@ -82,26 +79,21 @@ function App() {
               <Route path="paymentMethods" element={<UserPayment />} />
               <Route path="*" element={<ComingSoon />} />
             </Route>
-
             <Route path="/carts" element={<Cart />} />
             <Route path="/wishlists" element={<Wishlist />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgotPassword" element={<ForgotPassword />} />
             <Route path="/resetPassword" element={<ResetPassword />} />
-
             <Route path="userProfile" element={<UserProfile />} />
             <Route path="help" element={<Help />} />
             <Route path="faqs" element={<Help />} />
-
           </Route>
-
           <Route path="underConstruction" element={<UnderConstruction />} />
           <Route path="noMatch" element={<ComingSoon />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
-    </HelmetProvider>
   );
 }
 
