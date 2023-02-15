@@ -12,12 +12,12 @@ const Breadcrumb = ({ links }) => {
                         {links.map((linkTo, link) => (
                             <>
                                 {!linkTo.active ?
-                                    <li key={link} className="breadcrumb-item fs-6" >
-                                        <Link to={linkTo.link}>{linkTo.name}</Link>
+                                    <li key={link} className="breadcrumb-item" >
+                                        <Link to={linkTo.link} className="text-decoration-none fs-6 text-secondary link-warning">{linkTo.name}</Link>
                                     </li>
                                     :
                                     <li key={link} className="breadcrumb-item fs-6 active" >
-                                        {linkTo.name}
+                                        <span className="fs-6">{linkTo.name}</span>
                                     </li>
                                 }
                             </>

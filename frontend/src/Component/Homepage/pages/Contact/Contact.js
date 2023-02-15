@@ -43,7 +43,7 @@ const Contact = () => {
                                 </div>
                                 <div class="form-group col-12 mb-3">
                                     <label htmlFor="inputTextarea">Message</label>
-                                    <textarea class="form-control px-2 px-md-4 py-3 mt-2 border-dark shadow-none" id="inputTextarea" rows="3" placeholder="Enter messages"></textarea>
+                                    <textarea class="form-control px-2 px-md-4 py-3 mt-2 border-dark shadow-none" id="inputTextarea" rows="5" placeholder="Enter messages"></textarea>
                                 </div>
                                 <div class="col-12 mb-3">
                                     {/* <div class="form-control mb-2 border-0">
