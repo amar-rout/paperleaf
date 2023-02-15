@@ -10,17 +10,17 @@ const Breadcrumb = ({ links }) => {
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb m-0 my-2">
                         {links.map((linkTo, link) => (
-                            <span key={link}>
+                            <>
                                 {!linkTo.active ?
-                                    <li className="breadcrumb-item fs-6" >
-                                        <Link to={linkTo.link}>{linkTo.name} / </Link>
+                                    <li key={link} className="breadcrumb-item fs-6" >
+                                        <Link to={linkTo.link}>{linkTo.name}</Link>
                                     </li>
                                     :
-                                    <li className="breadcrumb-item fs-6 active" >
+                                    <li key={link} className="breadcrumb-item fs-6 active" >
                                         {linkTo.name}
                                     </li>
                                 }
-                            </span>
+                            </>
                         ))}
                     </ol>
                 </nav>
