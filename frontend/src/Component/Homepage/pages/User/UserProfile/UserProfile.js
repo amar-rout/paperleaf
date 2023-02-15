@@ -63,15 +63,13 @@ const UserProfile = () => {
                                 <div class="btn-group" role="group" aria-label="Select gender">
                                     <input type="radio" class="btn-check form-control" name="btnradio" id="male" autocomplete="off" />
                                     <label class="btn btn-outline-dark px-4 py-3" for="male">Male</label>
-
                                     <input type="radio" class="btn-check form-control" name="btnradio" id="female" autocomplete="off" />
                                     <label class="btn btn-outline-dark px-4 py-3" for="female">Female</label>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3 mt-3 mt-md-0">
                         <button class="btn px-5 py-3 bg-dark text-white" type="submit">
                             Update Profile
                         </button>
