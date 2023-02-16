@@ -1,23 +1,32 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios';
+import { Link } from "react-router-dom";
+// import axios from 'axios';
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import Meta from "../Meta";
+
+import { useSelector, useDispatch } from 'react-redux';
+import {
+    loginAsync,
+    selectLoginUser,
+    selectErrorMessage
+} from "../../../../app/userSlice";
 
 import "./Login.css";
 
 const Login = () => {
 
+    const loginUser = useSelector(selectLoginUser);
+    const loginErrorMessage = useSelector(selectErrorMessage);
+    const dispatch = useDispatch();
+
     const [passwordShown, setPasswordShown] = useState(false);
-    const navigate = useNavigate()
     const isEmail = (email) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
     const [errorMessage, setErrorMessage] = useState("");
-    const [successMessage, setSuccessMessage] = useState("");
     const [user, setUser] = useState({
         email: "",
         password: ""
     })
-    const loginURL = `${process.env.REACT_APP_SERVER_URL}/login`
+    // const loginURL = `${process.env.REACT_APP_SERVER_URL}/login`
     const handleChange = e => {
         const { name, value } = e.target
         setUser({
@@ -30,26 +39,13 @@ const Login = () => {
     };
     const login = () => {
         if (user.email && user.password && isEmail(user.email) && user.password.length >= 8 && user.password.length <= 15) {
-            axios.post(loginURL, user)
-                .then(response => {
-                    // updateUser(response.data.user)
-                    setSuccessMessage("Login Successful");
-                    setErrorMessage("");
-                    navigate("/", { replace: true })
-                }).catch(error => {
-                    if (error.response) {
-                        setErrorMessage(error.response.data.message)
-                        setSuccessMessage("")
-                    } else if (error.request) {
-                        setSuccessMessage("");
-                        setErrorMessage("Couldn't connect to server. Please try again later.");
-                    } else {
-                        setErrorMessage("Error" + error.message)
-                        setSuccessMessage("")
-                    }
-                })
+            dispatch(loginAsync(user.email, user.password));
+            setErrorMessage(loginErrorMessage);
+            if (loginUser !== "" && loginUser !== undefined) {
+                console.log("Login USer: ");
+                console.log(loginUser);
+            }
         } else {
-            setSuccessMessage("");
             setErrorMessage("Please provide valid inputs");
         }
     }
@@ -110,7 +106,7 @@ const Login = () => {
                         <div className="d-flex justify-content-between align-items center mb-4">
                             <div className="form-check my-2 d-flex align-items-center">
                                 <input type="checkbox" className="form-check-input bg-dark border-0 shadow-none me-2" id="remember"
-                                       style={{width:"24px", height:"24px"}} />
+                                    style={{ width: "24px", height: "24px" }} />
                                 <label className="form-check-label" htmlFor="remember">
                                     Remember me
                                 </label>
@@ -123,9 +119,6 @@ const Login = () => {
                         </div>
                         <div className="text-danger text-center my-1">
                             {errorMessage}
-                        </div>
-                        <div className="text-success text-center">
-                            {successMessage}
                         </div>
                     </div>
                     <div className="col-1 col-md-2 col-lg-4"></div>
