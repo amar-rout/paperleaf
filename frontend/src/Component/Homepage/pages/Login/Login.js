@@ -39,7 +39,7 @@ const Login = () => {
     };
     const login = () => {
         if (user.email && user.password && isEmail(user.email) && user.password.length >= 8 && user.password.length <= 15) {
-            dispatch(loginAsync(user.email, user.password));
+            dispatch(loginAsync(user));
             setErrorMessage(loginErrorMessage);
             if (loginUser !== "" && loginUser !== undefined) {
                 console.log("Login USer: ");

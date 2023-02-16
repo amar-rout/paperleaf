@@ -12,18 +12,18 @@ const initialState = {
 
 export const loginAsync = createAsyncThunk(
     'user/userLogin',
-    async (email, password, thunkAPI) => {
+    async (user, thunkAPI) => {
         try {
-            const serverURL = process.env.REACT_APP_SERVER_URL;
+            const[email, password] = user;
             const config = { headers: { 'Content-Type': 'application/json', }, };
-            axios.post(`${serverURL}/api/users/login`, { email, password }, config,)
+            axios.post('/api/users/login', { email, password }, config,)
                 .then(response => {
                     localStorage.setItem('userInfo', JSON.stringify(response.data));
                     return thunkAPI.fulfillWithValue(JSON.parse(response.data));
                 }).catch(error => {
                     if (error.response) {
-                        let errorMessage = error.response.data.message;
-                        return thunkAPI.rejectWithValue({ error: errorMessage });
+                        // let errorMessage = error.response.data.message;
+                        return thunkAPI.rejectWithValue({ error: error.response.data.message });
                     } else if (error.request) {
                         let errorMessage = "Couldn't connect to server. Please try again later.";
                         return thunkAPI.rejectWithValue({ error: errorMessage });
