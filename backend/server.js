@@ -23,6 +23,13 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
+import cors from "cors";
+const corsOrigin ={
+    origin:'http://localhost:3000', //or whatever port your frontend is using
+    credentials:true,            
+    optionSuccessStatus:200
+}
+app.use(cors(corsOrigin));
 
 app.use('/api/homepage', homeRoutes);
 app.use('/api/upload', uploadRoutes);
@@ -54,7 +61,7 @@ app.use(notFound);
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5010;
 app.listen(
   PORT,
   console.log(`Server runing in ${process.env.NODE_ENV} on port ${PORT}`),
