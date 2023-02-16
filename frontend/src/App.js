@@ -39,6 +39,7 @@ import EditAddress from './Component/Homepage/pages/User/UserAddress/EditAddress
 import UserNotification from './Component/Homepage/pages/User/UserNotification/UserNotification';
 import UserPayment from './Component/Homepage/pages/User/UserPayment/UserPayment';
 import UserSetting from './Component/Homepage/pages/User/UserSetting/UserSetting';
+import Checkout from './Component/Homepage/pages/Checkout/Checkout';
 
 
 const PageNotFound = () => {
@@ -80,6 +81,7 @@ function App() {
               <Route path="*" element={<ComingSoon />} />
             </Route>
             <Route path="/carts" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/wishlists" element={<Wishlist />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
