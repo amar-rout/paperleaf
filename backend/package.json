@@ -10,7 +10,7 @@
     "data:destroy": "node seeder -D"
   },
   "keywords": [],
-  "author": "Rawallon Cardoso",
+  "author": "Amarendra Rout",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
