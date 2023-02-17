@@ -6,38 +6,48 @@ const initialState = {
     status: 'idle',
     errorMessage: ''
 };
-// const getState = () => {
-//     return initialState.userInfo;
-// }
+
+const USER_LOGIN = 'user/userLogin';
 
 export const loginAsync = createAsyncThunk(
-    'user/userLogin',
-    async (user, thunkAPI) => {
+    USER_LOGIN,
+    async ({ email, password }, thunkAPI) => {
         try {
-            const[email, password] = user;
             const config = { headers: { 'Content-Type': 'application/json', }, };
-            axios.post('/api/users/login', { email, password }, config,)
-                .then(response => {
-                    localStorage.setItem('userInfo', JSON.stringify(response.data));
-                    return thunkAPI.fulfillWithValue(JSON.parse(response.data));
-                }).catch(error => {
-                    if (error.response) {
-                        // let errorMessage = error.response.data.message;
-                        return thunkAPI.rejectWithValue({ error: error.response.data.message });
-                    } else if (error.request) {
-                        let errorMessage = "Couldn't connect to server. Please try again later.";
-                        return thunkAPI.rejectWithValue({ error: errorMessage });
-                    } else {
-                        let errorMessage = "Error" + error.message;
-                        return thunkAPI.rejectWithValue({ error: errorMessage });
-                    }
-                });
+            const response = await axios.post('/api/users/login', { email, password }, config,);
+            localStorage.setItem('userInfo', JSON.stringify(response.data));
+            return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
         } catch (error) {
-            let errorMessage = "Error:" + error.message;
-            return thunkAPI.rejectWithValue({ error: errorMessage });
+            return thunkAPI.rejectWithValue({ error: error.message });
         }
     }
 );
+// axios.post('/api/users/login', { email, password }, config,)
+//     .then(response => {
+//         console.log("API call login");
+//         localStorage.setItem('userInfo', JSON.stringify(response.data));
+//         return thunkAPI.fulfillWithValue(JSON.parse(response.data));
+//     }).catch(error => {
+//         if (error.response) {
+//             // let errorMessage = error.response.data.message;
+//             console.log("error.response.data.message");
+//             console.log(error.response.data.message);
+//             return thunkAPI.rejectWithValue({ error: error.response.data.message });
+//         } else if (error.request) {
+//             let errorMessage = "Couldn't connect to server. Please try again later.";
+//             console.log("error server");
+//             console.log(errorMessage);
+//             return thunkAPI.rejectWithValue({ error: errorMessage });
+//         } else {
+//             let errorMessage = "Error" + error.message;
+//             console.log("error server message");
+//             console.log(errorMessage);
+//             return thunkAPI.rejectWithValue({ error: errorMessage });
+//         }
+//     });
+// } catch (error) {
+//     return thunkAPI.rejectWithValue({ error: error.message });
+// }
 
 // export const registerAsync = createAsyncThunk(
 //     'user/userRegister',
@@ -98,7 +108,7 @@ export const userSlice = createSlice({
             })
             .addCase(loginAsync.rejected, (state, action) => {
                 state.status = 'error';
-                state.errorMessage = action.error.message;
+                state.errorMessage = action.error.errorMessage;
             })
         // .addCase(registerAsync.pending, (state) => {
         //     state.status = 'loading';
@@ -117,7 +127,7 @@ export const userSlice = createSlice({
 
 export const { logout } = userSlice.actions;
 
-export const selectLoginUser = (state) => state.user.userInfo;
+export const selectLoginUser = (state) => state.userInfo;
 
 export const selectErrorMessage = (state) => state.user.errorMessage;
 

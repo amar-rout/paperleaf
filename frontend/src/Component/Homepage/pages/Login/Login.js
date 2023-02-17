@@ -26,6 +26,9 @@ const Login = () => {
         email: "",
         password: ""
     })
+    // useEffect( () => {
+    //     console.log(loginUser);
+    // });
     // const loginURL = `${process.env.REACT_APP_SERVER_URL}/login`
     const handleChange = e => {
         const { name, value } = e.target
@@ -39,12 +42,10 @@ const Login = () => {
     };
     const login = () => {
         if (user.email && user.password && isEmail(user.email) && user.password.length >= 8 && user.password.length <= 15) {
-            dispatch(loginAsync(user));
+            const {email, password} = user;
+            dispatch(loginAsync({email, password}));
             setErrorMessage(loginErrorMessage);
-            if (loginUser !== "" && loginUser !== undefined) {
-                console.log("Login USer: ");
-                console.log(loginUser);
-            }
+            console.log("Login user: " + loginUser);
         } else {
             setErrorMessage("Please provide valid inputs");
         }
