@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
     loginAsync,
     selectLoginUser,
+    selectStatus,
     selectErrorMessage
 } from "../../../../app/userSlice";
 
@@ -16,6 +17,7 @@ import "./Login.css";
 const Login = () => {
 
     const loginUser = useSelector(selectLoginUser);
+    const loginStatus = useSelector(selectStatus);
     const loginErrorMessage = useSelector(selectErrorMessage);
     const dispatch = useDispatch();
 
@@ -42,10 +44,9 @@ const Login = () => {
     };
     const login = () => {
         if (user.email && user.password && isEmail(user.email) && user.password.length >= 8 && user.password.length <= 15) {
-            const {email, password} = user;
-            dispatch(loginAsync({email, password}));
+            const { email, password } = user;
+            dispatch(loginAsync({ email, password }));
             setErrorMessage(loginErrorMessage);
-            console.log("Login user: " + loginUser);
         } else {
             setErrorMessage("Please provide valid inputs");
         }
@@ -69,6 +70,7 @@ const Login = () => {
                             <Link to="/register" className="px-1 fw-semibold mx-1my-0 fs-small m-0" type="button">Register here</Link>
                         </div>
                         <div className="mt-4">
+                            {loginUser ? loginUser.name : ""}
                             <label className="form-label">
                                 Username
                             </label>
@@ -115,11 +117,18 @@ const Login = () => {
                                 <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br></br> */}
                             </div>
                         </div>
-                        <div className="d-flex justify-content-between align-items center">
-                            <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fw-semibold" type="button" onClick={login}>Login</button>
-                        </div>
                         <div className="text-danger text-center my-1">
                             {errorMessage}
+                        </div>
+                        <div className="d-flex justify-content-between align-items center">
+                            {loginStatus !== 'LOADING' ?
+                                <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fw-semibold" type="button" onClick={login}>Login</button>
+                                :
+                                <button class="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fw-semibold" type="button" disabled>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    Loading...
+                                </button>
+                            }
                         </div>
                     </div>
                     <div className="col-1 col-md-2 col-lg-4"></div>

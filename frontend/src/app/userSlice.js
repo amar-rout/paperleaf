@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const initialState = {
     userInfo: {},
-    status: 'idle',
+    status: 'IDLE',
     errorMessage: ''
 };
 
@@ -18,7 +18,13 @@ export const loginAsync = createAsyncThunk(
             localStorage.setItem('userInfo', JSON.stringify(response.data));
             return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
         } catch (error) {
-            return thunkAPI.rejectWithValue({ error: error.message });
+            if (error.code === "ERROR_BAD_RESPONSE") {
+                console.log("Error Code: " + error.code);
+                console.log(error)
+                return thunkAPI.rejectWithValue({ error: "Couldn't connect to server at this moment. Please try again after some time." });
+            } else {
+                return thunkAPI.rejectWithValue({ error: error.response.data.message });
+            }
         }
     }
 );
@@ -99,16 +105,16 @@ export const userSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(loginAsync.pending, (state) => {
-                state.status = 'loading';
+                state.status = 'LOADING';
                 state.errorMessage = '';
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
-                state.status = 'idle';
+                state.status = 'LOADED';
                 state.userInfo = action.payload;
             })
             .addCase(loginAsync.rejected, (state, action) => {
-                state.status = 'error';
-                state.errorMessage = action.error.errorMessage;
+                state.status = 'ERROR';
+                state.errorMessage = action.payload.error;
             })
         // .addCase(registerAsync.pending, (state) => {
         //     state.status = 'loading';
@@ -128,7 +134,7 @@ export const userSlice = createSlice({
 export const { logout } = userSlice.actions;
 
 export const selectLoginUser = (state) => state.userInfo;
-
+export const selectStatus = (state) => state.status;
 export const selectErrorMessage = (state) => state.user.errorMessage;
 
 export default userSlice.reducer;
