@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import axios from 'axios';
+
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import Meta from "../Meta";
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
     loginAsync,
-    selectUserInfo,
+    selectUser,
     selectStatus,
     selectErrorMessage
 } from "../../../../app/userSlice";
@@ -16,7 +16,7 @@ import "./Login.css";
 
 const Login = () => {
 
-    const loginUser = useSelector(selectUserInfo);
+    const loginUser = useSelector(selectUser);
     const loginStatus = useSelector(selectStatus);
     const loginErrorMessage = useSelector(selectErrorMessage);
     const dispatch = useDispatch();
@@ -24,6 +24,7 @@ const Login = () => {
     const [passwordShown, setPasswordShown] = useState(false);
     const isEmail = (email) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
     const [errorMessage, setErrorMessage] = useState("");
+    
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -38,13 +39,14 @@ const Login = () => {
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     };
+
     const login = () => {
         if (user.email && user.password && isEmail(user.email) && user.password.length >= 8 && user.password.length <= 15) {
             const { email, password } = user;
             dispatch(loginAsync({ email, password }));
             setErrorMessage(loginErrorMessage);
-            if (loginStatus === 'LOADED') {
-                navigate("");
+            if (loginUser !== undefined && loginUser !== "") {
+                navigate("/");
             }
         } else {
             setErrorMessage("Please provide valid inputs");
@@ -69,7 +71,6 @@ const Login = () => {
                             <Link to="/register" className="px-1 fw-semibold mx-1my-0 fs-small m-0" type="button">Register here</Link>
                         </div>
                         <div className="mt-4">
-                            {loginUser ? loginUser.name : ""}
                             <label className="form-label">
                                 Username
                             </label>

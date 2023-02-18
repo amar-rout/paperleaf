@@ -1,22 +1,22 @@
 import React, { useState } from "react";
-// import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import Meta from "../Meta";
-
-import "./Register.css";
-import { Link, useNavigate } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
     registerAsync,
-    selectUserInfo,
+    selectUser,
     selectStatus,
     selectErrorMessage
 } from "../../../../app/userSlice";
 
+import "./Register.css";
+
 const Register = () => {
 
-    const registerUser = useSelector(selectUserInfo);
+    const registerUser = useSelector(selectUser);
     const registerStatus = useSelector(selectStatus);
     const registerErrorMessage = useSelector(selectErrorMessage);
     const dispatch = useDispatch();
@@ -57,12 +57,17 @@ const Register = () => {
     // }
     const register = () => {
         const { fname, mname, lname, email, phone, gender, password, reEnterPassword } = user;
+        let name = "";
         if (fname && lname && email && isEmail(email) && phone && password && (password === reEnterPassword) && password.length >= 8 && password.length <= 15) {
-            let name = `${fname} ${mname} ${lname}`;
+            if (mname) {
+                name = `${fname} ${mname} ${lname}`;
+            } else {
+                name = `${fname} ${lname}`;
+            }
             dispatch(registerAsync({ fname, mname, lname, name, email, phone, gender, password }));
             setErrorMessage(registerErrorMessage);
-            if (registerStatus === 'LOADED') {
-                navigate("");
+            if (registerUser !== undefined) {
+                navigate("/");
             }
         } else {
             setSuccessMessage("");
@@ -91,7 +96,6 @@ const Register = () => {
                                 </div>
                             </div>
                             <div className="col-12">
-                                {registerUser ? registerUser.name : ""}
                             </div>
                             <div className="col-12 col-md-4">
                                 <label className="form-label">First name *</label>

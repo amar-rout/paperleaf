@@ -3,9 +3,16 @@ import { Link, Outlet, useMatch, useParams, useResolvedPath } from "react-router
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import Meta from "../Meta";
 
+import {
+    logout
+} from "../../../../app/userSlice";
+
 import "./User.css"
+import { useDispatch } from "react-redux";
 
 const User = () => {
+
+    const dispatch = useDispatch();
 
     const urlParams = {
         profile: "Profile",
@@ -33,6 +40,10 @@ const User = () => {
     if (idValue !== undefined) {
         title = `User ${idValue}`;
         userLink = `/user/${id}`;
+    }
+
+    const handleLogout = () => {
+        dispatch(logout());
     }
 
     return (
@@ -64,28 +75,28 @@ const User = () => {
                 <div className="my-5 text-center px-2 px-md-0">
                     <h2 className="" style={{ letterSpacing: "", fontFamily: "Playfair Display,serif", fontStyle: "italic", transition: "color .1s" }}>
                         My Account
-                        {/* <span className="d-md-none float-end pe-2"><i class="bi bi-chevron-down"></i></span> */}
+                        {/* <span className="d-md-none float-end pe-2"><i className="bi bi-chevron-down"></i></span> */}
                     </h2>
                 </div>
                 <div className="row my-2">
                     <div className="col-12 col-md-4 col-lg-3">
-                        <div class="card text-center">
-                            <div class="card-header bg-body">
+                        <div className="card text-center">
+                            <div className="card-header bg-body">
                                 <div className="text-center my-3">
                                     <div className="mb-3 position-relative">
                                         <img className="rounded-circle border border-dark border-1 " src="/assets/images/user-thumbnail.jpg" alt="Profile" width="120" height="120" />
                                     </div>
                                     <span className="mb-1 h4">Amarendra Rout</span>
                                     <h4 className="small text-secondary fw-semibold">
-                                        amarendrarout@gmail.com <i class='bx bxs-badge-check text-success' ></i>
+                                        amarendrarout@gmail.com <i className='bx bxs-badge-check text-success' ></i>
                                     </h4>
                                     <h4 className="small text-secondary fw-semibold">
-                                        +91 70430 96106 <i class='bx bxs-badge-check text-success' ></i>
+                                        +91 70430 96106 <i className='bx bxs-badge-check text-success' ></i>
                                     </h4>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <ul class="list-group list-group-flush text-start py-1">
+                            <div className="card-body">
+                                <ul className="list-group list-group-flush text-start py-1">
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
                                                  to="/user/profile">
                                         <span className="p-0 pe-4"><i className="bi bi-person"></i></span>
@@ -93,32 +104,32 @@ const User = () => {
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
                                                  to="/user/address">
-                                        <span className="p-0 pe-4"><i class="bi bi-geo-alt"></i></span>
+                                        <span className="p-0 pe-4"><i className="bi bi-geo-alt"></i></span>
                                         Address
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
                                                  to="/user/orders">
-                                        <span className="p-0 pe-4"><i class="bi bi-journal-text"></i></span>
+                                        <span className="p-0 pe-4"><i className="bi bi-journal-text"></i></span>
                                         Orders
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
                                                  to="/user/paymentMethods">
-                                        <span className="p-0 pe-4"><i class="bi bi-credit-card"></i></span>
+                                        <span className="p-0 pe-4"><i className="bi bi-credit-card"></i></span>
                                         Payment Method
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
                                                  to="/user/notifications">
-                                        <span className="p-0 pe-4"><i class="bi bi-bell"></i></span>
+                                        <span className="p-0 pe-4"><i className="bi bi-bell"></i></span>
                                         Notification
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
                                                  to="/user/privacyAndSafety">
-                                        <span className="p-0 pe-4"><i class="bi bi-shield"></i></span>
+                                        <span className="p-0 pe-4"><i className="bi bi-shield"></i></span>
                                         Privacy and Safety
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
                                                  to="/user/settings">
-                                        <span className="p-0 pe-4"><i class="bi bi-gear"></i></span>
+                                        <span className="p-0 pe-4"><i className="bi bi-gear"></i></span>
                                         Settings
                                     </AccountLink>
                                     {/* <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
@@ -129,10 +140,10 @@ const User = () => {
                                 </ul>
                             </div>
 
-                            <div class="card-footer bg-body text-center">
-                                <Link to="/logout" className="btn btn-outline-dark px-4 py-2 rounded-3">
+                            <div className="card-footer bg-body text-center">
+                                <button onClick={handleLogout} className="btn btn-outline-dark px-4 py-2 rounded-3" type="button">
                                     <i className='bx bx-log-out-circle'></i> Logout
-                                </Link>
+                                </button>
                             </div>
                         </div>
                     </div>

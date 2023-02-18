@@ -1,12 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 
 const initialState = {
-    userInfo: '',
+    user: '',
     status: 'IDLE',
     errorMessage: ''
 };
-
+const loggedUser = localStorage.getItem('user');
+if (loggedUser) {
+    initialState.user = JSON.parse(loggedUser);
+}
 const USER_LOGIN = 'user/userLogin';
 const USER_REGISTER = 'user/userRegister';
 
@@ -74,11 +78,12 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         logout: (state) => {
-            state.userInfo = '';
+            state.user = '';
             state.errorMessage = '';
             state.status = 'IDLE';
             // localStorage.setItem('userInfo', JSON.stringify(state.user));
             localStorage.clear();
+            Navigate("/");
         },
     },
     extraReducers: (builder) => {
@@ -89,7 +94,7 @@ export const userSlice = createSlice({
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
-                state.userInfo = action.payload;
+                state.user = JSON.parse(action.payload);
             })
             .addCase(loginAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
@@ -101,7 +106,7 @@ export const userSlice = createSlice({
             })
             .addCase(registerAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
-                state.userInfo = action.payload;
+                state.user = JSON.parse(action.payload);
             })
             .addCase(registerAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
@@ -124,7 +129,7 @@ export const userSlice = createSlice({
 
 export const { logout } = userSlice.actions;
 
-export const selectUserInfo = (state) => state.user.userInfo;
+export const selectUser = (state) => state.user.user;
 export const selectStatus = (state) => state.user.status;
 export const selectErrorMessage = (state) => state.user.errorMessage;
 
