@@ -14,6 +14,7 @@ if (loggedUser) {
 
 const USER_LOGIN = 'user/userLogin';
 const USER_REGISTER = 'user/userRegister';
+const UPDATE_PROFILE = 'user/userProfileUpdate';
 
 export const loginAsync = createAsyncThunk(
     USER_LOGIN,
@@ -55,26 +56,25 @@ export const registerAsync = createAsyncThunk(
     }
 );
 
-// export const updateProfileAsync = createAsyncThunk(
-//     'user/userProfileUpdate',
-//     async (user, thunkAPI) => {
-//         try {
-//             const token = localStorage.getItem('userInfo').token;
-//             const config = {
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                     Authorization: `Bearer ${token}`,
-//                     // Authorization: `Bearer ${getState().userLogin.userInfo.token}`,'
-//                     // Authorization: `Bearer ${token}`,
-//                 },
-//             };
-//             const response = await axios.patch('/api/users/profile', user, config);
-//             return thunkAPI.fulfillWithValue(JSON.parse(response.data));
-//         } catch (error) {
-//             return thunkAPI.rejectWithValue({ error: error.message });
-//         }
-//     }
-// );
+export const updateProfileAsync = createAsyncThunk(
+    UPDATE_PROFILE,
+    async (user, thunkAPI) => {
+        try {
+            // let token = localStorage.getItem('user').token;
+            const token = (state) => state.user.user.token;
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+            const response = await axios.patch('/api/users/profile', user, config);
+            return thunkAPI.fulfillWithValue(JSON.parse(response.data));
+        } catch (error) {
+            return thunkAPI.rejectWithValue({ error: error.message });
+        }
+    }
+);
 
 export const userSlice = createSlice({
     name: 'user',
@@ -106,6 +106,7 @@ export const userSlice = createSlice({
                 state.status = 'ERROR';
                 state.errorMessage = action.payload.error;
             })
+
             .addCase(registerAsync.pending, (state) => {
                 state.status = 'LOADING';
                 state.errorMessage = '';
@@ -118,18 +119,19 @@ export const userSlice = createSlice({
                 state.status = 'ERROR';
                 state.errorMessage = action.payload.error;
             })
-        // .addCase(updateProfileAsync.pending, (state) => {
-        //     state.status = 'LOADING';
-        //     state.errorMessage = '';
-        // })
-        // .addCase(updateProfileAsync.fulfilled, (state, action) => {
-        //     state.status = 'LOADED';
-        //     state.userInfo = action.payload;
-        // })
-        // .addCase(updateProfileAsync.rejected, (state, action) => {
-        //     state.status = 'ERROR';
-        //     state.errorMessage = action.payload.error;
-        // })
+
+            .addCase(updateProfileAsync.pending, (state) => {
+                state.status = 'LOADING';
+                state.errorMessage = '';
+            })
+            .addCase(updateProfileAsync.fulfilled, (state, action) => {
+                state.status = 'LOADED';
+                state.user = JSON.parse(action.payload);
+            })
+            .addCase(updateProfileAsync.rejected, (state, action) => {
+                state.status = 'ERROR';
+                state.errorMessage = action.payload.error;
+            })
     },
 });
 
