@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
@@ -7,7 +7,7 @@ import Meta from "../Meta";
 import { useSelector, useDispatch } from 'react-redux';
 import {
     loginAsync,
-    selectUser,
+    clearState,
     selectStatus,
     selectErrorMessage
 } from "../../../../app/userSlice";
@@ -16,15 +16,16 @@ import "./Login.css";
 
 const Login = () => {
 
-    const loginUser = useSelector(selectUser);
     const loginStatus = useSelector(selectStatus);
     const loginErrorMessage = useSelector(selectErrorMessage);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const [passwordShown, setPasswordShown] = useState(false);
     const isEmail = (email) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
     const [errorMessage, setErrorMessage] = useState("");
-    
+    const [loading, setLoading] = useState(false);
+
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -36,18 +37,43 @@ const Login = () => {
             [name]: value
         })
     }
+
+    const [checked, setChecked] = useState(false);
+    const handleRemCheck = () => {
+        setChecked(!checked);
+    };
+
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     };
 
+    useEffect(() => {
+        return () => {
+            dispatch(clearState());
+        };
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (loginStatus === "LOADING") {
+            setLoading(true);
+            dispatch(clearState());
+        }
+        if (loginStatus === "LOADED") {
+            dispatch(clearState());
+            setLoading(false);
+            navigate("/");
+        }
+        if (loginStatus === "ERROR") {
+            setErrorMessage(loginErrorMessage);
+            setLoading(false);
+            dispatch(clearState());
+        }
+    }, [loginStatus, loginErrorMessage, dispatch, navigate]);
+
     const login = () => {
         if (user.email && user.password && isEmail(user.email) && user.password.length >= 8 && user.password.length <= 15) {
             const { email, password } = user;
-            dispatch(loginAsync({ email, password }));
-            setErrorMessage(loginErrorMessage);
-            if (loginUser !== undefined && loginUser !== "") {
-                navigate("/");
-            }
+            dispatch(loginAsync({ email, password, checked }));
         } else {
             setErrorMessage("Please provide valid inputs");
         }
@@ -68,7 +94,7 @@ const Login = () => {
                     <div className="col-10 col-md-8 col-lg-4">
                         <div className="text-start start-0 p-0 m-0">
                             Don't have an account yet?
-                            <Link to="/register" className="px-1 fw-semibold mx-1my-0 fs-small m-0" type="button">Register here</Link>
+                            <Link to="/register" className="px-1 fw-bold fs-small text-muted link-dark" type="button">Register</Link>
                         </div>
                         <div className="mt-4">
                             <label className="form-label">
@@ -109,19 +135,17 @@ const Login = () => {
                         <div className="d-flex justify-content-between align-items center mb-4">
                             <div className="form-check my-2 d-flex align-items-center">
                                 <input type="checkbox" className="form-check-input border-dark-subtle bg-dark-subtle form-check-input-checked-dark shadow-none me-2" id="remember"
-                                    style={{ width: "24px", height: "24px" }} />
+                                    onChange={handleRemCheck} style={{ width: "24px", height: "24px" }} />
                                 <label className="form-check-label" htmlFor="remember">
                                     Remember me
                                 </label>
-                                {/* <input type="checkbox" className="form-check-input btn btn-outline-primary btn-check" id="btn-check-outlined" autocomplete="off" />
-                                <label className="form-check-label" for="btn-check-outlined">Remember me</label><br></br> */}
                             </div>
                         </div>
                         <div className="text-danger text-center my-1">
                             {errorMessage}
                         </div>
                         <div className="d-flex justify-content-between align-items center">
-                            {loginStatus !== 'LOADING' ?
+                            { !loading ?
                                 <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fw-semibold" type="button" onClick={login}>Login</button>
                                 :
                                 <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fw-semibold" type="button" disabled>
@@ -139,77 +163,3 @@ const Login = () => {
 }
 
 export default Login;
-
-
-
-/* <form>
-my-2 p-0 px-4 w-100 rounded-pill input-group
-    <div className="row">
-        <div className="col-12">
-            <div className="mb-4">
-
-                <!-- Label -->
-                <label className="form-label">
-                    Email Address
-                </label>
-
-                <!-- Input -->
-                <input type="email" className="form-control" placeholder="Your email address">
-            </div>
-        </div>
-
-        <div className="col-12">
-            <!-- Password -->
-            <div className="mb-4">
-
-                <div className="row">
-                    <div className="col">
-
-                        <!-- Label -->
-                        <label className="form-label">
-                            Password
-                        </label>
-                    </div>
-
-                    <div className="col-auto">
-
-                        <!-- Help text -->
-                        <a href="./reset-password-illustration.html" className="form-text small text-muted link-primary">Forgot password</a>
-                    </div>
-                </div> <!-- / .row -->
-
-                <!-- Input -->
-                <div className="input-group input-group-merge">
-                    <input type="password" className="form-control" autocomplete="off" data-toggle-password-input="" placeholder="Your password">
-
-                        <button type="button" className="input-group-text px-4 text-secondary link-primary" data-toggle-password=""></button>
-                </div>
-            </div>
-        </div>
-    </div> <!-- / .row -->
-
-    <div className="form-check">
-
-        <!-- Input -->
-        <input type="checkbox" className="form-check-input" id="remember">
-
-            <!-- Label -->
-            <label className="form-check-label" for="remember">
-                Remember me
-            </label>
-    </div>
-
-    <div className="row align-items-center text-center">
-        <div className="col-12">
-
-            <!-- Button -->
-            <button type="button" className="btn w-100 btn-primary mt-6 mb-2">Sign in</button>
-        </div>
-
-        <div className="col-12">
-
-            <!-- Link -->
-            <small className="mb-0 text-muted">Don't have an account yet? <a href="./sign-up-basic.html" className="fw-semibold">Sign up</a></small>
-        </div>
-    </div> <!-- / .row -->
-</form> */

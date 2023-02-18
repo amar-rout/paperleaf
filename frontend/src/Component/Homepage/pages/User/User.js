@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Outlet, useMatch, useParams, useResolvedPath } from "react-router-dom";
+import { Link, Outlet, useMatch, useNavigate, useParams, useResolvedPath } from "react-router-dom";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import Meta from "../Meta";
 
@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 const User = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const urlParams = {
         profile: "Profile",
@@ -44,6 +45,7 @@ const User = () => {
 
     const handleLogout = () => {
         dispatch(logout());
+        navigate("/");
     }
 
     return (

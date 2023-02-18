@@ -1,26 +1,29 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
 
 const initialState = {
     user: '',
     status: 'IDLE',
     errorMessage: ''
 };
+
 const loggedUser = localStorage.getItem('user');
 if (loggedUser) {
     initialState.user = JSON.parse(loggedUser);
 }
+
 const USER_LOGIN = 'user/userLogin';
 const USER_REGISTER = 'user/userRegister';
 
 export const loginAsync = createAsyncThunk(
     USER_LOGIN,
-    async ({ email, password }, thunkAPI) => {
+    async ({ email, password, checked }, thunkAPI) => {
         try {
             const config = { headers: { 'Content-Type': 'application/json', }, };
             const response = await axios.post('/api/users/login', { email, password }, config,);
-            localStorage.setItem('user', JSON.stringify(response.data));
+            if (checked) {
+                localStorage.setItem('user', JSON.stringify(response.data));   
+            }
             return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
         } catch (error) {
             if (error.code === "ERROR_BAD_RESPONSE") {
@@ -83,7 +86,10 @@ export const userSlice = createSlice({
             state.status = 'IDLE';
             // localStorage.setItem('userInfo', JSON.stringify(state.user));
             localStorage.clear();
-            Navigate("/");
+        },
+        clearState: (state) => {
+            state.status = 'IDLE';
+            return state;
         },
     },
     extraReducers: (builder) => {
@@ -127,7 +133,7 @@ export const userSlice = createSlice({
     },
 });
 
-export const { logout } = userSlice.actions;
+export const { logout, clearState } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 export const selectStatus = (state) => state.user.status;
