@@ -19,16 +19,13 @@ const products = [
       {
         size: 'S',
         color: 'Red',
-        inStock: true,
-      },
-      {
-        size: 'S',
-        color: 'Green',
+        countInStock: 1,
         inStock: true,
       },
       {
         size: 'M',
         color: 'Green',
+        countInStock: 4,
         inStock: true,
       }
     ],

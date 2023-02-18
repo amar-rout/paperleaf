@@ -16,6 +16,8 @@ export const authUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      phone: user.phone,
+      gender: user.gender,
       isAdmin: user.isAdmin,
       token: generateToken(user.id),
     });
@@ -31,16 +33,26 @@ export const authUser = asyncHandler(async (req, res) => {
 export const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await UserModel.findById(sanitize(req.body._id));
   if (user) {
+    user.fname = sanitize(req.body.fname) || user.fname;
+    user.mname = sanitize(req.body.mname) || user.mname;
+    user.lname = sanitize(req.body.lname) || user.lname;
     user.name = sanitize(req.body.name) || user.name;
     user.email = sanitize(req.body.email) || user.email;
+    user.phone = sanitize(req.body.phone) || user.phone;
+    user.gender = sanitize(req.body.gender) || user.gender;
     if (req.body.password) {
       user.password = sanitize(req.body.password);
     }
     const updatedUser = await user.save();
     res.json({
       _id: updatedUser._id,
+      fname: updatedUser.fname,
+      mname: updatedUser.mname,
+      lname: updatedUser.lname,
       name: updatedUser.name,
       email: updatedUser.email,
+      phone: updatedUser.phone,
+      gender: updatedUser.gender,
       isAdmin: updatedUser.isAdmin,
       token: generateToken(updatedUser._id),
     });
@@ -54,7 +66,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 // @route POST /api/users
 // @access Public
 export const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { fname, mname, lname, name, email, phone, gender, password } = req.body;
 
   const userExists = await UserModel.findOne({ email: sanitize(email) });
   if (userExists) {
@@ -62,16 +74,26 @@ export const registerUser = asyncHandler(async (req, res) => {
     throw new Error('User already registered');
   }
   const user = await UserModel.create({
+    fname: sanitize(fname),
+    mname: sanitize(mname),
+    lname: sanitize(lname),
     name: sanitize(name),
     email: sanitize(email),
+    phone: sanitize(phone),
+    gender: sanitize(gender),
     password: sanitize(password),
   });
 
   if (user) {
     res.status(201).json({
       _id: user.id,
+      fname: user.fname,
+      mname: user.mname,
+      lname: user.lname,
       name: user.name,
       email: user.email,
+      phone: user.phone,
+      gender: user.gender,
       token: generateToken(user.id),
     });
   } else {

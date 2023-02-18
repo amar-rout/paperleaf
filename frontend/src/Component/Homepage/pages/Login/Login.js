@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import axios from 'axios';
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import Meta from "../Meta";
@@ -7,7 +7,7 @@ import Meta from "../Meta";
 import { useSelector, useDispatch } from 'react-redux';
 import {
     loginAsync,
-    selectLoginUser,
+    selectUserInfo,
     selectStatus,
     selectErrorMessage
 } from "../../../../app/userSlice";
@@ -16,11 +16,11 @@ import "./Login.css";
 
 const Login = () => {
 
-    const loginUser = useSelector(selectLoginUser);
+    const loginUser = useSelector(selectUserInfo);
     const loginStatus = useSelector(selectStatus);
     const loginErrorMessage = useSelector(selectErrorMessage);
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const [passwordShown, setPasswordShown] = useState(false);
     const isEmail = (email) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
     const [errorMessage, setErrorMessage] = useState("");
@@ -28,10 +28,6 @@ const Login = () => {
         email: "",
         password: ""
     })
-    // useEffect( () => {
-    //     console.log(loginUser);
-    // });
-    // const loginURL = `${process.env.REACT_APP_SERVER_URL}/login`
     const handleChange = e => {
         const { name, value } = e.target
         setUser({
@@ -47,6 +43,9 @@ const Login = () => {
             const { email, password } = user;
             dispatch(loginAsync({ email, password }));
             setErrorMessage(loginErrorMessage);
+            if (loginStatus === 'LOADED') {
+                navigate("");
+            }
         } else {
             setErrorMessage("Please provide valid inputs");
         }
@@ -108,13 +107,13 @@ const Login = () => {
                         </div>
                         <div className="d-flex justify-content-between align-items center mb-4">
                             <div className="form-check my-2 d-flex align-items-center">
-                                <input type="checkbox" className="form-check-input bg-dark border-0 shadow-none me-2" id="remember"
+                                <input type="checkbox" className="form-check-input border-dark-subtle bg-dark-subtle form-check-input-checked-dark shadow-none me-2" id="remember"
                                     style={{ width: "24px", height: "24px" }} />
                                 <label className="form-check-label" htmlFor="remember">
                                     Remember me
                                 </label>
-                                {/* <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off" />
-                                <label class="btn btn-outline-primary" for="btn-check-outlined">Single toggle</label><br></br> */}
+                                {/* <input type="checkbox" className="form-check-input btn btn-outline-primary btn-check" id="btn-check-outlined" autocomplete="off" />
+                                <label className="form-check-label" for="btn-check-outlined">Remember me</label><br></br> */}
                             </div>
                         </div>
                         <div className="text-danger text-center my-1">
@@ -124,8 +123,8 @@ const Login = () => {
                             {loginStatus !== 'LOADING' ?
                                 <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fw-semibold" type="button" onClick={login}>Login</button>
                                 :
-                                <button class="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fw-semibold" type="button" disabled>
-                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fw-semibold" type="button" disabled>
+                                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                     Loading...
                                 </button>
                             }

@@ -33,6 +33,7 @@ const productModel = mongoose.Schema(
       {
         size: { type: String, required: true },
         color: { type: String, required: true },
+        countInStock: { type: Number, required: true, default: 0 },
         inStock: { type: Boolean, required: true, default: true }
       }
     ],
@@ -46,10 +47,10 @@ const productModel = mongoose.Schema(
     salePrice: { type: Number, required:true, default:0 },
     countInStock: { type: Number, required: true, default: 0 },
     featured: { type: Boolean, required: true, default: false },
-    bgColor: { type: String, required: true, default: 'f5f5f5' },
-    nameColor: { type: String, required: true, default: '000' },
-    btnColor: { type: String, required: true, default: 'fe696a' },
-    btnColorHover: { type: String, required: true, default: 'fe3638' },
+    // bgColor: { type: String, required: true, default: 'f5f5f5' },
+    // nameColor: { type: String, required: true, default: '000' },
+    // btnColor: { type: String, required: true, default: 'fe696a' },
+    // btnColorHover: { type: String, required: true, default: 'fe3638' },
   },
   {
     timestamps: true,

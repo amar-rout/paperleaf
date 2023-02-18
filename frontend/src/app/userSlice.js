@@ -2,12 +2,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-    userInfo: {},
+    userInfo: '',
     status: 'IDLE',
     errorMessage: ''
 };
 
 const USER_LOGIN = 'user/userLogin';
+const USER_REGISTER = 'user/userRegister';
 
 export const loginAsync = createAsyncThunk(
     USER_LOGIN,
@@ -15,12 +16,10 @@ export const loginAsync = createAsyncThunk(
         try {
             const config = { headers: { 'Content-Type': 'application/json', }, };
             const response = await axios.post('/api/users/login', { email, password }, config,);
-            localStorage.setItem('userInfo', JSON.stringify(response.data));
+            localStorage.setItem('user', JSON.stringify(response.data));
             return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
         } catch (error) {
             if (error.code === "ERROR_BAD_RESPONSE") {
-                console.log("Error Code: " + error.code);
-                console.log(error)
                 return thunkAPI.rejectWithValue({ error: "Couldn't connect to server at this moment. Please try again after some time." });
             } else {
                 return thunkAPI.rejectWithValue({ error: error.response.data.message });
@@ -28,6 +27,112 @@ export const loginAsync = createAsyncThunk(
         }
     }
 );
+export const registerAsync = createAsyncThunk(
+    USER_REGISTER,
+    async ({ fname, mname, lname, name, email, phone, gender, password }, thunkAPI) => {
+        try {
+            const config = { headers: { 'Content-Type': 'application/json', }, };
+            const response = await axios.post('/api/users', { fname, mname, lname, name, email, phone, gender, password }, config,);
+            localStorage.setItem('user', JSON.stringify(response.data));
+            return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
+        } catch (error) {
+            if (error.code === "ERROR_BAD_RESPONSE") {
+                console.log("Response : " + error);
+                return thunkAPI.rejectWithValue({ error: "Couldn't connect to server at this moment. Please try again after some time." });
+            } else {
+                console.log("Request : ");
+                console.log(error);
+                return thunkAPI.rejectWithValue({ error: error.response.data.message });
+            }
+        }
+    }
+);
+
+// export const updateProfileAsync = createAsyncThunk(
+//     'user/userProfileUpdate',
+//     async (user, thunkAPI) => {
+//         try {
+//             const token = localStorage.getItem('userInfo').token;
+//             const config = {
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                     Authorization: `Bearer ${token}`,
+//                     // Authorization: `Bearer ${getState().userLogin.userInfo.token}`,'
+//                     // Authorization: `Bearer ${token}`,
+//                 },
+//             };
+//             const response = await axios.patch('/api/users/profile', user, config);
+//             return thunkAPI.fulfillWithValue(JSON.parse(response.data));
+//         } catch (error) {
+//             return thunkAPI.rejectWithValue({ error: error.message });
+//         }
+//     }
+// );
+
+export const userSlice = createSlice({
+    name: 'user',
+    initialState,
+    reducers: {
+        logout: (state) => {
+            state.userInfo = '';
+            state.errorMessage = '';
+            state.status = 'IDLE';
+            // localStorage.setItem('userInfo', JSON.stringify(state.user));
+            localStorage.clear();
+        },
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(loginAsync.pending, (state) => {
+                state.status = 'LOADING';
+                state.errorMessage = '';
+            })
+            .addCase(loginAsync.fulfilled, (state, action) => {
+                state.status = 'LOADED';
+                state.userInfo = action.payload;
+            })
+            .addCase(loginAsync.rejected, (state, action) => {
+                state.status = 'ERROR';
+                state.errorMessage = action.payload.error;
+            })
+            .addCase(registerAsync.pending, (state) => {
+                state.status = 'LOADING';
+                state.errorMessage = '';
+            })
+            .addCase(registerAsync.fulfilled, (state, action) => {
+                state.status = 'LOADED';
+                state.userInfo = action.payload;
+            })
+            .addCase(registerAsync.rejected, (state, action) => {
+                state.status = 'ERROR';
+                state.errorMessage = action.payload.error;
+            })
+        // .addCase(updateProfileAsync.pending, (state) => {
+        //     state.status = 'LOADING';
+        //     state.errorMessage = '';
+        // })
+        // .addCase(updateProfileAsync.fulfilled, (state, action) => {
+        //     state.status = 'LOADED';
+        //     state.userInfo = action.payload;
+        // })
+        // .addCase(updateProfileAsync.rejected, (state, action) => {
+        //     state.status = 'ERROR';
+        //     state.errorMessage = action.payload.error;
+        // })
+    },
+});
+
+export const { logout } = userSlice.actions;
+
+export const selectUserInfo = (state) => state.user.userInfo;
+export const selectStatus = (state) => state.user.status;
+export const selectErrorMessage = (state) => state.user.errorMessage;
+
+export default userSlice.reducer;
+
+
+
+
 // axios.post('/api/users/login', { email, password }, config,)
 //     .then(response => {
 //         console.log("API call login");
@@ -55,86 +160,22 @@ export const loginAsync = createAsyncThunk(
 //     return thunkAPI.rejectWithValue({ error: error.message });
 // }
 
-// export const registerAsync = createAsyncThunk(
-//     'user/userRegister',
-//     async (name, email, passowrd, thunkAPI) => {
-//         try {
-//             const config = { headers: { 'Content-Type': 'application/json', }, };
-//             const response = await axios.post('/api/users', { name, email, passowrd }, config,);
-//             if (response.data !== "undefined" && response.data !== "") {
-//                 localStorage.setItem('userInfo', JSON.stringify(response.data));
-//             }
-//             return thunkAPI.fulfillWithValue(JSON.parse(response.data));
-//         } catch (error) {
-//             return thunkAPI.rejectWithValue({ error: error.message });
+
+// axios.post(registerURL, user)
+//     .then(res => {
+//         setSuccessMessage("Register Successfully")
+//         setErrorMessage("")
+//         navigate("/login")
+//     })
+//     .catch(error => {
+//         if (error.response) {
+//             setErrorMessage(error.response.data.message)
+//             setSuccessMessage("")
+//         } else if (error.request) {
+//             setSuccessMessage("");
+//             setErrorMessage("Couldn't connect to server. Please try again later.");
+//         } else {
+//             setErrorMessage(error.message)
+//             setSuccessMessage("")
 //         }
-//     }
-// );
-
-// export const updateProfileAsync = createAsyncThunk(
-//     'user/userProfileUpdate',
-//     async (user, thunkAPI) => {
-//         try {
-//             // const token = localStorage.getItem('userInfo').token;
-//             const config = {
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                     Authorization: `Bearer ${getState().token}`,
-//                     // Authorization: `Bearer ${getState().userLogin.userInfo.token}`,'
-//                     // Authorization: `Bearer ${token}`,
-//                 },
-//             };
-//             const response = await axios.patch('/api/users/profile', user, config);
-//             return thunkAPI.fulfillWithValue(JSON.parse(response.data));
-//         } catch (error) {
-//             return thunkAPI.rejectWithValue({ error: error.message });
-//         }
-//     }
-// );
-
-export const userSlice = createSlice({
-    name: 'user',
-    initialState,
-    reducers: {
-        logout: (state) => {
-            state.userInfo = '';
-            state.errorMessage = '';
-            localStorage.setItem('userInfo', JSON.stringify(state.user));
-        },
-    },
-    extraReducers: (builder) => {
-        builder
-            .addCase(loginAsync.pending, (state) => {
-                state.status = 'LOADING';
-                state.errorMessage = '';
-            })
-            .addCase(loginAsync.fulfilled, (state, action) => {
-                state.status = 'LOADED';
-                state.userInfo = action.payload;
-            })
-            .addCase(loginAsync.rejected, (state, action) => {
-                state.status = 'ERROR';
-                state.errorMessage = action.payload.error;
-            })
-        // .addCase(registerAsync.pending, (state) => {
-        //     state.status = 'loading';
-        //     state.errorMessage = '';
-        // })
-        // .addCase(registerAsync.fulfilled, (state, action) => {
-        //     state.status = 'idle';
-        //     state.userInfo = action.payload;
-        // })
-        // .addCase(registerAsync.rejected, (state, action) => {
-        //     state.status = 'error';
-        //     state.errorMessage = action.error.message;
-        // })
-    },
-});
-
-export const { logout } = userSlice.actions;
-
-export const selectLoginUser = (state) => state.userInfo;
-export const selectStatus = (state) => state.status;
-export const selectErrorMessage = (state) => state.user.errorMessage;
-
-export default userSlice.reducer;
+//     })
