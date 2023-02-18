@@ -12,12 +12,12 @@ export const getProducts = asyncHandler(async (req, res) => {
 
   const keyword = req.query.keyword
     ? {
-        name: {
-          // $regex is there so the user doesn't have to search exact product name
-          $regex: req.query.keyword,
-          $options: 'i',
-        },
-      }
+      name: {
+        // $regex is there so the user doesn't have to search exact product name
+        $regex: req.query.keyword,
+        $options: 'i',
+      },
+    }
     : {};
 
   const count = await ProductModel.countDocuments({ ...keyword });
@@ -180,7 +180,7 @@ export const addReview = asyncHandler(async (req, res) => {
 // @route POST /api/product/top/:category
 // @access Public
 export const getTopProducts = asyncHandler(async (req, res) => {
-  const limitSize = Number(req.query.pageSize) || 3;
+  const limitSize = Number(req.query.pageSize) || 8;
   let queryParams = {};
   if (req.params.category) {
     queryParams = { category: sanitize(req.params.category) };

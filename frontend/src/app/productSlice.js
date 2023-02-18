@@ -23,6 +23,9 @@ export const listProductAsync = createAsyncThunk(
     PRODUCTS_LISTPRODUCTS,
     async ({ keyword, pageNumber }, thunkAPI) => {
         try {
+            if (pageNumber === '') {
+                pageNumber = 1;
+            }
             const config = { headers: { 'Content-Type': 'application/json', }, };
             const response = await axios.post(`/api/products/?keyword=${keyword}&pageNumber=${pageNumber}`, config,);
             // localStorage.setItem('user', JSON.stringify(response.data));
@@ -78,9 +81,28 @@ export const productsFeaturedAsync = createAsyncThunk(
     PRODUCTS_FEATURED,
     async ({ categoryName, pageSize }, thunkAPI) => {
         try {
-            // categoryName = '' and pageSize = 3
+            categoryName = '';
+            pageSize = 8;
             const config = { headers: { 'Content-Type': 'application/json', }, };
             const response = await axios.get(`/api/products/featured/${categoryName}?pageSize=${pageSize}`, config,);
+            // localStorage.setItem('featured', JSON.stringify(response.data));
+            return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
+        } catch (error) {
+            if (error.code === "ERROR_BAD_RESPONSE") {
+                return thunkAPI.rejectWithValue({ error: "Couldn't connect to server at this moment. Please try again after some time." });
+            } else {
+                return thunkAPI.rejectWithValue({ error: error.response.data.message });
+            }
+        }
+    }
+);
+
+export const listCategoryProductsAsync = createAsyncThunk(
+    PRODUCTS_FEATURED,
+    async ({ category, pageNumber = 1 }, thunkAPI) => {
+        try {
+            const config = { headers: { 'Content-Type': 'application/json', }, };
+            const response = await axios.get(`/api/products/category/${category}?pageNumber=${pageNumber}`, config,);
             // localStorage.setItem('featured', JSON.stringify(response.data));
             return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
         } catch (error) {
@@ -115,6 +137,14 @@ export const productSlice = createSlice({
         clearProductsFeatured: (state) => {
             state.status = 'IDLE';
             state.featured = [];
+            // localStorage.setItem('featured', JSON.stringify(state.featured));
+            return state;
+        },
+        clearListCategoryProducts: (state) => {
+            state.status = 'IDLE';
+            state.products = [];
+            state.pages = 0;
+            state.page = 0;
             // localStorage.setItem('featured', JSON.stringify(state.featured));
             return state;
         },
@@ -175,6 +205,21 @@ export const productSlice = createSlice({
                 state.status = 'ERROR';
                 state.error = action.payload.error;
             })
+            //
+            .addCase(listCategoryProductsAsync.pending, (state) => {
+                state.status = 'LOADING';
+                state.error = '';
+            })
+            .addCase(listCategoryProductsAsync.fulfilled, (state, action) => {
+                state.status = 'LOADED';
+                state.products = JSON.parse(action.payload);
+                state.page = JSON.parse(action.payload.page);
+                state.pages = JSON.parse(action.payload.pages);
+            })
+            .addCase(listCategoryProductsAsync.rejected, (state, action) => {
+                state.status = 'ERROR';
+                state.error = action.payload.error;
+            })
     },
 });
 
@@ -184,7 +229,8 @@ export const selectProducts = (state) => state.product.products;
 export const selectProduct = (state) => state.product.product;
 export const selectTopratedProducts = (state) => state.product.toprated;
 export const selectFeaturedProducts = (state) => state.product.featured;
-export const selectProductStatus = (state) => state.products.status;
-export const selectProductErrorMessage = (state) => state.products.errorMessage;
+
+export const getStatus = (state) => state.product.status;
+export const getError = (state) => state.product.errorMessage;
 
 export default productSlice.reducer;
