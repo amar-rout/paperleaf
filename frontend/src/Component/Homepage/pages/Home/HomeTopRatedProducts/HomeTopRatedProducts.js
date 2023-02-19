@@ -30,7 +30,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                                         </svg>
                                     </button>
                                 </div>
-                                <img src='/assets/images/productImages/product1.jpg' className="card-img-top rounded-4" alt="card 1" />
+                                <img src='/assets/images/productImages/product1.jpg' className="card-img-top bg-info-subtle rounded-4" alt="card 1" />
                                 {/* <img src={product.image} className="card-img-top rounded-4" alt="card 1" /> */}
                                 <div className="card-body p-2">
                                     <p className="card-title lh-md-1 my-0 my-md-1"><b>{product.name}</b></p>

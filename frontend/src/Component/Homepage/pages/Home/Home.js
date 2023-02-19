@@ -111,8 +111,8 @@ const Deals = () => {
             <div className="container py-3">
                 <div className="row">
                     <div className="col-12 col-md-6 p-2">
-                        <div className="bg-info-subtle px-5 py-3">
-                            {/* style={{ backgroundImage: "url(&quot;assets/imgs/banner/menu-banner-7.jpg&quot;)", visibility: "visible" }}> */}
+                        <div className="bg-warning-subtle px-5 py-3"
+                        style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right top", backgroundRepeat: "no-repeat", backgroundSize: "auto", visibility: "visible" }}>
                             <div className="">
                                 <h2 className="text-brand fw-bold">Deal of the Day.</h2>
                                 <h5>Limited quantities.</h5>
@@ -134,8 +134,8 @@ const Deals = () => {
                         </div>
                     </div>
                     <div className="col-12 col-md-6 p-2">
-                        <div className="bg-danger-subtle px-5 py-3">
-                            {/* style={{ backgroundImage: "url(&quot;assets/imgs/banner/menu-banner-8.jpg&quot;)", visibility: "visible" }}> */}
+                    <div className="bg-info-subtle px-5 py-3"
+                        style={{ backgroundImage: "url('/assets/images/productImages/product11.png')", backgroundPosition: "right", backgroundRepeat: "no-repeat", backgroundSize: "contain", visibility: "visible" }}>
                             <div className="">
                                 <h2 className="text-brand fw-bold">Clothing.</h2>
                                 <h5>Limited quantities.</h5>
