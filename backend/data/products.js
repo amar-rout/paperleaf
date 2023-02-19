@@ -5,8 +5,8 @@ const products = [
     price: 98.99,
     salePrice: 89.99,
     countInStock: 10,
-    name: 'Kurtas',
-    image: '/assets/images/productImages/product1.jpg',
+    name: 'Fabrics',
+    image: '/assets/images/productImages/Fabrics/IMG_F1.jpg',
     images:[
       {
         image:'/images/kurtas_4.png'
@@ -29,9 +29,9 @@ const products = [
         inStock: true,
       }
     ],
-    description: 'Women\'s Kurtas',
-    brand: 'ZARA',
-    category: 'Kurtas',
+    description: 'Women\'s Fabrics',
+    brand: 'PaperLeaf',
+    category: 'Fabrics',
     featured: true,
     reviews: [
       {
@@ -99,13 +99,13 @@ const products = [
     price: 599.99,
     oldPrice: 1599.99,
     countInStock: 7,
-    name: 'Kurtas1',
-    image: '/images/kurtas_3.png',
+    name: 'Fabrics1',
+    image: '/assets/images/productImages/Fabrics/IMG_F2.jpg',
     description:
-      'Women\'s Kurtas1',
+      'Fabrics',
     featured: true,
-    brand: 'ZARA',
-    category: 'Kurtas',
+    brand: 'paperleaf',
+    category: 'Fabrics',
     reviews: [
       {
         rating: '4',
@@ -174,12 +174,12 @@ const products = [
     oldPrice: 1929.99,
     countInStock: 5,
     name: 'Kurtas2',
-    image: '/images/camera.png',
+    image: '/assets/images/productImages/Fabrics/IMG_F3.jpg',
     description:
-      'Women Kurtas',
-    brand: 'ZARA',
+      'Women Fabrics',
+    brand: 'PaperLeaf',
     featured: true,
-    category: 'Kurtas',
+    category: 'Fabrics',
     reviews: [
       {
         rating: '4',
@@ -246,12 +246,12 @@ const products = [
     oldPrice: 599.99,
     price: 399.99,
     countInStock: 11,
-    name: 'Kurtas4',
-    image: '/images/playstation.png',
+    name: 'Fabrics 4',
+    image: '/assets/images/productImages/Fabrics/IMG_F4.jpg',
     description:
-      'Women Kurtas',
-    brand: 'ZARA',
-    category: 'Kurtas',
+      'Women Fabrics',
+    brand: 'PaperLeaf',
+    category: 'Fabrics',
     featured: false,
     reviews: [
       {
@@ -318,12 +318,12 @@ const products = [
     numReviews: 10,
     price: 49.99,
     countInStock: 7,
-    name: 'Kurtas 5',
-    image: '/images/mouse.png',
+    name: 'Fabrics 5',
+    image: '/assets/images/productImages/Fabrics/IMG_F5.jpg',
     description:
-      'Kurtas 5',
-    brand: 'ZARA',
-    category: 'Kurtas',
+      'Fabrics 5',
+    brand: 'PaperLeaf',
+    category: 'Fabrics',
     featured: false,
     reviews: [
       {
@@ -390,12 +390,12 @@ const products = [
     numReviews: 12,
     price: 29.99,
     countInStock: 0,
-    name: 'Kurtas 6',
-    image: '/images/alexa.png',
+    name: 'Fabrics 6',
+    image: '/assets/images/productImages/Fabrics/IMG_F6.jpg',
     description:
-      'Kurtas 6',
-    brand: 'ZARA',
-    category: 'Kurtas',
+      'Fabrics 6',
+    brand: 'PaperLeaf',
+    category: 'Fabrics',
     featured: false,
     reviews: [
       {
@@ -462,11 +462,11 @@ const products = [
     numReviews: 0,
     price: 109.95,
     countInStock: 100,
-    name: 'Saree 1',
+    name: 'Jewellery 1',
     description:
-      'Saree 1',
-    category: 'Sarees',
-    image: '/images/products/81fPKd-2AYL._AC_SL1500_.jpg',
+      'Jewellery 1',
+    category: 'Jewellery',
+    image: '/assets/images/productImages/Jewellery/IMG_1.jpg',
     brand: 'FakeData',
     featured: false,
     reviews: [
@@ -534,11 +534,11 @@ const products = [
     numReviews: 0,
     price: 22.3,
     countInStock: 100,
-    name: 'Sarees 2 ',
+    name: 'Jewellery 2 ',
     description:
-      'Sarees 2',
-    category: 'Sarees',
-    image: '/images/products/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
+      'Jewellery 2',
+    category: 'Jewellery',
+    image: '/assets/images/productImages/Jewellery/IMG_2.jpg',
     brand: 'FakeData',
     featured: false,
     reviews: [
@@ -606,11 +606,11 @@ const products = [
     numReviews: 0,
     price: 55.99,
     countInStock: 100,
-    name: 'Sarees 6',
+    name: 'Jewellery 6',
     description:
-      'Sarees 6',
-    category: 'Sarees',
-    image: '/images/products/71li-ujtlUL._AC_UX679_.jpg',
+      'Jewellery 6',
+    category: 'Jewellery',
+    image: '/assets/images/productImages/Jewellery/IMG_3.jpg',
     brand: 'FakeData',
     featured: false,
     reviews: [
@@ -678,11 +678,11 @@ const products = [
     numReviews: 0,
     price: 15.99,
     countInStock: 100,
-    name: 'Sarees',
+    name: 'Jewellery',
     description:
       'The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.',
-    category: 'Sarees',
-    image: '/images/products/71YXzeOuslL._AC_UY879_.jpg',
+    category: 'Jewellery',
+    image: '/assets/images/productImages/Jewellery/IMG_4.jpg',
     brand: 'FakeData',
     featured: false,
     reviews: [
@@ -746,7 +746,7 @@ const products = [
    
   },
   {
-    rating: 0,
+    rating: 5,
     numReviews: 0,
     price: 695,
     countInStock: 100,
@@ -755,9 +755,9 @@ const products = [
     description:
       "Dupatta 1",
     category: 'Dupattas',
-    image: '/images/products/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg',
+    image: '/assets/images/productImages/Dupatta/IMG_D1.jpg',
     brand: 'FakeData',
-    featured: false,
+    featured: true,
     reviews: [
       {
         rating: '4',
@@ -819,17 +819,17 @@ const products = [
    
   },
   {
-    rating: 0,
-    numReviews: 0,
+    rating: 4,
+    numReviews: 13,
     price: 168,
     countInStock: 100,
     name: 'Dupatta 5',
     description:
       'Dupattas ',
     category: 'Dupattas',
-    image: '/images/products/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg',
+    image: '/assets/images/productImages/Dupatta/IMG_D2.jpg',
     brand: 'FakeData',
-    featured: false,
+    featured: true,
     reviews: [
       {
         rating: '4',
@@ -899,7 +899,7 @@ const products = [
     description:
       "White Dupattas",
     category: 'Dupattas',
-    image: '/images/products/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg',
+    image: '/assets/images/productImages/Dupatta/IMG_D7.jpg',
     brand: 'FakeData',
     featured: false,
     reviews: [
@@ -971,7 +971,7 @@ const products = [
     description:
       'Red Dupattas',
     category: 'Dupattas',
-    image: '/images/products/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg',
+    image: '/assets/images/productImages/Dupatta/IMG_D5.jpg',
     brand: 'FakeData',
     featured: false,
     reviews: [
@@ -1040,11 +1040,11 @@ const products = [
     price: 64.2,
     oldPrice: 164.2,
     countInStock: 100,
-    name: 'Kurtas 7 ',
+    name: 'Fabrics 7 ',
     description:
-      'Kurtas 8',
-    category: 'Kurtas',
-    image: '/images/products/61IBBVJvSDL._AC_SY879_.jpg',
+      'Fabrics 8',
+    category: 'Fabrics',
+    image: '/assets/images/productImages/Fabrics/IMG_F7.jpg',
     featured: true,
     brand: 'FakeData',
     reviews: [
@@ -1113,11 +1113,11 @@ const products = [
     price: 109.5,
     oldPrice: 109.5,
     countInStock: 100,
-    name: 'Kurtas demo',
+    name: 'Fabrics demo',
     description:
-      'Kurtas demo',
-    category: 'Kurtas',
-    image: '/images/products/61U7T1koQqL._AC_SX679_.jpg',
+      'Fabrics demo',
+    category: 'Fabrics',
+    image: '/assets/images/productImages/Fabrics/IMG_F8.jpg',
     brand: 'FakeData',
     featured: true,
     reviews: [
@@ -1187,12 +1187,12 @@ const products = [
     oldPrice: 209.99,
     countInStock: 100,
     name:
-      'Kurtas 9',
+      'Fabrics 9',
     description:
-      'Kurtas 9',
-    category: 'Kurtas',
+      'Fabrics 9',
+    category: 'Fabrics',
     featured: true,
-    image: '/images/products/71kWymZ+c+L._AC_SX679_.jpg',
+    image: '/assets/images/productImages/Fabrics/IMG_F9.jpg',
     brand: 'FakeData',
     reviews: [
       {
@@ -1261,12 +1261,12 @@ const products = [
     oldPrice: 314.99,
     countInStock: 100,
     name:
-      'Kurtas 10',
+      'Fabrics 10',
     description:
-      "Kurtas 10",
-    category: 'Kurtas',
+      "Fabrics 10",
+    category: 'Fabrics',
     featured: true,
-    image: '/images/products/61mtL65D4cL._AC_SX679_.jpg',
+    image: '/assets/images/productImages/Fabrics/IMG_F10.jpg',
     brand: 'FakeData',
     reviews: [
       {
@@ -1334,12 +1334,12 @@ const products = [
     price: 599.99,
     oldPrice: 899.99,
     countInStock: 100,
-    name: 'Kurtas 12',
+    name: 'Fabrics 12',
     description:
-      'Kurtas 12',
+      'Fabrics 12',
     featured: true,
-    category: 'Kurtas',
-    image: '/images/products/81QpkIctqPL._AC_SX679_.jpg',
+    category: 'Fabrics',
+    image: '/assets/images/productImages/Fabrics/IMG_F11.jpg',
     brand: 'FakeData',
     reviews: [
       {
@@ -1408,11 +1408,11 @@ const products = [
     oldPrice: 1999.99,
     countInStock: 100,
     name:
-      'Kurtas – 15 ',
+      'Fabrics – 15 ',
     description:
-      'Kurtas 15',
-    category: 'Kurtas',
-    image: '/images/products/81Zt42ioCgL._AC_SX679_.jpg',
+      'Fabrics 15',
+    category: 'Fabrics',
+    image: '/assets/images/productImages/Fabrics/IMG_F12.jpg',
     featured: true,
     brand: 'FakeData',
     reviews: [
