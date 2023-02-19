@@ -22,7 +22,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                 <div className="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1 g-sm-2 g-md-3 g-lg-4">
                     {products.map((product, index) => (
                         <div key={product._id} className="col">
-                            <div className="card product_card p-2 p-md-3 m-0 shadow-sm rounded-4">
+                            <div className="card product_card p-1 p-md-3 m-0 shadow-sm rounded-4">
                                 <div className="position-relative">
                                     <button type="button" className="btn btn-sm btn-default bg-light wishlist_button position-absolute top-0 end-0 p-2 mt-1 me-1 shadow opacity-75 rounded-circle">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,11 +33,11 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                                 <img src='/assets/images/productImages/product1.jpg' className="card-img-top rounded-4" alt="card 1" />
                                 {/* <img src={product.image} className="card-img-top rounded-4" alt="card 1" /> */}
                                 <div className="card-body p-2">
-                                    <p className="card-title lh-md-1 my-0 my-md-1"><small><b>{product.name}</b></small></p>
-                                    <p className="d-none d-sm lh-md-1 my-0 text-muted"><small>{product.category}</small></p>
+                                    <p className="card-title lh-md-1 my-0 my-md-1"><b>{product.name}</b></p>
+                                    <p className="d-none d-sm lh-md-1 my-0 text-muted">{product.category}</p>
                                     <span className="lh-sm my-0 d-flex justify-content-start align-items-center">
                                         <ReactStars {...{
-                                            size: 15,
+                                            size: 16,
                                             count: 5,
                                             color: "#feeecc",
                                             activeColor: "#fdad01",
@@ -47,7 +47,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                                             isHalf: true
                                         }}
                                         />
-                                        <span className="ps-1 text-muted" style={{ fontSize: "12px" }}><span className="fw-600">{product.rating}</span> ({product.numReviews})</span>
+                                        <span className="ps-1 text-muted" style={{ fontSize: "14px" }}><span className="fw-600">{product.rating}</span> ({product.numReviews})</span>
                                     </span>
                                     <p className="fw-bold lh-1 my-2">₹{product.price}</p>
                                     <button type="button" className="btn bg-warning w-100 d-flex justify-content-center align-items-center">

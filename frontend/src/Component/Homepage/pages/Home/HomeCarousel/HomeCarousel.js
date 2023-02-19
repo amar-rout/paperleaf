@@ -122,11 +122,11 @@ const HomeCarousel = () => {
                         </div>
                     </div>
                 </div>
-                <button className="carousel-control-prev rounded-circle" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+                <button className="d-none d-sm-inline carousel-control-prev rounded-circle" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
                     <span className="carousel-control-prev-icon rounded-circle" aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>
                 </button>
-                <button className="carousel-control-next rounded-circle" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+                <button className="d-none d-sm-inline carousel-control-next rounded-circle" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
                     <span className="carousel-control-next-icon rounded-circle" aria-hidden="true"></span>
                     <span className="visually-hidden">Next</span>
                 </button>

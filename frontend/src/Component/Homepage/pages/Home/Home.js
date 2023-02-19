@@ -73,16 +73,16 @@ const Home = () => {
                     <div className="row bg-dark">
                         <div className="col-12">
                             <div className="text-center text-white">
-                                <span className="fs-6 ls-1">
-                                    ⚡️ &nbsp;&nbsp;&nbsp;&nbsp; Happy Holiday Deals on Everything &nbsp;&nbsp;&nbsp;&nbsp; ⚡️
+                                <span className="fs-6 fw-semibold ls-2" style={{ color: "rgba(200, 160, 40)" }}>
+                                    ⚡️ &nbsp;&nbsp; Happy Holiday Deals on Everything &nbsp;&nbsp; ⚡️
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <h6 className="container my-4" style={{ fontSize: "14px" }}>
-                <span className="text-dark">Welcome to</span> <strong style={{ color: "rgba(200, 160, 40)" }}>Paperleaf</strong>.
+            <h6 className="container my-4 h5">
+                <span className="text-dark">Welcome to <span style={{ color: "rgba(200, 160, 40)" }}>Paperleaf</span></span>
             </h6>
             <p>{errorMessage}</p>
             {loading ?
