@@ -5,6 +5,7 @@ import HomeCategory from "../Home/HomeCategory/HomeCategory";
 import Meta from "../Meta";
 import CategoryItems from "./CategoryItems/CategoryItems";
 
+
 const Category = () => {
 
     const urlParams = {

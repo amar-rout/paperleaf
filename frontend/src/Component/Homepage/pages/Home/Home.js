@@ -58,7 +58,10 @@ const Home = () => {
     useEffect(() => {
         dispatch(productsTopratedAsync("", ""));
         dispatch(clearState());
-        dispatch(productsFeaturedAsync());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(productsFeaturedAsync("", 8));
         dispatch(clearState());
     }, [dispatch]);
 

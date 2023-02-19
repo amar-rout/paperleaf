@@ -179,7 +179,7 @@ const Navbar = () => {
             <header className="sticky-top bg-body top-0 py-1 shadow-sm">
                 <div className="container nav-scroller bg-body">
                     <nav className="nav navcat-link position-relative pt-1" aria-label="Secondary navigation">
-                        {/* <NavCatLink className="nav-link ps-0 pe-4" to="/category/browseAll">All products</NavCatLink> */}
+                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/browseAll">All products</NavCatLink>
                         <NavCatLink className="nav-link ps-0 pe-4" to="/category/newInStore">
                             New In Store
                             <span className="position-absolute badge text-danger fw-bold translate-middle top-25 start-75 fw-normal"><small>New</small></span>

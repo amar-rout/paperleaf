@@ -17,6 +17,7 @@ const PRODUCTS_LISTPRODUCTS = 'product/listProduct';
 const PRODUCT_DETAILS = 'product/productDeatils';
 const PRODUCTS_TOPRATED = 'product/productTopRated';
 const PRODUCTS_FEATURED = 'product/productFeatured';
+const PRODUCTS_LISTCAT = 'product/productCatList';
 
 
 export const listProductAsync = createAsyncThunk(
@@ -98,11 +99,12 @@ export const productsFeaturedAsync = createAsyncThunk(
 );
 
 export const listCategoryProductsAsync = createAsyncThunk(
-    PRODUCTS_FEATURED,
-    async ({ category, pageNumber = 1 }, thunkAPI) => {
+    PRODUCTS_LISTCAT,
+    async ({ category, pageNumber }, thunkAPI) => {
         try {
             const config = { headers: { 'Content-Type': 'application/json', }, };
             const response = await axios.get(`/api/products/category/${category}?pageNumber=${pageNumber}`, config,);
+            // const response = await axios.get(`/api/products/category/Kurtas?pageNumber=1`, config,);
             // localStorage.setItem('featured', JSON.stringify(response.data));
             return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
         } catch (error) {
@@ -205,7 +207,7 @@ export const productSlice = createSlice({
                 state.status = 'ERROR';
                 state.error = action.payload.error;
             })
-            //
+            //List cat products
             .addCase(listCategoryProductsAsync.pending, (state) => {
                 state.status = 'LOADING';
                 state.error = '';
@@ -213,8 +215,8 @@ export const productSlice = createSlice({
             .addCase(listCategoryProductsAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
                 state.products = JSON.parse(action.payload);
-                state.page = JSON.parse(action.payload.page);
-                state.pages = JSON.parse(action.payload.pages);
+                state.pages = action.payload.pages;
+                state.page = action.payload.page;
             })
             .addCase(listCategoryProductsAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
@@ -229,8 +231,13 @@ export const selectProducts = (state) => state.product.products;
 export const selectProduct = (state) => state.product.product;
 export const selectTopratedProducts = (state) => state.product.toprated;
 export const selectFeaturedProducts = (state) => state.product.featured;
+export const selectListCatProducts = (state) => state.product.products;
 
 export const getStatus = (state) => state.product.status;
 export const getError = (state) => state.product.errorMessage;
+
+export const getPages = (state) => state.product.pages;
+export const getPage = (state) => state.product.page;
+
 
 export default productSlice.reducer;
