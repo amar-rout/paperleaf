@@ -107,46 +107,58 @@ const Home = () => {
 
 const Deals = () => {
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-12 col-md-6 bg-danger-subtle">
-                    <div className="">
-                    {/* style={{ backgroundImage: "url(&quot;assets/imgs/banner/menu-banner-7.jpg&quot;)", visibility: "visible" }}> */}
-                        <div className="">
-                            <h2 className="text-brand">Deal of the Day.</h2>
-                            <h5>Limited quantities.</h5>
-                        </div>
-                        <div className="deal-content">
-                            <h6 className="product-title"><a href="shop-product-right.html">Summer Collection New Morden Design</a></h6>
-                            <div className="product-price"><span className="new-price">$139.00</span><span className="old-price">$160.99</span></div>
-                        </div>
-                        <div className="deal-bottom">
-                            <p>Hurry Up! Offer End In:</p>
-                            <div className="deals-countdown" data-countdown="2025/03/25 00:00:00"><span className="countdown-section"><span className="countdown-amount hover-up">01</span><span className="countdown-period"> days </span></span><span className="countdown-section"><span className="countdown-amount hover-up">10</span><span className="countdown-period"> hours </span></span><span className="countdown-section"><span className="countdown-amount hover-up">50</span><span className="countdown-period"> mins </span></span><span className="countdown-section"><span className="countdown-amount hover-up">47</span><span className="countdown-period"> sec </span></span></div>
-                            <a href="shop-grid-right.html" className="btn hover-up">Shop Now <i className="fi-rs-arrow-right"></i></a>
+        <section className="bg-light-subtle">
+            <div className="container py-3">
+                <div className="row">
+                    <div className="col-12 col-md-6 p-2">
+                        <div className="bg-info-subtle px-5 py-3">
+                            {/* style={{ backgroundImage: "url(&quot;assets/imgs/banner/menu-banner-7.jpg&quot;)", visibility: "visible" }}> */}
+                            <div className="">
+                                <h2 className="text-brand fw-bold">Deal of the Day.</h2>
+                                <h5>Limited quantities.</h5>
+                            </div>
+                            <div className="">
+                                <span className="h5">
+                                    <a className="text-decoration-none text-success small" href="/">Summer Collection New Morden Design</a>
+                                </span>
+                                <div className="my-2">
+                                    <span className="fw-bold fs-4 me-2">₹139.00</span>
+                                    <span className="fw-normal fs-5  ms-2">₹160.99</span>
+                                </div>
+                            </div>
+                            <div className="">
+                                <p>Hurry Up! Offer End In:</p>
+                                <div className="deals-countdown mb-2" data-countdown="2025/03/25 00:00:00"><span className="countdown-section"><span className="countdown-amount hover-up">01</span><span className="countdown-period"> days </span></span><span className="countdown-section"><span className="countdown-amount hover-up">10</span><span className="countdown-period"> hours </span></span><span className="countdown-section"><span className="countdown-amount hover-up">50</span><span className="countdown-period"> mins </span></span><span className="countdown-section"><span className="countdown-amount hover-up">47</span><span className="countdown-period"> sec </span></span></div>
+                                <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="col-12 col-md-6 bg-primary-subtle">
-                    <div className="mx-2">
-                    {/* style={{ backgroundImage: "url(&quot;assets/imgs/banner/menu-banner-8.jpg&quot;)", visibility: "visible" }}> */}
-                        <div className="deal-top">
-                            <h2 className="text-success">Men Clothing</h2>
-                            <h5>Shirt &amp; Bag</h5>
-                        </div>
-                        <div className="deal-content">
-                            <h6 className="product-title"><a href="shop-product-right.html">Try something new on vacation</a></h6>
-                            <div className="product-price"><span className="new-price">$178.00</span><span className="old-price">$256.99</span></div>
-                        </div>
-                        <div className="deal-bottom">
-                            <p>Hurry Up! Offer End In:</p>
-                            <div className="deals-countdown" data-countdown="2026/03/25 00:00:00"><span className="countdown-section"><span className="countdown-amount hover-up">02</span><span className="countdown-period"> days </span></span><span className="countdown-section"><span className="countdown-amount hover-up">10</span><span className="countdown-period"> hours </span></span><span className="countdown-section"><span className="countdown-amount hover-up">50</span><span className="countdown-period"> mins </span></span><span className="countdown-section"><span className="countdown-amount hover-up">47</span><span className="countdown-period"> sec </span></span></div>
-                            <a href="shop-grid-right.html" className="btn hover-up">Shop Now <i className="fi-rs-arrow-right"></i></a>
+                    <div className="col-12 col-md-6 p-2">
+                        <div className="bg-danger-subtle px-5 py-3">
+                            {/* style={{ backgroundImage: "url(&quot;assets/imgs/banner/menu-banner-8.jpg&quot;)", visibility: "visible" }}> */}
+                            <div className="">
+                                <h2 className="text-brand fw-bold">Clothing.</h2>
+                                <h5>Limited quantities.</h5>
+                            </div>
+                            <div className="">
+                                <span className="h5">
+                                    <a className="text-decoration-none text-success small" href="/">Summer Collection New Morden Design</a>
+                                </span>
+                                <div className="my-2">
+                                    <span className="fw-bold fs-4 me-2">₹139.00</span>
+                                    <span className="fw-normal fs-5  ms-2">₹160.99</span>
+                                </div>
+                            </div>
+                            <div className="">
+                                <p>Hurry Up! Offer End In:</p>
+                                <div className="deals-countdown mb-2" data-countdown="2025/03/25 00:00:00"><span className="countdown-section"><span className="countdown-amount hover-up">01</span><span className="countdown-period"> days </span></span><span className="countdown-section"><span className="countdown-amount hover-up">10</span><span className="countdown-period"> hours </span></span><span className="countdown-section"><span className="countdown-amount hover-up">50</span><span className="countdown-period"> mins </span></span><span className="countdown-section"><span className="countdown-amount hover-up">47</span><span className="countdown-period"> sec </span></span></div>
+                                <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
 
