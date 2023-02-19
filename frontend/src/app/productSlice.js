@@ -102,7 +102,7 @@ export const listCategoryProductsAsync = createAsyncThunk(
     PRODUCTS_LISTCAT,
     async ({ category, pageNumber }, thunkAPI) => {
         try {
-            if (pageNumber === undefined){
+            if (pageNumber === undefined || pageNumber === ''){
                 pageNumber = 1;
             }
             const config = { headers: { 'Content-Type': 'application/json', }, };
