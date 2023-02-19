@@ -6,7 +6,7 @@ const products = [
     salePrice: 89.99,
     countInStock: 10,
     name: 'Kurtas',
-    image: '/images/kurtas_4.png',
+    image: '/assets/images/productImages/product1.jpg',
     images:[
       {
         image:'/images/kurtas_4.png'
