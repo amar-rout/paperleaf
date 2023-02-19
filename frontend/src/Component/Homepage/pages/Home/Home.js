@@ -122,8 +122,8 @@ const Deals = () => {
                                     <a className="text-decoration-none text-success small" href="/">Summer Collection New Morden Design</a>
                                 </span>
                                 <div className="my-2">
-                                    <span className="fw-bold fs-4 me-2">₹139.00</span>
-                                    <span className="fw-normal fs-5  ms-2">₹160.99</span>
+                                    <span className="fw-bold fs-4 ls-2 me-2">₹139.00</span>
+                                    <span className="fw-normal fs-5 text-decoration-line-through ms-2">₹160.99</span>
                                 </div>
                             </div>
                             <div className="">
@@ -146,7 +146,7 @@ const Deals = () => {
                                 </span>
                                 <div className="my-2">
                                     <span className="fw-bold fs-4 me-2">₹139.00</span>
-                                    <span className="fw-normal fs-5  ms-2">₹160.99</span>
+                                    <span className="fw-normal fs-5 text-decoration-line-through ms-2">₹160.99</span>
                                 </div>
                             </div>
                             <div className="">
