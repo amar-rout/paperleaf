@@ -18,7 +18,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
 
     const [category, setCategory] = useState("");
     const [page, setPage] = useState(0);
-    const [products, setProducts] = useState([{}]);
+    const [products, setProducts] = useState([]);
 
     const getProductStatus = useSelector(getStatus);
     const getProductError = useSelector(getError);
