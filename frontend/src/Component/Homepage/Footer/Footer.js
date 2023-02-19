@@ -3,7 +3,6 @@ import React from "react";
 import './Footer.css';
 
 const Footer = () => {
-    const clientURL = process.env.REACT_APP_CLIENT_URL;
     return (
         <footer className="main border-top">
             {/* <section className="py-2 text-white footerStart"
@@ -40,7 +39,7 @@ const Footer = () => {
                         <div className="col-lg-4 col-md-6">
                             <div className="font-md mb-md-5 mb-lg-0">
                                 <div className="" style={{ visibility: 'visible' }}>
-                                    <a href="index.html"><img height="70" width="70" src={clientURL + "/assets/images/logo/logo2.png"} alt="logo" /></a>
+                                    <a href="index.html"><img height="70" width="70" src="/assets/images/logo/logo2.png" alt="logo" /></a>
                                 </div>
                                 <h6 className="my-2 fw-400 text-muted" style={{ visibility: 'visible' }}>Contact</h6>
                                 <p className="d-flex justify-content-start align-items-start" style={{ visibility: 'visible' }}>
@@ -147,11 +146,11 @@ const Footer = () => {
                                     <p className=""><small>From App Store or Google Play</small></p>
                                     <div className="download-app d-flex justify-content-start align-items-center">
                                         <a href="/comingSoon">
-                                            <img src={clientURL + "/assets/images/app-store.jpg"} alt="iOS App from Applestore"
+                                            <img src="/assets/images/app-store.jpg" alt="iOS App from Applestore"
                                                 style={{ width: '160px', border: '2px solid #e2e9e1', borderRadius: '5px' }} />
                                         </a>
                                         <a href="/comingSoon" className="ms-3">
-                                            <img src={clientURL + "/assets/images/google-play.jpg"} alt="Android App from Playstore"
+                                            <img src="/assets/images/google-play.jpg" alt="Android App from Playstore"
                                                 style={{ width: '160px', border: '2px solid #e2e9e1', borderRadius: '5px' }} />
                                         </a>
                                     </div>
