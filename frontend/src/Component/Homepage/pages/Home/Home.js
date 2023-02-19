@@ -18,7 +18,7 @@ import {
 
 
 import "./Home.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Home = () => {
@@ -87,7 +87,7 @@ const Home = () => {
             <p>{errorMessage}</p>
             {loading ?
                 <div className="progress">
-                    <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style={{width: "75%"}}></div>
+                    <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style={{ width: "75%" }}></div>
                 </div>
                 :
                 <>
@@ -96,10 +96,49 @@ const Home = () => {
                     <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
                     <p className="border border-top border-1 p-0 m-0"></p>
                     <HomeTopRatedProducts title="Featured Products" topProducts={featuredProduct} />
+                    <NewSection />
                     <SectionInfo />
                 </>
             }
         </main>
+    );
+}
+
+const NewSection = () => {
+    return (
+        <section className="bg-light-subtle">
+            <div className="container py-3">
+                <div className="row">
+                    <div className="col-12 col-sm-4 p-2" style={{ minHeight: 200 }}>
+                        <div className="bg-info-subtle p-4">
+                            <span className="fs-6 fw-normal ls-1"><small>Smart Offer</small></span>
+                            <p className="w-50 fs-4 fw-semibold">Save 20% on Woman Bag</p>
+                            <Link to="/" className="text-decoration-none text-success">
+                                Shop now <i className="bi bi-arrow-right ms-2"></i>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="col-12 col-sm-4 p-2" style={{ minHeight: 200 }}>
+                        <div className="bg-danger-subtle p-4">
+                            <span className="fs-6 fw-normal ls-1"><small>Smart Offer</small></span>
+                            <p className="w-50 fs-4 fw-semibold">Save 20% on Woman Bag</p>
+                            <Link to="/" className="text-decoration-none text-success">
+                                Shop now <i className="bi bi-arrow-right ms-2"></i>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="col-12 col-sm-4 p-2" style={{ minHeight: 200 }}>
+                        <div className="bg-success-subtle p-4">
+                            <span className="fs-6 fw-normal ls-1"><small>Smart Offer</small></span>
+                            <p className="w-50 fs-4 fw-semibold">Save 20% on Woman Bag</p>
+                            <Link to="/" className="text-decoration-none text-success">
+                                Shop now <i className="bi bi-arrow-right ms-2"></i>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     );
 }
 
