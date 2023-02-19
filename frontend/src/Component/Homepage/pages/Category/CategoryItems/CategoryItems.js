@@ -67,7 +67,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
         <div className="container my-5">
             <h4 className="text-center">{paramsValue}</h4>
             {/* <span className="my-4 text-center">{urlLink}</span> */}
-
+            {loading}
             <div className="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1 g-sm-2 g-md-4 g-lg-5">
                 {products && products.map((product) => (
                     <div key={product._id} className="col">

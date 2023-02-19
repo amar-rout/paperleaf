@@ -6,6 +6,14 @@
     box-shadow: 1px 8px 20px 0 rgba(22, 22, 26, 0.18) !important;
 }
 .product_card:hover img {
-    box-shadow: 1px 8px 20px 0 rgba(22, 22, 26, 0.18) !important;
+    /* box-shadow: 1px 8px 20px 0 rgba(22, 22, 26, 0.18) !important; */
     transform: scale(1.02);
+    z-index: 0;
+}
+.wishlist_button {
+    display: none;
+}
+.product_card:hover .wishlist_button{
+    display: inline;
+    z-index: 1000;
 }

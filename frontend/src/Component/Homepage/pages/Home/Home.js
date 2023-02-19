@@ -87,12 +87,13 @@ const Home = () => {
             <p>{errorMessage}</p>
             {loading ?
                 <div className="progress">
-                    <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style={{ width: "75%" }}></div>
+                    <div className="progress-bar progress-bar-striped progress-bar-" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style={{ width: "75%" }}></div>
                 </div>
                 :
                 <>
                     <HomeCarousel />
                     <HomeCategory />
+                    <Deals />
                     <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
                     <p className="border border-top border-1 p-0 m-0"></p>
                     <HomeTopRatedProducts title="Featured Products" topProducts={featuredProduct} />
@@ -101,6 +102,51 @@ const Home = () => {
                 </>
             }
         </main>
+    );
+}
+
+const Deals = () => {
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col-12 col-md-6 bg-danger-subtle">
+                    <div className="">
+                    {/* style={{ backgroundImage: "url(&quot;assets/imgs/banner/menu-banner-7.jpg&quot;)", visibility: "visible" }}> */}
+                        <div className="">
+                            <h2 className="text-brand">Deal of the Day.</h2>
+                            <h5>Limited quantities.</h5>
+                        </div>
+                        <div className="deal-content">
+                            <h6 className="product-title"><a href="shop-product-right.html">Summer Collection New Morden Design</a></h6>
+                            <div className="product-price"><span className="new-price">$139.00</span><span className="old-price">$160.99</span></div>
+                        </div>
+                        <div className="deal-bottom">
+                            <p>Hurry Up! Offer End In:</p>
+                            <div className="deals-countdown" data-countdown="2025/03/25 00:00:00"><span className="countdown-section"><span className="countdown-amount hover-up">01</span><span className="countdown-period"> days </span></span><span className="countdown-section"><span className="countdown-amount hover-up">10</span><span className="countdown-period"> hours </span></span><span className="countdown-section"><span className="countdown-amount hover-up">50</span><span className="countdown-period"> mins </span></span><span className="countdown-section"><span className="countdown-amount hover-up">47</span><span className="countdown-period"> sec </span></span></div>
+                            <a href="shop-grid-right.html" className="btn hover-up">Shop Now <i className="fi-rs-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-12 col-md-6 bg-primary-subtle">
+                    <div className="mx-2">
+                    {/* style={{ backgroundImage: "url(&quot;assets/imgs/banner/menu-banner-8.jpg&quot;)", visibility: "visible" }}> */}
+                        <div className="deal-top">
+                            <h2 className="text-success">Men Clothing</h2>
+                            <h5>Shirt &amp; Bag</h5>
+                        </div>
+                        <div className="deal-content">
+                            <h6 className="product-title"><a href="shop-product-right.html">Try something new on vacation</a></h6>
+                            <div className="product-price"><span className="new-price">$178.00</span><span className="old-price">$256.99</span></div>
+                        </div>
+                        <div className="deal-bottom">
+                            <p>Hurry Up! Offer End In:</p>
+                            <div className="deals-countdown" data-countdown="2026/03/25 00:00:00"><span className="countdown-section"><span className="countdown-amount hover-up">02</span><span className="countdown-period"> days </span></span><span className="countdown-section"><span className="countdown-amount hover-up">10</span><span className="countdown-period"> hours </span></span><span className="countdown-section"><span className="countdown-amount hover-up">50</span><span className="countdown-period"> mins </span></span><span className="countdown-section"><span className="countdown-amount hover-up">47</span><span className="countdown-period"> sec </span></span></div>
+                            <a href="shop-grid-right.html" className="btn hover-up">Shop Now <i className="fi-rs-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 
@@ -113,7 +159,7 @@ const NewSection = () => {
                         <div className="bg-info-subtle p-4">
                             <span className="fs-6 fw-normal ls-1"><small>Smart Offer</small></span>
                             <p className="w-50 fs-4 fw-semibold">Save 20% on Woman Bag</p>
-                            <Link to="/" className="text-decoration-none text-success">
+                            <Link to="/" className="text-decoration-none fs-6 fw-semibold text-info">
                                 Shop now <i className="bi bi-arrow-right ms-2"></i>
                             </Link>
                         </div>
@@ -122,7 +168,7 @@ const NewSection = () => {
                         <div className="bg-danger-subtle p-4">
                             <span className="fs-6 fw-normal ls-1"><small>Smart Offer</small></span>
                             <p className="w-50 fs-4 fw-semibold">Save 20% on Woman Bag</p>
-                            <Link to="/" className="text-decoration-none text-success">
+                            <Link to="/" className="text-decoration-none fs-6 fw-semibold text-danger">
                                 Shop now <i className="bi bi-arrow-right ms-2"></i>
                             </Link>
                         </div>
@@ -131,7 +177,7 @@ const NewSection = () => {
                         <div className="bg-success-subtle p-4">
                             <span className="fs-6 fw-normal ls-1"><small>Smart Offer</small></span>
                             <p className="w-50 fs-4 fw-semibold">Save 20% on Woman Bag</p>
-                            <Link to="/" className="text-decoration-none text-success">
+                            <Link to="/" className="text-decoration-none fs-6 fw-semibold text-success">
                                 Shop now <i className="bi bi-arrow-right ms-2"></i>
                             </Link>
                         </div>
@@ -227,7 +273,7 @@ export default Home;
                 <div className="container">
                     <div className="row">
                         <div className="col">
-                            <div className="banner-img wow fadeIn animated animated animated" style={{ visibility: "visible" }}>
+                            <div className="banner-img     " style={{ visibility: "visible" }}>
                                 <img src="./assets/images/bannerImages/banner-1.png" alt="" />
                                     <div className="banner-text">
                                         <span>Smart Offer</span>
@@ -237,7 +283,7 @@ export default Home;
                             </div>
                         </div>
                         <div className="col">
-                            <div className="banner-img wow fadeIn animated animated animated" style={{ visibility: "visible" }}>
+                            <div className="banner-img     " style={{ visibility: "visible" }}>
                                 <img src="./assets/images/bannerImages/banner-2.jpeg" alt="" />
                                     <div className="banner-text">
                                         <span>Sale off</span>
@@ -247,7 +293,7 @@ export default Home;
                             </div>
                         </div>
                         <div className="col">
-                            <div className="banner-img wow fadeIn animated  mb-sm-0 animated animated" style={{ visibility: "visible" }}>
+                            <div className="banner-img     mb-sm-0  " style={{ visibility: "visible" }}>
                                 <img src="./assets/images/bannerImages/banner-1.jpeg" alt="" />
                                     <div className="banner-text">
                                         <span>New Arrivals</span>
