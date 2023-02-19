@@ -102,6 +102,9 @@ export const listCategoryProductsAsync = createAsyncThunk(
     PRODUCTS_LISTCAT,
     async ({ category, pageNumber }, thunkAPI) => {
         try {
+            if (pageNumber === undefined){
+                pageNumber = 1;
+            }
             const config = { headers: { 'Content-Type': 'application/json', }, };
             const response = await axios.get(`/api/products/category/${category}?pageNumber=${pageNumber}`, config,);
             // const response = await axios.get(`/api/products/category/Kurtas?pageNumber=1`, config,);
