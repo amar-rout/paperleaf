@@ -16,8 +16,6 @@ const Navbar = () => {
 
     const navigate = useNavigate()
 
-    const clientURL = process.env.REACT_APP_CLIENT_URL;
-
     const logoutHandler = () => {
         dispatch(logout());
         navigate("/");
@@ -36,7 +34,7 @@ const Navbar = () => {
             <header className="navbar-bg text-center p-1">
                 <div className="container p-1 text-dark">
                     <Link to="/" className="navbar-brand m-0 p-0 mb-2 mb-md-0">
-                        <img src={clientURL + "/assets/images/logo/logo-1.png"} alt="logo" className="nav-logo-img" />
+                        <img src="/assets/images/logo/logo-1.png" alt="logo" className="nav-logo-img" />
                     </Link>
                 </div>
             </header>
@@ -111,7 +109,7 @@ const Navbar = () => {
                                     <>
                                         <div className="dropdown position-relative ms-2">
                                             <a href="/" className="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <img src={clientURL + "/assets/images/user-thumbnail.jpg"} alt="mdo" width="24" height="24" className="rounded-circle" />
+                                                <img src="/assets/images/user-thumbnail.jpg" alt="mdo" width="24" height="24" className="rounded-circle" />
                                             </a>
                                             <ul className="dropdown-menu dropdown-menu-end my-3 text-small shadow text-overflow-hidden">
                                                 <li>
