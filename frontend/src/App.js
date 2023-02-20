@@ -26,7 +26,7 @@ import About from './Component/Homepage/pages/About/About';
 import Blog from './Component/Homepage/pages/Blog/Blog';
 import Contact from './Component/Homepage/pages/Contact/Contact';
 import Privacy from './Component/Homepage/pages/Privacy/Privacy';
-import Category from './Component/Homepage/pages/Category/Category';
+// import Category from './Component/Homepage/pages/Category/Category';
 import Search from './Component/Homepage/pages/Search/Search';
 import User from './Component/Homepage/pages/User/User';
 import UserOrders from './Component/Homepage/pages/User/UserOrders/UserOrders';
@@ -40,6 +40,8 @@ import UserNotification from './Component/Homepage/pages/User/UserNotification/U
 import UserPayment from './Component/Homepage/pages/User/UserPayment/UserPayment';
 import UserSetting from './Component/Homepage/pages/User/UserSetting/UserSetting';
 import Checkout from './Component/Homepage/pages/Checkout/Checkout';
+import Products from './Component/Homepage/pages/Products/Products';
+import CategoryItems from './Component/Homepage/pages/Category/CategoryItems/CategoryItems';
 
 
 const PageNotFound = () => {
@@ -64,10 +66,9 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/search" element={<Search />} />
-            <Route path="category" element={<Category />}>
-              <Route exact path=":id" element={<Category />} />
-              <Route path="*" element={<PageNotFound />} />
-            </Route>
+            {/* <Route path="/category" element={<Category />} /> */}
+            <Route exact path="/category/:id" element={<CategoryItems />} />
+            <Route path="products/:id" element={<Products />}/>
             <Route path="user" element={<User />}>
               <Route index element={<UserProfile />} />
               <Route path="profile" element={<UserProfile />} />

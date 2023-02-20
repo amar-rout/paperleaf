@@ -102,7 +102,7 @@ export const listCategoryProductsAsync = createAsyncThunk(
     PRODUCTS_LISTCAT,
     async ({ category, pageNumber }, thunkAPI) => {
         try {
-            if (pageNumber === undefined || pageNumber === ''){
+            if (pageNumber === undefined){
                 pageNumber = 1;
             }
             const config = { headers: { 'Content-Type': 'application/json', }, };
@@ -214,11 +214,12 @@ export const productSlice = createSlice({
             .addCase(listCategoryProductsAsync.pending, (state) => {
                 state.status = 'LOADING';
                 state.error = '';
+                state.products = [];
+                state.pages = 0;
+                state.page = 0;
             })
             .addCase(listCategoryProductsAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
-                console.log("action cat payload");
-                console.log(action.payload)
                 state.products = action.payload.products;
                 state.pages = action.payload.pages;
                 state.page = action.payload.page;
@@ -226,6 +227,9 @@ export const productSlice = createSlice({
             .addCase(listCategoryProductsAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
                 state.error = action.payload.error;
+                state.products = [];
+                state.pages = 0;
+                state.page = 0;
             })
     },
 });

@@ -20,7 +20,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                     <span className="border-bottom border-2">{title}</span>
                 </h4>
                 <div className="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1 g-sm-2 g-md-3 g-lg-4">
-                    {products.map((product, index) => (
+                    {products.map((product) => (
                         <div key={product._id} className="col">
                             <div className="card product_card p-1 p-md-3 m-0 shadow-sm rounded-4">
                                 <div className="position-relative">

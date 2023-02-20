@@ -179,16 +179,16 @@ const Navbar = () => {
                 <div className="container nav-scroller bg-body">
                     <nav className="nav navcat-link position-relative pt-1" aria-label="Secondary navigation">
                         {/* <NavCatLink className="nav-link ps-0 pe-4" to="/category/browseAll">All products</NavCatLink> */}
-                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/newInStore">
+                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/NewInStore">
                             New In Store
                             <span className="position-absolute badge text-danger fw-bold translate-middle top-25 start-75 fw-normal"><small>New</small></span>
                         </NavCatLink>
-                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/kurtis">Kurti/Sets</NavCatLink>
-                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/dupattas">Dupattas</NavCatLink>
-                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/dress">Dress</NavCatLink>
-                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/pants">Pants/Palazzo</NavCatLink>
-                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/fabrics">Fabrics</NavCatLink>
-                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/jewellery">Jewellery</NavCatLink>
+                        {/* <NavCatLink className="nav-link ps-0 pe-4" to="/category/kurtis">Kurti/Sets</NavCatLink> */}
+                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/Dupattas">Dupattas</NavCatLink>
+                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/Dress">Dress</NavCatLink>
+                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/Pants">Pants/Palazzo</NavCatLink>
+                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/Fabrics">Fabrics</NavCatLink>
+                        <NavCatLink className="nav-link ps-0 pe-4" to="/category/Jewellery">Jewellery</NavCatLink>
                     </nav>
                 </div>
             </header>
