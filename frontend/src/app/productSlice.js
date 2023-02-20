@@ -109,7 +109,7 @@ export const listCategoryProductsAsync = createAsyncThunk(
             const response = await axios.get(`/api/products/category/${category}?pageNumber=${pageNumber}`, config,);
             // const response = await axios.get(`/api/products/category/Kurtas?pageNumber=1`, config,);
             // localStorage.setItem('featured', JSON.stringify(response.data));
-            return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
+            return thunkAPI.fulfillWithValue(response.data);
         } catch (error) {
             if (error.code === "ERROR_BAD_RESPONSE") {
                 return thunkAPI.rejectWithValue({ error: "Couldn't connect to server at this moment. Please try again after some time." });
@@ -217,7 +217,9 @@ export const productSlice = createSlice({
             })
             .addCase(listCategoryProductsAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
-                state.products = JSON.parse(action.payload);
+                console.log("action cat payload");
+                console.log(action.payload)
+                state.products = action.payload.products;
                 state.pages = action.payload.pages;
                 state.page = action.payload.page;
             })
@@ -228,7 +230,7 @@ export const productSlice = createSlice({
     },
 });
 
-export const { clearState, clearProductDetails, clearProductsTopRated, clearProductsFeatured } = productSlice.actions;
+export const { clearState, clearProductDetails, clearProductsTopRated, clearProductsFeatured, clearListCategoryProducts } = productSlice.actions;
 
 export const selectProducts = (state) => state.product.products;
 export const selectProduct = (state) => state.product.product;

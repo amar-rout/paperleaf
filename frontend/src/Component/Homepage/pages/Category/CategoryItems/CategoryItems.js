@@ -11,6 +11,7 @@ import {
     getPages,
     getPage,
     selectListCatProducts,
+    clearListCategoryProducts,
     listCategoryProductsAsync,
 } from "../../../../../app/productSlice";
 
@@ -55,6 +56,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
             setErrorMessage(getProductError);
             setLoading(false);
             dispatch(clearState());
+            dispatch(clearListCategoryProducts());
         }
     }, [getProductStatus, listCatProduct, getProductError, dispatch]);
 
@@ -79,7 +81,8 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                                     </svg>
                                 </button>
                             </div>
-                            <img src="./assets/images/productImages/product1.jpg" className="card-img-top rounded-4" alt="card 1" />
+                            {/* <img src="./assets/images/productImages/product1.jpg" className="card-img-top rounded-4" alt="card 1" /> */}
+                            <img src={product.image} className="card-img-top rounded-4" alt="card 1" />
                             <div className="card-body p-2">
                                 <p className="card-title lh-1 my-0 my-md-1"><small><b>{product.name}</b></small></p>
                                 <p className="lh-1 my-0 text-muted"><small>{product.category}</small></p>
@@ -112,7 +115,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                 {
                     page >= 0 ?
                         <button className="btn btn-outline-dark disabled mx-2 px-2 px-md-4"
-                            onClick={() => setPage(getCurrPage - 1)}>
+                            onClick={() => setPage(getCurrPage)}>
                             Prev
                         </button>
                         :
@@ -124,7 +127,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                 {
                     page === getMaxPage ?
                         <button className="btn btn-outline-dark disabled mx-2 px-2 px-md-4"
-                            onClick={() => setPage(getCurrPage + 1)}>
+                            onClick={() => setPage(getCurrPage)}>
                             Next
                         </button>
                         :
