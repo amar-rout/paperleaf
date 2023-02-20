@@ -1037,6 +1037,78 @@ const products = [
   {
     rating: 0,
     numReviews: 0,
+    price: 10.99,
+    countInStock: 100,
+    name: 'Dress',
+    description:
+      'Flora dress',
+    category: 'Dress',
+    image: '/assets/images/productImages/Dress/IMG_DR1.jpg',
+    brand: 'FakeData',
+    featured: false,
+    reviews: [
+      {
+        rating: '4',
+        name: 'Paul',
+        title: 'Good',
+        comment: 'what the title says',
+       
+      },
+      {
+        rating: '3',
+        name: 'John',
+        title: 'Ok',
+        comment: 'Whatever',
+       
+      },
+      {
+        rating: '1',
+        name: 'Breno',
+        title: 'No bueno',
+        comment: 'yikes',
+       
+      },
+      {
+        rating: '5',
+        name: 'Stevie',
+        title: 'So good',
+        comment: 'it got me good',
+       
+      },
+      {
+        rating: '5',
+        name: 'Habacookie',
+        title: 'Alrighy',
+        comment: 'it is what it is',
+       
+      },
+      {
+        rating: '5',
+        name: 'Habacookie',
+        title: 'Alrighy',
+        comment: 'it is what it is',
+       
+      },
+      {
+        rating: '2',
+        name: 'Don Juan',
+        title: 'Awesome',
+        comment: 'Works as intended',
+       
+      },
+      {
+        rating: '2',
+        name: 'Not Don',
+        title: 'Not really awesome',
+        comment: 'it only works sometimes',
+       
+      },
+    ],
+   
+  },
+  {
+    rating: 0,
+    numReviews: 0,
     price: 64.2,
     oldPrice: 164.2,
     countInStock: 100,
