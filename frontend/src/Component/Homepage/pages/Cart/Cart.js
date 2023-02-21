@@ -225,9 +225,9 @@ const Cart = () => {
                         <div class="alert alert-warning mt-3" role="alert">
                             Use coupon code <strong>HYPBM</strong> and get 10% discount !
                         </div>
-                        <div class="input-group border border-1 rounded-3 mt-3 py-1">
+                        <div class="input-group border border-1 rounded-pill mt-3 py-1 p-2">
                             <input type="text" class="form-control shadow-none border-0 py-2" placeholder="Coupon code" aria-label="Recipient's username" />
-                            <button class="btn btn-light border-0 rounded-pill mx-2 px-1 px-md-3 py-2" type="button">Apply Coupons</button>
+                            <button class="btn btn-default bg-info-subtle rounded-pill px-3 py-2 small" type="button"><small>Apply Coupons</small></button>
                         </div>
                         <button className="w-100 btn bg-dark text-white float-end shadow-none border-dark px-5 py-3 my-3" type="button"
                             onClick={handleCheckout}>

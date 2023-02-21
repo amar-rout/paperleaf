@@ -12,7 +12,7 @@ const Products = () => {
                     { name: 'Products', link: '/Products', active: true }
                 ]}
             />
-            <section className="album py-3">
+            <section className="album py-3 bg-body">
                 <div className="container">
                     <h4 className="pb-5 text-center">
                         <span className="border-bottom border-2">Products</span>
@@ -67,14 +67,17 @@ const Products = () => {
                                                     edit: false,
                                                     isHalf: true
                                                 }} />
-                                                <span class="small ms-1 me-5 text-muted"> (25 reviews)</span>
+                                                <span class="small ms-1 me-5 text-muted">
+                                                <span className='ms-1' style={{color:'#fdad01'}}>4.5</span>
+                                                <span className='ms-1'>(25 reviews)</span>
+                                                </span>
                                             </span>
                                         </div>
                                         <div class="clearfix product-price-cover">
                                             <div class="product-price primary-color float-left">
                                                 <span class="text-brand fs-4 fw-bold">₹120.00</span>
                                                 <span class="ms-2 ms-md-4 fs-6 fw-normal text-decoration-line-through">₹200.00</span>
-                                                <span class="ms-2 ms-md-4 fs-6 fw-bold text-muted">25% Off</span>
+                                                <span class="ms-2 ms-md-4 fs-6 fw-bold text-muted">Flat 25% Off</span>
                                             </div>
                                         </div>
                                         {/* <div class="bt-1 border-color-1 mt-15 mb-15"></div>
