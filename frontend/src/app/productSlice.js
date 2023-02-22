@@ -166,6 +166,7 @@ export const productSlice = createSlice({
                 state.products = JSON.parse(action.payload.products);
                 state.page = JSON.parse(action.payload.page);
                 state.pages = JSON.parse(action.payload.pages);
+                state.error = '';
             })
             .addCase(listProductAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
@@ -179,6 +180,7 @@ export const productSlice = createSlice({
             .addCase(productDetailsAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
                 state.product = JSON.parse(action.payload);
+                state.error = '';
             })
             .addCase(productDetailsAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
@@ -191,6 +193,7 @@ export const productSlice = createSlice({
             })
             .addCase(productsTopratedAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
+                state.error = '';
                 state.toprated = JSON.parse(action.payload);
             })
             .addCase(productsTopratedAsync.rejected, (state, action) => {
@@ -205,6 +208,7 @@ export const productSlice = createSlice({
             .addCase(productsFeaturedAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
                 state.featured = JSON.parse(action.payload);
+                state.error = '';
             })
             .addCase(productsFeaturedAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
@@ -223,6 +227,7 @@ export const productSlice = createSlice({
                 state.products = action.payload.products;
                 state.pages = action.payload.pages;
                 state.page = action.payload.page;
+                state.error = '';
             })
             .addCase(listCategoryProductsAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
@@ -243,7 +248,7 @@ export const selectFeaturedProducts = (state) => state.product.featured;
 export const selectListCatProducts = (state) => state.product.products;
 
 export const getStatus = (state) => state.product.status;
-export const getError = (state) => state.product.errorMessage;
+export const getError = (state) => state.product.error;
 
 export const getPages = (state) => state.product.pages;
 export const getPage = (state) => state.product.page;
