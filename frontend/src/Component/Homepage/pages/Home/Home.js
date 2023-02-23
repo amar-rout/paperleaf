@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
     clearState,
     getStatus,
-    getError,
     productsTopratedAsync,
     productsFeaturedAsync,
     selectTopratedProducts,
@@ -24,13 +23,11 @@ import { Link, useNavigate } from "react-router-dom";
 const Home = () => {
 
     const getProductStatus = useSelector(getStatus);
-    const getProductError = useSelector(getError);
     const topRatedProduct = useSelector(selectTopratedProducts);
     const featuredProduct = useSelector(selectFeaturedProducts);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [errorMessage, setErrorMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -49,11 +46,10 @@ const Home = () => {
             setLoading(false);
         }
         if (getProductStatus === "ERROR") {
-            setErrorMessage(getProductError);
             setLoading(false);
             dispatch(clearState());
         }
-    }, [getProductStatus, getProductError, dispatch, navigate]);
+    }, [getProductStatus, dispatch, navigate]);
 
     useEffect(() => {
         dispatch(productsTopratedAsync("", ""));
@@ -84,7 +80,6 @@ const Home = () => {
             <h6 className="container my-4 h5">
                 <span className="text-dark">Welcome to <span style={{ color: "rgba(200, 160, 40)" }}>Paperleaf</span></span>
             </h6>
-            <p>{errorMessage}</p>
             {loading ?
                 <div className="progress">
                     <div className="progress-bar progress-bar-striped progress-bar-" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style={{ width: "75%" }}></div>
@@ -204,15 +199,15 @@ const SectionInfo = () => {
     return (
         <section className="bg-light-subtle border-top">
             <div className="container">
-                <div className="row p-5">
+                <div className="row p-3">
                     <div className="col-12 col-md-6 col-lg-3">
                         <div className="d-flex mb-4 mb-lg-0">
-                            <i className="bi bi-truck fs-4 text-warning"></i>
+                            <i className="bi bi-truck fs-6 small text-dark"></i>
                             <div className="ms-4 ms-md-4 ">
-                                <h6 className="mb-1">
+                                <p className="mb-1 small fw-bold">
                                     FREE SHIPPING
-                                </h6>
-                                <p className="mb-0 fs-sm text-muted">
+                                </p>
+                                <p className="mb-0 small">
                                     From all orders over <span className="fw-semibold">₹</span>1000
                                 </p>
                             </div>
@@ -220,12 +215,12 @@ const SectionInfo = () => {
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
                         <div className="d-flex mb-4 mb-lg-0">
-                            <i className="bi bi-repeat fs-4 text-warning"></i>
-                            <div className="ms-4">
-                                <h6 className="mb-1">
+                        <i className="bi bi-truck fs-6 small text-dark"></i>
+                            <div className="ms-4 ms-md-4 ">
+                                <p className="mb-1 small fw-bold">
                                     FREE RETURNS
-                                </h6>
-                                <p className="mb-0 fs-sm text-muted">
+                                </p>
+                                <p className="mb-0 small">
                                     Return money within 30 days
                                 </p>
                             </div>
@@ -233,12 +228,12 @@ const SectionInfo = () => {
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
                         <div className="d-flex mb-4 mb-md-0">
-                            <i className="bi bi-shield-lock fs-4 text-warning"></i>
-                            <div className="ms-4">
-                                <h6 className="mb-1">
+                        <i className="bi bi-truck fs-6 small text-dark"></i>
+                            <div className="ms-4 ms-md-4 ">
+                                <p className="mb-1 small fw-bold">
                                     SECURE SHOPPING
-                                </h6>
-                                <p className="mb-0 fs-sm text-muted">
+                                </p>
+                                <p className="mb-0 small">
                                     You're in safe hands
                                 </p>
                             </div>
@@ -246,12 +241,12 @@ const SectionInfo = () => {
                     </div>
                     <div className="col-12 col-md-6 col-lg-3">
                         <div className="d-flex">
-                            <i className="bi bi-tag fs-4 text-warning"></i>
-                            <div className="ms-4">
-                                <h6 className="mb-1">
+                        <i className="bi bi-truck fs-6 small text-dark"></i>
+                            <div className="ms-4 ms-md-4 ">
+                                <p className="mb-1 small fw-bold">
                                     OVER 1,000 STYLES
-                                </h6>
-                                <p className="mb-0 fs-sm text-muted">
+                                </p>
+                                <p className="mb-0 small">
                                     We have everything you need
                                 </p>
                             </div>

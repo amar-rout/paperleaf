@@ -11,7 +11,7 @@ import {
     getPages,
     getPage,
     selectListCatProducts,
-    // clearListCategoryProducts,
+    clearListCategoryProducts,
     listCategoryProductsAsync,
 } from "../../../../../app/productSlice";
 import { useNavigate, useParams } from "react-router-dom";
@@ -33,12 +33,12 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
     const navigate = useNavigate();
     const { id } = useParams();
 
-    // useEffect(() => {
-    //     setCategory(id);
-    // }, [id]);
+    useEffect(() => {
+        setCategory(id);
+    }, [id]);
 
     useEffect(() => {
-        // dispatch(clearState());
+        dispatch(clearState());
         setProducts(listCatProduct);
     }, [dispatch, listCatProduct]);
 
@@ -51,17 +51,17 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
     useEffect(() => {
         if (getProductStatus === "LOADING") {
             setLoading(true);
-            // dispatch(clearState());
+            dispatch(clearState());
         }
         if (getProductStatus === "LOADED") {
-            // dispatch(clearState());
-            setLoading(false);
             setProducts(listCatProduct);
+            setLoading(false);
+            dispatch(clearState());
         }
         if (getProductStatus === "ERROR") {
             setLoading(false);
             setErrorMessage(getProductsError);
-            // dispatch(clearState());
+            dispatch(clearState());
             // dispatch(clearListCategoryProducts());
         }
     }, [getProductStatus, listCatProduct, getProductsError, dispatch]);
@@ -69,8 +69,8 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
     useEffect(() => {
         setCategory(id);
         dispatch(listCategoryProductsAsync({ category, page }));
-        // dispatch(clearState());
-    }, [dispatch, page, category, id]);
+        dispatch(clearState());
+    }, [dispatch, id, page, category]);
 
     return (
         <div className="container my-5">

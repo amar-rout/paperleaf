@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
     logout,
-    selectUser,
+    selectUser
 } from "../../../app/userSlice";
 
 import "./Navbar.css";
@@ -19,7 +19,7 @@ const Navbar = () => {
 
     const logoutHandler = () => {
         dispatch(logout());
-        navigate("/");
+        navigate("/login");
     }
 
     return (

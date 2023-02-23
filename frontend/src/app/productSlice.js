@@ -100,11 +100,8 @@ export const productsFeaturedAsync = createAsyncThunk(
 
 export const listCategoryProductsAsync = createAsyncThunk(
     PRODUCTS_LISTCAT,
-    async ({ category, pageNumber }, thunkAPI) => {
+    async ({ category, pageNumber = 1 }, thunkAPI) => {
         try {
-            if (pageNumber === undefined){
-                pageNumber = 1;
-            }
             const config = { headers: { 'Content-Type': 'application/json', }, };
             const response = await axios.get(`/api/products/category/${category}?pageNumber=${pageNumber}`, config,);
             // const response = await axios.get(`/api/products/category/Kurtas?pageNumber=1`, config,);
@@ -218,9 +215,6 @@ export const productSlice = createSlice({
             .addCase(listCategoryProductsAsync.pending, (state) => {
                 state.status = 'LOADING';
                 state.error = '';
-                state.products = [];
-                state.pages = 0;
-                state.page = 0;
             })
             .addCase(listCategoryProductsAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
@@ -232,9 +226,6 @@ export const productSlice = createSlice({
             .addCase(listCategoryProductsAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
                 state.error = action.payload.error;
-                state.products = [];
-                state.pages = 0;
-                state.page = 0;
             })
     },
 });
