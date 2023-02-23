@@ -11,7 +11,6 @@ import {
     getPages,
     getPage,
     selectListCatProducts,
-    clearListCategoryProducts,
     listCategoryProductsAsync,
 } from "../../../../../app/productSlice";
 import { useNavigate, useParams } from "react-router-dom";
@@ -62,7 +61,6 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
             setLoading(false);
             setErrorMessage(getProductsError);
             dispatch(clearState());
-            // dispatch(clearListCategoryProducts());
         }
     }, [getProductStatus, listCatProduct, getProductsError, dispatch]);
 

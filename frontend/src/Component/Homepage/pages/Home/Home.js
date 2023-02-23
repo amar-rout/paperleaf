@@ -18,6 +18,7 @@ import {
 
 import "./Home.css";
 import { Link, useNavigate } from "react-router-dom";
+import HomeFeaturedProducts from "./HomeFeaturedProducts/HomeFeaturedProducts";
 
 
 const Home = () => {
@@ -69,8 +70,13 @@ const Home = () => {
                     <div className="row bg-dark">
                         <div className="col-12">
                             <div className="text-center text-white">
-                                <span className="fs-6 fw-semibold ls-2" style={{ color: "rgba(200, 160, 40)" }}>
-                                    ⚡️ &nbsp;&nbsp; Happy Holiday Deals on Everything &nbsp;&nbsp; ⚡️
+                                {/* <span className="fs-6 fw-semibold ls-2" style={{ color: "rgba(200, 160, 40)" }}> */}
+                                <span className="fs-6 fw-semibold ls-2" style={{ color: "rgb(234, 255, 150)" }}>
+                                    {/* rgb(234, 255, 150) */}
+                                    {/* ⚡️  */}
+                                    <i className="bi bi-lightning-charge-fill fs-5"></i>
+                                    &nbsp;&nbsp; Happy Holiday Deals on Everything &nbsp;&nbsp;
+                                    <i className="bi bi-lightning-charge-fill fs-5"></i>
                                 </span>
                             </div>
                         </div>
@@ -90,8 +96,9 @@ const Home = () => {
                     <HomeCategory />
                     <Deals />
                     <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
-                    <p className="border border-top border-1 p-0 m-0"></p>
-                    <HomeTopRatedProducts title="Featured Products" topProducts={featuredProduct} />
+                    {/* <p className="border border-top border-1 p-0 m-0"></p> */}
+                    {/* <HomeTopRatedProducts title="Featured Products" topProducts={featuredProduct} /> */}
+                    <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
                     <NewSection />
                     <SectionInfo />
                 </>
@@ -101,53 +108,144 @@ const Home = () => {
 }
 
 const Deals = () => {
+
+    function getTimeRemaining(endtime) {
+        const total = Date.parse(endtime) - Date.parse(new Date());
+        const seconds = Math.floor((total / 1000) % 60);
+        const minutes = Math.floor((total / 1000 / 60) % 60);
+        const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+        const days = Math.floor(total / (1000 * 60 * 60 * 24));
+
+        return { total, days, hours, minutes, seconds };
+    }
+
+    function initializeClock(id, endtime) {
+        const clock = document.getElementById(id);
+        const daysSpan = clock.querySelector('.days');
+        const hoursSpan = clock.querySelector('.hours');
+        const minutesSpan = clock.querySelector('.mins');
+        const secondsSpan = clock.querySelector('.secs');
+
+        function updateClock() {
+            const t = getTimeRemaining(endtime);
+
+            daysSpan.innerHTML = t.days;
+            hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+            if (t.total <= 0) {
+                clearInterval(timeInterval);
+            }
+        }
+
+        updateClock();
+
+        const timeInterval = setInterval(updateClock, 1000);
+    }
+
+    useEffect(() => {
+        let id = 'countdown'
+        const deadline = new Date(Date.parse(new Date()) + 3 * 12 * 60 * 60 * 1000);
+
+        let id2 = 'countdown_1'
+        const deadline2 = new Date(Date.parse(new Date()) + 2 * 24 * 60 * 60 * 1000);
+
+        initializeClock( id, deadline );
+        initializeClock( id2, deadline2 );
+    });
+
+    useEffect(() => {
+        let id2 = 'countdown_1'
+        const deadline2 = new Date(Date.parse(new Date()) + 2 * 24 * 60 * 60 * 1000);
+        initializeClock( id2, deadline2 );
+    });
+
     return (
-        <section className="bg-light-subtle">
+        <section className="bg-white">
             <div className="container py-3">
                 <div className="row">
                     <div className="col-12 col-md-6 p-2">
-                        <div className="bg-warning-subtle px-5 py-3"
-                        style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right top", backgroundRepeat: "no-repeat", backgroundSize: "auto", visibility: "visible" }}>
+                        <div className="bg-warning-subtle px-3 px-md-5 py-3"
+                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
                             <div className="">
-                                <h2 className="text-brand fw-bold">Deal of the Day.</h2>
-                                <h5>Limited quantities.</h5>
+                                <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
+                                <p className="fs-6 fw-semibold">Limited quantities.</p>
                             </div>
                             <div className="">
                                 <span className="h5">
-                                    <a className="text-decoration-none text-success small" href="/">Handcrafted New Morden Design</a>
+                                    <a className="text-decoration-none text-dark small" href="/">Handcrafted New<br />Morden Design</a>
                                 </span>
-                                <div className="my-2">
-                                    <span className="fw-bold fs-4 ls-2 me-2">₹139.00</span>
-                                    <span className="fw-normal fs-5 text-decoration-line-through ms-2">₹160.99</span>
+                                <div className="my-3">
+                                    <span className="fw-bold fs-4 me-2" style={{ color: '#088178' }} >₹139.00</span>
+                                    <span className="fw-semibold fs-5 text-danger text-decoration-line-through ms-2">₹160.99</span>
                                 </div>
                             </div>
                             <div className="">
-                                <p>Hurry Up! Offer End In:</p>
-                                <div className="deals-countdown mb-2" data-countdown="2025/03/25 00:00:00"><span className="countdown-section"><span className="countdown-amount hover-up">01</span><span className="countdown-period"> days </span></span><span className="countdown-section"><span className="countdown-amount hover-up">10</span><span className="countdown-period"> hours </span></span><span className="countdown-section"><span className="countdown-amount hover-up">50</span><span className="countdown-period"> mins </span></span><span className="countdown-section"><span className="countdown-amount hover-up">47</span><span className="countdown-period"> sec </span></span></div>
-                                <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a>
+                                <span>Hurry Up! Offer End In:</span>
+                                <div className="deals-countdown mb-2" id="countdown" data-countdown="2025/03/25 00:00:00">
+                                    <span className="countdown-section">
+                                        <span className="countdown-amount hover-up days"></span>
+                                        <span className="countdown-period"> days </span>
+                                    </span>
+                                    <span className="countdown-section">
+                                        <span className="countdown-amount hover-up hours"></span>
+                                        <span className="countdown-period"> hours </span>
+                                    </span>
+                                    <span className="countdown-section">
+                                        <span className="countdown-amount hover-up mins"></span>
+                                        <span className="countdown-period"> mins </span>
+                                    </span>
+                                    <span className="countdown-section">
+                                        <span className="countdown-amount hover-up secs"></span>
+                                        <span className="countdown-period"> sec </span>
+                                    </span>
+                                </div>
+                                <div className="pt-2">
+                                    <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className="col-12 col-md-6 p-2">
-                    <div className="bg-info-subtle px-5 py-3"
-                        style={{ backgroundImage: "url('/assets/images/productImages/product11.png')", backgroundPosition: "right", backgroundRepeat: "no-repeat", backgroundSize: "contain", visibility: "visible" }}>
+                        <div className="bg-info-subtle px-3 px-md-5 py-3"
+                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
                             <div className="">
-                                <h2 className="text-brand fw-bold">Clothing.</h2>
-                                <h5>Limited quantities.</h5>
+                                <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
+                                <p className="fs-6 fw-semibold">Limited quantities.</p>
                             </div>
                             <div className="">
                                 <span className="h5">
-                                    <a className="text-decoration-none text-success small" href="/">Summer Collection New Morden Design Dress</a>
+                                    <a className="text-decoration-none text-dark small" href="/">Handcrafted New<br />Morden Design</a>
                                 </span>
-                                <div className="my-2">
-                                    <span className="fw-bold fs-4 me-2">₹139.00</span>
-                                    <span className="fw-normal fs-5 text-decoration-line-through ms-2">₹160.99</span>
+                                <div className="my-3">
+                                    <span className="fw-bold fs-4 me-2" style={{ color: '#088178' }} >₹139.00</span>
+                                    <span className="fw-semibold fs-5 text-danger text-decoration-line-through ms-2">₹160.99</span>
                                 </div>
                             </div>
                             <div className="">
-                                <p>Hurry Up! Offer End In:</p>
-                                <div className="deals-countdown mb-2" data-countdown="2025/03/25 00:00:00"><span className="countdown-section"><span className="countdown-amount hover-up">01</span><span className="countdown-period"> days </span></span><span className="countdown-section"><span className="countdown-amount hover-up">10</span><span className="countdown-period"> hours </span></span><span className="countdown-section"><span className="countdown-amount hover-up">50</span><span className="countdown-period"> mins </span></span><span className="countdown-section"><span className="countdown-amount hover-up">47</span><span className="countdown-period"> sec </span></span></div>
-                                <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a>
+                                <span>Hurry Up! Offer End In:</span>
+                                <div className="deals-countdown mb-2" id="countdown_1" data-countdown="2025/03/25 00:00:00">
+                                    <span className="countdown-section">
+                                        <span className="countdown-amount hover-up days"></span>
+                                        <span className="countdown-period"> days </span>
+                                    </span>
+                                    <span className="countdown-section">
+                                        <span className="countdown-amount hover-up hours"></span>
+                                        <span className="countdown-period"> hours </span>
+                                    </span>
+                                    <span className="countdown-section">
+                                        <span className="countdown-amount hover-up mins"></span>
+                                        <span className="countdown-period"> mins </span>
+                                    </span>
+                                    <span className="countdown-section">
+                                        <span className="countdown-amount hover-up secs"></span>
+                                        <span className="countdown-period"> sec </span>
+                                    </span>
+                                </div>
+                                <div className="pt-2">
+                                    <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -163,10 +261,10 @@ const NewSection = () => {
             <div className="container py-3">
                 <div className="row">
                     <div className="col-12 col-sm-4 p-2" style={{ minHeight: 200 }}>
-                        <div className="bg-info-subtle p-4">
+                        <div className="bg-info-subtle p-4" style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }} >
                             <span className="fs-6 fw-normal ls-1"><small>Smart Offer</small></span>
                             <p className="w-50 fs-4 fw-semibold">Save 20% on Woman Bag</p>
-                            <Link to="/" className="text-decoration-none fs-6 fw-semibold text-info">
+                            <Link to="/" className="text-decoration-none fs-6 fw-semibold text-dark">
                                 Shop now <i className="bi bi-arrow-right ms-2"></i>
                             </Link>
                         </div>
@@ -197,13 +295,13 @@ const NewSection = () => {
 
 const SectionInfo = () => {
     return (
-        <section className="bg-light-subtle border-top">
+        <section className="text-light" style={{ backgroundColor: '#2b3035' }}>
             <div className="container">
-                <div className="row p-3">
-                    <div className="col-12 col-md-6 col-lg-3">
+                <div className="row py-3">
+                    <div className="col-6 col-md-6 col-lg-3">
                         <div className="d-flex mb-4 mb-lg-0">
-                            <i className="bi bi-truck fs-6 small text-dark"></i>
-                            <div className="ms-4 ms-md-4 ">
+                            <i className="bi bi-truck fs-2" style={{ color: '#e5c07b' }}></i>
+                            <div className="ms-2 ms-md-4 " style={{ color: '#abb2bf' }} >
                                 <p className="mb-1 small fw-bold">
                                     FREE SHIPPING
                                 </p>
@@ -213,10 +311,10 @@ const SectionInfo = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-md-6 col-lg-3">
+                    <div className="col-6 col-md-6 col-lg-3">
                         <div className="d-flex mb-4 mb-lg-0">
-                        <i className="bi bi-truck fs-6 small text-dark"></i>
-                            <div className="ms-4 ms-md-4 ">
+                            <i className="bi bi-arrow-repeat fs-2" style={{ color: '#e5c07b' }}></i>
+                            <div className="ms-2 ms-md-4 " style={{ color: '#abb2bf' }}>
                                 <p className="mb-1 small fw-bold">
                                     FREE RETURNS
                                 </p>
@@ -226,10 +324,10 @@ const SectionInfo = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-md-6 col-lg-3">
+                    <div className="col-6 col-md-6 col-lg-3">
                         <div className="d-flex mb-4 mb-md-0">
-                        <i className="bi bi-truck fs-6 small text-dark"></i>
-                            <div className="ms-4 ms-md-4 ">
+                            <i className="bi bi-shield-check fs-2" style={{ color: '#e5c07b' }}></i>
+                            <div className="ms-2 ms-md-4 " style={{ color: '#abb2bf' }}>
                                 <p className="mb-1 small fw-bold">
                                     SECURE SHOPPING
                                 </p>
@@ -239,10 +337,10 @@ const SectionInfo = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-md-6 col-lg-3">
+                    <div className="col-6 col-md-6 col-lg-3">
                         <div className="d-flex">
-                        <i className="bi bi-truck fs-6 small text-dark"></i>
-                            <div className="ms-4 ms-md-4 ">
+                            <i className="bi bi-tag fs-2" style={{ color: '#e5c07b' }}></i>
+                            <div className="ms-2 ms-md-4 " style={{ color: '#abb2bf' }}>
                                 <p className="mb-1 small fw-bold">
                                     OVER 1,000 STYLES
                                 </p>
