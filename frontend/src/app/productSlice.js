@@ -225,6 +225,9 @@ export const productSlice = createSlice({
             })
             .addCase(listCategoryProductsAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
+                state.products = [];
+                state.pages = 0;
+                state.page = 0;
                 state.error = action.payload.error;
             })
     },

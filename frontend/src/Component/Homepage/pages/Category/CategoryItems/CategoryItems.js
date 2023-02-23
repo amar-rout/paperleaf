@@ -5,7 +5,7 @@ import "./CategoryItems.css";
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
-    clearState,
+    // clearState,
     getStatus,
     getError,
     getPages,
@@ -13,6 +13,11 @@ import {
     selectListCatProducts,
     listCategoryProductsAsync,
 } from "../../../../../app/productSlice";
+
+import {
+    addCartAsync,
+} from "../../../../../app/cartSlice";
+
 import { useNavigate, useParams } from "react-router-dom";
 
 const CategoryItems = ({ paramsValue, urlLink }) => {
@@ -37,37 +42,32 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
     }, [id]);
 
     useEffect(() => {
-        dispatch(clearState());
         setProducts(listCatProduct);
-    }, [dispatch, listCatProduct]);
+    }, [listCatProduct]);
 
-    useEffect(() => {
-        return () => {
-            dispatch(clearState());
-        };
-    }, [dispatch]);
+    // useEffect(() => {
+    //     return () => {
+    //         dispatch(clearState());
+    //     };
+    // }, [dispatch]);
 
     useEffect(() => {
         if (getProductStatus === "LOADING") {
             setLoading(true);
-            dispatch(clearState());
         }
         if (getProductStatus === "LOADED") {
             setProducts(listCatProduct);
             setLoading(false);
-            dispatch(clearState());
         }
         if (getProductStatus === "ERROR") {
             setLoading(false);
             setErrorMessage(getProductsError);
-            dispatch(clearState());
         }
     }, [getProductStatus, listCatProduct, getProductsError, dispatch]);
 
     useEffect(() => {
         setCategory(id);
         dispatch(listCategoryProductsAsync({ category, page }));
-        dispatch(clearState());
     }, [dispatch, id, page, category]);
 
     return (
@@ -100,6 +100,16 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                                                     <path d="M12.8199 5.57912L11.9992 6.40163L11.1759 5.57838C9.07688 3.47931 5.67361 3.47931 3.57455 5.57838C1.47548 7.67744 1.47548 11.0807 3.57455 13.1798L11.4699 21.0751C11.7628 21.368 12.2377 21.368 12.5306 21.0751L20.432 13.1783C22.5264 11.0723 22.53 7.67857 20.4306 5.57912C18.3277 3.47623 14.9228 3.47623 12.8199 5.57912ZM19.3684 12.1206L12.0002 19.4842L4.63521 12.1191C3.12192 10.6058 3.12192 8.15232 4.63521 6.63904C6.14849 5.12575 8.602 5.12575 10.1153 6.63904L11.4727 7.99648C11.7706 8.29435 12.2553 8.28854 12.5459 7.98363L13.8806 6.63978C15.3977 5.12268 17.8528 5.12268 19.3699 6.63978C20.8836 8.15343 20.881 10.5997 19.3684 12.1206Z" fill="#212121" />
                                                 </svg>
                                             </button>
+                                            {
+                                                product.countInStock < 1 ?
+                                                <>
+                                                    <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle text-muted rounded-pill z-index-1">
+                                                        Out of Stock
+                                                    </span>
+                                                </>
+                                                :
+                                                ''
+                                            }
                                         </div>
                                         {/* <img src="./assets/images/productImages/product1.jpg" className="card-img-top rounded-4" alt="card 1" /> */}
                                         <img src={product.image} onClick={() => navigate(`/products/${product.name}`)} className="card-img-top rounded-4" alt="card 1" />
@@ -123,11 +133,19 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                                                 </span>
                                                 <p className="fw-bold lh-1 my-2">₹{product.price}</p>
                                             </div>
-                                            <button type="button"
-                                                onClick={() => alert(product._id)} className="btn bg-warning w-100 d-flex justify-content-center align-items-center">
-                                                <i className="bi bi-cart"></i>
-                                                <span className="ms-1">Add to cart</span>
-                                            </button>
+                                            {!product.countInStock > 0 ?
+                                                <>
+                                                    <button type="button" className="btn bg-warning w-100 d-flex justify-content-center align-items-center">
+                                                        <span className="ms-1">View Details</span>
+                                                    </button>
+                                                </>
+                                                :
+                                                <button type="button"
+                                                    onClick={() => dispatch(addCartAsync(product._id, 1))} className="btn bg-warning w-100 d-flex justify-content-center align-items-center">
+                                                    <i className="bi bi-cart"></i>
+                                                    <span className="ms-1">Add to cart</span>
+                                                </button>
+                                            }
                                         </div>
                                     </div>
                                 </div>
