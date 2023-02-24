@@ -70,13 +70,18 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
         dispatch(listCategoryProductsAsync({ category, page }));
     }, [dispatch, id, page, category]);
 
+    // const handleAddToCart = (pId) => {
+    //     let qty = 1;
+    //     dispatch(addCartAsync({pId, qty}));
+    // }
+
     return (
         <div className="container my-5">
             <h4 className="text-center pb-5">{id}</h4>
             {loading ?
                 <div className="d-flex justify-content-center a;ign-items-center">
-                    <div class="spinner-grow text-info" role="status">
-                        <span class="visually-hidden">Loading...</span>
+                    <div className="spinner-grow text-info" role="status">
+                        <span className="visually-hidden">Loading...</span>
                     </div>
                 </div>
                 :
@@ -141,7 +146,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                                                 </>
                                                 :
                                                 <button type="button"
-                                                    onClick={() => dispatch(addCartAsync(product._id, 1))} className="btn bg-warning w-100 d-flex justify-content-center align-items-center">
+                                                    onClick={() => dispatch(addCartAsync({pId: product._id, qty: 1}))} className="btn bg-warning w-100 d-flex justify-content-center align-items-center">
                                                     <i className="bi bi-cart"></i>
                                                     <span className="ms-1">Add to cart</span>
                                                 </button>

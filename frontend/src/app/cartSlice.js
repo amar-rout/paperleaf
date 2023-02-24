@@ -8,11 +8,17 @@ const initialState = {
     error: ''
 };
 
-const cartItems = localStorage.getItem('cartITems');
+const cartItems = localStorage.getItem('cartItems');
 if (cartItems) {
     initialState.cartItems = JSON.parse(cartItems);
-    initialState.cartCount = cartItems.length;
+    initialState.cartCount = Object.keys(initialState.cartItems).length;
 }
+
+// if (cartItems) {
+//     cartItems.map((cart) => {
+
+//     });
+// }
 
 const ADD_TO_CART = 'cart/addItemToCart';
 const REMOVE_FROM_CART = 'cart/removeItemFromCart';
@@ -21,14 +27,13 @@ const UPDATE_CART = 'cart/updateCart';
 
 export const addCartAsync = createAsyncThunk(
     ADD_TO_CART,
-    async ({ id, qty = 1 }, thunkAPI) => {
+    async ({ pId, qty = 1 }, thunkAPI) => {
         try {
-            const config = { headers: { 'Content-Type': 'application/json', }, };
-            const response = await axios.post(`/api/products/${id}`, config,);
+            const response = await axios.get(`/api/products/${pId}`);
             if (response.data.message || response.data.countInStock <= 0) {
                 return thunkAPI.rejectWithValue({ error: response.data.message });
             }
-            return thunkAPI.fulfillWithValue({ payload: { pId: response.data._id, qty: Number(qty) } });
+            return thunkAPI.fulfillWithValue({ pId: response.data._id, qty: Number(qty) });
         } catch (error) {
             if (error.code === "ERROR_BAD_RESPONSE") {
                 return thunkAPI.rejectWithValue({ error: "Couldn't connect to server at this moment. Please try again after some time." });
@@ -48,7 +53,7 @@ export const removeCartAsync = createAsyncThunk(
             if (response.data.message && qty > response.data.countInStock) {
                 return thunkAPI.rejectWithValue({ error: response.data.message });
             }
-            return thunkAPI.fulfillWithValue({ payload: { pId: response.data._id, qty: Number(qty) } });
+            return thunkAPI.fulfillWithValue({ payload: { product: response.data._id, qty: Number(qty) } });
         } catch (error) {
             if (error.code === "ERROR_BAD_RESPONSE") {
                 return thunkAPI.rejectWithValue({ error: "Couldn't connect to server at this moment. Please try again after some time." });
