@@ -2,38 +2,42 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-    cartItems: {},
+    cartItems: [],
     cartCount: 0,
     status: 'IDLE',
     error: ''
 };
 
 const cartItems = localStorage.getItem('cartItems');
+const getCartQuantity = (state) => {
+    let total = 0
+    state.cartItems.forEach(item => {
+        total += item.qty
+    })
+    return total
+}
 if (cartItems) {
     initialState.cartItems = JSON.parse(cartItems);
-    initialState.cartCount = Object.keys(initialState.cartItems).length;
+    initialState.cartCount = getCartQuantity(initialState);
 }
 
-// if (cartItems) {
-//     cartItems.map((cart) => {
-
-//     });
-// }
-
-const ADD_TO_CART = 'cart/addItemToCart';
-const REMOVE_FROM_CART = 'cart/removeItemFromCart';
-const UPDATE_CART = 'cart/updateCart';
-
-
 export const addCartAsync = createAsyncThunk(
-    ADD_TO_CART,
-    async ({ pId, qty = 1 }, thunkAPI) => {
+    'cart/addItemToCart',
+    async ({ pId, size = 'M', qty = 1 }, thunkAPI) => {
         try {
             const response = await axios.get(`/api/products/${pId}`);
             if (response.data.message || response.data.countInStock <= 0) {
                 return thunkAPI.rejectWithValue({ error: response.data.message });
             }
-            return thunkAPI.fulfillWithValue({ pId: response.data._id, qty: Number(qty) });
+            return thunkAPI.fulfillWithValue({
+                pId: response.data._id,
+                name: response.data.name,
+                category:response.data.category,
+                image: response.data.image,
+                price: response.data.price,
+                size: size,
+                qty: Number(qty)
+            });
         } catch (error) {
             if (error.code === "ERROR_BAD_RESPONSE") {
                 return thunkAPI.rejectWithValue({ error: "Couldn't connect to server at this moment. Please try again after some time." });
@@ -43,45 +47,6 @@ export const addCartAsync = createAsyncThunk(
         }
     }
 );
-
-export const removeCartAsync = createAsyncThunk(
-    REMOVE_FROM_CART,
-    async ({ id, qty = 1 }, thunkAPI) => {
-        try {
-            const config = { headers: { 'Content-Type': 'application/json', }, };
-            const response = await axios.post(`/api/products/${id}`, config,);
-            if (response.data.message && qty > response.data.countInStock) {
-                return thunkAPI.rejectWithValue({ error: response.data.message });
-            }
-            return thunkAPI.fulfillWithValue({ payload: { product: response.data._id, qty: Number(qty) } });
-        } catch (error) {
-            if (error.code === "ERROR_BAD_RESPONSE") {
-                return thunkAPI.rejectWithValue({ error: "Couldn't connect to server at this moment. Please try again after some time." });
-            } else {
-                return thunkAPI.rejectWithValue({ error: error.response.data.message });
-            }
-        }
-    }
-);
-
-export const updateCartAsync = createAsyncThunk(
-    UPDATE_CART,
-    async ({ id, qty = 1 }, thunkAPI) => {
-        try {
-            const config = { headers: { 'Content-Type': 'application/json', }, };
-            const response = await axios.post(`/api/products/${id}`, config,);
-            // localStorage.setItem('user', JSON.stringify(response.data));
-            return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
-        } catch (error) {
-            if (error.code === "ERROR_BAD_RESPONSE") {
-                return thunkAPI.rejectWithValue({ error: "Couldn't connect to server at this moment. Please try again after some time." });
-            } else {
-                return thunkAPI.rejectWithValue({ error: error.response.data.message });
-            }
-        }
-    }
-);
-
 
 export const cartSlice = createSlice({
     name: 'cart',
@@ -91,74 +56,58 @@ export const cartSlice = createSlice({
             state.status = 'IDLE';
             return state;
         },
-        removeCartItems: (state) => {
-            state.status = 'IDLE';
-            state.cartItems = [];
-            state.error = '';
-            return state;
+        incrementQuantity: (state, action) => {
+            const item = state.cartItems.find((item) => item.pId === action.payload);
+            item.qty++;
+            state.cartCount += 1;
+            localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+        },
+        decrementQuantity: (state, action) => {
+            const item = state.cartItems.find((item) => item.pId === action.payload);
+            if (item.qty === 1) {
+                item.qty = 1
+            } else {
+                item.qty--;
+                state.cartCount -= 1;
+            }
+            localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+        },
+        removeCartItem: (state, action) => {
+            const removeItem = state.cartItems.filter((item) => item.pId !== action.payload);
+            state.cartItems = removeItem;
+            state.cartCount = getCartQuantity(state);
+            localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
         },
     },
     extraReducers: (builder) => {
         builder
-            // Add item to cart
             .addCase(addCartAsync.pending, (state) => {
                 state.status = 'LOADING';
-                state.errorMessage = '';
+                state.error = '';
             })
             .addCase(addCartAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
-                let qty = action.payload.qty;
-                if (state.cartItems[action.payload.pId])
-                    qty = state.cartItems[action.payload.pId] + action.payload.qty;
-                state.cartItems = { ...state.cartItems, [action.payload.pId]: qty };
+                const itemInCart = state.cartItems.find((item) => item.pId === action.payload.pId);
+                if (itemInCart) {
+                    itemInCart.qty++;
+                } else {
+                    state.cartItems.push(action.payload);
+                }
                 state.cartCount += 1;
                 localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
             })
             .addCase(addCartAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
-                state.errorMessage = action.payload.error;
-            })
-            // Remove item from cart
-            .addCase(removeCartAsync.pending, (state) => {
-                state.status = 'LOADING';
-                state.errorMessage = '';
-            })
-            .addCase(removeCartAsync.fulfilled, (state, action) => {
-                state.status = 'LOADED';
-                let qty = action.payload.qty;
-                if (state.cartItems[action.payload.pId] && state.cartItems[action.payload.pId] > 1 )
-                    qty = state.cartItems[action.payload.pId] - action.payload.qty;
-                else
-
-                state.cartItems = { ...state.cartItems, [action.payload.pId]: qty };
-                state.cartCount += 1;
-                localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
-            })
-            .addCase(removeCartAsync.rejected, (state, action) => {
-                state.status = 'ERROR';
-                state.errorMessage = action.payload.error;
-            })
-            //  Update cart items
-            .addCase(updateCartAsync.pending, (state) => {
-                state.status = 'LOADING';
-                state.errorMessage = '';
-            })
-            .addCase(updateCartAsync.fulfilled, (state, action) => {
-                state.status = 'LOADED';
-                state.cartItems = action.payload;
-            })
-            .addCase(updateCartAsync.rejected, (state, action) => {
-                state.status = 'ERROR';
-                state.errorMessage = action.payload.error;
+                state.error = action.payload.error;
             })
     },
 });
 
-export const { clearCartState, removeCartItems } = cartSlice.actions;
+export const { clearCartState, incrementQuantity, decrementQuantity, removeCartItem } = cartSlice.actions;
 
 export const getListCartItems = (state) => state.cart.cartItems;
 export const getCartCount = (state) => state.cart.cartCount;
-export const getStatus = (state) => state.cart.status;
-export const getError = (state) => state.cart.error;
+export const getCartListStatus = (state) => state.cart.status;
+export const getCartListError = (state) => state.cart.error;
 
 export default cartSlice.reducer;
