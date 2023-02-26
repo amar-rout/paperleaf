@@ -1,13 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-
 const initialState = {
     cartItems: [],
     cartCount: 0,
     status: 'IDLE',
     error: ''
 };
-
 const cartItems = localStorage.getItem('cartItems');
 const getCartQuantity = (state) => {
     let total = 0
@@ -20,7 +18,6 @@ if (cartItems) {
     initialState.cartItems = JSON.parse(cartItems);
     initialState.cartCount = getCartQuantity(initialState);
 }
-
 export const addCartAsync = createAsyncThunk(
     'cart/addItemToCart',
     async ({ pId, size = 'M', qty = 1 }, thunkAPI) => {
@@ -47,7 +44,6 @@ export const addCartAsync = createAsyncThunk(
         }
     }
 );
-
 export const cartSlice = createSlice({
     name: 'cart',
     initialState,

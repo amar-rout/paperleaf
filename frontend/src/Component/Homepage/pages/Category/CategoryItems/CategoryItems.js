@@ -72,10 +72,10 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
     }, [dispatch, id, page, category]);
 
     return (
-        <div className="container my-5">
+        <div className="container my-3">
             <h4 className="text-center pb-5">{id}</h4>
             {loading ?
-                <div className="d-flex justify-content-center a;ign-items-center">
+                <div className="d-flex justify-content-center align-items-center">
                     <div className="spinner-grow text-info" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </div>
@@ -88,7 +88,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                         <div className="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1 g-sm-2 g-md-4 g-lg-5">
                             {products.map((product) => (
                                 <div key={product._id} className="col">
-                                    <div className="card product_card p-1 p-md-3 m-0 shadow-sm rounded-4">
+                                    <div className="card product_card p-0 p-md-0 m-0 shadow-sm rounded-0">
                                         <div className="position-relative">
                                             <button type="button" className="btn btn-sm btn-default bg-light wishlist_button position-absolute top-0 end-0 p-1 mt-1 me-1 shadow opacity-75 rounded-circle">
                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,11 +107,11 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                                             }
                                         </div>
                                         {/* <img src="./assets/images/productImages/product1.jpg" className="card-img-top rounded-4" alt="card 1" /> */}
-                                        <img src={product.image} onClick={() => navigate(`/products/${product.name}`)} className="card-img-top rounded-4" alt="card 1" />
-                                        <div className="card-body p-2">
+                                        <img src={product.image} onClick={() => navigate(`/products/${product.name}`)} className="card-img-top rounded-0" alt="card 1" />
+                                        <div className="card-body px-2 py-1">
                                             <div onClick={() => navigate(`/products/${product.name}`)}>
-                                                <p className="card-title lh-1 my-0 my-md-1"><small><b>{product.name}</b></small></p>
-                                                <p className="lh-1 my-0 text-muted"><small>{product.category}</small></p>
+                                                <p className="my-0 text-muted small"><small>{product.category}</small></p>
+                                                <p className="card-title mt-0 lh-1 my-md-1">{product.name}</p>
                                                 <span className="lh-sm my-0 d-flex justify-content-start align-items-center">
                                                     <ReactStars {...{
                                                         size: 15,
@@ -135,8 +135,8 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                                                     </button>
                                                 </>
                                                 :
-                                                <button type="button"
-                                                    onClick={() => dispatch(addCartAsync({ pId: product._id, qty: 1 }))} className="btn bg-warning w-100 d-flex justify-content-center align-items-center">
+                                                <button type="button" className="btn bg-warning w-100 d-flex justify-content-center align-items-center"
+                                                    onClick={() => dispatch(addCartAsync({ pId: product._id, qty: 1 }))}>
                                                     <i className="bi bi-cart"></i>
                                                     <span className="ms-1">Add to cart</span>
                                                 </button>

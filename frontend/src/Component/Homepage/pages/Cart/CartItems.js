@@ -21,16 +21,16 @@ const CartItems = (products) => {
         })
         return total;
     }
-
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'INR',
         minimumFractionDigits: 2
     })
+
     const totalAmount = getTotal();
     const shippingCost = 0;
     const estmdTaxAmount = 0;
-    const discountAmount = -100;
+    const discountAmount = 0;
     const grandTotal = totalAmount + shippingCost + estmdTaxAmount + discountAmount;
 
     return (
@@ -58,7 +58,7 @@ const CartItems = (products) => {
                                             </div>
                                         </div>
                                         <div className="text-end ms-auto">
-                                            <div className="fs-6 fw-medium mb-2">{formatter.format(product.price)}</div>
+                                            <div className="fs-6 fw-medium mb-2">{formatter.format(product.price * product.qty)}</div>
                                         </div>
                                     </div>
                                     <div className="d-flex justify-content-between align-items-center">
@@ -67,7 +67,7 @@ const CartItems = (products) => {
                                                 onClick={() => dispatch(decrementQuantity(product.pId))}>
                                                 <i className="bi bi-dash-lg"></i>
                                             </button>
-                                            <input className="form-control shadow-none disabled border-dark text-center" type="number" value="20" readOnly />
+                                            <input className="form-control shadow-none disabled border-dark text-center" type="number" value={product.qty} readOnly />
                                             <button className="btn btn-outline-dark px-3" type="button" data-increment=""
                                                 onClick={() => dispatch(incrementQuantity(product.pId))}>
                                                 <i className="bi bi-plus-lg"></i>
