@@ -43,13 +43,13 @@ export const listProductAsync = createAsyncThunk(
 
 export const productDetailsAsync = createAsyncThunk(
     PRODUCT_DETAILS,
-    async ({ pId }, thunkAPI) => {
+    async (pId, thunkAPI) => {
         try {
             const config = { headers: { 'Content-Type': 'application/json', }, };
             const productURI = '/api/products/' + pId;
             const response = await axios.get(productURI, config,);
             // localStorage.setItem('user', JSON.stringify(response.data));
-            return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
+            return thunkAPI.fulfillWithValue(response.data);
         } catch (error) {
             if (error.code === "ERROR_BAD_RESPONSE") {
                 return thunkAPI.rejectWithValue({ error: "Couldn't connect to server at this moment. Please try again after some time." });
@@ -100,11 +100,8 @@ export const productsFeaturedAsync = createAsyncThunk(
 
 export const listCategoryProductsAsync = createAsyncThunk(
     PRODUCTS_LISTCAT,
-    async ({ category, pageNumber }, thunkAPI) => {
+    async ({ category, pageNumber = 1 }, thunkAPI) => {
         try {
-            if (pageNumber === undefined){
-                pageNumber = 1;
-            }
             const config = { headers: { 'Content-Type': 'application/json', }, };
             const response = await axios.get(`/api/products/category/${category}?pageNumber=${pageNumber}`, config,);
             // const response = await axios.get(`/api/products/category/Kurtas?pageNumber=1`, config,);
@@ -166,6 +163,7 @@ export const productSlice = createSlice({
                 state.products = JSON.parse(action.payload.products);
                 state.page = JSON.parse(action.payload.page);
                 state.pages = JSON.parse(action.payload.pages);
+                state.error = '';
             })
             .addCase(listProductAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
@@ -178,7 +176,8 @@ export const productSlice = createSlice({
             })
             .addCase(productDetailsAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
-                state.product = JSON.parse(action.payload);
+                state.product = action.payload;
+                state.error = '';
             })
             .addCase(productDetailsAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
@@ -191,6 +190,7 @@ export const productSlice = createSlice({
             })
             .addCase(productsTopratedAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
+                state.error = '';
                 state.toprated = JSON.parse(action.payload);
             })
             .addCase(productsTopratedAsync.rejected, (state, action) => {
@@ -205,6 +205,7 @@ export const productSlice = createSlice({
             .addCase(productsFeaturedAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
                 state.featured = JSON.parse(action.payload);
+                state.error = '';
             })
             .addCase(productsFeaturedAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
@@ -214,22 +215,20 @@ export const productSlice = createSlice({
             .addCase(listCategoryProductsAsync.pending, (state) => {
                 state.status = 'LOADING';
                 state.error = '';
-                state.products = [];
-                state.pages = 0;
-                state.page = 0;
             })
             .addCase(listCategoryProductsAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
                 state.products = action.payload.products;
                 state.pages = action.payload.pages;
                 state.page = action.payload.page;
+                state.error = '';
             })
             .addCase(listCategoryProductsAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
-                state.error = action.payload.error;
                 state.products = [];
                 state.pages = 0;
                 state.page = 0;
+                state.error = action.payload.error;
             })
     },
 });
@@ -243,7 +242,7 @@ export const selectFeaturedProducts = (state) => state.product.featured;
 export const selectListCatProducts = (state) => state.product.products;
 
 export const getStatus = (state) => state.product.status;
-export const getError = (state) => state.product.errorMessage;
+export const getError = (state) => state.product.error;
 
 export const getPages = (state) => state.product.pages;
 export const getPage = (state) => state.product.page;

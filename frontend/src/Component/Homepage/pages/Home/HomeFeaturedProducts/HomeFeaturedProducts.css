@@ -1,14 +1,14 @@
 .product_card {
     box-shadow: none;
-    transition: box-shadow 0.8s ease !important;
+    transition: transform .2s ease-in-out !important;
 }
 .product_card:hover {
-    box-shadow: 1px 8px 20px 0 rgba(22, 22, 26, 0.18) !important;
+    box-shadow: 1px 8px 20px 0 rgba(29, 29, 30, 0.18) !important;
 }
 .product_card:hover img {
     /* box-shadow: 1px 8px 20px 0 rgba(22, 22, 26, 0.18) !important; */
-    transform: scale(1.02);
-    z-index: 0;
+    width: 100%;
+    transform: scaleY(1.02);
 }
 .wishlist_button {
     display: none;
@@ -17,6 +17,6 @@
     display: inline;
     z-index: 1000;
 }
-.product-card-label{
-    z-index: 1000;
+.wishlist_button_active{
+    background-color: black;
 }

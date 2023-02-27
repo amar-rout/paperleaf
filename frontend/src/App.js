@@ -48,7 +48,7 @@ const PageNotFound = () => {
   return (
     <div className="container my-5">
       <div className="text-center my-5 p-5 py-md-5">
-        <h2>404 Error</h2>
+        <h1>404 Error</h1>
         <p>Sorry, the page you're looking for cannot be found</p>
       </div>
     </div>

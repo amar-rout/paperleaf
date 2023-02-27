@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import { useNavigate } from "react-router-dom";
 
-import "./HomeTopRatedProducts.css";
+import "./HomeFeaturedProducts.css";
 
-const HomeTopRatedProducts = ({ title, topProducts }) => {
+const HomeFeaturedProducts = ({ title, topProducts }) => {
 
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
 
     return (
 
-        <section className="marketing py-5 bg-light">
+        <section className="marketing py-5 bg-body">
             {/* <div className="container m-0 m-sm-default p-1 p-sm-default"> */}
             <div className="container">
                 <h4 className="pb-5 text-center">
@@ -39,6 +39,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                                 <div className="card-body p-2">
                                     <p className="lh-md-1 my-0 text-muted small">{product.category}</p>
                                     <p className="card-title lh-md-1 my-0 my-md-1"><b>{product.name}</b></p>
+                                    {/* <p className="d-none d-sm lh-md-1 my-0 text-muted">{product.category}</p> */}
                                     <span className="lh-sm my-0 d-flex justify-content-start align-items-center">
                                         <ReactStars {...{
                                             size: 16,
@@ -71,4 +72,4 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
     );
 }
 
-export default HomeTopRatedProducts;
+export default HomeFeaturedProducts;

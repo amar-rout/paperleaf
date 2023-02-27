@@ -12,7 +12,7 @@ const Products = () => {
                     { name: 'Products', link: '/Products', active: true }
                 ]}
             />
-            <section className="album py-3">
+            <section className="album py-3 bg-body">
                 <div className="container">
                     <h4 className="pb-5 text-center">
                         <span className="border-bottom border-2">Products</span>
@@ -21,7 +21,7 @@ const Products = () => {
                         <div className='col-12'>
                             <div class="row mb-50">
                                 <div class="col-md-6 col-sm-12 col-xs-12">
-                                    <div class="detail-gallery">
+                                    <div class="detail-gallery mx-md-5 px-2 px-md-5">
                                         <span class="zoom-icon"><i class="fi-rs-search"></i></span>
                                         <img src="/assets/images/productImages/Dress/IMG_DR_L1.jpg" alt="product" style={{ width: "100%", height: "100%" }} />
                                         {/* <div class="product-image-slider slick-initialized slick-slider">
@@ -54,31 +54,30 @@ const Products = () => {
                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                     <div class="detail-info">
                                         <h2 class="title-detail">Colorful Pattern Shirts HD450</h2>
-                                        <div class="product-detail-rating">
-                                            <div class="pro-details-brand">
-                                                <span> Brands: PaperLeaf</span>
-                                            </div>
-                                            <div class="product-rate-cover text-end">
-                                                <div class="product-rate d-inline-block">
-                                                    <ReactStars {...{
-                                                        size: 15,
-                                                        count: 5,
-                                                        color: "#feeecc",
-                                                        activeColor: "#fdad01",
-                                                        value: 4.5,
-                                                        a11y: true,
-                                                        edit: false,
-                                                        isHalf: true
-                                                    }} />
-                                                </div>
-                                                <span class="small ml-5 text-muted"> (25 reviews)</span>
-                                            </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span> Brands: PaperLeaf</span>
+                                            <span className='d-flex justify-content-start align-items-center '>
+                                                <ReactStars classNames=""  {...{
+                                                    size: 15,
+                                                    count: 5,
+                                                    color: "#feeecc",
+                                                    activeColor: "#fdad01",
+                                                    value: 4.5,
+                                                    a11y: true,
+                                                    edit: false,
+                                                    isHalf: true
+                                                }} />
+                                                <span class="small ms-1 me-5 text-muted">
+                                                <span className='ms-1' style={{color:'#fdad01'}}>4.5</span>
+                                                <span className='ms-1'>(25 reviews)</span>
+                                                </span>
+                                            </span>
                                         </div>
                                         <div class="clearfix product-price-cover">
                                             <div class="product-price primary-color float-left">
-                                                <span class="text-brand fs-5 fw-bold">₹120.00</span>
-                                                <span class="ms-5 fs-6 fw-normal">₹200.00</span>
-                                                <span class="ms-5 fs-6 fw-bold">25% Off</span>
+                                                <span class="text-brand fs-4 fw-bold">₹120.00</span>
+                                                <span class="ms-2 ms-md-4 fs-6 fw-normal text-decoration-line-through">₹200.00</span>
+                                                <span class="ms-2 ms-md-4 fs-6 fw-bold text-muted">Flat 25% Off</span>
                                             </div>
                                         </div>
                                         {/* <div class="bt-1 border-color-1 mt-15 mb-15"></div>
