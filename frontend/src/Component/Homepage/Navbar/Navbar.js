@@ -51,9 +51,10 @@ const Navbar = () => {
             </header> */}
             <div className="sticky-top bg-dark">
                 <nav className="navbar navbar-expand-lg navbar-body border-bottom" aria-label="Offcanvas navbar large" style={{ backgroundColor: "" }}>
-                    <div className="container align-items-center justify-content-between py-1">
-                        <div className="d-grid" style={{ gridTemplateColumns: '1fr 1fr 8fr' }}>
-                            <div className="d-flex justify-content-between align-items-center">
+                    <div className="container py-1">
+                        {/* <div className="d-grid" style={{ gridTemplateColumns: '1fr 1fr 8fr' }}> */}
+                        <div className="d-flex flex-0 justify-content-between align-items-center w-100">
+                            <div className="d-flex justify-content-start align-items-center">
                                 <button className="navbar-toggler justify-content-center border-0 ps-1 align-items-center shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
                                     {/* <span className="navbar-toggler-icon" style={{ width: '24px', height: '24px', color: 'white' }}></span> */}
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,13 +88,13 @@ const Navbar = () => {
                                     <div className="d-md-none text-center">
                                         <button type="button" data-bs-dismiss="offcanvas" aria-label="Close"
                                             className="btn btn-outline-danger fw-semibold">
-                                            <i class="bi bi-x-lg me-2 mt-0"></i>
+                                            <i className="bi bi-x-lg me-2 mt-0"></i>
                                             <span>Close</span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            <div className="d-flex justify-content-end align-items-center">
+                            <div className="d-flex justify-content-center align-items-center">
                                 <img src="/assets/images/logo/logo-1.png" alt="logo" className="nav-logo-img me-2" style={{ width: '140px', height: '28px' }} />
                                 {/* <img src="/assets/images/logo/logo-2.png" alt="logo" className="nav-logo-img d-md-none me-2 mt-1" style={{ width: '32px', height: '32px' }} /> */}
                             </div>

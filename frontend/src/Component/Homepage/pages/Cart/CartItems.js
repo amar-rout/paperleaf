@@ -121,14 +121,14 @@ const CartItems = (products) => {
                         </div>
                     </div>
                     <div class="alert alert-warning mt-3" role="alert">
-                        Use coupon code <strong>HYPBM</strong> and get 10% discount !
+                        Use coupon code <strong>FIRSTBUY</strong> and get 10% discount !
                     </div>
                     <div class="input-group border border-1 rounded-pill mt-3 py-1 p-2">
                         <input type="text" class="form-control shadow-none border-0 py-2" placeholder="Coupon code" aria-label="Recipient's username" />
-                        <button class="btn btn-default bg-info-subtle rounded-pill px-3 py-2 small" type="button"><small>Apply Coupons</small></button>
+                        <button class="btn btn-default bg-info-subtle rounded-pill px-3 py-2 small" type="button"><small>APPLY</small></button>
                     </div>
-                    <button className="w-100 btn bg-dark text-white float-end shadow-none border-dark px-5 py-3 my-3" type="button">
-                        Proceed to Checkout
+                    <button className="w-100 btn bg-dark text-white float-end shadow-none border-dark px-5 py-2 my-3" type="button">
+                        <small>PROCEED TO CHECKOUT</small>
                     </button>
                     <Link to="/" className="text-dark fs-6 fw-semibold text-decoration-none link-warning mt-3" type="button">
                         <i className="bi bi-arrow-left"></i> Continue Shopping

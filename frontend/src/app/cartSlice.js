@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from "react-toastify";
 const initialState = {
     cartItems: [],
     cartCount: 0,
@@ -91,10 +92,30 @@ export const cartSlice = createSlice({
                 }
                 state.cartCount += 1;
                 localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+                toast.success(`${action.payload.name} added successfully.`, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
             })
             .addCase(addCartAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
                 state.error = action.payload.error;
+                toast.error(state.error, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
             })
     },
 });

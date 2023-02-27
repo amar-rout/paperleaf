@@ -52,10 +52,19 @@
 
 .card-img-top {
   width: 100%;
-  height:150px;
+  height: 140px;
   transition-duration: 0.2s;
 }
-
+@media (min-width: 392px) {
+  .card-img-top {
+      height: 160px;
+  }
+}
+@media (min-width: 480px) {
+  .card-img-top {
+      height: 180px;
+  }
+}
 @media (min-width: 576px) {
   .card-img-top {
       height: 180px;
@@ -66,8 +75,12 @@
       height: 200px;
   }
 }
-
 @media (min-width: 992px) {
+  .card-img-top {
+      height: 180px;
+  }
+}
+@media (min-width: 1200px) {
   .card-img-top {
       height: 240px;
   }

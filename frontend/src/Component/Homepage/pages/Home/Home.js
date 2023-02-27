@@ -119,7 +119,31 @@ const Deals = () => {
         return { total, days, hours, minutes, seconds };
     }
 
-    function initializeClock(id, endtime) {
+    function initializeClockFirst(id, endtime) {
+        const clock = document.getElementById(id);
+        const daysSpan = clock.querySelector('.days');
+        const hoursSpan = clock.querySelector('.hours');
+        const minutesSpan = clock.querySelector('.mins');
+        const secondsSpan = clock.querySelector('.secs');
+
+        function updateClock() {
+            const t = getTimeRemaining(endtime);
+
+            daysSpan.innerHTML = t.days;
+            hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+            if (t.total <= 0) {
+                clearInterval(timeInterval);
+            }
+        }
+
+        updateClock();
+
+        const timeInterval = setInterval(updateClock, 1000);
+    }
+    function initializeClockSecond(id, endtime) {
         const clock = document.getElementById(id);
         const daysSpan = clock.querySelector('.days');
         const hoursSpan = clock.querySelector('.hours');
@@ -146,27 +170,27 @@ const Deals = () => {
 
     useEffect(() => {
         let id = 'countdown'
-        const deadline = new Date(Date.parse(new Date()) + 3 * 12 * 60 * 60 * 1000);
+        const deadline1 = new Date(Date.parse(new Date()) + 3 * 12 * 60 * 60 * 1000);
 
         let id2 = 'countdown_1'
         const deadline2 = new Date(Date.parse(new Date()) + 2 * 24 * 60 * 60 * 1000);
 
-        initializeClock( id, deadline );
-        initializeClock( id2, deadline2 );
+        initializeClockFirst( id, deadline1 );
+        initializeClockSecond( id2, deadline2 );
     });
 
-    useEffect(() => {
-        let id2 = 'countdown_1'
-        const deadline2 = new Date(Date.parse(new Date()) + 2 * 24 * 60 * 60 * 1000);
-        initializeClock( id2, deadline2 );
-    });
+    // useEffect(() => {
+    //     let id2 = 'countdown_1'
+    //     const deadline2 = new Date(Date.parse(new Date()) + 2 * 24 * 60 * 60 * 1000);
+    //     initializeClock( id2, deadline2 );
+    // });
 
     return (
         <section className="bg-white">
             <div className="container py-3">
                 <div className="row">
                     <div className="col-12 col-md-6 p-2">
-                        <div className="bg-warning-subtle px-3 px-md-5 py-3"
+                        <div className="bg-danger-subtle px-3 px-md-5 py-3"
                             style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
                             <div className="">
                                 <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
@@ -260,28 +284,28 @@ const NewSection = () => {
         <section className="bg-light-subtle">
             <div className="container py-3">
                 <div className="row">
-                    <div className="col-12 col-sm-4 p-2" style={{ minHeight: 200 }}>
-                        <div className="bg-info-subtle p-4" style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }} >
+                    <div className="col-12 col-sm-4 p-2">
+                        <div className="bg-info-subtle p-4" style={{ minHeight: 200, backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }} >
                             <span className="fs-6 fw-normal ls-1"><small>Smart Offer</small></span>
-                            <p className="w-50 fs-4 fw-semibold">Save 20% on Woman Bag</p>
+                            <p className="w-50 fs-6 fw-semibold">Save 20% on Kurtis</p>
                             <Link to="/" className="text-decoration-none fs-6 fw-semibold text-dark">
                                 Shop now <i className="bi bi-arrow-right ms-2"></i>
                             </Link>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-4 p-2" style={{ minHeight: 200 }}>
-                        <div className="bg-danger-subtle p-4">
+                    <div className="col-12 col-sm-4 p-2" >
+                        <div className="bg-danger-subtle p-4" style={{ minHeight: 200 }}>
                             <span className="fs-6 fw-normal ls-1"><small>Smart Offer</small></span>
-                            <p className="w-50 fs-4 fw-semibold">Save 20% on Woman Bag</p>
+                            <p className="w-50 fs-6 fw-semibold">Save 20% on Coloured Flora Dresses</p>
                             <Link to="/" className="text-decoration-none fs-6 fw-semibold text-danger">
                                 Shop now <i className="bi bi-arrow-right ms-2"></i>
                             </Link>
                         </div>
                     </div>
-                    <div className="col-12 col-sm-4 p-2" style={{ minHeight: 200 }}>
-                        <div className="bg-success-subtle p-4">
+                    <div className="col-12 col-sm-4 p-2">
+                        <div className="bg-success-subtle p-4" style={{ minHeight: 200 }}>
                             <span className="fs-6 fw-normal ls-1"><small>Smart Offer</small></span>
-                            <p className="w-50 fs-4 fw-semibold">Save 20% on Woman Bag</p>
+                            <p className="w-50 fs-6 fw-semibold">Save 20% on Woman Bag</p>
                             <Link to="/" className="text-decoration-none fs-6 fw-semibold text-success">
                                 Shop now <i className="bi bi-arrow-right ms-2"></i>
                             </Link>

@@ -11,6 +11,12 @@
     transform: scaleY(1.02);
 }
 .wishlist_button {
+    z-index: 1000;
+}
+.wishlist_button_active {
+    z-index: 1000;
+}
+/* .wishlist_button {
     display: none;
 }
 .product_card:hover .wishlist_button{
@@ -19,4 +25,4 @@
 }
 .wishlist_button_active{
     background-color: black;
-}
+} */
