@@ -100,8 +100,12 @@ export const productsFeaturedAsync = createAsyncThunk(
 
 export const listCategoryProductsAsync = createAsyncThunk(
     PRODUCTS_LISTCAT,
-    async ({ category, pageNumber = 1 }, thunkAPI) => {
+    async ({ category, pageNumber }, thunkAPI) => {
         try {
+            if (pageNumber === undefined || pageNumber === null || pageNumber === 0) {
+                pageNumber = 1;
+                console.log(`Category: ${category} and Page No: ${pageNumber}`);
+            }
             const config = { headers: { 'Content-Type': 'application/json', }, };
             const response = await axios.get(`/api/products/category/${category}?pageNumber=${pageNumber}`, config,);
             // const response = await axios.get(`/api/products/category/Kurtas?pageNumber=1`, config,);

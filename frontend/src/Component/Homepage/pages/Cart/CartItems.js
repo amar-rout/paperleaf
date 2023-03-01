@@ -17,7 +17,7 @@ const CartItems = (products) => {
     const getTotal = () => {
         let total = 0
         cartItems.forEach(item => {
-            total += item.price * item.qty
+            total += item.price * item.qty ;
         })
         return total;
     }

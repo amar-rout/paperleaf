@@ -68,6 +68,7 @@ function App() {
             <Route path="/search" element={<Search />} />
             {/* <Route path="/category" element={<Category />} /> */}
             <Route exact path="/category/:id" element={<CategoryItems />} />
+            {/* <Route exact path="/category/:id/page/:id" element={<CategoryItems />} /> */}
             <Route path="products/:id" element={<Products />}/>
             <Route path="user" element={<User />}>
               <Route index element={<UserProfile />} />
