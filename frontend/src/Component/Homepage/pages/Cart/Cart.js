@@ -51,9 +51,12 @@ const Cart = () => {
                     <h4>Cart</h4>
                 </div>
                 {getCartCounts === 0 ?
-                    <div className="">
+                    <div className="my-3">
                         <div className="text-center">
                             <img src="/assets/images/empty_cart.png" alt="Empty Cart" style={{ width: '300px' }} />
+                        </div>
+                        <div className="text-center fs-4 my-2 fw-normal">
+                            <p>Your cart is empty!</p>
                         </div>
                         <div className="text-center">
                             <button className="btn btn-outline-dark mt-5 px-3" onClick={() => navigate('/')}>

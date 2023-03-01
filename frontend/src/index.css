@@ -15,7 +15,7 @@ code {
 /*********************************************/
 /*              GENERAL CSS                 "/
 /*********************************************/
- 
+
 /* body {
   width: 100%;
   position: relative;
@@ -44,4 +44,49 @@ img {
 
 form {
   position: relative;
+} */
+
+/* h1 {
+  font-family: Montez;
+  font-size: 23px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 23px;
+}
+
+h3 {
+  font-family: Montez;
+  font-size: 17px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 23px;
+}
+
+p {
+  font-family: Montez;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 23px;
+}
+
+blockquote {
+  font-family: Montez;
+  font-size: 17px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 23px;
+}
+
+pre {
+  font-family: Montez;
+  font-size: 11px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 23px;
 } */

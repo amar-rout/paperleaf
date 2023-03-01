@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import HomeCarousel from "./HomeCarousel/HomeCarousel";
+// import HomeCarousel from "./HomeCarousel/HomeCarousel";
 import HomeCategory from "./HomeCategory/HomeCategory";
 import HomeTopRatedProducts from "./HomeTopRatedProducts/HomeTopRatedProducts";
+
+import SliderView from './SliderView';
 
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -92,7 +94,7 @@ const Home = () => {
                 </div>
                 :
                 <>
-                    <HomeCarousel />
+                    {/* <HomeCarousel /> */}
                     <HomeCategory />
                     <Deals />
                     <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
@@ -101,6 +103,7 @@ const Home = () => {
                     <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
                     <NewSection />
                     <SectionInfo />
+                    <SliderView />
                 </>
             }
         </main>
@@ -175,8 +178,8 @@ const Deals = () => {
         let id2 = 'countdown_1'
         const deadline2 = new Date(Date.parse(new Date()) + 2 * 24 * 60 * 60 * 1000);
 
-        initializeClockFirst( id, deadline1 );
-        initializeClockSecond( id2, deadline2 );
+        initializeClockFirst(id, deadline1);
+        initializeClockSecond(id2, deadline2);
     });
 
     // useEffect(() => {
@@ -198,7 +201,9 @@ const Deals = () => {
                             </div>
                             <div className="">
                                 <span className="h5">
-                                    <a className="text-decoration-none text-dark small" href="/">Handcrafted New<br />Morden Design</a>
+                                    <a className="text-decoration-none text-dark" href="/" style={{ fontFamily: 'Montez' }}>
+                                        Handcrafted New Morden Design Dupattas
+                                    </a>
                                 </span>
                                 <div className="my-3">
                                     <span className="fw-bold fs-4 me-2" style={{ color: '#088178' }} >₹139.00</span>
@@ -240,7 +245,9 @@ const Deals = () => {
                             </div>
                             <div className="">
                                 <span className="h5">
-                                    <a className="text-decoration-none text-dark small" href="/">Handcrafted New<br />Morden Design</a>
+                                    <a className="text-decoration-none text-dark" href="/" style={{ fontFamily: 'Montez' }}>
+                                        Handcrafted New Morden Design
+                                    </a>
                                 </span>
                                 <div className="my-3">
                                     <span className="fw-bold fs-4 me-2" style={{ color: '#088178' }} >₹139.00</span>
@@ -285,7 +292,8 @@ const NewSection = () => {
             <div className="container py-3">
                 <div className="row">
                     <div className="col-12 col-sm-4 p-2">
-                        <div className="bg-info-subtle p-4" style={{ minHeight: 200, backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }} >
+                        <div className="bg-info-subtle p-4"
+                            style={{ minHeight: 200, backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }} >
                             <span className="fs-6 fw-normal ls-1"><small>Smart Offer</small></span>
                             <p className="w-50 fs-6 fw-semibold">Save 20% on Kurtis</p>
                             <Link to="/" className="text-decoration-none fs-6 fw-semibold text-dark">
