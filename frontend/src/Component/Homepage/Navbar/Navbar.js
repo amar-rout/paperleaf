@@ -61,33 +61,33 @@ const Navbar = () => {
                                         <path d="M2.75254 17.9997H21.2525C21.6668 17.9997 22.0025 18.3355 22.0025 18.7497C22.0025 19.1294 21.7204 19.4432 21.3543 19.4928L21.2525 19.4997H2.75254C2.33832 19.4997 2.00254 19.1639 2.00254 18.7497C2.00254 18.37 2.28469 18.0562 2.65077 18.0065L2.75254 17.9997H21.2525H2.75254ZM2.75254 11.5027H21.2525C21.6668 11.5027 22.0025 11.8385 22.0025 12.2527C22.0025 12.6324 21.7204 12.9462 21.3543 12.9959L21.2525 13.0027H2.75254C2.33832 13.0027 2.00254 12.6669 2.00254 12.2527C2.00254 11.873 2.28469 11.5592 2.65077 11.5095L2.75254 11.5027H21.2525H2.75254ZM2.75168 5.00293H21.2517C21.6659 5.00293 22.0017 5.33872 22.0017 5.75293C22.0017 6.13263 21.7195 6.44642 21.3535 6.49608L21.2517 6.50293H2.75168C2.33746 6.50293 2.00168 6.16714 2.00168 5.75293C2.00168 5.37323 2.28383 5.05944 2.64991 5.00978L2.75168 5.00293H21.2517H2.75168Z" fill="#fff3cd" />
                                     </svg>
                                 </button>
-                                <div className="offcanvas offcanvas-start text-bg-dark bg-body d-inline-block" tabIndex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                                <div className="offcanvas w-75 offcanvas-start bg-dark d-inline-block" tabIndex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
                                     <div className="offcanvas-header">
-                                        <h5 className="offcanvas-title text-dark" id="offcanvasNavbar2Label">Paperleaf</h5>
-                                        <button type="button" className="btn-close btn-close-dark" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                        <h5 className="offcanvas-title" id="offcanvasNavbar2Label" style={{color: '#fff3cd !important'}}>Paperleaf</h5>
+                                        <button type="button" className="btn-close btn-close-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                     </div>
                                     <div className="offcanvas-body d-inline-block">
                                         <ul className="navbar-nav justify-content-start flex-grow-1 me-5">
-                                            <li className="nav-item me-2 px-5 px-md-0 py-2 py-md-0 my-2 my-md-0 rounded-pill">
-                                                <NavbarLink to="/" className="nav-link" aria-current="page" style={{color: '#fff3cd'}}>Home</NavbarLink>
+                                            <li className="nav-item me-2 px-5 px-md-0 py-2 py-md-0 my-2 my-md-0 rounded-pill" data-bs-dismiss="offcanvas">
+                                                <NavbarLink to="/" className="nav-link nav_home_link" aria-current="page" style={{color: '#fff3cd'}}>Home</NavbarLink>
                                             </li>
-                                            <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill">
-                                                <NavbarLink to="/about" className="nav-link" aria-current="page" style={{color: '#fff3cd'}}>About</NavbarLink>
+                                            <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill" data-bs-dismiss="offcanvas">
+                                                <NavbarLink to="/about" className="nav-link nav_home_link" aria-current="page" style={{color: '#fff3cd'}}>About</NavbarLink>
                                             </li>
-                                            <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill">
+                                            {/* <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill">
                                                 <NavbarLink to="/blog" className="nav-link" aria-current="page" style={{color: '#fff3cd'}}>Blog</NavbarLink>
+                                            </li> */}
+                                            <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill" data-bs-dismiss="offcanvas">
+                                                <NavbarLink to="/privacy" className="nav-link nav_home_link" aria-current="page" style={{color: '#fff3cd'}}>Privacy</NavbarLink>
                                             </li>
-                                            <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill">
-                                                <NavbarLink to="/privacy" className="nav-link" aria-current="page" style={{color: '#fff3cd'}}>Privacy</NavbarLink>
-                                            </li>
-                                            <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill">
-                                                <NavbarLink to="/contact" className="nav-link" aria-current="page" style={{color: '#fff3cd'}}>Contact</NavbarLink>
+                                            <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill" data-bs-dismiss="offcanvas">
+                                                <NavbarLink to="/contact" className="nav-link nav_home_link" aria-current="page" style={{color: '#fff3cd'}}>Contact</NavbarLink>
                                             </li>
                                         </ul>
                                     </div>
                                     <div className="d-md-none text-center">
                                         <button type="button" data-bs-dismiss="offcanvas" aria-label="Close"
-                                            className="btn btn-outline-danger fw-semibold">
+                                            className="btn btn-outline-light fw-semibold">
                                             <i className="bi bi-x-lg me-2 mt-0"></i>
                                             <span>Close</span>
                                         </button>

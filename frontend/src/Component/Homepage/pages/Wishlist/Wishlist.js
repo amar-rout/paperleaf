@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import Meta from "../Meta";
@@ -19,6 +19,10 @@ const Wishlist = () => {
     const wishlistCount = useSelector(getWishlistCount);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setCount(wishlistCount);
+    }, [wishlistCount]);
 
     const handleRemoveWishlist = (id) => {
         dispatch(removeWishlistItem(id));
@@ -70,10 +74,23 @@ const Wishlist = () => {
                                                     onClick={() => navigate(`/products/${product._id}`)}>
                                                     View details
                                                 </button>
-                                                <button type="button" className="btn btn-outline-danger w-100 mt-2"
+                                                <button type="button" className="btn btn-outline-danger w-100 mt-2 small"
                                                     onClick={() => handleRemoveWishlist(product.wId)}>
-                                                    Remove
+                                                    <i className="bi bi-trash me-2"></i>
+                                                    REMOVE
                                                 </button>
+                                                {/* <div className="d-flex flex-0 justify-content-between align-items-center gap-2">
+                                                    <button type="button" className="btn btn-outline-danger w-50 mt-2 small"
+                                                        onClick={() => handleRemoveWishlist(product.wId)}>
+                                                        <i className="bi bi-trash"></i>
+                                                        <span className="d-none d-md-inline"><small>REMOVE</small></span>
+                                                    </button>
+                                                    <button type="button" className="btn btn-outline-dark w-50 mt-2 fs-6 fw-semibold small"
+                                                        onClick={() => handleRemoveWishlist(product.wId)}>
+                                                        <i className="bi bi-cart"></i>
+                                                        <span className="d-none d-md-inline"><small>ADD TO CART</small></span>
+                                                    </button>
+                                                </div> */}
                                             </div>
                                         </div>
                                     </div>

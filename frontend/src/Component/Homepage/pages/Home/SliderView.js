@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import bootstrap from 'bootstrap/dist/js/bootstrap.min.js';
+// import bootstrap from 'bootstrap/dist/js/bootstrap.min.js';
 import $ from "jquery";
 
 import './SliderView.css';
@@ -39,17 +39,17 @@ const SliderView = () => {
     // }
 
     const jQueryCode = () => {
-        var multipleCardCarousel = document.querySelector("#carouselExampleControls");
+        // var multipleCardCarousel = document.querySelector("#carouselExampleControls");
         if (window.matchMedia("(min-width: 768px)").matches) {
-            var carousel = new bootstrap.Carousel(multipleCardCarousel, {
-                interval: false,
-            });
-            console.log(carousel);
+            // var carousel = new bootstrap.Carousel(multipleCardCarousel, {
+            //     interval: false,
+            // });
+            // console.log(carousel);
             var carouselWidth = $(".carousel-inner")[0].scrollWidth;
             var cardWidth = $(".carousel-item").width();
             var scrollPosition = 0;
             $("#carouselExampleControls .carousel-control-next").on("click", function () {
-                if (scrollPosition < carouselWidth - cardWidth * 4) {
+                if (scrollPosition < carouselWidth - (cardWidth * 4)) {
                     scrollPosition += cardWidth;
                     $("#carouselExampleControls .carousel-inner").animate(
                         { scrollLeft: scrollPosition }, 100
@@ -60,12 +60,13 @@ const SliderView = () => {
                 if (scrollPosition > 0) {
                     scrollPosition -= cardWidth;
                     $("#carouselExampleControls .carousel-inner").animate(
-                        { scrollLeft: scrollPosition }, 120
+                        { scrollLeft: scrollPosition }, 100
                     );
                 }
             });
         } else {
-            $(multipleCardCarousel).addClass("slide");
+            // $(multipleCardCarousel).addClass("slide");
+            // $("#carouselExampleControls").addClass("slide");
         }
     }
 
@@ -75,7 +76,7 @@ const SliderView = () => {
 
     return (
         <div className="container my-2">
-            <div id="carouselExampleControls" class="carousel scroll" data-bs-interval="3000" data-bs-ride="carousel">
+            <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="card">

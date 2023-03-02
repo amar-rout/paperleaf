@@ -20,10 +20,10 @@ const Contact = () => {
                         <span className="mb-0 h2">Contact</span>
                     </div>
                     <div class="row gutter-4 my-4">
-                        <div class="col-12 col-md-4 d-flex justify-content-start align-items-center">
+                        <div class="col-12 col-md-6 d-flex justify-content-start align-items-center">
                             <h2 class="fw-normal"><b>Get in touch</b> with us by filling out our contact form.</h2>
                         </div>
-                        <div class="col-12 col-md-8 px-4">
+                        <div class="col-12 col-md-6 px-4">
                             <div class="row">
                                 <div class="form-group col-12 col-md-6 mb-3">
                                     <label htmlFor="inputFirstName">First Name</label>

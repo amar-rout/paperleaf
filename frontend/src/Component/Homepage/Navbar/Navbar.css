@@ -6,6 +6,18 @@
 .menu-item-text li {
     display: inline !important;
 }
+
+/* .nav_home_link {
+    color: '#fff3cd' !important;
+}
+.show .nav_home_link {
+    color: '#fff3cd' !important;
+}
+.offcanvas .nav_home_link {
+    color: 'black' !important;
+} */
+
+
 /* .nav-item a {
     display: block !important;
 } */
@@ -36,7 +48,7 @@
     font-weight: bold;
 }
 .nav-link-active {
-    color:blue;
+    color:rgb(230, 190, 15);
 }
 .navbar-bg {
     /* background-image: linear-gradient(0deg, rgb(33, 40, 44), rgb(23, 28, 31)); */
@@ -71,6 +83,7 @@
     height:66px; */
       }
   }
+
   /* @media (min-width: 768px) {
     .nav-logo-img {
         width: 100%;

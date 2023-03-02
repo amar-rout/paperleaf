@@ -95,6 +95,7 @@ const Home = () => {
                 :
                 <>
                     {/* <HomeCarousel /> */}
+                    {/* <SliderView /> */}
                     <HomeCategory />
                     <Deals />
                     <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
