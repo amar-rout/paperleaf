@@ -95,7 +95,7 @@ const Home = () => {
                 :
                 <>
                     {/* <HomeCarousel /> */}
-                    {/* <SliderView /> */}
+                    <SliderView />
                     <HomeCategory />
                     <Deals />
                     <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
@@ -104,7 +104,7 @@ const Home = () => {
                     <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
                     <NewSection />
                     <SectionInfo />
-                    <SliderView />
+                    {/* <SliderView /> */}
                 </>
             }
         </main>

@@ -50,17 +50,27 @@ const SliderView = () => {
             $("#carouselExampleControls .carousel-control-next").on("click", function () {
                 if (scrollPosition < carouselWidth - (cardWidth * 5)) {
                     scrollPosition += cardWidth;
-                    console.log(`Right: ${scrollPosition}`);
                     $("#carouselExampleControls .carousel-inner").animate({ scrollLeft: scrollPosition }, 100);
                 }
             });
             $("#carouselExampleControls .carousel-control-prev").on("click", function () {
                 if (scrollPosition > 0) {
                     scrollPosition -= cardWidth;
-                    console.log(`Left: ${scrollPosition}`);
                     $("#carouselExampleControls .carousel-inner").animate({ scrollLeft: scrollPosition }, 100);
                 }
             });
+            // console.log(scrollPosition);
+            // if (scrollPosition === 0) {
+            //     $("#carouselExampleControls .carousel-control-prev").addClass("d-none");
+            // } else {
+            //     $("#carouselExampleControls .carousel-control-prev").removeClass("d-none");
+            // }
+            // if (scrollPosition === (carouselWidth - (cardWidth * 5))) {
+            //     $("#carouselExampleControls .carousel-control-next").addClass("d-none");
+            // }
+            // else {
+            //     $("#carouselExampleControls .carousel-control-next").removeClass("d-none");
+            // }
         } else {
             $(multipleCardCarousel).addClass("slide");
             // carousel.interval(true);
