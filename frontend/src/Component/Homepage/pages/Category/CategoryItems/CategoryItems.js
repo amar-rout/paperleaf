@@ -70,7 +70,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
     useEffect(() => {
         setProducts(listCatProduct);
         dispatch(clearState());
-    }, [dispatch,listCatProduct]);
+    }, [dispatch, listCatProduct]);
 
     useEffect(() => {
         if (getProductStatus === "LOADING") {
@@ -111,6 +111,13 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
         dispatch(listCategoryProductsAsync({ category, nextPage }));
         dispatch(clearState());
         navigate(`/category/${category}?page=${page + 1}`);
+    }
+
+    const handleLoadCustomPage = (customPage) => {
+        setPage((prevState) => customPage);
+        dispatch(listCategoryProductsAsync({ category, customPage }));
+        dispatch(clearState());
+        navigate(`/category/${category}?page=${customPage}`);
     }
 
     const handleAddWishlist = (id, name, category, price, image) => {
@@ -252,14 +259,25 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                 <div className="text-end mt-5">
                     {maxPage > 1 && (
                         <>
-                            <button className={page <= 1 ? "btn btn-outline-danger mx-2 px-4 px-md-4 disabled" : "btn btn-danger mx-2 px-4 px-md-4"}
-                                // disabled={page === 1}
-                                onClick={() => handleLoadPrevPage()}
-                            > Prev </button>
-                            <span className="mx-2">{currPage}</span>
-                            <button className={page >= maxPage ? "btn btn-outline-danger mx-2 px-4 px-md-4 disabled" : "btn btn-danger mx-2 px-4 px-md-4"}
-                                onClick={() => handleLoadNextPage()}
-                            > Next </button>
+                            <div className="input-group input-group-sm">
+                                <button className={page <= 1 ? "btn btn-dark px-4 px-md-4 disabled" : "btn btn-outline-dark px-4 px-md-4"}
+                                    onClick={() => handleLoadPrevPage()}
+                                > Prev </button>
+                                {(() => {
+                                    const rows = [];
+                                    for (let index = 1; index <= maxPage; index++) {
+                                        rows.push(
+                                            <button className={page == index ? "btn btn-dark px-4 px-md-4 disabled" : "btn btn-outline-dark px-4 px-md-4"}
+                                                onClick={() => handleLoadCustomPage(index)}
+                                            > {index} </button>
+                                        );
+                                    }
+                                    return rows;
+                                })()}
+                                <button className={page >= maxPage ? "btn btn-dark px-4 px-md-4 disabled" : "btn btn-outline-dark px-4 px-md-4"}
+                                    onClick={() => handleLoadNextPage()}
+                                > Next </button>
+                            </div>
                         </>
                     )}
                 </div>
