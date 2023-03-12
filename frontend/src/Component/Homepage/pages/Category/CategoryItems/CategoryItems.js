@@ -241,7 +241,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                                                 <span className="ms-1">View Details</span>
                                             </button>
                                             :
-                                            <button type="button" className="btn btn-md btn-md bg-warning w-100 d-flex justify-content-center align-items-center"
+                                            <button type="button" className="btn btn-sm bg-warning w-100 d-flex justify-content-center align-items-center"
                                                 // onClick={() => dispatch(addCartAsync({ pId: product._id, qty: 1 }))}>
                                                 onClick={() => handleAddCart(product._id, product.name)}>
                                                 <i className="bi bi-cart d-none d-sm-inline"></i>
@@ -256,27 +256,33 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                     </div>
                 }
 
-                <div className="text-end mt-5">
+                <div className="mt-5">
                     {maxPage > 1 && (
                         <>
-                            <div className="input-group input-group-sm">
-                                <button className={page <= 1 ? "btn btn-dark px-4 px-md-4 disabled" : "btn btn-outline-dark px-4 px-md-4"}
+                            <div className="input-group input-group-sm justify-content-end">
+                                <button className={currPage <= 1 ? "btn btn-danger px-4 px-md-4 disabled" : "btn btn-outline-danger px-4 px-md-4"}
                                     onClick={() => handleLoadPrevPage()}
-                                > Prev </button>
+                                >
+                                    <i className="bi bi-caret-left m-0 p-0"></i>
+                                    Prev
+                                </button>
                                 {(() => {
                                     const rows = [];
                                     for (let index = 1; index <= maxPage; index++) {
                                         rows.push(
-                                            <button className={page == index ? "btn btn-dark px-4 px-md-4 disabled" : "btn btn-outline-dark px-4 px-md-4"}
+                                            <button className={currPage === index ? "btn btn-danger px-4 px-md-4 disabled" : "btn btn-outline-danger px-4 px-md-4"}
                                                 onClick={() => handleLoadCustomPage(index)}
                                             > {index} </button>
                                         );
                                     }
                                     return rows;
                                 })()}
-                                <button className={page >= maxPage ? "btn btn-dark px-4 px-md-4 disabled" : "btn btn-outline-dark px-4 px-md-4"}
+                                <button className={currPage >= maxPage ? 'btn btn-danger px-4 px-md-4 disabled' : 'btn btn-outline-danger px-4 px-md-4'}
                                     onClick={() => handleLoadNextPage()}
-                                > Next </button>
+                                >
+                                    Next
+                                    <i className="bi bi-caret-right m-0 p-0"></i>
+                                </button>
                             </div>
                         </>
                     )}

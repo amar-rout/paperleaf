@@ -44,6 +44,7 @@ const SliderView = () => {
             var carousel = new bootstrap.Carousel(multipleCardCarousel, {
                 interval: false,
             });
+            console.log(carousel);
             var carouselWidth = $(".carousel-inner")[0].scrollWidth;
             var cardWidth = $(".carousel-item").width();
             var scrollPosition = 0;

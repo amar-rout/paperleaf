@@ -28,7 +28,7 @@
     font-size: 0.875rem !important;
 } */
 .dropdown {
-    z-index:1021;
+    z-index:9999;
 }
 .header-dropdown-item {
     max-width: 100%;
