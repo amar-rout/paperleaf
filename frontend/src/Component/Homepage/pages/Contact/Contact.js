@@ -21,7 +21,7 @@ const Contact = () => {
                     </div>
                     <div class="row gutter-4 my-4">
                         <div class="col-12 col-md-6 d-flex justify-content-start align-items-center">
-                            <p2 class="fw-normal">We're open for any suggestion or just to have a chat</p2>
+                            <p2 class="fw-normal"><b>Fill the form.Its Easy.</b></p2>
                         </div>
                         <div class="col-12 col-md-6 px-4">
                             <div class="row">
@@ -42,7 +42,7 @@ const Contact = () => {
                                     <input type="text" class="form-control px-2 px-md-4 py-2 mt-2 border-dark shadow-none" id="inputNameSecond" placeholder="Enter subject" />
                                 </div>
                                 <div class="form-group col-12 mb-3">
-                                    <label htmlFor="inputTextarea">Message</label>
+                                    <label htmlFor="inputTextarea">Write your message</label>
                                     <textarea class="form-control px-2 px-md-4 py-2 mt-2 border-dark shadow-none" id="inputTextarea" rows="5" placeholder="Enter messages"></textarea>
                                 </div>
                                 <div class="col-12 mb-3">
