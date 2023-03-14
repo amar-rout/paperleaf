@@ -28,6 +28,7 @@ const Privacy = () => {
                     <div className="col-12 col-md-2"></div>
                     <div className="col-12 col-md-8">
                         <h4>Shipping Policy</h4>
+                        
                         <p>Free shipping all over India for orders above Rs. 2,000. For orders below Rs.2000, a flat shipping fee of Rs.150 is changed per order. Shipping charges will be calculated at the time of checkout on our website.</p>
 
                         <h4>Orders shipment timelines:</h4>
@@ -40,19 +41,13 @@ const Privacy = () => {
 
                         <h4>Return / Exchange / Refund policy</h4>
                         <p><b>Return:</b></p>
-                        <span>Any Clothing items (Readymade), dupattas, stole, semi-stitched materials are eligible for returns & exchange.</span>
+                        <p>Any Clothing items (Readymade), dupattas, stole, semi-stitched materials are eligible for returns & exchange.</p>
 
                         <p>However, jewellery, Fabrics / pre-Cut fabrics, customized products & products bought on sale are not eligible for return of exchange.</p>
 
-                        <p>
-                            The request to return on exchange must be placed within 15 days from the date of receipt of shipment.
-                            <br />Once the reverse pick up is done a store Credit will be provided to you via Email in the form of a Coupon code
-                            <br />which will be valid for 6 months from the date of issue.
-                            <br />The store credit will be amount of the value of your returned order excluding any shipping cost paid by you
-                            <br />at the time of placing an order.
-                            <br />Items for return must be in original packing, shouldn't be worn and in original condition.
+                        <p>The request to return on exchange must be placed within 15 days from the date of receipt of shipment. Once the reverse pick up is done a store Credit will be provided to you via Email in the form of a Coupon code which will be valid for 6 months from the date of issue. The store credit will be amount of the value of your returned order excluding any shipping cost paid by you at the time of placing an order. Items for return must be in original packing, shouldn't be worn and in original condition.
                         </p>
-                        <h4 className="text-center">======******======</h4>
+                        <h4 className="text-center"></h4>
                     </div>
                     <div className="col-12 col-md-2"></div>
                 </div>

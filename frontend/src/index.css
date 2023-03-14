@@ -73,6 +73,10 @@ p {
   line-height: 23px;
 }
 
+p {
+  text-align: justify;
+}
+
 blockquote {
   font-family: Montez;
   font-size: 17px;
