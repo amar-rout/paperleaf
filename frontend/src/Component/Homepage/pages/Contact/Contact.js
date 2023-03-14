@@ -17,11 +17,11 @@ const Contact = () => {
             <section>
                 <div class="container">
                     <div className="my-5 text-center">
-                        <span className="mb-0 h2">Contact</span>
+                        <span className="mb-0 h2">Contact Us</span>
                     </div>
                     <div class="row gutter-4 my-4">
                         <div class="col-12 col-md-6 d-flex justify-content-start align-items-center">
-                            <h2 class="fw-normal"><b>Get in touch</b> with us by filling out our contact form.</h2>
+                            <p2 class="fw-normal">We're open for any suggestion or just to have a chat</p2>
                         </div>
                         <div class="col-12 col-md-6 px-4">
                             <div class="row">
