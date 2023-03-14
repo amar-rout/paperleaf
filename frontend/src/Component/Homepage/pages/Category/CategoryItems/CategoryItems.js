@@ -211,7 +211,6 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                                                     <ReactStars {...{
                                                         size: 10,
                                                         count: 5,
-                                                        // color: "#fdad01",
                                                         activeColor: "#fdad01",
                                                         value: product.rating,
                                                         a11y: true,

@@ -45,9 +45,8 @@ const Privacy = () => {
 
                         <p>However, jewellery, Fabrics / pre-Cut fabrics, customized products & products bought on sale are not eligible for return of exchange.</p>
 
-                        <p>The request to return on exchange must be placed within 15 days from the date of receipt of shipment. Once the reverse pick up is done a store Credit will be provided to you via Email in the form of a Coupon code which will be valid for 6 months from the date of issue. The store credit will be amount of the value of your returned order excluding any shipping cost paid by you at the time of placing an order. Items for return must be in original packing, shouldn't be worn and in original condition.
-                        </p>
-                        <h4 className="text-center"></h4>
+                        <p>The request to return on exchange must be placed within 15 days from the date of receipt of shipment. Once the reverse pick up is done a store Credit will be provided to you via Email in the form of a Coupon code which will be valid for 6 months from the date of issue. The store credit will be amount of the value of your returned order excluding any shipping cost paid by you at the time of placing an order. Items for return must be in original packing, shouldn't be worn and in original condition.</p>
+                        {/* <h4 className="text-center"></h4> */}
                     </div>
                     <div className="col-12 col-md-2"></div>
                 </div>

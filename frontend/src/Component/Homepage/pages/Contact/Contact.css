@@ -1,6 +1,9 @@
 .form_check_input {
-    padding: 8px 36px 12px 8px !important;
+    padding: 8px 24px 8px 8px !important;
 }
 .form_check_input_checkbox {
-    padding: 10px !important;
+    padding: 8px !important;
+}
+.form_check_input_checkbox:checked {
+    background-color: black !important;
 }
