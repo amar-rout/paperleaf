@@ -63,25 +63,25 @@ const Navbar = () => {
                                 </button>
                                 <div className="offcanvas w-75 offcanvas-start bg-dark d-inline-block" tabIndex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
                                     <div className="offcanvas-header">
-                                        <h5 className="offcanvas-title" id="offcanvasNavbar2Label" style={{color: '#fff3cd !important'}}>Paperleaf</h5>
+                                        <h5 className="offcanvas-title" id="offcanvasNavbar2Label" style={{ color: '#fff3cd !important' }}>Paperleaf</h5>
                                         <button type="button" className="btn-close btn-close-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                     </div>
                                     <div className="offcanvas-body d-inline-block">
                                         <ul className="navbar-nav justify-content-start flex-grow-1 me-5">
                                             <li className="nav-item me-2 px-5 px-md-0 py-2 py-md-0 my-2 my-md-0 rounded-pill" data-bs-dismiss="offcanvas">
-                                                <NavbarLink to="/" className="nav-link nav_home_link" aria-current="page" style={{color: '#fff3cd'}}>Home</NavbarLink>
+                                                <NavbarLink to="/" className="nav-link nav_home_link" aria-current="page" style={{ color: '#fff3cd' }}>Home</NavbarLink>
                                             </li>
                                             <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill" data-bs-dismiss="offcanvas">
-                                                <NavbarLink to="/about" className="nav-link nav_home_link" aria-current="page" style={{color: '#fff3cd'}}>About</NavbarLink>
+                                                <NavbarLink to="/about" className="nav-link nav_home_link" aria-current="page" style={{ color: '#fff3cd' }}>About</NavbarLink>
                                             </li>
                                             {/* <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill">
                                                 <NavbarLink to="/blog" className="nav-link" aria-current="page" style={{color: '#fff3cd'}}>Blog</NavbarLink>
                                             </li> */}
                                             <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill" data-bs-dismiss="offcanvas">
-                                                <NavbarLink to="/privacy" className="nav-link nav_home_link" aria-current="page" style={{color: '#fff3cd'}}>Privacy</NavbarLink>
+                                                <NavbarLink to="/privacy" className="nav-link nav_home_link" aria-current="page" style={{ color: '#fff3cd' }}>Privacy</NavbarLink>
                                             </li>
                                             <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill" data-bs-dismiss="offcanvas">
-                                                <NavbarLink to="/contact" className="nav-link nav_home_link" aria-current="page" style={{color: '#fff3cd'}}>Contact</NavbarLink>
+                                                <NavbarLink to="/contact" className="nav-link nav_home_link" aria-current="page" style={{ color: '#fff3cd' }}>Contact</NavbarLink>
                                             </li>
                                         </ul>
                                     </div>
@@ -226,7 +226,7 @@ const Navbar = () => {
                             {/* <NavCatLink className="nav-link ps-0 pe-4" to="/category/kurtis">Kurti/Sets</NavCatLink> */}
                             <NavCatLink className="nav-link ps-0 pe-4" to="/category/Dupattas">Dupattas</NavCatLink>
                             <NavCatLink className="nav-link ps-0 pe-4" to="/category/Dress">Dress</NavCatLink>
-                            <NavCatLink className="nav-link ps-0 pe-4" to="/category/Pants">Pants/Palazzo</NavCatLink>
+                            <NavCatLink className="nav-link ps-0 pe-4" to="/category/Pants">Dress Material</NavCatLink>
                             <NavCatLink className="nav-link ps-0 pe-4" to="/category/Fabrics">Fabrics</NavCatLink>
                             <NavCatLink className="nav-link ps-0 pe-4" to="/category/Jewellery">Jewellery</NavCatLink>
                         </nav>

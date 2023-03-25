@@ -23,12 +23,12 @@ const HomeCategory = () => {
                         <h6 className="category-txt fw-normal pt-2">Dress</h6>
                     </button>
                     <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Fabrics')}>
-                        <img src="/assets/images/catImages/fabrics.png" className="category-img rounded-circle border mb-2 mb-md-3" alt="" />
+                        <img src="/assets/images/catImages/Fabrics.png" className="category-img rounded-circle border mb-2 mb-md-3" alt="" />
                         <h6 className="category-txt fw-normal pt-2">Fabrics</h6>
                     </button>
                     <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Pants')}>
-                        <img src="/assets/images/catImages/pants.png" className="category-img rounded-circle border mb-2 mb-md-3" alt="" />
-                        <h6 className="category-txt fw-normal pt-2">Pants / Palazzo</h6>
+                        <img src="/assets/images/catImages/dressmaterial.png" className="category-img rounded-circle border mb-2 mb-md-3" alt="" />
+                        <h6 className="category-txt fw-normal pt-2">Dress Material</h6>
                     </button>
                     <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Jewellery')}>
                         {/* <img src="http://localhost:3000/assets/images/categoryImages/jewellery.png" className="category-img bd-placeholder-img rounded-circle border " alt="" /> */}
@@ -37,7 +37,7 @@ const HomeCategory = () => {
                     </button>
                     <button className="category-btn col btn btn-default cat-btn opacity-1" onClick={() => navigate('/category/Others')}>
                         <img src="/assets/images/catImages/others.png" className="category-img rounded-circle border mb-2 mb-md-3" alt="" />
-                        <h6 className="category-txt fw-normal pt-2">Other Accessories</h6>
+                        <h6 className="category-txt fw-normal pt-2">New Collections</h6>
                     </button>
                 </div>
             </div>
