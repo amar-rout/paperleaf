@@ -54,6 +54,10 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { id } = useParams();
+    let catName = '';
+    if (id === 'isNewInStore') {
+        catName = 'New In Store';
+    }
     const { search } = useLocation();
     const pageNumber = new URLSearchParams(search).get("page");
 
@@ -143,7 +147,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                 ]}
             />
             <div className="container my-3">
-                <h4 className="text-center pb-3">{id}</h4>
+                <h4 className="text-center pb-3">{catName ? catName: id}</h4>
                 {loading &&
                     <div className="d-flex justify-content-center align-items-center">
                         <div className="spinner-grow text-info" role="status">
