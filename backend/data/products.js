@@ -1552,10 +1552,10 @@ const products = [
     numReviews: 0,
     price: 56.99,
     countInStock: 100,
-    name: "DressMaterial 1",
+    name: "Dress Material 1",
     description:
       'Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside.Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water,for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates',
-    category: 'DressMaterial',
+    category: 'Dress Material',
     featured: false,
     image:'/assets/images/productImages/DressMaterial/1.jpg',
     brand: 'PaperLeaf',
@@ -1773,7 +1773,7 @@ const products = [
     description:
       '95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem',
     featured: false,
-    category: 'DressMaterial',
+    category: 'Dress Material',
     image: '/assets/images/productImages/DressMaterial/2.jpg',
     brand: 'PaperLeaf',
     reviews: [
@@ -1916,7 +1916,7 @@ const products = [
     name: 'Womens T Shirt Casual Cotton Short',
     description:
       '95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.',
-    category: 'DressMaterial',
+    category: 'Dress Material',
     image: '/assets/images/productImages/DressMaterial/3.jpg',
     brand: 'PaperLeaf',
     reviews: [
