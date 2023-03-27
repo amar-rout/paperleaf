@@ -19,6 +19,7 @@ const Contact = () => {
                     <div className="my-5 text-center">
                         <span className="mb-0 h2">Contact Us</span>
                     </div>
+                    
                     <div class="row gutter-4 my-4">
                         <div class="col-12 col-md-6 px-4 mb-3 d-flex justify-content-start align-items-center">
                             <p2 class="fw-normal"><b>Fill the form. It's Easy.</b></p2>
