@@ -143,7 +143,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
             <Breadcrumb
                 links={[
                     { name: 'Home', link: '/', active: false },
-                    { name: `${category}`, link: `/${category}`, active: false }
+                    { name: `${catName ? catName : id}`, link: `/${category}`, active: false }
                 ]}
             />
             <div className="container my-3">
