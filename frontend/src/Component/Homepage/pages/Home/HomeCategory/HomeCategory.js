@@ -26,7 +26,7 @@ const HomeCategory = () => {
                         <img src="/assets/images/catImages/Fabrics.png" className="category-img rounded-circle border mb-2 mb-md-3" alt="" />
                         <h6 className="category-txt fw-normal pt-2">Fabrics</h6>
                     </button>
-                    <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Pants')}>
+                    <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/DressMaterial')}>
                         <img src="/assets/images/catImages/dressmaterial.png" className="category-img rounded-circle border mb-2 mb-md-3" alt="" />
                         <h6 className="category-txt fw-normal pt-2">Dress Material</h6>
                     </button>
@@ -35,7 +35,7 @@ const HomeCategory = () => {
                         <img src="/assets/images/catImages/jewellery.png" className="category-img rounded-circle border mb-2 mb-md-3" alt="" />
                         <h6 className="category-txt fw-normal pt-2">Jewellery</h6>
                     </button>
-                    <button className="category-btn col btn btn-default cat-btn opacity-1" onClick={() => navigate('/category/Others')}>
+                    <button className="category-btn col btn btn-default cat-btn opacity-1" onClick={() => navigate('/category/isNewInStore')}>
                         <img src="/assets/images/catImages/others.png" className="category-img rounded-circle border mb-2 mb-md-3" alt="" />
                         <h6 className="category-txt fw-normal pt-2">New Collections</h6>
                     </button>

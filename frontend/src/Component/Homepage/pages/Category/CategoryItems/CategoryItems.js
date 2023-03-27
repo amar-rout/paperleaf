@@ -180,6 +180,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                                             </button>
                                         }
                                         {product.countInStock < 1 && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle text-muted rounded-pill z-index-1" style={{ zIndex: 1000 }}>Out of Stock</span>}
+                                        {product.isNewInStore && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-success-subtle text-success rounded-pill z-index-1" style={{ zIndex: 999 }}>New</span>}
                                     </div>
                                     {/* <img src="./assets/images/productImages/product1.jpg" className="card-img-top rounded-4" alt="card 1" /> */}
                                     <img src={product.image} onClick={() => handleProductShow(product._id)} className="card-img-top rounded-0" alt="card 1" />

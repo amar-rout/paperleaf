@@ -114,8 +114,9 @@ const Products = () => {
                                                     isHalf: true
                                                 }} />
                                                 <span className="small ms-1 me-5 text-muted">
-                                                    <span className='' style={{ color: '#fdad01' }}>4.5</span>
-                                                    <span className='ms-1'>(25 reviews)</span>
+                                                    <span className=''>{product.rating}</span>
+                                                    {/* style={{ color: '#fdad01' }} */}
+                                                    <span className='ms-1'>({product.numReviews} reviews)</span>
                                                 </span>
                                             </span>
                                         </div>

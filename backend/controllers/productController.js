@@ -64,22 +64,44 @@ export const getProductByCategory = asyncHandler(async (req, res) => {
   const pageSize = 8;
   const page = Number(req.query.pageNumber);
 
-  const count = await ProductModel.countDocuments({
-    category: sanitize(req.params.category),
-  });
+  const cat = sanitize(req.params.category);
+  if (cat.includes("isNewInStore")) {
+    const count = await ProductModel.countDocuments({
+      isNewInStore: true,
+    });
 
-  const category = await ProductModel.find({
-    category: sanitize(req.params.category),
-  })
-    .limit(pageSize)
-    .skip(pageSize * (page - 1));
+    const category = await ProductModel.find({
+      isNewInStore: true,
+    })
+      .limit(pageSize)
+      .skip(pageSize * (page - 1));
 
-  if (category.length > 0) {
-    res.json({ page, pages: Math.ceil(count / pageSize), products: category });
+    if (category.length > 0) {
+      res.json({ page, pages: Math.ceil(count / pageSize), products: category });
+    } else {
+      res.status(404);
+      throw new Error('Category is empty');
+    }
   } else {
-    res.status(404);
-    throw new Error('Category is empty');
+    const count = await ProductModel.countDocuments({
+      category: sanitize(req.params.category),
+    });
+
+    const category = await ProductModel.find({
+      category: sanitize(req.params.category),
+    })
+      .limit(pageSize)
+      .skip(pageSize * (page - 1));
+
+    if (category.length > 0) {
+      res.json({ page, pages: Math.ceil(count / pageSize), products: category });
+    } else {
+      res.status(404);
+      throw new Error('Category is empty');
+    }
   }
+
+
 });
 
 // @desc Delete a product

@@ -98,10 +98,38 @@ const Home = () => {
                     <SliderView />
                     <HomeCategory />
                     <Deals />
-                    <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
+
                     {/* <p className="border border-top border-1 p-0 m-0"></p> */}
                     {/* <HomeTopRatedProducts title="Featured Products" topProducts={featuredProduct} /> */}
-                    <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
+                    {/* <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
+                        </li>
+                        <li class="nav-item">
+                            <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
+                        </li>
+                    </ul> */}
+                    <div className="pt-4 bg-light">
+                        <div className="container">
+                            <ul class="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item mx-2" role="presentation">
+                                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Top Products</button>
+                                </li>
+                                <li class="nav-item mx-2" role="presentation">
+                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Featured Products</button>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                                <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
+                            </div>
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                                <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
+                            </div>
+                        </div>
+                    </div>
                     <NewSection />
                     <SectionInfo />
                     {/* <SliderView /> */}

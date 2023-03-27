@@ -35,9 +35,9 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
         <section className="marketing py-5 bg-light">
             {/* <div className="container m-0 m-sm-default p-1 p-sm-default"> */}
             <div className="container">
-                <h4 className="pb-5 text-center">
+                {/* <h4 className="pb-5 text-center">
                     <span className="border-bottom border-2">{title}</span>
-                </h4>
+                </h4> */}
                 <div className="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1 g-sm-2 g-md-3 g-lg-4">
                     {products.map((product) => (
                         <div key={product._id} className="col">
@@ -64,6 +64,8 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                                             </svg>
                                         </button>
                                     }
+                                    {product.countInStock < 1 && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle text-muted rounded-pill z-index-1" style={{ zIndex: 1000 }}>Out of Stock</span>}
+                                        {product.isNewInStore && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-dark-subtle text-dark rounded-pill z-index-1" style={{ zIndex: 999 }}>New</span>}
                                 </div>
                                 {/* <img src='/assets/images/productImages/product1.jpg' className="card-img-top bg-info-subtle rounded-4" alt="card 1" /> */}
                                 {/* <img src={product.image} className="card-img-top rounded-4" alt="card 1" /> */}
