@@ -132,6 +132,7 @@ const HomeCarousel = () => {
                 </button>
             </div>
         </section>
+        
     );
 }
 

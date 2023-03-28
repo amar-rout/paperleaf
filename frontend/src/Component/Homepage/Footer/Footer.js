@@ -159,7 +159,10 @@ const Footer = () => {
                                     <p className="my-3"><small>Secured UPI Payment Gateways</small></p>
                                     {/* <img className="" src="assets/imgs/theme/payment-method.png" alt="" style="visibility: visible;"> */}
                                     {/* <p><strong>Gpay | Phonepe</strong></p> */}
-                                    <img src="/assets/images/google-pay.png" alt="Android App from Playstore" width="48" height="48" />
+                                    <img src="/assets/images/google-pay.png" alt="Android App from Playstore" width="80" height="80" />
+                                    <img src="/assets/images/phone-pe.png" alt="Android App from Playstore" width="50" height="50" />
+                                    <img src="/assets/images/bhim.png" alt="Android App from Playstore" width="70" height="70" />
+                                    <img src="/assets/images/visa.png" alt="Android App from Playstore" width="75" height="19" />
                                 </div>
                             </div>
                         </div>
