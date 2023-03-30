@@ -95,7 +95,9 @@ const Home = () => {
                 :
                 <>
                     {/* <HomeCarousel /> */}
-                    <SliderView />
+                    <div className="container">
+                        <SliderView />
+                    </div>
                     <HomeCategory />
                     <Deals />
 
@@ -131,6 +133,7 @@ const Home = () => {
                         </div>
                     </div>
                     <NewSection />
+                    <SectionInfo1/>
                     <SectionInfo />
                     {/* <SliderView /> */}
                 </>
@@ -353,6 +356,53 @@ const NewSection = () => {
         </section>
     );
 }
+
+const SectionInfo1 = () => {
+    return (
+        <section class="featured section-padding">
+            <div class="container pb-25">
+                <div class="row">
+                    <div class="col-lg-2 col-md-4 col-06 mb-md-3 mb-lg-0">
+                        <div class="banner-features" style={{ visibility: 'visible'}}>
+                            <img src="assets/imgs/theme/icons/feature-1.png" alt=""/>
+                            <h4 class="bg-dark small text-light p-4">Free Shipping</h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+                        <div class="banner-features" style={{ visibility: 'visible'}}>
+                            <img src="assets/imgs/theme/icons/feature-2.png" alt=""/>
+                            <h4 class="bg-info small text-light p-4">Online order</h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+                        <div class="banner-features" style={{ visibility: 'visible'}}>
+                            <img src="assets/imgs/theme/icons/feature-3.png" alt=""/>
+                            <h4 class="bg-success small text-light p-4">Save Money</h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+                        <div class="banner-features" style={{ visibility: 'visible'}}>
+                            <img src="assets/imgs/theme/icons/feature-4.png" alt=""/>
+                            <h4 class="bg-4">Promotions</h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+                        <div class="banner-features" style={{ visibility: 'visible'}}>
+                            <img src="assets/imgs/theme/icons/feature-5.png" alt=""/>
+                            <h4 class="bg-5">Happy Sell</h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+                        <div class="banner-features" style={{ visibility: 'visible'}}>
+                            <img src="assets/imgs/theme/icons/feature-6.png" alt=""/>
+                            <h4 class="bg-6">24/7 Support</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
 
 const SectionInfo = () => {
     return (

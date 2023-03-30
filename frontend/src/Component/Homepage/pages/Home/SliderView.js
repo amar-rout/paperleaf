@@ -49,7 +49,7 @@ const SliderView = () => {
             var cardWidth = $(".carousel-item").width();
             var scrollPosition = 0;
             $("#carouselExampleControls .carousel-control-next").on("click", function () {
-                if (scrollPosition < carouselWidth - (cardWidth * 4)) {
+                if (scrollPosition < carouselWidth - (cardWidth * 3)) {
                     scrollPosition += cardWidth;
                     $("#carouselExampleControls .carousel-inner").animate({ scrollLeft: scrollPosition }, 100);
                 }
@@ -90,129 +90,122 @@ const SliderView = () => {
                     <div className="carousel-item active">
                         <div className="card">
                             {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
-                            <div className="img-wrapper">
+                            {/* <div className="img-wrapper">
                                 <img src="/assets/images/bannerImages/banner-1.jpeg" className="d-block w-100" alt="product" />
                             </div>
                             <div className="card-body">
                                 <h5 className="card-title">Card title 1</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.</p>
+                                    card's content.</p> */}
                                 {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+                            {/* </div> */}
+                            <div className="img-wrapper bg-danger-subtle px-3 px-md-5 py-3"
+                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
+                            <div className="">
+                                <span className="start-0 h3 text-success fw-semibold lh-1">Deals of the Day.</span><br />
+                                <p className="fs-6 fw-semibold">Limited quantities.</p>
+                            </div>
                             </div>
                         </div>
                     </div>
                     <div className="carousel-item">
                         <div className="card">
                             {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
-                            <div className="img-wrapper">
+                            {/* <div className="img-wrapper">
                                 <img src="/assets/images/bannerImages/banner-1.jpeg" className="d-block w-100" alt="product" />
                             </div>
                             <div className="card-body">
                                 <h5 className="card-title">Card title 2</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.</p>
+                                    card's content.</p> */}
                                 {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+                            {/* </div> */}
+                            <div className="img-wrapper bg-danger-subtle px-3 px-md-5 py-3"
+                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
+                            <div className="text-start">
+                                <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
+                                <p className="fs-6 fw-semibold">Limited quantities.</p>
+                            </div>
                             </div>
                         </div>
                     </div>
                     <div className="carousel-item">
                         <div className="card">
                             {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
-                            <div className="img-wrapper">
+                            {/* <div className="img-wrapper">
                                 <img src="/assets/images/bannerImages/banner-1.jpeg" className="d-block w-100" alt="product" />
+                            </div> */}
+                            <div className="img-wrapper bg-danger-subtle px-3 px-md-5 py-3"
+                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
+                            <div className="text-start">
+                                <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
+                                <p className="fs-6 fw-semibold">Limited quantities.</p>
                             </div>
-                            <div className="card-body">
+                            </div>
+                            
+                            {/* <div className="card-body">
                                 <h5 className="card-title">Card title 3</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.</p>
+                                    card's content.</p> */}
                                 {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-                            </div>
+                            {/* </div> */}
                         </div>
                     </div>
                     <div className="carousel-item">
                         <div className="card">
                             {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
-                            <div className="img-wrapper">
+                            {/* <div className="img-wrapper">
                                 <img src="/assets/images/bannerImages/banner-1.jpeg" className="d-block w-100" alt="product" />
                             </div>
                             <div className="card-body">
                                 <h5 className="card-title">Card title 4</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.</p>
+                                    card's content.</p> */}
                                 {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+                            {/* </div> */}
+                            <div className="img-wrapper bg-danger-subtle px-3 px-md-5 py-3"
+                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
+                            <div className="text-start">
+                                <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
+                                <p className="fs-6 fw-semibold">Limited quantities.</p>
+                            </div>
                             </div>
                         </div>
                     </div>
-                    <div className="carousel-item">
-                        <div className="card">
+                    {/* <div className="carousel-item">
+                        <div className="card"> */}
                             {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
-                            <div className="img-wrapper">
+                            {/* <div className="img-wrapper">
                                 <img src="/assets/images/bannerImages/banner-1.jpeg" className="d-block w-100" alt="product" />
-                            </div>
-                            <div className="card-body">
-                                <h5 className="card-title">Card title 5</h5>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.</p>
-                                {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="carousel-item">
-                        <div className="card">
-                            {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
-                            <div className="img-wrapper">
-                                <img src="/assets/images/bannerImages/banner-1.jpeg" className="d-block w-100" alt="product" />
-                            </div>
-                            <div className="card-body">
+                            </div> */}
+                            {/* <div className="bg-danger-subtle px-3 px-md-5 py-3"
+                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
+                            <div className="">
+                                <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
+                                <p className="fs-6 fw-semibold">Limited quantities.</p>
+                            </div> */}
+                            {/* <div className="card-body">
                                 <h5 className="card-title">Card title 6</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.</p>
+                                    card's content.</p> */}
                                 {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-                            </div>
+                            {/* </div>
                         </div>
-                    </div>
-                    <div className="carousel-item">
-                        <div className="card">
+                    </div> */}
+                    {/* <div className="carousel-item">
+                        <div className="card"> */}
                             {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
-                            <div className="img-wrapper">
+                            {/* <div className="img-wrapper">
                                 <img src="/assets/images/bannerImages/banner-1.jpeg" className="d-block w-100" alt="product" />
                             </div>
                             <div className="card-body">
                                 <h5 className="card-title">Card title 7</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.</p>
+                                    card's content.</p> */}
                                 {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-                            </div>
+                            {/* </div>
                         </div>
-                    </div>
-                    <div className="carousel-item">
-                        <div className="card">
-                            {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
-                            <div className="img-wrapper">
-                                <img src="/assets/images/bannerImages/banner-1.jpeg" className="d-block w-100" alt="product" />
-                            </div>
-                            <div className="card-body">
-                                <h5 className="card-title">Card title 8</h5>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.</p>
-                                {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="carousel-item">
-                        <div className="card">
-                            {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
-                            <div className="img-wrapper">
-                                <img src="/assets/images/bannerImages/banner-1.jpeg" className="d-block w-100" alt="product" />
-                            </div>
-                            <div className="card-body">
-                                <h5 className="card-title">Card title 9</h5>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                    card's content.</p>
-                                {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-                            </div>
-                        </div>
-                    </div>
+                    </div> */}
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>

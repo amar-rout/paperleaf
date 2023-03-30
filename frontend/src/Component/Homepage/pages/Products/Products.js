@@ -84,9 +84,10 @@ const Products = () => {
                                         <span className="zoom-icon"><i className="fi-rs-search"></i></span>
                                         <img src={product.image} alt="product" style={{ width: "100%", height: "400px" }} />
                                         <div className="d-flex flex-0 justify-content-start align-items-center py-2">
-                                            <img className="p-1" src={product.image} alt="product" style={{ width: "80px", height: "80px" }} />
-                                            <img className="p-1" src={product.image} alt="product" style={{ width: "80px", height: "80px" }} />
-                                            <img className="p-1" src={product.image} alt="product" style={{ width: "80px", height: "80px" }} />
+                                            {/* <img className="p-1" src="/assets/images/productImages/DressMaterial/3.jpg" alt="product" style={{ width: "80px", height: "80px" }} />
+                                            <img className="p-1" src="/assets/images/productImages/DressMaterial/2.jpg" alt="product" style={{ width: "80px", height: "80px" }} />
+                                            <img className="p-1" src="/assets/images/productImages/DressMaterial/8.jpg" alt="product" style={{ width: "80px", height: "80px" }} />
+                                            <img className="p-1" src="/assets/images/productImages/DressMaterial/9.jpg" alt="product" style={{ width: "80px", height: "80px" }} /> */}
                                             <img className="p-1" src={product.image} alt="product" style={{ width: "80px", height: "80px" }} />
                                             <img className="p-1" src={product.image} alt="product" style={{ width: "80px", height: "80px" }} />
                                         </div>
