@@ -95,20 +95,20 @@ const SliderView = () => {
             <div className="carousel-inner">
                 {/* <div className="carousel-item active">
                     <div className="card" style={{ maxHeight: '500px' }}> */}
-                        {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
-                        {/* <div className="img-wrapper">
+                {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
+                {/* <div className="img-wrapper">
                                 <img src="/assets/images/bannerImages/banner-1.jpeg" className="d-block w-100" alt="product" />
                             </div>
                             <div className="card-body">
                                 <h5 className="card-title">Card title 1</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
                                     card's content.</p> */}
-                        {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-                        {/* </div> */}
-                        {/* <div className="img-wrapper">
+                {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+                {/* </div> */}
+                {/* <div className="img-wrapper">
                             <img src="/assets/images/productImages/offer.png" className="d-block w-100" alt="product" />
                         </div> */}
-                        {/* <div className="img-wrapper bg-danger-subtle px-3 px-md-5 py-3"
+                {/* <div className="img-wrapper bg-danger-subtle px-3 px-md-5 py-3"
                             style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
 
                             <div>
@@ -116,7 +116,7 @@ const SliderView = () => {
                                 <p className="fs-6 fw-semibold text-start">Limited quantities.</p>
                             </div>
                         </div> */}
-                        {/* <div className='row bg-warning-subtle'>
+                {/* <div className='row bg-warning-subtle'>
                             <div className='col-12 col-md-6'>
                                 <div className='py-5 px-3'>
                                     <p className="fs-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
@@ -134,24 +134,24 @@ const SliderView = () => {
                 </div> */}
                 {/* <div className="carousel-item">
                     <div className="card" style={{ maxHeight: '500px' }}> */}
-                        {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
-                        {/* <div className="img-wrapper">
+                {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
+                {/* <div className="img-wrapper">
                                 <img src="/assets/images/bannerImages/banner-1.jpeg" className="d-block w-100" alt="product" />
                             </div>
                             <div className="card-body">
                                 <h5 className="card-title">Card title 2</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
                                     card's content.</p> */}
-                        {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-                        {/* </div> */}
-                        {/* <div className="img-wrapper bg-danger-subtle px-3 px-md-5 py-3"
+                {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+                {/* </div> */}
+                {/* <div className="img-wrapper bg-danger-subtle px-3 px-md-5 py-3"
                             style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
                             <div className="text-start">
                                 <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
                                 <p className="fs-6 fw-semibold">Limited quantities.</p>
                             </div>
                         </div> */}
-                        {/* <div className='row bg-danger-subtle'>
+                {/* <div className='row bg-danger-subtle'>
                             <div className='col-12 col-md-6'>
                                 <div className='py-5 px-3'>
                                     <p className="fs-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
@@ -169,11 +169,11 @@ const SliderView = () => {
                 </div> */}
                 {/* <div className="carousel-item">
                     <div className="card" style={{ maxHeight: '500px' }}> */}
-                        {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
-                        {/* <div className="img-wrapper">
+                {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
+                {/* <div className="img-wrapper">
                                 <img src="/assets/images/bannerImages/banner-1.jpeg" className="d-block w-100" alt="product" />
                             </div> */}
-                        {/* <div className="img-wrapper bg-danger-subtle px-3 px-md-5 py-3"
+                {/* <div className="img-wrapper bg-danger-subtle px-3 px-md-5 py-3"
                             style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
                             <div className="text-start">
                                 <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
@@ -181,7 +181,7 @@ const SliderView = () => {
                             </div>
                         </div> */}
 
-                        {/* <div className='row bg-info-subtle'>
+                {/* <div className='row bg-info-subtle'>
                             <div className='col-12 col-md-6'>
                                 <div className='py-5 px-3'>
                                     <p className="fs-5 fw-bold lh-1 ls-1 text-muted"><small>Hot promotions</small></p>
@@ -196,35 +196,29 @@ const SliderView = () => {
                             </div>
                         </div> */}
 
-                        {/* <div className="card-body">
+                {/* <div className="card-body">
                                 <h5 className="card-title">Card title 3</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
                                     card's content.</p> */}
-                        {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-                        {/* </div> */}
-                    {/* </div>
+                {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+                {/* </div> */}
+                {/* </div>
                 </div> */}
                 <div className='carousel-item active'>
                     <div className="card">
-                        <div className="bg-info-subtle px-3 px-md-5 py-3"
+                        <div className="bg-info-subtle px-3 py-3"
                             style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
                             <div className="mt-3">
-                                <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
-                                <p className="fs-6 fw-semibold">Limited quantities.</p>
-                            </div>
-                            <div className="">
-                                <span className="h5">
-                                    <a className="text-decoration-none text-dark" href="/" style={{ fontFamily: 'Montez' }}>
-                                        Handcrafted New Morden Design
-                                    </a>
-                                </span>
-                                <div className="my-3">
-                                    <span className="fw-bold fs-4 me-2" style={{ color: '#088178' }} >₹139.00</span>
-                                    <span className="fw-semibold fs-5 text-danger text-decoration-line-through ms-2">₹160.99</span>
+                                {/* <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
+                                <p className="fs-6 fw-semibold">Limited quantities.</p> */}
+                                <div className='px-1'>
+                                <p className="fs-6 fs-md-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
+                                    <p className="fs-4 fs-md-3 fw-bold lh-1">Super Value Deals</p>
+                                    <p className="fs-2 fs-md-1 fw-bold lh-1 ls-1 text-success">On All Products</p>
+                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br />upto 20% off</small></p>
                                 </div>
                             </div>
                             <div className="">
-                                <span>Hurry Up! Offer End In:</span>
                                 <div className="pt-2 mt-5">
                                     <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a>
                                 </div>
@@ -237,22 +231,14 @@ const SliderView = () => {
                         <div className="bg-info-subtle px-3 px-md-5 py-3"
                             style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
                             <div className="mt-3">
-                                <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
-                                <p className="fs-6 fw-semibold">Limited quantities.</p>
-                            </div>
-                            <div className="">
-                                <span className="h5">
-                                    <a className="text-decoration-none text-dark" href="/" style={{ fontFamily: 'Montez' }}>
-                                        Handcrafted New Morden Design
-                                    </a>
-                                </span>
-                                <div className="my-3">
-                                    <span className="fw-bold fs-4 me-2" style={{ color: '#088178' }} >₹139.00</span>
-                                    <span className="fw-semibold fs-5 text-danger text-decoration-line-through ms-2">₹160.99</span>
+                                <div className='px-1'>
+                                <p className="fs-6 fs-md-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
+                                    <p className="fs-4 fs-md-3 fw-bold lh-1">Super Value Deals</p>
+                                    <p className="fs-2 fs-md-1 fw-bold lh-1 ls-1 text-success">On All Products</p>
+                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br />upto 20% off</small></p>
                                 </div>
                             </div>
                             <div className="">
-                                <span>Hurry Up! Offer End In:</span>
                                 <div className="pt-2 mt-5">
                                     <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a>
                                 </div>
@@ -265,22 +251,15 @@ const SliderView = () => {
                         <div className="bg-info-subtle px-3 px-md-5 py-3"
                             style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
                             <div className="mt-3">
-                                <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
-                                <p className="fs-6 fw-semibold">Limited quantities.</p>
-                            </div>
-                            <div className="">
-                                <span className="h5">
-                                    <a className="text-decoration-none text-dark" href="/" style={{ fontFamily: 'Montez' }}>
-                                        Handcrafted New Morden Design
-                                    </a>
-                                </span>
-                                <div className="my-3">
-                                    <span className="fw-bold fs-4 me-2" style={{ color: '#088178' }} >₹139.00</span>
-                                    <span className="fw-semibold fs-5 text-danger text-decoration-line-through ms-2">₹160.99</span>
+                                <div className='px-1'>
+                                <p className="fs-6 fs-md-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
+                                    <p className="fs-4 fs-md-3 fw-bold lh-1">Super Value Deals</p>
+                                    <p className="fs-2 fs-md-1 fw-bold lh-1 ls-1 text-success">On All Products</p>
+                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br />upto 20% off</small></p>
+                                    {/* <button className='btn btn-success mt-5'>SHOP NOW</button> */}
                                 </div>
                             </div>
                             <div className="">
-                                <span>Hurry Up! Offer End In:</span>
                                 <div className="pt-2 mt-5">
                                     <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a>
                                 </div>
@@ -293,22 +272,15 @@ const SliderView = () => {
                         <div className="bg-info-subtle px-3 px-md-5 py-3"
                             style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
                             <div className="mt-3">
-                                <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
-                                <p className="fs-6 fw-semibold">Limited quantities.</p>
-                            </div>
-                            <div className="">
-                                <span className="h5">
-                                    <a className="text-decoration-none text-dark" href="/" style={{ fontFamily: 'Montez' }}>
-                                        Handcrafted New Morden Design
-                                    </a>
-                                </span>
-                                <div className="my-3">
-                                    <span className="fw-bold fs-4 me-2" style={{ color: '#088178' }} >₹139.00</span>
-                                    <span className="fw-semibold fs-5 text-danger text-decoration-line-through ms-2">₹160.99</span>
+                                <div className='px-1'>
+                                    <p className="fs-6 fs-md-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
+                                    <p className="fs-4 fs-md-3 fw-bold lh-1">Super Value Deals</p>
+                                    <p className="fs-2 fs-md-1 fw-bold lh-1 ls-1 text-success">On All Products</p>
+                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br />upto 20% off</small></p>
+                                    {/* <button className='btn btn-success mt-5'>SHOP NOW</button> */}
                                 </div>
                             </div>
                             <div className="">
-                                <span>Hurry Up! Offer End In:</span>
                                 <div className="pt-2 mt-5">
                                     <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a>
                                 </div>
@@ -318,24 +290,24 @@ const SliderView = () => {
                 </div>
                 {/* <div className="carousel-item">
                     <div className="card" style={{ maxHeight: '500px' }}> */}
-                        {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
-                        {/* <div className="img-wrapper">
+                {/* <div className="img-wrapper"><img src="..." className="d-block w-100" alt="..."> </div> */}
+                {/* <div className="img-wrapper">
                                 <img src="/assets/images/bannerImages/banner-1.jpeg" className="d-block w-100" alt="product" />
                             </div>
                             <div className="card-body">
                                 <h5 className="card-title">Card title 4</h5>
                                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
                                     card's content.</p> */}
-                        {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
-                        {/* </div> */}
-                        {/* <div className="img-wrapper bg-danger-subtle px-3 px-md-5 py-3"
+                {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+                {/* </div> */}
+                {/* <div className="img-wrapper bg-danger-subtle px-3 px-md-5 py-3"
                             style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
                             <div className="text-start">
                                 <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
                                 <p className="fs-6 fw-semibold">Limited quantities.</p>
                             </div>
                         </div> */}
-                        {/* <div className='row bg-danger-subtle'>
+                {/* <div className='row bg-danger-subtle'>
                             <div className='col-12 col-md-6'>
                                 <div className='py-5 px-3'>
                                     <p className="fs-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
