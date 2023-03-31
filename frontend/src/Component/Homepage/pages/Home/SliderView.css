@@ -8,23 +8,25 @@
 }
 .carousel-control-prev,
 .carousel-control-next {
-  background-color: #e1e1e1;
+  background-color: #ddb609;
   position: absolute;
   width: 5vh;
   height: 5vh;
   border-radius: 50%;
-  top: 50%;
-  transform: translateY(-50%);
+  /* top: 50%; */
+  transform: translateY(-110%);
 }
 .carousel-control-prev {
-  position:absolute;
-  float: right;
+  /* transform: translateX(3200%); */
+ position: relative;
+ float: right;
+ transform: translateY(-110%);
 }
 @media (min-width: 768px) {
   .carousel-item {
     margin-right: 0;
-    flex: 0 0 33.333333%;
-    /* flex: 0 0 25%; */
+    /* flex: 0 0 33.333333%; */
+    flex: 0 0 50%;
     display: block;
   }
   .carousel-inner {

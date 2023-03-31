@@ -67,15 +67,12 @@ const Home = () => {
 
     return (
         <main>
-            <div className="py-3 bg-dark bg-pattern mb-4">
-                <div className="container">
+            <div className="py-3 bg-dark bg-pattern mb-4"></div>
+                {/* <div className="container">
                     <div className="row bg-dark">
                         <div className="col-12">
                             <div className="text-center text-white">
-                                {/* <span className="fs-6 fw-semibold ls-2" style={{ color: "rgba(200, 160, 40)" }}> */}
                                 <span className="fs-6 fw-semibold ls-2" style={{ color: "rgb(234, 255, 150)" }}>
-                                    {/* rgb(234, 255, 150) */}
-                                    {/* ⚡️  */}
                                     <i className="bi bi-lightning-charge-fill fs-5"></i>
                                     &nbsp;&nbsp; Happy Holiday Deals on Everything &nbsp;&nbsp;
                                     <i className="bi bi-lightning-charge-fill fs-5"></i>
@@ -84,10 +81,28 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
+            
+            {/* <span className="fs-6 fw-semibold ls-2" style={{ color: "rgba(200, 160, 40)" }}> */}
+            {/* rgb(234, 255, 150) */}
+            {/* ⚡️  */}
+            <div className="container">
+                <div className="col-12 col-md-6">
+                    <h6 className="my-4 h5">
+                        <span className="text-dark">Welcome to <span style={{ color: "rgba(200, 160, 40)" }}>Paperleaf</span></span>
+                    </h6>
+                </div>
+                {/* <div className="col-6">
+                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span className="visually-hidden">Previous</span>
+                    </button>
+                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span className="visually-hidden">Next</span>
+                    </button>
+                </div> */}
             </div>
-            <h6 className="container my-4 h5">
-                <span className="text-dark">Welcome to <span style={{ color: "rgba(200, 160, 40)" }}>Paperleaf</span></span>
-            </h6>
+
             {loading ?
                 <div className="progress">
                     <div className="progress-bar progress-bar-striped progress-bar-" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style={{ width: "75%" }}></div>
@@ -95,7 +110,9 @@ const Home = () => {
                 :
                 <>
                     {/* <HomeCarousel /> */}
-                    <SliderView />
+                    <div className="container">
+                        <SliderView />
+                    </div>
                     <HomeCategory />
                     <Deals />
 
@@ -131,7 +148,7 @@ const Home = () => {
                         </div>
                     </div>
                     <NewSection />
-                    <SectionInfo1/>
+                    <SectionInfo1 />
                     <SectionInfo />
                     {/* <SliderView /> */}
                 </>
@@ -361,38 +378,38 @@ const SectionInfo1 = () => {
             <div class="container pb-25">
                 <div class="row">
                     <div class="col-lg-2 col-md-4 col-06 mb-md-3 mb-lg-0">
-                        <div class="banner-features" style={{ visibility: 'visible'}}>
-                            <img src="assets/imgs/theme/icons/feature-1.png" alt=""/>
+                        <div class="banner-features" style={{ visibility: 'visible' }}>
+                            <img src="assets/imgs/theme/icons/feature-1.png" alt="" />
                             <h4 class="bg-dark small text-light p-4">Free Shipping</h4>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                        <div class="banner-features" style={{ visibility: 'visible'}}>
-                            <img src="assets/imgs/theme/icons/feature-2.png" alt=""/>
+                        <div class="banner-features" style={{ visibility: 'visible' }}>
+                            <img src="assets/imgs/theme/icons/feature-2.png" alt="" />
                             <h4 class="bg-info small text-light p-4">Online order</h4>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                        <div class="banner-features" style={{ visibility: 'visible'}}>
-                            <img src="assets/imgs/theme/icons/feature-3.png" alt=""/>
+                        <div class="banner-features" style={{ visibility: 'visible' }}>
+                            <img src="assets/imgs/theme/icons/feature-3.png" alt="" />
                             <h4 class="bg-success small text-light p-4">Save Money</h4>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                        <div class="banner-features" style={{ visibility: 'visible'}}>
-                            <img src="assets/imgs/theme/icons/feature-4.png" alt=""/>
+                        <div class="banner-features" style={{ visibility: 'visible' }}>
+                            <img src="assets/imgs/theme/icons/feature-4.png" alt="" />
                             <h4 class="bg-4">Promotions</h4>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                        <div class="banner-features" style={{ visibility: 'visible'}}>
-                            <img src="assets/imgs/theme/icons/feature-5.png" alt=""/>
+                        <div class="banner-features" style={{ visibility: 'visible' }}>
+                            <img src="assets/imgs/theme/icons/feature-5.png" alt="" />
                             <h4 class="bg-5">Happy Sell</h4>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-                        <div class="banner-features" style={{ visibility: 'visible'}}>
-                            <img src="assets/imgs/theme/icons/feature-6.png" alt=""/>
+                        <div class="banner-features" style={{ visibility: 'visible' }}>
+                            <img src="assets/imgs/theme/icons/feature-6.png" alt="" />
                             <h4 class="bg-6">24/7 Support</h4>
                         </div>
                     </div>
