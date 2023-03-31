@@ -95,9 +95,7 @@ const Home = () => {
                 :
                 <>
                     {/* <HomeCarousel /> */}
-                    <div className="container">
-                        <SliderView />
-                    </div>
+                    <SliderView />
                     <HomeCategory />
                     <Deals />
 
