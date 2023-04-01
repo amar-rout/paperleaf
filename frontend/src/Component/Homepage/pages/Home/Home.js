@@ -114,7 +114,7 @@ const Home = () => {
                         <SliderView />
                     </div>
                     <HomeCategory />
-                    <Deals />
+                    
 
                     {/* <p className="border border-top border-1 p-0 m-0"></p> */}
                     {/* <HomeTopRatedProducts title="Featured Products" topProducts={featuredProduct} /> */}
@@ -147,6 +147,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
+                    <Deals />
                     <NewSection />
                     {/* <SectionInfo1 /> */}
                     <SectionInfo />
