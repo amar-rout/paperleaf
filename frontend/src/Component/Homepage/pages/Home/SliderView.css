@@ -26,10 +26,14 @@
  float: right;
  transform: translateY(-110%);
 }
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  color: blue;
+.carousel_btn:hover .arrow_right {
+  padding-left: 4px;
 }
+/* .carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgb(0, 0, 4);
+  color:antiquewhite;
+} */
 @media (min-width: 768px) {
   .carousel-item {
     margin-right: 0;

@@ -112,11 +112,11 @@ const Navbar = () => {
                                     </div>
                                 </form> */}
                                 <div className="d-flex ms-sm-2 justify-content-around align-items-center">
-                                    <button className="btn btn-sm p-1 me-2 me-sm-2 me-md-3" onClick={() => navigate("/wishlists")}>
+                                    {/* <button className="btn btn-sm p-1 me-2 me-sm-2 me-md-3" onClick={() => navigate("/wishlists")}>
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M10 2.75C14.0041 2.75 17.25 5.99594 17.25 10C17.25 11.7319 16.6427 13.3219 15.6295 14.5688L20.5303 19.4697C20.8232 19.7626 20.8232 20.2374 20.5303 20.5303C20.2641 20.7966 19.8474 20.8208 19.5538 20.6029L19.4697 20.5303L14.5688 15.6295C13.3219 16.6427 11.7319 17.25 10 17.25C5.99594 17.25 2.75 14.0041 2.75 10C2.75 5.99594 5.99594 2.75 10 2.75ZM10 4.25C6.82436 4.25 4.25 6.82436 4.25 10C4.25 13.1756 6.82436 15.75 10 15.75C13.1756 15.75 15.75 13.1756 15.75 10C15.75 6.82436 13.1756 4.25 10 4.25Z" fill="#fff3cd" />
                                         </svg>
-                                    </button>
+                                    </button> */}
                                     <button className="btn btn-sm position-relative p-1 me-2 me-sm-2 me-md-3" onClick={() => navigate("/wishlists")}>
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M12.8199 5.57912L11.9992 6.40163L11.1759 5.57838C9.07688 3.47931 5.67361 3.47931 3.57455 5.57838C1.47548 7.67744 1.47548 11.0807 3.57455 13.1798L11.4699 21.0751C11.7628 21.368 12.2377 21.368 12.5306 21.0751L20.432 13.1783C22.5264 11.0723 22.53 7.67857 20.4306 5.57912C18.3277 3.47623 14.9228 3.47623 12.8199 5.57912ZM19.3684 12.1206L12.0002 19.4842L4.63521 12.1191C3.12192 10.6058 3.12192 8.15232 4.63521 6.63904C6.14849 5.12575 8.602 5.12575 10.1153 6.63904L11.4727 7.99648C11.7706 8.29435 12.2553 8.28854 12.5459 7.98363L13.8806 6.63978C15.3977 5.12268 17.8528 5.12268 19.3699 6.63978C20.8836 8.15343 20.881 10.5997 19.3684 12.1206Z" fill="#fff3cd" />
@@ -219,14 +219,14 @@ const Navbar = () => {
                     <div className="container nav-scroller">
                         <nav className="nav navcat-link position-relative pt-1" aria-label="Secondary navigation">
                             {/* <NavCatLink className="nav-link ps-0 pe-4" to="/category/browseAll">All products</NavCatLink> */}
-                            <NavCatLink className="nav-link ps-0 pe-4" to="/category/isNewInStore">
-                                New In Store
+                            <NavCatLink className="nav-link ps-0 pe-4" to="/category/newCollections">
+                                New Collections
                                 <span className="position-absolute badge text-danger fw-bold translate-middle top-25 start-75 fw-normal"><small>New</small></span>
                             </NavCatLink>
                             {/* <NavCatLink className="nav-link ps-0 pe-4" to="/category/kurtis">Kurti/Sets</NavCatLink> */}
                             <NavCatLink className="nav-link ps-0 pe-4" to="/category/Dupattas">Dupattas</NavCatLink>
                             <NavCatLink className="nav-link ps-0 pe-4" to="/category/Dress">Dress</NavCatLink>
-                            <NavCatLink className="nav-link ps-0 pe-4" to="/category/Dress Material">Dress Material</NavCatLink>
+                            <NavCatLink className="nav-link ps-0 pe-4" to="/category/DressMaterial">Dress Material</NavCatLink>
                             <NavCatLink className="nav-link ps-0 pe-4" to="/category/Fabrics">Fabrics</NavCatLink>
                             <NavCatLink className="nav-link ps-0 pe-4" to="/category/Jewellery">Jewellery</NavCatLink>
                         </nav>

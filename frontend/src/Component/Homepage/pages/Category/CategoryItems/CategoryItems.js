@@ -36,6 +36,7 @@ import Breadcrumb from "../../Breadcrumb/Breadcrumb";
 const CategoryItems = ({ paramsValue, urlLink }) => {
 
     const [category, setCategory] = useState("");
+    // const [catName, setCatName] = useState("");
     const [page, setPage] = useState(1);
     // let [currentPage, setCurrentPage] = useState(0);
     // let [maxPage, setMaxPage] = useState(0);
@@ -55,15 +56,30 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
     const navigate = useNavigate();
     const { id } = useParams();
     let catName = '';
-    if (id === 'isNewInStore') {
-        catName = 'New In Store';
+    if (id === 'newCollections') {
+        catName = 'New Collections';
+    }
+    else if (id === 'DressMaterial') {
+        catName = 'Dress Material';
     }
     const { search } = useLocation();
     const pageNumber = new URLSearchParams(search).get("page");
 
+    // useEffect(() => {
+    //     if (id === 'isNewInStore') {
+    //         setCatName('New In Store');
+    //     }
+    //     else if(id === 'DressMaterial') {
+    //         setCatName('Dress Material');   
+    //     } else {
+    //         setCatName(id);
+    //     }
+    // }, [dispatch]);
+
     useEffect(() => {
         setCategory(id);
-        dispatch(clearState());
+        window.scrollTo(0, 0);
+        // dispatch(clearState());
     }, [dispatch, id]);
 
     useEffect(() => {
@@ -79,6 +95,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
     useEffect(() => {
         if (getProductStatus === "LOADING") {
             setLoading(true);
+            // dispatch(clearState());
         }
         if (getProductStatus === "LOADED") {
             setProducts(listCatProduct);
@@ -143,11 +160,11 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
             <Breadcrumb
                 links={[
                     { name: 'Home', link: '/', active: false },
-                    { name: `${catName ? catName : id}`, link: `/${category}`, active: false }
+                    { name: `${catName ? catName : id}`, link: `/${category}`, active: true }
                 ]}
             />
             <div className="container my-3">
-                <h4 className="text-center pb-3">{catName ? catName: id}</h4>
+                <h4 className="text-center pb-3">{catName ? catName : id}</h4>
                 {loading &&
                     <div className="d-flex justify-content-center align-items-center">
                         <div className="spinner-grow text-info" role="status">
@@ -184,7 +201,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                                             </button>
                                         }
                                         {product.countInStock < 1 && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle text-muted rounded-pill z-index-1" style={{ zIndex: 1000 }}>Out of Stock</span>}
-                                        {product.isNewInStore && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-success-subtle text-success rounded-pill z-index-1" style={{ zIndex: 999 }}>New</span>}
+                                        {product.newCollection && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-success-subtle text-success rounded-pill z-index-1" style={{ zIndex: 999 }}>New</span>}
                                     </div>
                                     {/* <img src="./assets/images/productImages/product1.jpg" className="card-img-top rounded-4" alt="card 1" /> */}
                                     <img src={product.image} onClick={() => handleProductShow(product._id)} className="card-img-top rounded-0" alt="card 1" />

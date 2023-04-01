@@ -65,13 +65,13 @@ export const getProductByCategory = asyncHandler(async (req, res) => {
   const page = Number(req.query.pageNumber);
 
   const cat = sanitize(req.params.category);
-  if (cat.includes("isNewInStore")) {
+  if (cat.includes("newCollections")) {
     const count = await ProductModel.countDocuments({
-      isNewInStore: true,
+      newCollections: true,
     });
 
     const category = await ProductModel.find({
-      isNewInStore: true,
+      newCollection: true,
     })
       .limit(pageSize)
       .skip(pageSize * (page - 1));

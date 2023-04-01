@@ -31,16 +31,17 @@ const HomeCategory = () => {
                         <h6 className="category-txt fw-normal pt-2">Dress Material</h6>
                     </button>
                     <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Jewellery')}>
-                        {/* <img src="http://localhost:3000/assets/images/categoryImages/jewellery.png" className="category-img bd-placeholder-img rounded-circle border " alt="" /> */}
+                        
                         <img src="/assets/images/catImages/jewellery.png" className="category-img rounded-circle border mb-2 mb-md-3" alt="" />
                         <h6 className="category-txt fw-normal pt-2">Jewellery</h6>
                     </button>
-                    <button className="category-btn col btn btn-default cat-btn opacity-1" onClick={() => navigate('/category/isNewInStore')}>
+                    <button className="category-btn col btn btn-default cat-btn opacity-1" onClick={() => navigate('/category/newCollections')}>
                         <img src="/assets/images/catImages/others.png" className="category-img rounded-circle border mb-2 mb-md-3" alt="" />
                         <h6 className="category-txt fw-normal pt-2">New Collections</h6>
                     </button>
                 </div>
             </div>
+            {/* <img src="http://localhost:3000/assets/images/categoryImages/jewellery.png" className="category-img bd-placeholder-img rounded-circle border " alt="" /> */}
         </section>
     );
 }
