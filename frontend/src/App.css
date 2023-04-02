@@ -72,17 +72,17 @@
 }
 @media (min-width: 768px) {
   .card-img-top {
-      height: 200px;
+      height: 160px;
   }
 }
 @media (min-width: 992px) {
   .card-img-top {
-      height: 180px;
+      height: 160px;
   }
 }
 @media (min-width: 1200px) {
   .card-img-top {
-      height: 240px;
+      height: 200px;
   }
 }
 
