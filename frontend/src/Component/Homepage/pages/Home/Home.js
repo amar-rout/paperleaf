@@ -126,6 +126,9 @@ const Home = () => {
                             <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
                         </li>
                     </ul> */}
+                    <div className="">
+
+                    </div>
                     <div className="pt-4 bg-light">
                         <div className="container">
                             <ul class="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
