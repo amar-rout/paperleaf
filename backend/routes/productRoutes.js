@@ -16,7 +16,7 @@ import { isAdmin, protect } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
 router.route('/').get(getProducts);
-//.post(protect, isAdmin, createProductAdmin);
+router.route('/').post(protect, isAdmin, createProductAdmin);
 
 router.route('/featured/:category?').get(getFeaturedProducts);
 
