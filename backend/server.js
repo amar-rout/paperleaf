@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
+import fs from 'fs';
 import connectDB from './config/db.js';
 
 import bodyParser from "body-parser";
@@ -20,15 +21,22 @@ const app = express();
 
 app.use(express.json());
 
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 import cors from "cors";
-const corsOrigin ={
-    origin:'http://localhost:3000', //or whatever port your frontend is using
-    credentials:true,            
-    optionSuccessStatus:200
-}
+const corsOrigin = [
+  {
+    origin: 'http://localhost:3000', //or whatever port your frontend is using
+    credentials: true,
+    optionSuccessStatus: 200
+  },
+  {
+    origin: 'http://localhost:4000', //or whatever port your frontend is using
+    credentials: true,
+    optionSuccessStatus: 200
+  }
+]
 app.use(cors(corsOrigin));
 
 app.use('/api/homepage', homeRoutes);

@@ -2,6 +2,7 @@ import path from 'path';
 import express from 'express';
 import multer from 'multer';
 const router = express.Router();
+import fs from 'fs';
 
 let filename = null;
 
@@ -40,5 +41,18 @@ router.post('/', upload.single('image'), (req, res) => {
   // Replace is necessary since windows uses "\" for directories
   res.send(`/${req.file.path.replace(/\\/g, '/')}`);
 });
+
+router.delete('/:id', (req, res) => {
+  const __dirname = path.resolve();
+  fs.unlink(path.join(__dirname, '/uploads') + `/${req.params.id}`, (err) => {
+    if (err) {
+      res.send(err);
+      return
+    }
+    //file removed
+    res.send(`File ${req.params.id} deleted successfully.`);
+  })
+});
+
 
 export default router;

@@ -124,7 +124,7 @@ export const deleteProductAdmin = asyncHandler(async (req, res) => {
 // @access Private
 export const createProductAdmin = asyncHandler(async (req, res) => {
   const object = new ProductModel({
-    user: req.user._id,
+    // user: req.body._id,
     name: sanitize(req.body.name),
     image: sanitize(req.body.image),
     price: sanitize(req.body.price),
@@ -155,6 +155,21 @@ export const updateProductAdmin = asyncHandler(async (req, res) => {
     object.countInStock =
       sanitize(req.body.countInStock) || object.countInStock;
 
+    const updatedObj = await object.save();
+    res.status(201).json(updatedObj);
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+// @desc Update product data
+// @route PATCH /api/product/
+// @access Private
+export const removeProductImageAdmin = asyncHandler(async (req, res) => {
+  const object = await ProductModel.findById(sanitize(req.params.id));
+  if (object) {
+    object.image = '';
     const updatedObj = await object.save();
     res.status(201).json(updatedObj);
   } else {
