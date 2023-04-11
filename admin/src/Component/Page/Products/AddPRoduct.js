@@ -8,11 +8,10 @@ const AddProduct = () => {
 
   // const navigate = useNavigate()
 
-  const [imageInputShow, setImageInputShow] = useState(true);
+  const [imageInputShow, setImageInputShow] = useState(false);
+  const [multiImageInputShow, setMultiImageInputShow] = useState(false);
 
   const [images, setImages] = useState([]);
-
-  const [multiImageInputShow, setMultiImageInputShow] = useState(true);
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -76,8 +75,9 @@ const AddProduct = () => {
           ...product,
           image: response.data
         });
-        setImageInputShow(false);
+        setImageInputShow(true);
       }).catch((error) => {
+        setImageInputShow(false);
         setErrorMessage(error.response.data.message)
         setSuccessMessage("")
       });
@@ -101,8 +101,9 @@ const AddProduct = () => {
           images: response.data
         });
         setImages(response.data);
-        setMultiImageInputShow(false);
+        setMultiImageInputShow(true);
       }).catch((error) => {
+        setMultiImageInputShow(false);
         setErrorMessage(error.response.data.message)
         setSuccessMessage("")
       });
@@ -184,10 +185,7 @@ const AddProduct = () => {
         <div>
           <button className="btn btn-md btn-primary my-2 py-2" type="button" onClick={uploadImage}>Upload Image</button>
         </div>
-        {imageInputShow ? "" :
-          <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: '100px', height: '100px' }} />
-        }
-
+        {imageInputShow && <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: '100px', height: '100px' }} />}
         <div></div>
         <div className="d-inline col-6">
           <label htmlFor="prodImage" className="d-block">Product multiple image</label>
@@ -196,9 +194,11 @@ const AddProduct = () => {
         <div>
           <button className="btn btn-md btn-primary my-2 py-2" type="button" onClick={uploadMultipleImage}>Upload Image</button>
         </div>
-        {images.map((image) => (
-          <img src={`http://localhost:5010${image}`} alt="product" style={{ width: '100px', height: '100px' }} />
-        ))}
+        {multiImageInputShow &&
+          images.map((image) => (
+            <img src={`http://localhost:5010${image}`} alt="product" style={{ width: '100px', height: '100px' }} />
+          ))
+        }
 
 
         {/* <div className="text-end m-0 p-0 my-2">

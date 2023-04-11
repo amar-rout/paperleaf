@@ -27,6 +27,21 @@ export const getProducts = asyncHandler(async (req, res) => {
   res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
+// @desc Get all products
+// @route GET /api/product/all
+// @access Private
+export const getAllProducts = asyncHandler(async (req, res) => {
+  const products = await ProductModel.find({});
+  if (products) {
+      res.json(products);
+  } else {
+      res.status(404);
+      throw new Error('Product not found');
+  }
+});
+
+
+
 // @desc Fetch a single product
 // @route GET /api/products/:id
 // @access Public

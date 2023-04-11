@@ -8,6 +8,7 @@ import {
   getProductByCategory,
   getProductById,
   getProducts,
+  getAllProducts,
   getTopProducts,
   updateProductAdmin,
   removeProductImageAdmin,
@@ -17,6 +18,7 @@ import { isAdmin, protect } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
 router.route('/').get(getProducts);
+router.route('/all').get(getAllProducts);
 router.route('/').post(createProductAdmin);
 // router.route('/').post(protect, isAdmin, createProductAdmin);
 

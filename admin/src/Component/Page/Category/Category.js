@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify'
 
 function Category() {
-  const [categoryData, setCategoryData] = useState({ name: '', status: false });
+  const [categoryData, setCategoryData] = useState({ name: '', status: '' });
   const [categories, setCategories] = useState([]);
   const handleChange = (e) => {
     const name = e.target.name;
@@ -53,7 +53,7 @@ function Category() {
   }
   let statusData = {};
   const handleStatus = ({ _id, name, status }) => {
-    statusData ={};
+    statusData = {};
     statusData = { "name": name, "status": !status };
     axios.patch(`${getCategoryURL}${_id}`, statusData)
       .then(response => {
@@ -116,7 +116,7 @@ function Category() {
                 onChange={handleChange}
                 required
               >
-                {/* <option value="-- Select Status --" selected>-- Select Status --</option> */}
+                <option value="" selected>-- Select Status --</option>
                 <option value="true">Active</option>
                 <option value="false">Deactive</option>
               </select>
@@ -173,6 +173,18 @@ function Category() {
                           >
                             {status}
                           </label>
+
+                          {/* <select
+                            className="form-select"
+                            name="status"
+                            value={status}
+                            onChange={() => handleStatus({ _id, status })}
+                          >
+                            <option value="" selected>-- Select Status --</option>
+                            <option value="true">Active</option>
+                            <option value="false">Deactive</option>
+                          </select> */}
+
                         </div>
                       </td>
                       <td>
