@@ -10,6 +10,8 @@ const AddProduct = () => {
 
   const [imageInputShow, setImageInputShow] = useState(true);
 
+  const [images, setImages] = useState([]);
+
   const [multiImageInputShow, setMultiImageInputShow] = useState(true);
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -98,6 +100,7 @@ const AddProduct = () => {
           ...product,
           images: response.data
         });
+        setImages(response.data);
         setMultiImageInputShow(false);
       }).catch((error) => {
         setErrorMessage(error.response.data.message)
@@ -193,9 +196,9 @@ const AddProduct = () => {
         <div>
           <button className="btn btn-md btn-primary my-2 py-2" type="button" onClick={uploadMultipleImage}>Upload Image</button>
         </div>
-        {multiImageInputShow ? "" :
-          <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: '100px', height: '100px' }} />
-        }
+        {images.map((image) => (
+          <img src={`http://localhost:5010${image}`} alt="product" style={{ width: '100px', height: '100px' }} />
+        ))}
 
 
         {/* <div className="text-end m-0 p-0 my-2">
