@@ -42,6 +42,12 @@ router.post('/', upload.single('image'), (req, res) => {
   res.send(`/${req.file.path.replace(/\\/g, '/')}`);
 });
 
+router.post('/multi', upload.array('image', 3), (req, res) => {
+  // Replace is necessary since windows uses "\" for directories
+  // res.send(`/${req.file.path.replace(/\\/g, '/')}`);
+  res.send(`req.body.file`);
+});
+
 router.delete('/:id', (req, res) => {
   const __dirname = path.resolve();
   fs.unlink(path.join(__dirname, '/uploads') + `/${req.params.id}`, (err) => {

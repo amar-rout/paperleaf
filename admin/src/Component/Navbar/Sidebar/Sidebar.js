@@ -139,20 +139,20 @@ const Sidebar = () => {
                 </ul>
             </div>
             {/* <div className="position-absolute fixed-bottom px-4 py-3 bg-white" style={{ width: "280px" }}>
-                <div class="dropdown">
-                    <a href="/" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
+                <div className="dropdown">
+                    <a href="/" className="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
                         <strong>Amarendra Rout</strong>
                     </a>
-                    <ul class="dropdown-menu text-small shadow" style={{}}>
-                        <li><a class="dropdown-item" href="/">Profile</a></li>
-                        <li><a class="dropdown-item" href="/">Settings</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="/">Sign out</a></li>
+                    <ul className="dropdown-menu text-small shadow" style={{}}>
+                        <li><a className="dropdown-item" href="/">Profile</a></li>
+                        <li><a className="dropdown-item" href="/">Settings</a></li>
+                        <li><hr className="dropdown-divider" /></li>
+                        <li><a className="dropdown-item" href="/">Sign out</a></li>
                     </ul>
                 </div>
             </div> */}
-            <div class="b-example-divider b-example-vr"></div>
+            <div className="b-example-divider b-example-vr"></div>
             <div className="bg-light w-100" style={{overflowY: 'scroll'}}>
                 <Outlet />
                 <Footer />

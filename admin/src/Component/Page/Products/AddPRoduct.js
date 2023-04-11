@@ -10,13 +10,17 @@ const AddProduct = () => {
 
   const [imageInputShow, setImageInputShow] = useState(true);
 
+  const [multiImageInputShow, setMultiImageInputShow] = useState(true);
+
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
   const [product, setProduct] = useState({
     name: "",
     prodImage: "",
+    prodImages: "",
     image: "",
+    images: "",
     price: "",
     salePrice: "",
     category: "",
@@ -28,6 +32,10 @@ const AddProduct = () => {
   const addNewProductURL = 'http://localhost:5010/api/products';
   const imageUploadURL = 'http://localhost:5010/api/upload';
   let file = null;
+  let files = null;
+
+  let formDataMulti = new FormData();
+
   const handleChange = e => {
     const { name, value } = e.target;
     setProduct({
@@ -38,6 +46,15 @@ const AddProduct = () => {
   const handleImageChange = e => {
     file = e.target.files[0];
     // handleChange(e);
+  }
+
+  const handleImagesChange = e => {
+    files = e.target.files;
+    if (files.length !== 0) {
+        for (const single_file of files) {
+          formDataMulti.append('image', single_file);
+        }
+    }
   }
 
   const uploadImage = () => {
@@ -54,6 +71,24 @@ const AddProduct = () => {
           image: response.data
         });
         setImageInputShow(false);
+      }).catch((error) => {
+        setErrorMessage(error.response.data.message)
+        setSuccessMessage("")
+      });
+  }
+
+  const uploadMultipleImage = () => {
+    axios.post(imageUploadURL, formDataMulti, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then((response) => {
+        setProduct({
+          ...product,
+          images: response.data
+        });
+        setMultiImageInputShow(false);
       }).catch((error) => {
         setErrorMessage(error.response.data.message)
         setSuccessMessage("")
@@ -88,55 +123,65 @@ const AddProduct = () => {
   }
 
   return (
-    <div className="container p-5">
+    <div className="container px-5">
       <h4 className="my-2" style={{ letterSpacing: 1 }}>Add new product</h4>
       <hr />
       <div className="row">
 
-        {/* <h5 className="my-2">Login</h5> */}
         <div className="d-inline col-6">
-          <label for="name" class="d-block">Product name</label>
+          <label htmlFor="name" className="d-block">Product name</label>
           <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark d-block" type="text" name="name" id="name" value={product.name} onChange={handleChange} placeholder="Enter product name" required />
         </div>
 
         <div className="d-inline col-6">
-          <label for="description" class="d-block">Product description</label>
+          <label htmlFor="description" className="d-block">Product description</label>
           <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="text" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Enter product description" required />
         </div>
 
         <div className="d-inline col-6">
-          <label for="category" class="d-block">Product category</label>
+          <label htmlFor="category" className="d-block">Product category</label>
           <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="text" name="category" id="category" value={product.category} onChange={handleChange} placeholder="Enter product category" required />
         </div>
 
         <div className="d-inline col-6">
-          <label for="brand" class="d-block">Product brand</label>
+          <label htmlFor="brand" className="d-block">Product brand</label>
           <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="text" name="brand" id="brand" value={product.brand} onChange={handleChange} placeholder="Enter product brand" disabled required />
         </div>
 
         <div className="d-inline col-6">
-          <label for="price" class="d-block">Product price</label>
+          <label htmlFor="price" className="d-block">Product price</label>
           <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="number" name="price" id="price" min="0.00" step="0.01" presicion={2} value={product.price} onChange={handleChange} placeholder="Enter product price" required />
         </div>
         <div className="d-inline col-6">
-          <label for="salePrice" class="d-block">Product sale price</label>
+          <label htmlFor="salePrice" className="d-block">Product sale price</label>
           <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="number" name="salePrice" id="salePrice" min="0.00" step="0.01" presicion={2} value={product.salePrice} onChange={handleChange} placeholder="Enter product sale price" required />
         </div>
         <div className="d-inline col-6">
-          <label for="countInStock" class="d-block">Product sale price</label>
+          <label htmlFor="countInStock" className="d-block">Product sale price</label>
           <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" min="0" max="100" type="number" name="countInStock" id="countInStock" value={product.countInStock} onChange={handleChange} placeholder="Numbers of stock" required />
         </div>
 
         <div></div>
         <div className="d-inline col-6">
-          <label for="prodImage" class="d-block">Product image</label>
+          <label htmlFor="prodImage" className="d-block">Product image</label>
           <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="file" name="prodImage" id="prodImage" onChange={handleImageChange} placeholder="Choose product image" required />
-        </div>       
+        </div>
         <div>
           <button className="btn btn-md btn-primary my-2 py-2" type="button" onClick={uploadImage}>Upload Image</button>
         </div>
-
         {imageInputShow ? "" :
+          <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: '100px', height: '100px' }} />
+        }
+
+        <div></div>
+        <div className="d-inline col-6">
+          <label htmlFor="prodImage" className="d-block">Product multiple image</label>
+          <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="file" name="prodImages" id="prodImages" onChange={handleImagesChange} placeholder="Choose product image" multiple required />
+        </div>
+        <div>
+          <button className="btn btn-md btn-primary my-2 py-2" type="button" onClick={uploadMultipleImage}>Upload Image</button>
+        </div>
+        {multiImageInputShow ? "" :
           <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: '100px', height: '100px' }} />
         }
 

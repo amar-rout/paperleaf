@@ -7,7 +7,7 @@ const Footer = () => {
                 <div className="d-flex flex-1 justify-content-between align-items-center">
                     <div>© 2023 - <a href="https://www.paperleaf.co.in" className="link-dark text-decoration-none">Paperleaf</a></div>
                     <div>
-                        Designed by <a href="https://www.techrestoreservice.com" class="link-primary text-decoration-none">TechRestoreServices</a>
+                        Designed by <a href="https://www.techrestoreservice.com" className="link-primary text-decoration-none">TechRestoreServices</a>
                     </div>
                 </div>
             </div>
