@@ -34,7 +34,7 @@ const AddProduct = () => {
   let file = null;
   let files = null;
 
-  let formDataMulti = new FormData();
+  let multipleImages = [];
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -45,15 +45,19 @@ const AddProduct = () => {
   }
   const handleImageChange = e => {
     file = e.target.files[0];
+    console.log(file);
     // handleChange(e);
   }
 
   const handleImagesChange = e => {
     files = e.target.files;
+    multipleImages = [];
     if (files.length !== 0) {
-        for (const single_file of files) {
-          formDataMulti.append('image', single_file);
-        }
+      let i = 0;
+      for (const single_file of files) {
+        multipleImages[i] = single_file;
+        i++;
+      }
     }
   }
 
@@ -78,7 +82,13 @@ const AddProduct = () => {
   }
 
   const uploadMultipleImage = () => {
-    axios.post(imageUploadURL, formDataMulti, {
+    let formDataMulti = new FormData();
+    for (const singleImage of multipleImages) {
+      formDataMulti.append("image", singleImage);
+      console.log(singleImage);
+    }
+    // formDataMulti.append("image", multipleImages);
+    axios.post(imageUploadURL + "/multi", formDataMulti, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -98,7 +108,9 @@ const AddProduct = () => {
   const createNewProduct = () => {
     if (product.name && product.price && product.category &&
       product.brand && product.description && product.countInStock) {
+      console.log(product);
       console.log("Image : " + product.image);
+      console.log("Images : " + product.images);
       axios.post(addNewProductURL, product)
         .then(response => {
           setSuccessMessage(`Product ${product.name} added Successfully`);
@@ -176,7 +188,7 @@ const AddProduct = () => {
         <div></div>
         <div className="d-inline col-6">
           <label htmlFor="prodImage" className="d-block">Product multiple image</label>
-          <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="file" name="prodImages" id="prodImages" onChange={handleImagesChange} placeholder="Choose product image" multiple required />
+          <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="file" name="prodImages" id="prodImages" onChange={handleImagesChange} placeholder="Choose product image" multiple />
         </div>
         <div>
           <button className="btn btn-md btn-primary my-2 py-2" type="button" onClick={uploadMultipleImage}>Upload Image</button>

@@ -7,14 +7,15 @@ const products = [
     countInStock: 10,
     name: 'Fabrics',
     image: '/assets/images/productImages/Fabrics/IMG_F1.jpg',
-    images:[
-      {
-        image:'/images/kurtas_4.png'
-      },
-      {
-        image:'/images/kurtas_3.png'
-      }
-    ],
+    // images:[
+    //   {
+    //     image:'/images/kurtas_4.png'
+    //   },
+    //   {
+    //     image:'/images/kurtas_3.png'
+    //   }
+    // ],
+    images:[],
     variant: [
       {
         size: 'S',

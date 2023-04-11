@@ -24,11 +24,12 @@ const productModel = mongoose.Schema(
     // },
     name: { type: String, required: true },
     image: { type: String, required: true },
-    images:[
-      {
-        image: { type: String },
-      }
-    ],
+    // images:[
+    //   {
+    //     image: { type: String },
+    //   }
+    // ],
+    images:[],
     variant:[
       {
         size: { type: String, required: true },
