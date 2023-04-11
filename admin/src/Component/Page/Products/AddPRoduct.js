@@ -13,8 +13,9 @@ const AddProduct = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  let [product, setProduct] = useState({
+  const [product, setProduct] = useState({
     name: "",
+    prodImage: "",
     image: "",
     price: "",
     salePrice: "",
@@ -22,76 +23,47 @@ const AddProduct = () => {
     brand: "PAPERLEAF",
     description: "",
     countInStock: 0,
-  })
+  });
 
   const addNewProductURL = 'http://localhost:5010/api/products';
   const imageUploadURL = 'http://localhost:5010/api/upload';
   let file = null;
   const handleChange = e => {
     const { name, value } = e.target;
-    if (name === 'image') {
-      file = e.target.files[0];
-    }
     setProduct({
       ...product,
       [name]: value
     })
   }
-  
+  const handleImageChange = e => {
+    file = e.target.files[0];
+    // handleChange(e);
+  }
 
-  // const handleChangeImage = (e) => {
-    
-    // uploadFile(url, file);
-    // if (product.image) {
-    //   uploadFile(url, file);
-    // } else {
-    //   let removeImageURL = `url/${product.image}`;
-    //   removeFile(removeImageURL);
-    //   uploadFile(url, file);
-    // }
-  // };
+  const uploadImage = () => {
+    let formData = new FormData();
+    formData.append("image", file);
+    axios.post(imageUploadURL, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then((response) => {
+        setProduct({
+          ...product,
+          image: response.data
+        });
+        setImageInputShow(false);
+      }).catch((error) => {
+        setErrorMessage(error.response.data.message)
+        setSuccessMessage("")
+      });
+  }
 
-  // const uploadFile = (url, file) => {
-
-  // };
-
-  // const removeFile = (removeImageURL, file) => {
-  //   let formData = new FormData();
-  //   formData.append("image", file);
-  //   axios.delete(removeImageURL)
-  //     .then((response) => {
-  //       setProduct({
-  //         ...product,
-  //         image: ""
-  //       });
-  //       console.log(product.image);
-  //     }).catch((error) => {
-  //       setErrorMessage(error.response.data.message)
-  //       setSuccessMessage("")
-  //     });
-  // };
-  let imagePath = "";
   const createNewProduct = () => {
     if (product.name && product.price && product.category &&
       product.brand && product.description && product.countInStock) {
-      let formData = new FormData();
-      formData.append("image", file);
-      axios.post(imageUploadURL, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-        .then((response) => {
-          imagePath = response.data;
-          setImageInputShow(false);
-          console.log(imagePath);
-          
-        }).catch((error) => {
-          setErrorMessage(error.response.data.message)
-          setSuccessMessage("")
-        });
-
-        setProduct({image: imagePath});
+      console.log("Image : " + product.image);
       axios.post(addNewProductURL, product)
         .then(response => {
           setSuccessMessage(`Product ${product.name} added Successfully`);
@@ -119,28 +91,52 @@ const AddProduct = () => {
     <div className="container p-5">
       <h4 className="my-2" style={{ letterSpacing: 1 }}>Add new product</h4>
       <hr />
-      <div className="row row-cols-2">
+      <div className="row">
 
         {/* <h5 className="my-2">Login</h5> */}
-        <input className="my-2 py-2 rounded border border-1 border-dark" type="text" name="name" id="name" value={product.name} onChange={handleChange} placeholder="Enter product name" required />
+        <div className="d-inline col-6">
+          <label for="name" class="d-block">Product name</label>
+          <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark d-block" type="text" name="name" id="name" value={product.name} onChange={handleChange} placeholder="Enter product name" required />
+        </div>
 
-        <input className="my-2 py-2 rounded border border-1 border-dark" type="text" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Enter product description" required />
+        <div className="d-inline col-6">
+          <label for="description" class="d-block">Product description</label>
+          <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="text" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Enter product description" required />
+        </div>
 
-        <input className="my-2 py-2 rounded border border-1 border-dark" type="text" name="category" id="category" value={product.category} onChange={handleChange} placeholder="Enter product category" required />
+        <div className="d-inline col-6">
+          <label for="category" class="d-block">Product category</label>
+          <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="text" name="category" id="category" value={product.category} onChange={handleChange} placeholder="Enter product category" required />
+        </div>
 
-        <input className="my-2 py-2 rounded border border-1 border-dark" type="text" name="brand" id="brand" value={product.brand} onChange={handleChange} placeholder="Enter product brand" disabled required />
+        <div className="d-inline col-6">
+          <label for="brand" class="d-block">Product brand</label>
+          <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="text" name="brand" id="brand" value={product.brand} onChange={handleChange} placeholder="Enter product brand" disabled required />
+        </div>
 
-        <input className="my-2 py-2 rounded border border-1 border-dark" type="text" name="price" id="price" value={product.price} onChange={handleChange} placeholder="Enter product price" required />
-
-        <input className="my-2 py-2 rounded border border-1 border-dark" type="text" name="salePrice" id="salePrice" value={product.salePrice} onChange={handleChange} placeholder="Enter product sale price" required />
-
-        <input className="my-2 py-2 rounded border border-1 border-dark" min="0" max="100" type="number" name="countInStock" id="countInStock" value={product.countInStock} onChange={handleChange} placeholder="Numbers of stock" required />
+        <div className="d-inline col-6">
+          <label for="price" class="d-block">Product price</label>
+          <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="number" name="price" id="price" min="0.00" step="0.01" presicion={2} value={product.price} onChange={handleChange} placeholder="Enter product price" required />
+        </div>
+        <div className="d-inline col-6">
+          <label for="salePrice" class="d-block">Product sale price</label>
+          <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="number" name="salePrice" id="salePrice" min="0.00" step="0.01" presicion={2} value={product.salePrice} onChange={handleChange} placeholder="Enter product sale price" required />
+        </div>
+        <div className="d-inline col-6">
+          <label for="countInStock" class="d-block">Product sale price</label>
+          <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" min="0" max="100" type="number" name="countInStock" id="countInStock" value={product.countInStock} onChange={handleChange} placeholder="Numbers of stock" required />
+        </div>
 
         <div></div>
+        <div className="d-inline col-6">
+          <label for="prodImage" class="d-block">Product image</label>
+          <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="file" name="prodImage" id="prodImage" onChange={handleImageChange} placeholder="Choose product image" required />
+        </div>       
+        <div>
+          <button className="btn btn-md btn-primary my-2 py-2" type="button" onClick={uploadImage}>Upload Image</button>
+        </div>
 
-        {imageInputShow ?
-          <input className="my-2 py-2 rounded border border-1 border-dark" type="file" name="image" id="image" onChange={handleChange} placeholder="Choose product image" required />
-          :
+        {imageInputShow ? "" :
           <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: '100px', height: '100px' }} />
         }
 
@@ -157,8 +153,9 @@ const AddProduct = () => {
       <span className="text-danger">
         {errorMessage}
       </span>
-
-      <button className="btn btn-md btn-primary my-2" type="button" onClick={createNewProduct}>Add Product</button>
+      <br />
+      <button className="btn btn-md btn-primary my-2 w-25" type="button" onClick={createNewProduct}>Add Product</button>
+      <br />
       <span className="text-success">
         {successMessage}
       </span>
