@@ -42,16 +42,19 @@ router.post('/', upload.single('image'), (req, res) => {
   res.send(`/${req.file.path.replace(/\\/g, '/')}`);
 });
 
-router.post('/multi', upload.array('image', 3), (req, res) => {
+router.post('/multi', upload.array('image', 10), (req, res) => {
   // Replace is necessary since windows uses "\" for directories
   // res.send(`/${req.file.path.replace(/\\/g, '/')}`);
+  // console.log(req.files[0]);
+  // console.log(req.files[1]);
+  // console.log(req.files[2]);
+  // data.push(`/${req.files[0].path.replace(/\\/g, '/')}`); 
+  // data.push(`/${req.files[1].path.replace(/\\/g, '/')}`); 
+  // data.push(`/${req.files[2].path.replace(/\\/g, '/')}`);
   let data = [];
-  console.log(req.files[0]);
-  console.log(req.files[1]);
-  console.log(req.files[2]);
-  data.push(`/${req.files[0].path.replace(/\\/g, '/')}`); 
-  data.push(`/${req.files[1].path.replace(/\\/g, '/')}`); 
-  data.push(`/${req.files[2].path.replace(/\\/g, '/')}`);
+  req.files.map((file) => {
+    data.push(`/${file.path.replace(/\\/g, '/')}`); 
+  });
   res.send(data);
 });
 

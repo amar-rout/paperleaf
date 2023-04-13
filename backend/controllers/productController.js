@@ -193,6 +193,20 @@ export const removeProductImageAdmin = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 });
+// @desc Update product data
+// @route PATCH /api/product/
+// @access Private
+export const removeProductImagesAdmin = asyncHandler(async (req, res) => {
+  const object = await ProductModel.findById(sanitize(req.params.id));
+  if (object) {
+    object.images = '';
+    const updatedObj = await object.save();
+    res.status(201).json(updatedObj);
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
 
 // @desc Creates a new reviews
 // @route POST /api/product/:id/reviews

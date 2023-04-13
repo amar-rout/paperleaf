@@ -45,11 +45,11 @@ export const createCategory = asyncHandler(async (req, res) => {
 // @route PUT /api/category/
 // @access Private
 export const updateCategory = asyncHandler(async (req, res) => {
+    const { name, status } = req.body;
     const object = await CategoryModel.findById(sanitize(req.params.id));
     if (object) {
-        object.name = sanitize(req.body.name) || object.name;
-        object.status = sanitize(req.body.status) || object.status;
-
+        object.name = sanitize(name) || object.name;
+        object.status = sanitize(status);
         const updatedObj = await object.save();
         res.status(201).json(updatedObj);
     } else {

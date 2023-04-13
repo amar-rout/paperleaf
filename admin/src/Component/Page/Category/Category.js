@@ -36,37 +36,48 @@ function Category() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(addCategoryURL, categoryData)
-      .then(response => {
-        toast.success(response.data);
-      }).catch(error => {
-        if (error.response) {
-          toast.dismiss()
-          toast.error(error.response.data.message)
-        } else if (error.request) {
-          // Handle proper error messages
-        } else {
-          toast.dismiss()
-          toast.error(error.message)
-        }
-      })
+    const itemInCategories = categories.find((item) => item.name === categoryData.name);
+    console.log(itemInCategories);
+    if (itemInCategories) {
+      toast.dismiss();
+      toast.error(`Category ${categoryData.name} is already exist.`)
+    } else {
+      axios.post(addCategoryURL, categoryData)
+        .then(response => {
+          toast.dismiss();
+          toast.success(`${categoryData.name} added successfully.`);
+        }).catch(error => {
+          if (error.response) {
+            toast.dismiss();
+            toast.error(error.response.data.message);
+          } else if (error.request) {
+            // Handle proper error messages
+          } else {
+            toast.dismiss();
+            toast.error(error.message);
+          }
+        });
+    }
   }
-  let statusData = {};
-  const handleStatus = ({ _id, name, status }) => {
-    statusData = {};
-    statusData = { "name": name, "status": !status };
-    axios.patch(`${getCategoryURL}${_id}`, statusData)
+  
+  const handleStatus = (id, name, status) => {
+    let statusData = {"name": name, "status": !status};
+    console.log(statusData);
+    axios.patch(`${getCategoryURL}/${id}`, statusData)
       .then(response => {
-        toast.success(response.data);
+        toast.dismiss();
+        let message = !status ? "activated" : "deactivated";
+        toast.success(`${name} ${message}`);
       }).catch(error => {
         if (error.response) {
-          toast.dismiss()
-          toast.error(error.response.data.message)
+          toast.dismiss();
+          toast.error(error.response.data.message);
         } else if (error.request) {
-          // Handle proper error messages
+          toast.dismiss();
+          toast.error(error.request);
         } else {
-          toast.dismiss()
-          toast.error(error.message)
+          toast.dismiss();
+          toast.error(error.message);
         }
       })
   }
@@ -74,16 +85,18 @@ function Category() {
   const handleDelete = (id) => {
     axios.delete(`${getCategoryURL}/${id}`)
       .then(response => {
-        toast.success(response);
+        const itemInCategories = categories.find((item) => item._id === id);
+        toast.dismiss();
+        toast.success(`${itemInCategories.name} deleted successfully.`);
       }).catch(error => {
         if (error.response) {
-          toast.dismiss()
-          toast.error(error.response.data.message)
+          toast.dismiss();
+          toast.error(error.response.data.message);
         } else if (error.request) {
           // Handle proper error messages
         } else {
-          toast.dismiss()
-          toast.error(error.message)
+          toast.dismiss();
+          toast.error(error.message);
         }
       })
   }
@@ -113,10 +126,11 @@ function Category() {
                 className="form-select"
                 name="status"
                 value={categoryData.status}
+                // defaultValue=""
                 onChange={handleChange}
                 required
               >
-                <option value="" selected>-- Select Status --</option>
+                <option value="">-- Select Status --</option>
                 <option value="true">Active</option>
                 <option value="false">Deactive</option>
               </select>
@@ -164,7 +178,7 @@ function Category() {
                             role="switch"
                             id="flexSwitchCheckDefault"
                             defaultChecked={status}
-                            onChange={() => handleStatus({ _id, status })}
+                            onChange={() => handleStatus(_id, name, status)}
                           // disabled={ adminData.userType !== "super admin" && id <= 4}
                           />
                           <label

@@ -6,12 +6,11 @@ import { Routes, Route } from 'react-router-dom';
 // import { Counter } from './features/counter/Counter';
 import './App.css';
 
-// Bootstrap CSS
-import "bootstrap/dist/css/bootstrap.min.css";
-// Bootstrap Bundle JS
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-// Bootstrap icons
-import "bootstrap-icons/font/bootstrap-icons.css";
+
+// React-tostify
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 import Homepage from './Component/Homepage';
 import Dashboard from './Component/Page/Dashboard/Dashboard';
 import Products from './Component/Page/Products/Products';
@@ -61,6 +60,7 @@ function App() {
           <Route path="/users/:id" element={<UserDetails />} />
         </Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
