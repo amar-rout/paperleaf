@@ -27,9 +27,9 @@ router.route('/featured/:category?').get(getFeaturedProducts);
 router.route('/top/:category?').get(getTopProducts);
 
 router.route('/:id').get(getProductById)
-.delete(deleteProductAdmin)
-.patch(updateProductAdmin)
-.put(removeProductImageAdmin);
+                    .delete(deleteProductAdmin)
+                    .patch(updateProductAdmin)
+                    .put(removeProductImageAdmin);
 // .delete(protect, isAdmin, deleteProductAdmin)
 // .patch(protect, isAdmin, updateProductAdmin);
 

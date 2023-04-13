@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function Products() {
 
@@ -27,6 +28,18 @@ function Products() {
           console.error(error.message)
         }
       })
+  }
+
+  const handleDelete = (id, name) => {
+    const deleteProductURL = `http://localhost:5010/api/products/${id}`;
+    axios.delete(deleteProductURL)
+      .then((response) => {
+        toast.dismiss();
+        toast.success(`Product ${name} deleted successfully`);
+      }).catch((error) => {
+        toast.dismiss();
+        toast.error(error);
+      });
   }
 
   return (
@@ -72,7 +85,7 @@ function Products() {
                           </button>
                           <button type="button"
                             className="btn btn-sm btn-danger ms-1"
-                          // onClick={() => handleDelete(_id)}
+                            onClick={() => handleDelete(_id, name)}
                           // disabled={ adminData.userType !== "super admin" && id <= 4}
                           >
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
