@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ReactStars from "react-rating-stars-component";
 import { useDispatch, useSelector } from 'react-redux';
@@ -86,24 +86,71 @@ const Products = () => {
                 <>
                     {errorMessage === '' && <>{errorMessage}</>}
                     <section className="album py-3 bg-light-subtle">
-                        <div className="container bg-body shadow py-3">
+                        <div className="container bg-body shadow p-md-5 p-2">
                             <div className="row mb-50">
-                                <div className="col-12 col-md-5">
+                                <div className="col-12 col-md-4">
                                     {/* <div className={`detail-gallery mx-md-5 px-2 px-md-5 ${stickyClass}`}> */}
-                                    <div className="mx-md-5 px-2 px-md-5">
+                                    {/* <div className="mx-md-5 px-2 px-md-5">
                                         <span className="zoom-icon"><i className="fi-rs-search"></i></span>
                                         <img src={product.image} alt="product" style={{ width: "100%", height: "400px" }} />
                                         <div className="d-flex flex-0 justify-content-start align-items-center py-2">
-                                            {/* <img className="p-1" src="/assets/images/productImages/DressMaterial/3.jpg" alt="product" style={{ width: "80px", height: "80px" }} />
+                                            <img className="p-1" src="/assets/images/productImages/DressMaterial/3.jpg" alt="product" style={{ width: "80px", height: "80px" }} />
                                             <img className="p-1" src="/assets/images/productImages/DressMaterial/2.jpg" alt="product" style={{ width: "80px", height: "80px" }} />
                                             <img className="p-1" src="/assets/images/productImages/DressMaterial/8.jpg" alt="product" style={{ width: "80px", height: "80px" }} />
-                                            <img className="p-1" src="/assets/images/productImages/DressMaterial/9.jpg" alt="product" style={{ width: "80px", height: "80px" }} /> */}
+                                            <img className="p-1" src="/assets/images/productImages/DressMaterial/9.jpg" alt="product" style={{ width: "80px", height: "80px" }} />
                                             <img className="p-1" src={product.image} alt="product" style={{ width: "64px", height: "64px" }} />
                                             <img className="p-1" src={product.image} alt="product" style={{ width: "64px", height: "64px" }} />
                                         </div>
+                                    </div> */}
+                                    <div>
+                                        <Slider ref={slider => (slider1 = slider)}>
+                                            <div>
+                                                <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: "100%", height: "400px" }} />
+                                            </div>
+                                            {product.images && product.images.map((image) => {
+                                                return (
+                                                    <div>
+                                                        <img src={`http://localhost:5010${image}`} alt="product" style={{ width: "100%", height: "400px" }} />
+                                                    </div>
+                                                )
+                                            })}
+                                            {product.images && product.images.map((image) => {
+                                                return (
+                                                    <div>
+                                                        <img src={`http://localhost:5010${image}`} alt="product" style={{ width: "100%", height: "400px" }} />
+                                                    </div>
+                                                )
+                                            })}
+
+                                        </Slider>
+                                        <Slider
+                                            asNavFor={nav1}
+                                            ref={slider => (slider2 = slider)}
+                                            slidesToShow={6}
+                                            swipeToSlide={true}
+                                            focusOnSelect={true}
+                                        >
+                                            <div>
+                                                <img src={`http://localhost:5010${product.image}`} className='p-2' alt={product.image} style={{ width: "64px", height: "64px" }} />
+                                            </div>
+                                            {product.images && product.images.map((image) => {
+                                                return (
+                                                    <div>
+                                                        <img src={`http://localhost:5010${image}`} className='p-2' alt="product" style={{ width: "64px", height: "64px" }} />
+                                                    </div>
+                                                )
+                                            })}
+                                            {product.images && product.images.map((image) => {
+                                                return (
+                                                    <div>
+                                                        <img src={`http://localhost:5010${image}`} className='p-2' alt="product" style={{ width: "64px", height: "64px" }} />
+                                                    </div>
+                                                )
+                                            })}
+                                        </Slider>
                                     </div>
                                 </div>
-                                <div className="col-12 col-md-7">
+                                <div className="col-12 col-md-8">
                                     <div className="detail-info mx-md-3 px-2 px-md-3 py-2 py-md-0">
                                         <div className="d-flex justify-content-between align-items-center">
                                             {product.countInStock > 0 ?
@@ -227,32 +274,29 @@ const Products = () => {
                                 </div>
 
                                 {/* ReactSlick slider Begin */}
-                                <div class="row">
-                                    <div class="col-md-5">
+                                {/* <div class="row p-5">
+                                    <div class="col-md-4">
                                         <div>
-                                            <h2>Slider Syncing (AsNavFor)</h2>
-                                            <h4>First Slider</h4>
                                             <Slider ref={slider => (slider1 = slider)}>
                                                 <div>
-                                                <img src="/assets/images/productImages/DressMaterial/1.jpg" alt="product"  />
+                                                    <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: "100%", height: "400px" }} />
                                                 </div>
-                                                <div>
-                                                <img src="/assets/images/productImages/DressMaterial/2.jpg" alt="product" style={{ width: "100%", height: "400px" }} />
-                                                </div>
-                                                <div>
-                                                <img src="/assets/images/productImages/DressMaterial/3.jpg" alt="product" style={{ width: "100%", height: "400px" }} />
-                                                </div>
-                                                <div>
-                                                <img src="/assets/images/productImages/DressMaterial/4.jpg" alt="product" style={{ width: "100%", height: "400px" }} />
-                                                </div>
-                                                <div>
-                                                <img src="/assets/images/productImages/DressMaterial/5.jpg" alt="product" style={{ width: "100%", height: "400px" }} />
-                                                </div>
-                                                <div>
-                                                <img src="/assets/images/productImages/DressMaterial/6.jpg" alt="product" style={{ width: "100%", height: "400px" }} />
-                                                </div>
+                                                {product.images && product.images.map((image) => {
+                                                    return (
+                                                        <div>
+                                                            <img src={`http://localhost:5010${image}`} alt="product" style={{ width: "100%", height: "400px" }} />
+                                                        </div>
+                                                    )
+                                                })}
+                                                {product.images && product.images.map((image) => {
+                                                    return (
+                                                        <div>
+                                                            <img src={`http://localhost:5010${image}`} alt="product" style={{ width: "100%", height: "400px" }} />
+                                                        </div>
+                                                    )
+                                                })}
+
                                             </Slider>
-                                            <h4>Second Slider</h4>
                                             <Slider
                                                 asNavFor={nav1}
                                                 ref={slider => (slider2 = slider)}
@@ -261,27 +305,26 @@ const Products = () => {
                                                 focusOnSelect={true}
                                             >
                                                 <div>
-                                                <img className="" src="/assets/images/productImages/DressMaterial/1.jpg" alt="product" style={{ width: "64px", height: "64px" }} />
+                                                    <img src={`http://localhost:5010${product.image}`} className='p-2' alt={product.image} style={{ width: "64px", height: "64px" }} />
                                                 </div>
-                                                <div>
-                                                <img className="" src="/assets/images/productImages/DressMaterial/2.jpg" alt="product" style={{ width: "64px", height: "64px" }} />
-                                                </div>
-                                                <div>
-                                                <img className="" src="/assets/images/productImages/DressMaterial/3.jpg" alt="product" style={{ width: "64px", height: "64px" }} />
-                                                </div>
-                                                <div>
-                                                <img className="" src="/assets/images/productImages/DressMaterial/4.jpg" alt="product" style={{ width: "64px", height: "64px" }} />
-                                                </div>
-                                                <div>
-                                                <img className="" src="/assets/images/productImages/DressMaterial/5.jpg" alt="product" style={{ width: "64px", height: "64px" }} />
-                                                </div>
-                                                <div>
-                                                <img className="" src="/assets/images/productImages/DressMaterial/6.jpg" alt="product" style={{ width: "64px", height: "64px" }} />
-                                                </div>
+                                                {product.images && product.images.map((image) => {
+                                                    return (
+                                                        <div>
+                                                            <img src={`http://localhost:5010${image}`} className='p-2' alt="product" style={{ width: "64px", height: "64px" }} />
+                                                        </div>
+                                                    )
+                                                })}
+                                                {product.images && product.images.map((image) => {
+                                                    return (
+                                                        <div>
+                                                            <img src={`http://localhost:5010${image}`} className='p-2' alt="product" style={{ width: "64px", height: "64px" }} />
+                                                        </div>
+                                                    )
+                                                })}
                                             </Slider>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 {/* ReactSlick slider End */}
 
                                 {/* Slick slider Begin */}

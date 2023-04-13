@@ -69,17 +69,17 @@ const Home = () => {
         <main>
             {/* <div className="py-3 bg-dark bg-pattern mb-4"></div> */}
             {/* <div className="container"> */}
-                <div className="row bg-dark bg-pattern py-3">
-                    <div className="col-12">
-                        <div className="text-center text-white">
-                            <span className="fs-6 fw-semibold ls-2" style={{ color: "rgb(234, 255, 150)" }}>
-                                <i className="bi bi-lightning-charge-fill fs-5"></i>
-                                &nbsp;&nbsp; Happy Holiday Deals on Everything &nbsp;&nbsp;
-                                <i className="bi bi-lightning-charge-fill fs-5"></i>
-                            </span>
-                        </div>
+            <div className="row bg-dark bg-pattern py-3">
+                <div className="col-12">
+                    <div className="text-center text-white">
+                        <span className="fs-6 fw-semibold ls-2" style={{ color: "rgb(234, 255, 150)" }}>
+                            <i className="bi bi-lightning-charge-fill fs-5"></i>
+                            &nbsp;&nbsp; Happy Holiday Deals on Everything &nbsp;&nbsp;
+                            <i className="bi bi-lightning-charge-fill fs-5"></i>
+                        </span>
                     </div>
                 </div>
+            </div>
             {/* </div> */}
 
             {/* <span className="fs-6 fw-semibold ls-2" style={{ color: "rgba(200, 160, 40)" }}> */}
@@ -114,7 +114,7 @@ const Home = () => {
                         <SliderView />
                     </div>
                     <HomeCategory />
-                    
+
 
                     {/* <p className="border border-top border-1 p-0 m-0"></p> */}
                     {/* <HomeTopRatedProducts title="Featured Products" topProducts={featuredProduct} /> */}
@@ -129,24 +129,34 @@ const Home = () => {
                     <div className="">
 
                     </div>
-                    <div className="pt-4 bg-light">
+                    <div className="bg-light">
                         <div className="container">
-                            <ul class="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
-                                <li class="nav-item mx-2" role="presentation">
-                                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Top Products</button>
-                                </li>
-                                <li class="nav-item mx-2" role="presentation">
-                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Featured Products</button>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
-                                <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
-                            </div>
-                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-                                <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
+                            <div className="row">
+                                <div className="col-4">
+                                    <div className="card h-100">
+                                        Sidebar
+                                    </div>
+                                </div>
+                                <div className="col-8">
+                                    <div className="mb-2 border-bottom border-2">
+                                        <ul class="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
+                                            <li class="nav-item mx-2" role="presentation">
+                                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Top Products</button>
+                                            </li>
+                                            <li class="nav-item mx-2" role="presentation">
+                                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Featured Products</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                                            <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                                            <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

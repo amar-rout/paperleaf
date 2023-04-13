@@ -54,7 +54,7 @@ const AddProduct = () => {
   const addNewProductURL = 'http://localhost:5010/api/products';
   const imageUploadURL = 'http://localhost:5010/api/upload';
   let file = null;
-  let temp_file = null;
+  // let temp_file = null;
   let files = null;
 
   let multipleImages = [];
@@ -69,14 +69,18 @@ const AddProduct = () => {
   const handleImageChange = e => {
     file = e.target.files[0];
     if (file) {
-      uploadImage();  
+      if (product.image !== "") {
+        const imageArr = product.image.split("/");
+        deleteImage(imageArr[2]);
+      }
+      uploadImage();
     } else {
       if (product.image !== "") {
         const imageArr = product.image.split("/");
         deleteImage(imageArr[2]);
       } else {
         toast.dismiss();
-        toast.warning("You have not selected any image. Please select an image.");
+        toast.warning("Please select one image.");
       }
     }
   }
@@ -93,7 +97,6 @@ const AddProduct = () => {
     }
     if (files.length >= 1) {
       uploadMultipleImage();
-      console.log(product.images);
     }
   }
 
