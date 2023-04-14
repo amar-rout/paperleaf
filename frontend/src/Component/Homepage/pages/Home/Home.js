@@ -171,7 +171,7 @@ const Home = () => {
                     <div className="bg-light py-5">
                         <div className="container">
                             <div className="row">
-                                <div className="col-3">
+                                <div className="col-3 px-4">
                                     <div className="text-center">
                                         <h4>Monthly Best Sale</h4>
                                     </div>
@@ -188,21 +188,21 @@ const Home = () => {
                                     </div>
                                 </div>
                                 <div className="col-9">
-                                    <div className="mb-2 border-bottom border-2">
+                                    <div className="mb-2">
                                         <ul class="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li class="nav-item mx-2" role="presentation">
-                                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Top Products</button>
+                                                <button class="nav-link active" id="pills-top-tab" data-bs-toggle="pill" data-bs-target="#pills-top" type="button" role="tab" aria-controls="pills-top" aria-selected="true">Top Products</button>
                                             </li>
                                             <li class="nav-item mx-2" role="presentation">
-                                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Featured Products</button>
+                                                <button class="nav-link" id="pills-featured-tab" data-bs-toggle="pill" data-bs-target="#pills-featured" type="button" role="tab" aria-controls="pills-featured" aria-selected="false">Featured Products</button>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="tab-content" id="pills-tabContent">
-                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                                        <div class="tab-pane fade show active" id="pills-top" role="tabpanel" aria-labelledby="pills-top-tab" tabindex="0">
                                             <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
                                         </div>
-                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                                        <div class="tab-pane fade" id="pills-featured" role="tabpanel" aria-labelledby="pills-featured-tab" tabindex="0">
                                             <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
                                         </div>
                                     </div>
