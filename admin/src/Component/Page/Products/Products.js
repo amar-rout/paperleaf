@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 function Products() {
 
   const [products, setProducts] = useState([]);
+
+  const navigate = useNavigate();
 
   let currINR = new Intl.NumberFormat('en-IN', {
     style: 'currency',
@@ -42,6 +45,11 @@ function Products() {
       });
   }
 
+  const handleEdit = (id) => {
+    const editProductURL = `/products/${id}/edit`;
+    navigate(editProductURL);
+  }
+
   return (
     <div className='container p-5'>
       <div className="card my-5 mx-auto" >
@@ -75,7 +83,7 @@ function Products() {
                         <div className="d-flex justify-content-center align-item-center">
                           <button type="button"
                             className="btn btn-sm btn-outline-dark ms-1"
-                          // onClick={() => handleDelete(_id)}
+                          onClick={() => handleEdit(_id)}
                           // disabled={ adminData.userType !== "super admin" && id <= 4}
                           >
                               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

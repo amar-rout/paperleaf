@@ -132,12 +132,12 @@ const Home = () => {
                     <div className="bg-light">
                         <div className="container">
                             <div className="row">
-                                <div className="col-4">
+                                <div className="col-3">
                                     <div className="card h-100">
                                         Sidebar
                                     </div>
                                 </div>
-                                <div className="col-8">
+                                <div className="col-9">
                                     <div className="mb-2 border-bottom border-2">
                                         <ul class="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li class="nav-item mx-2" role="presentation">
