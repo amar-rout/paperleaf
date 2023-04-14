@@ -153,10 +153,10 @@ function Category() {
         </div>
         <div className="card-body">
           <div className="table-responsive">
-            <table className="table align-items-center text-center ">
+            <table className="table align-items-center text-center">
               <thead className="thead-light ">
                 <tr>
-                  <th>Id</th>
+                  {/* <th>Id</th> */}
                   <th>Category</th>
                   <th>Status</th>
                   <th>Action</th>
@@ -168,7 +168,7 @@ function Category() {
 
                   return (
                     <tr key={_id}>
-                      <th>{_id}</th>
+                      {/* <th>{_id}</th> */}
                       <td>{name}</td>
                       <td>
                         <div className="form-check form-switch d-flex justify-content-center align-items-center">

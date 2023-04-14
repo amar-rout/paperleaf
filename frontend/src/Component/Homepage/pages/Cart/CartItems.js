@@ -41,7 +41,7 @@ const CartItems = (products) => {
                         <h5 className="pb-2 pt-md-2 my-4 mt-lg-5 fs-6">My Cart<span className="fs-base fw-normal text-muted"> ({cartCount} items)</span></h5>
                         {cartItems.map((product) =>
                             <div key={product.pId} className="d-flex align-items-center border-top py-4 py-md-4">
-                                <a className="d-inline-block flex-shrink-0 bg-light-subtle rounded-1 p-sm-2 p-xl-3 mb-2 mb-sm-0" href="shop-single.html">
+                                <a className="d-inline-block flex-shrink-0 bg-light-subtle rounded-1 p-sm-2 p-xl-3 mb-2 mb-sm-0" href={`/products/${product.pId}`}>
                                     <img src={product.image} width="75" alt="Product" />
                                 </a>
                                 <div className="w-100 ps-3 ps-sm-4">
@@ -127,9 +127,9 @@ const CartItems = (products) => {
                         <input type="text" class="form-control shadow-none border-0 py-2" placeholder="Coupon code" aria-label="Recipient's username" />
                         <button class="btn btn-default bg-info-subtle rounded-pill px-3 py-2 small" type="button"><small>APPLY</small></button>
                     </div>
-                    <button className="w-100 btn bg-dark text-white float-end shadow-none border-dark px-5 py-2 my-3" type="button">
+                    <Link to="/checkout" className="w-100 btn bg-dark text-white float-end shadow-none border-dark px-5 py-2 my-3" type="button">
                         <small>PROCEED TO CHECKOUT</small>
-                    </button>
+                    </Link>
                     <Link to="/" className="text-dark fs-6 fw-semibold text-decoration-none link-warning mt-3" type="button">
                         <i className="bi bi-arrow-left"></i> Continue Shopping
                     </Link>

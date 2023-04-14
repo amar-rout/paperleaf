@@ -9,6 +9,8 @@ import { useParams } from 'react-router-dom';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
 import { clearState, productDetailsAsync, selectProduct, getStatus, getError } from "../../../../app/productSlice";
+import { addCartAsync } from "../../../../app/cartSlice";
+import { ToastContainer } from 'react-toastify';
 
 
 const Products = () => {
@@ -67,6 +69,10 @@ const Products = () => {
         dispatch(clearState());
     }, [dispatch, id, productID]);
 
+    const handleAddCart = (id, quantity) => {
+        dispatch(addCartAsync({ pId: id, qty: quantity }));
+    }
+
     return (
         <>
             <Breadcrumb
@@ -116,13 +122,13 @@ const Products = () => {
                                                     </div>
                                                 )
                                             })}
-                                            {product.images && product.images.map((image) => {
+                                            {/* {product.images && product.images.map((image) => {
                                                 return (
                                                     <div>
                                                         <img src={`http://localhost:5010${image}`} alt="product" style={{ width: "100%", height: "400px" }} />
                                                     </div>
                                                 )
-                                            })}
+                                            })} */}
 
                                         </Slider>
                                         <Slider
@@ -253,9 +259,17 @@ const Products = () => {
                                         </div>
                                         <p className="text-muted fw-normal small mb-4"><small>*Please contact our service helpdesk if you want to order more than 5 pieces in a single order</small></p>
                                         <div className="my-4 d-flex flex-0 justify-content-start align-items-center">
-                                            <div className="me-2">
+                                            {/* <div className="me-2">
                                                 <button type="submit" className="btn btn-warning px-3"><small>Add to cart</small></button>
-                                            </div>
+                                            </div> */}
+                                            {/* <button type="button" className="btn btn-sm bg-warning w-100 d-flex justify-content-center align-items-center" */}
+                                            <button type="button" className="btn btn-warning px-3"
+                                                // onClick={() => dispatch(addCartAsync({ pId: product._id, qty: 1 }))}>
+                                                onClick={() => handleAddCart(product._id, prodQuantity)}>
+                                                {/* <i className="bi bi-cart d-none d-sm-inline"></i> */}
+                                                <span className="fw-normal">Add to cart</span>
+                                                <ToastContainer className="mb-sm-1 text-start fs-6 small" />
+                                            </button>
                                             <div className="ms-2">
                                                 <button type="submit" className="btn btn-outline-dark px-3"><small>Buy now</small></button>
                                             </div>

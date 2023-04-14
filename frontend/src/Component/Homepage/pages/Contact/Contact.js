@@ -14,76 +14,80 @@ const Contact = () => {
                     { name: 'Contact', link: '/contact', active: true }
                 ]}
             />
-            <section>
+            <section class="contact_us">
                 <div class="container">
-                    <div className="my-5 text-center">
-                        <span className="mb-0 h2">Contact Us</span>
-                    </div>
-                    
-                    <div class="row gutter-4 my-4">
-                        <div class="col-12 col-md-6 px-4 mb-3 d-flex justify-content-start align-items-center">
-                            <p2 class="fw-normal"><b>Fill the form. It's Easy.</b></p2>
-                        </div>
-                        <div class="col-12 col-md-6 px-4">
-                            <div class="row">
-                                <div class="col-12 col-md-6 mb-2">
-                                    <div className="form-floating">
-                                        <input type="text" class="form-control border-dark shadow-none" id="inputFirstName" placeholder="Enter your first name" />
-                                        <label className="small" htmlFor="inputFirstName"><small>First Name</small></label>
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                            {/* <div class="contact_inner"> */}
+                            <div class="contact_inner shadow-lg">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <div class="contact_form_inner">
+                                            <div class="contact_field">
+                                                <h3>Contact Us</h3>
+                                                <p>Feel Free to contact us any time. We will get back to you as soon as we can!.</p>
+                                                <input type="text" class="form-control form-group" placeholder="Name" />
+                                                <input type="text" class="form-control form-group" placeholder="Email" />
+                                                <textarea class="form-control form-group" placeholder="Message"></textarea>
+                                                <button class="contact_form_submit">Send</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="right_conatct_social_icon d-flex align-items-end">
+                                            {/* <div class="socil_item_inner d-flex"> */}
+                                                {/* <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-twitter"></i></a></li> */}
+                                            {/* </div> */}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 mb-2">
-                                    <div className="form-floating">
-                                        <input type="text" class="form-control border-dark shadow-none" id="inputLastName" placeholder="Enter your last name" />
-                                        <label className="small" htmlFor="inputLastName"><small>Last Name</small></label>
+                                <div class="contact_info_sec">
+                                    <h4>Contact Info</h4>
+                                    <div class="d-flex info_single align-items-center">
+                                        <i class="bi bi-phone"></i>
+                                        <span>+91 82605 69234</span>
                                     </div>
-                                </div>
-                                <div class="col-12 mb-2">
-                                    <div className="form-floating">
-                                        <input type="email" class="form-control border-dark shadow-none" id="inputEmail" placeholder="Enter your email" />
-                                        <label className="small" htmlFor="inputEmail"><small>Email</small></label>
+                                    <div class="d-flex info_single align-items-center">
+                                        <i class="bi bi-envelope-at"></i>
+                                        <span>
+                                            contact@paperleaf.co.in
+                                        </span>
                                     </div>
-                                </div>
-                                <div class="col-12 mb-2">
-                                    <div className="form-floating">
-                                        <input type="text" class="form-control border-dark shadow-none" id="inputSubject" placeholder="Enter subject" />
-                                        <label className="small" htmlFor="inputSubject"><small>Subject</small></label>
+                                    <div class="d-flex info_single align-items-center">
+                                        <i class="bi bi-geo-alt"></i>
+                                        <span>
+                                            Plot No. 1710/2978, Kanchana Palace, Pandra, Cuttack - Puri Bypass Rd, Laxmisagar, Bhubaneswar, Odisha 751006
+                                        </span>
+                                        {/* <span>1000+ Travel partners and 65+ Service city across India, USA, Canada & UAE</span> */}
                                     </div>
-                                </div>
-                                {/* <div class="col-12 mb-2">
-                                    <div className="form-group">
-                                        <textarea class="form-control border-dark shadow-none" id="inputTextarea" rows="3" placeholder="Write your message here"></textarea>
-                                        <label htmlFor="inputTextarea">Write your message here</label>
-                                    </div>
-                                </div> */}
-                                <div class="col-12 mb-2">
-                                    <div className="form-floating">
-                                        <textarea class="form-control border-dark shadow-none" id="inputTextarea" rows="5" placeholder="Enter messages"></textarea>
-                                        <label className="small" htmlFor="inputTextarea"><small>Write your message here</small></label>
-                                    </div>
-                                </div>
-                                <div class="col-12 mb-2">
-                                    {/* <div class="form-control mb-2 border-0">
-                                        <input type="checkbox" class="form-control-input" id="customSwitch1" />
-                                        <label class="form-control-label text-muted" htmlFor="customSwitch1"></label>
-                                    </div> */}
-                                    <div className="form-check my-2">
-                                        <input className="form-check-input form_check_input_checkbox border-dark shadow-none" type="checkbox" value="" id="checkNewsLetter" style={{ cursor: "pointer" }} />
-                                        <label className="form-check-label ms-2 small" htmlFor="checkNewsLetter" style={{ cursor: "pointer" }}>
-                                            Subscribe me to weekly newsletter
-                                        </label>    
-                                    </div>
-                                </div>
-                                <div class="col-12 my-3 text-center">
-                                    <button class="btn px-3 py-2 mb-3 bg-dark text-light shadow" type="submit">
-                                        <small>Send Message</small>
-                                    </button>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            {/* <section class="map_sec">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                            <div class="map_inner">
+                                <h4>Find Us on Google Map</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore quo beatae quasi assumenda, expedita aliquam minima tenetur maiores neque incidunt repellat aut voluptas hic dolorem sequi ab porro, quia error.</p>
+                                <div class="map_bind">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d471220.5631094339!2d88.04952462217592!3d22.6757520733225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f882db4908f667%3A0x43e330e68f6c2cbc!2sKolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1596988408134!5m2!1sen!2sin" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> */}
+
+
+
         </>
     )
 }

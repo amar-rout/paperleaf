@@ -1,13 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from "react-toastify";
+
 const initialState = {
     cartItems: [],
     cartCount: 0,
     status: 'IDLE',
     error: ''
 };
+
 const cartItems = localStorage.getItem('cartItems');
+
 const getCartQuantity = (state) => {
     let total = 0
     state.cartItems.forEach(item => {
@@ -15,10 +18,12 @@ const getCartQuantity = (state) => {
     })
     return total
 }
+
 if (cartItems) {
     initialState.cartItems = JSON.parse(cartItems);
     initialState.cartCount = getCartQuantity(initialState);
 }
+
 export const addCartAsync = createAsyncThunk(
     'cart/addItemToCart',
     async ({ pId, size = 'M', qty = 1 }, thunkAPI) => {
@@ -45,6 +50,7 @@ export const addCartAsync = createAsyncThunk(
         }
     }
 );
+
 export const cartSlice = createSlice({
     name: 'cart',
     initialState,
@@ -86,11 +92,11 @@ export const cartSlice = createSlice({
                 state.status = 'LOADED';
                 const itemInCart = state.cartItems.find((item) => item.pId === action.payload.pId);
                 if (itemInCart) {
-                    itemInCart.qty++;
+                    itemInCart.qty = itemInCart.qty + action.payload.qty;
                 } else {
                     state.cartItems.push(action.payload);
                 }
-                state.cartCount += 1;
+                state.cartCount = state.cartCount + action.payload.qty;
                 localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
                 toast.success(`${action.payload.name} added successfully.`, {
                     position: "top-right",

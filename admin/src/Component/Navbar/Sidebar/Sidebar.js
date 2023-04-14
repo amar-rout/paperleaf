@@ -59,11 +59,11 @@ const Sidebar = () => {
                                         List Category
                                     </Navbarlink>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <Navbarlink to="/addCategory" className="link-dark d-inline-flex text-decoration-none rounded">
                                         Add Category
                                     </Navbarlink>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                     </li>

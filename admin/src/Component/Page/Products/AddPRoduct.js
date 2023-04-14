@@ -22,8 +22,9 @@ const AddProduct = () => {
     prodImages: "",
     image: "",
     images: "",
-    price: "",
-    salePrice: "",
+    price: 0.0,
+    salePrice: 0.0,
+    featured: false,
     category: "",
     brand: "PAPERLEAF",
     description: "",
@@ -66,6 +67,12 @@ const AddProduct = () => {
       [name]: value
     })
   }
+  // const handleFeatured = (status) => {
+  //   setProduct({
+  //     ...product,
+  //     featured : !status
+  //   })
+  // }
   const handleImageChange = e => {
     file = e.target.files[0];
     if (file) {
@@ -262,8 +269,40 @@ const AddProduct = () => {
           {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" min="0" max="100" type="number" name="countInStock" id="countInStock" value={product.countInStock} onChange={handleChange} placeholder="Numbers of stock" required /> */}
           <input className="form-control" min="0" max="100" type="number" name="countInStock" id="countInStock" value={product.countInStock} onChange={handleChange} placeholder="Numbers of stock" required />
         </div>
-
-        <div></div>
+        {/* <div className="d-inline col-6 mb-3">
+          <label className="d-block mb-2">Product Featured</label>
+          <div className="form-check">
+            <input className="form-check-input" type="checkbox" role="switch" name="featured" id="featured" value={product.featured} onChange={handleChange} />
+            <label className="form-check-label" htmlFor="featured">
+              Featured
+            </label>
+          </div>
+        </div> */}
+        <div className="d-inline col-6 mb-3">
+          <label className="d-block mb-2">Product Featured</label>
+          <div className="form-check form-switch">
+            <input
+              className="form-check-input me-1"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckDefault"
+              defaultChecked={product.featured}
+              onChange={() => {
+                setProduct({
+                  ...product,
+                  "featured" : !(product.featured)
+                });
+                console.log(product);
+              }}
+            />
+            <label
+              className="form-check-label ms-1"
+              htmlFor="flexSwitchCheckDefault"
+            >
+              Featured
+            </label>
+          </div>
+        </div>
         <div className="d-inline col-6 mb-3">
           <label htmlFor="prodImage" className="mb-2">Product image</label>
           <div className="input-group-md">

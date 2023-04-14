@@ -147,6 +147,7 @@ export const createProductAdmin = asyncHandler(async (req, res) => {
     salePrice: sanitize(req.body.salePrice),
     category: sanitize(req.body.category),
     newCollection: true,
+    featured: sanitize(req.body.featured), 
     brand: sanitize(req.body.brand),
     description: sanitize(req.body.description),
     countInStock: sanitize(req.body.countInStock),
