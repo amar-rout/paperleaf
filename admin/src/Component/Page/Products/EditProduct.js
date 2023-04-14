@@ -13,8 +13,8 @@ const EditProduct = () => {
   const getCategoryURL = "http://localhost:5010/api/category/";
   const { id } = useParams();
   const [categories, setCategories] = useState([]);
-  const [imageInputShow, setImageInputShow] = useState(true);
-  const [multiImageInputShow, setMultiImageInputShow] = useState(true);
+  // const [imageInputShow, setImageInputShow] = useState(true);
+  // const [multiImageInputShow, setMultiImageInputShow] = useState(true);
   const [images, setImages] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -40,7 +40,7 @@ const EditProduct = () => {
   const getProduct = (id) => {
     axios.get(`${getProductURL}/${id}`)
       .then(response => {
-        setProduct(prev => ({...prev, ...response.data}));
+        setProduct(prev => ({ ...prev, ...response.data }));
         // setProduct(response.data);
         setImages(response.data.images);
       }).catch(error => {
@@ -87,7 +87,7 @@ const EditProduct = () => {
     //   ...product,
     //   [name]: value
     // })
-    setProduct((prev) => ({...prev, [name]: value}));
+    setProduct((prev) => ({ ...prev, [name]: value }));
   }
   const handleImageChange = e => {
     file = e.target.files[0];
@@ -302,15 +302,13 @@ const EditProduct = () => {
           </div>
         </div>
         <div className="col-6 mb-3">
-          {imageInputShow && <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: '100px', height: '100px' }} />}
+          <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: '100px', height: '100px' }} />
         </div>
 
         <div className="col-6 mb-3">
-          {multiImageInputShow &&
-            images.map((image) => (
-              <img src={`http://localhost:5010${image}`} className="mx-2 mb-3" alt="product" style={{ width: '100px', height: '100px' }} />
-            ))
-          }
+          {images.map((image) => (
+            <img src={`http://localhost:5010${image}`} className="mx-2 mb-3" alt="product" style={{ width: '100px', height: '100px' }} />
+          ))}
         </div>
 
 
