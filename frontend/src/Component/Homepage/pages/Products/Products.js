@@ -103,7 +103,9 @@ const Products = () => {
                                         </div>
                                     </div> */}
                                     <div>
-                                        <Slider ref={slider => (slider1 = slider)}>
+                                        <Slider
+                                            asNavFor={nav2}
+                                            ref={slider => (slider1 = slider)}>
                                             <div>
                                                 <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: "100%", height: "400px" }} />
                                             </div>

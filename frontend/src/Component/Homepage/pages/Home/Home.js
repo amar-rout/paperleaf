@@ -176,14 +176,15 @@ const Home = () => {
                                         <h4>Monthly Best Sale</h4>
                                     </div>
                                     <div className="card">
-                                        <div className="bg-info-subtle p-4"
+                                        {/* <div className="bg-info-subtle p-4"
                                             style={{ minHeight: 400, backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }} >
                                             <span className="fs-6 fw-normal ls-1"><small>Smart Offer</small></span>
                                             <p className="w-50 fs-6 fw-semibold">Save 20% on Kurtis</p>
                                             <Link to="/" className="text-decoration-none fs-6 fw-semibold text-dark">
                                                 Shop now <i className="bi bi-arrow-right ms-2"></i>
                                             </Link>
-                                        </div>
+                                        </div> */}
+                                        <img src="/assets/images/special_offer_home.png" alt="special offer" style={{ minHeight: 400 }} />
                                     </div>
                                 </div>
                                 <div className="col-9">
