@@ -132,7 +132,7 @@ const Home = () => {
                     <div className="bg-light">
                         <div className="container">
                             <div className="row">
-                                <div className="col-3">
+                                <div className="col-12 col-md-3 mb-2">
                                     <div className="card">
                                         <div className="bg-info-subtle p-4"
                                             style={{ minHeight: 400, backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }} >
@@ -144,7 +144,7 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-9">
+                                <div className="col-12 col-md-9 mb-2">
                                     <div className="mb-2 ">
                                         <ul class="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li class="nav-item mx-2" role="presentation">
@@ -171,7 +171,7 @@ const Home = () => {
                     <div className="bg-light py-5">
                         <div className="container">
                             <div className="row">
-                                <div className="col-3 px-4">
+                                <div className="col-12 col-md-3 px-4 mb-2">
                                     <div className="text-center">
                                         <h4>Monthly Best Sale</h4>
                                     </div>
@@ -187,7 +187,7 @@ const Home = () => {
                                         <img src="/assets/images/special_offer_home.png" alt="special offer" style={{ minHeight: 400 }} />
                                     </div>
                                 </div>
-                                <div className="col-9">
+                                <div className="col-12 col-md-9 mb-2">
                                     <div className="mb-2">
                                         <ul class="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li class="nav-item mx-2" role="presentation">

@@ -42,6 +42,7 @@ import UserSetting from './Component/Homepage/pages/User/UserSetting/UserSetting
 import Checkout from './Component/Homepage/pages/Checkout/Checkout';
 import Products from './Component/Homepage/pages/Products/Products';
 import CategoryItems from './Component/Homepage/pages/Category/CategoryItems/CategoryItems';
+import TermsConditions from './Component/Homepage/pages/TermsConditions/TermsConditions';
 
 
 const PageNotFound = () => {
@@ -92,6 +93,7 @@ function App() {
             <Route path="userProfile" element={<UserProfile />} />
             <Route path="help" element={<Help />} />
             <Route path="faqs" element={<Help />} />
+            <Route path="termsConditions" element={<TermsConditions />} />
           </Route>
           <Route path="underConstruction" element={<UnderConstruction />} />
           <Route path="noMatch" element={<ComingSoon />} />

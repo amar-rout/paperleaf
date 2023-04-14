@@ -48,93 +48,8 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      {/* Second row */}
+      {/* Details */}
       <div className="row my-4">
-        <div className='col-12 col-md-3'>
-          <div className="rounded overflow-hidden bg-white text-center">
-            <div className="p-4 d-flex flex-1 align-items-center shadow w-100 rounded">
-              <div className="d-flex align-items-center justify-content-center p-3 h-12 w-12 text-center text-danger fs-4">
-                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-              </div>
-              <div>
-                <p className="mb-1 fs-6 small fw-medium text-muted">
-                  <span>Total Order</span>
-                </p>
-                <p className="fs-2 fw-bold text-muted">347</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='col-12 col-md-3'>
-          <div className="min-w-0 rounded-lg ring-1 ring-black ring-opacity-4 overflow-hidden bg-white dark:bg-gray-800 flex h-full">
-            <div className="p-4 flex items-center border border-gray-200 dark:border-gray-800 w-full rounded-lg">
-              <div className="d-flex align-items-center justify-content-center rounded-circle h-12 w-12 text-center text-primary fs-4">
-                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-              </div>
-              <div>
-                <p className="mb-1 text-sm font-medium text-gray-600 dark:text-gray-400">
-                  <span>Order Pending</span>
-                  <span className="text-red-400 text-sm font-semibold">(10778.90)</span>
-                </p>
-                <p className="text-2xl font-bold leading-none text-gray-600 dark:text-gray-200">75</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='col-12 col-md-3'>
-          <div className="min-w-0 rounded-lg ring-1 ring-black ring-opacity-4 overflow-hidden bg-white dark:bg-gray-800 flex h-full">
-            <div className="p-4 flex items-center border border-gray-200 dark:border-gray-800 w-full rounded-lg">
-              <div className="flex items-center justify-center p-3 rounded-full h-12 w-12 text-center mr-4 text-lg text-teal-600 dark:text-teal-100 bg-teal-100 dark:bg-teal-500">
-                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-              </div>
-              <div>
-                <p className="mb-1 text-sm font-medium text-gray-600 dark:text-gray-400">
-                  <span>Order Processing</span>
-                </p>
-                <p className="text-2xl font-bold leading-none text-gray-600 dark:text-gray-200">45</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='col-12 col-md-3'>
-          <div className="min-w-0 rounded-lg ring-1 ring-black ring-opacity-4 overflow-hidden bg-white dark:bg-gray-800 flex h-full">
-            <div className="p-4 flex items-center border border-gray-200 dark:border-gray-800 w-full rounded-lg">
-              <div className="flex items-center justify-center p-3 rounded-full h-12 w-12 text-center mr-4 text-lg text-green-600 dark:text-green-100 bg-green-100 dark:bg-green-500">
-                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div>
-                <p className="mb-1 text-sm font-medium text-gray-600 dark:text-gray-400">
-                  <span>Order Delivered</span>
-                </p>
-                <p className="text-2xl font-bold leading-none text-gray-600 dark:text-gray-200">226</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Third Row */}
-      {/* <div className="row"> */}
-      {/* <div className="col-md-6 h-100 grid-margin stretch-card">
-              <div className="card tale-bg">
-                <div className="card-people mt-auto">
-                  <img src="../../images/dashboard/people.svg" alt="people" />
-                  <div className="weather-info">
-                    <div className="d-flex">
-                      <div>
-                        <h2 className="mb-0 font-weight-normal"><i className="icon-sun me-2"></i>31<sup>C</sup></h2>
-                      </div>
-                      <div className="ms-2">
-                        <h4 className="location font-weight-normal">Chicago</h4>
-                        <h6 className="font-weight-normal">Illinois</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>e
-            </div> */}
-      {/* <div className="col-md-6 grid-margin transparent">
-              <div className="row"> */}
-      <div className="row">
         <div className="col-md-3 mb-4 stretch-card transparent">
           <div className="card card-tale">
             <div className="card-body">
@@ -153,7 +68,7 @@ function Dashboard() {
         <div className="col-md-3 mb-4 stretch-card transparent">
           <div className="card card-dark-blue">
             <div className="card-body">
-            <div className='d-flex align-items-center'>
+              <div className='d-flex align-items-center'>
                 <div className='px-4 text-white fs-3'>
                   <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
                 </div>
@@ -165,39 +80,88 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="col-md-3 mb-4 mb-lg-0 stretch-card transparent">
+        <div className="col-md-3 mb-4 stretch-card transparent">
           <div className="card card-light-blue">
             <div className="card-body">
-              <p className="mb-2">Order Processing</p>
-              <p className="fs-3">40</p>
-              {/* <p>2.00% (30 days)</p> */}
+              <div className='d-flex align-items-center'>
+                <div className='px-4 text-white fs-3'>
+                  <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                </div>
+                <div>
+                  <p className="mb-0">Order Processing</p>
+                  <p className="fs-3">345</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="col-md-3 mb-4 mb-lg-0 stretch-card transparent">
-          <div className="card card-light-blue">
-            <div className="card-body">
-              <p className="mb-2">Order Delivered</p>
-              <p className="fs-3">44</p>
-              {/* <p>2.00% (30 days)</p> */}
-              <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-            </div>
-          </div>
-        </div>
-        {/* <div className="col-md-3 stretch-card transparent">
+        <div className="col-md-3 mb-4 stretch-card transparent">
           <div className="card card-light-danger">
             <div className="card-body">
-              <p className="mb-4">Number of Clients</p>
-              <p className="fs-3 mb-2">47033</p>
-              <p>0.22% (30 days)</p>
+              <div className='d-flex align-items-center'>
+                <div className='px-4 text-white fs-3'>
+                  <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div>
+                  <p className="mb-0">Order Delivered</p>
+                  <p className="fs-3">345</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div> */}
-        {/* </div>
-            </div> */}
+        </div>
       </div>
+      {/* Order Details */}
+      <div class="row">
+        <div class="col-12">
+          <div class="table-responsive">
+            <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table id="example" class="display expandable-table dataTable no-footer" style={{ width: '100%' }} role="grid">
+              <thead>
+                <tr role="row">
+                  <th class="select-checkbox sorting_disabled" rowspan="1" colspan="1" aria-label="Quote#" style={{ width: '86px' }}>Order#</th>
+                  {/* <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Product: activate to sort column descending" aria-sort="ascending">Name</th> */}
+                  {/* style={{ width: '93px' }} */}
+                  <th class="sorting me-2" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Business type: activate to sort column ascending">Date</th>
+                  {/* style={{ width: '113px' }} */}
+                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Policy holder: activate to sort column ascending">Order Status</th>
+                  {/* style={{ width: '107px' }} */}
+                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Premium: activate to sort column ascending">Payment</th>
+                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Premium: activate to sort column ascending">Payment Status</th>
+                  {/* style={{ width: '75px' }} */}
+                  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Actions</th>
+                  {/* style={{ width: '75px' }} */}
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="odd">
+                  <td class="select-checkbox">
+                  <span className='me-5'>140423000201</span>
+                  </td>
+                  <td>14-04-23</td>
+                  <td>
+                    <span className='badge rounded-pill bg-success'>Delivered</span>
+                  </td>
+                  <td>Card</td>
+                  <td>
+                    <span className='badge rounded-pill bg-success'>Success</span>
+                  </td>
+                  <td class="details-control">
+                    <span>
+                      <button className='btn btn-light m-0 p-0 px-2'>Show Details</button>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+            </div>
+              <div class="row"><div class="col-sm-12 col-md-5"></div><div class="col-sm-12 col-md-7"></div></div></div>
+          </div>
+        </div>
+      </div>
+      {/* Order Details */}
       {/* end */}
-    </div>
+    </div >
   )
 }
 
