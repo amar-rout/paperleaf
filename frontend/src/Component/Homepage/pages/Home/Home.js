@@ -145,7 +145,7 @@ const Home = () => {
                                     </div>
                                 </div>
                                 <div className="col-9">
-                                    <div className="mb-2 border-bottom border-2">
+                                    <div className="mb-2 ">
                                         <ul class="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li class="nav-item mx-2" role="presentation">
                                                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Top Products</button>
