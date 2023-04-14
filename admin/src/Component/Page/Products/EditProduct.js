@@ -40,7 +40,7 @@ const EditProduct = () => {
   const getProduct = (id) => {
     axios.get(`${getProductURL}/${id}`)
       .then(response => {
-        setProduct(prev => ({ ...prev, ...response.data }));
+        setProduct((prev) => ({ ...prev, ...response.data }));
         // setProduct(response.data);
         setImages(response.data.images);
       }).catch(error => {
@@ -138,11 +138,9 @@ const EditProduct = () => {
           ...product,
           image: response.data
         });
-        // setImageInputShow(true);
         toast.dismiss();
         toast.success('Produt image uploaded successfully.');
       }).catch((error) => {
-        // setImageInputShow(false);
         setErrorMessage(error.response.data.message);
         setSuccessMessage("");
         toast.dismiss();
@@ -151,7 +149,6 @@ const EditProduct = () => {
   }
 
   const deleteImage = (imageID) => {
-    // const imageArr = imageID.split("/"); 
     const deleteImageURL = `${imageUploadURL}/${imageID}`;
     axios.delete(deleteImageURL)
       .then((response) => {
@@ -159,9 +156,7 @@ const EditProduct = () => {
           ...product,
           image: ''
         });
-        // setImageInputShow(false);
       }).catch((error) => {
-        // setImageInputShow(false);
         setErrorMessage(error.response.data.message);
         setSuccessMessage("");
         toast.dismiss();
