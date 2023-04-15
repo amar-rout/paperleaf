@@ -53,7 +53,10 @@ function Products() {
   return (
     <div className='container p-5'>
       <div className="card my-5 mx-auto" >
-        <div className="card-header py-1 ">
+        <div className="card-header py-1">
+          <div>
+            
+          </div>
           <h4 className="fw-bold">All products</h4>
         </div>
         <div className="card-body">

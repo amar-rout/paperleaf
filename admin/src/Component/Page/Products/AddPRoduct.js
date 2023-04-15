@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -9,6 +10,8 @@ const AddProduct = () => {
 
   // const navigate = useNavigate()
   const getCategoryURL = "http://localhost:5010/api/category/";
+
+  const navigate = useNavigate();
 
   const [categories, setCategories] = useState([]);
   const [imageInputShow, setImageInputShow] = useState(false);
@@ -194,6 +197,7 @@ const AddProduct = () => {
           setErrorMessage("");
           toast.dismiss();
           toast.success(successMessage);
+          navigate("/products");
         }).catch(error => {
           if (error.response) {
             console.error("Product");
