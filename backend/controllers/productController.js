@@ -171,8 +171,9 @@ export const updateProductAdmin = asyncHandler(async (req, res) => {
     object.category = sanitize(req.body.category) || object.category;
     object.brand = sanitize(req.body.brand) || object.brand;
     object.description = sanitize(req.body.description) || object.description;
-    object.countInStock =
-      sanitize(req.body.countInStock) || object.countInStock;
+    object.countInStock = sanitize(req.body.countInStock) || object.countInStock;
+    object.newCollection = sanitize(req.body.newCollection);
+    object.featured = sanitize(req.body.featured);
 
     const updatedObj = await object.save();
     res.status(201).json(updatedObj);

@@ -192,22 +192,30 @@ const AddProduct = () => {
         .then(response => {
           setSuccessMessage(`Product ${product.name} added Successfully`);
           setErrorMessage("");
+          toast.dismiss();
+          toast.success(successMessage);
         }).catch(error => {
           if (error.response) {
             console.error("Product");
             console.error(error.response.data.message);
             setErrorMessage(error.response.data.message)
             setSuccessMessage("")
+            toast.dismiss();
+            toast.error(errorMessage);
           } else if (error.request) {
             // Handle proper error messages
           } else {
             setErrorMessage("Error" + error.message)
             setSuccessMessage("")
+            toast.dismiss();
+            toast.error(errorMessage);
           }
         })
     } else {
       setSuccessMessage("");
       setErrorMessage("Please provide valid inputs");
+      toast.dismiss();
+      toast.error(errorMessage);
     }
   }
 
@@ -290,7 +298,7 @@ const AddProduct = () => {
               onChange={() => {
                 setProduct({
                   ...product,
-                  "featured" : !(product.featured)
+                  "featured": !(product.featured)
                 });
                 console.log(product);
               }}
@@ -324,7 +332,7 @@ const AddProduct = () => {
         <div className="col-6 mb-3">
           {multiImageInputShow &&
             images.map((image) => (
-              <img src={`http://localhost:5010${image}`} className="mx-2 mb-3" alt="product" style={{ width: '100px', height: '100px' }} />
+              <img key={image} src={`http://localhost:5010${image}`} className="mx-2 mb-3" alt="product" style={{ width: '100px', height: '100px' }} />
             ))
           }
         </div>

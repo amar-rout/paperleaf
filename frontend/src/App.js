@@ -10,6 +10,10 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 // Bootstrap icons
 import "bootstrap-icons/font/bootstrap-icons.css";
 
+// React-tostify
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 
@@ -99,6 +103,7 @@ function App() {
           <Route path="noMatch" element={<ComingSoon />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
+        <ToastContainer />
       </div>
   );
 }

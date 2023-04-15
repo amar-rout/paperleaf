@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -12,10 +12,13 @@ const EditProduct = () => {
   const getProductURL = "http://localhost:5010/api/products/";
   const getCategoryURL = "http://localhost:5010/api/category/";
   const { id } = useParams();
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   // const [imageInputShow, setImageInputShow] = useState(true);
   // const [multiImageInputShow, setMultiImageInputShow] = useState(true);
   const [images, setImages] = useState([]);
+  // const [featured, setFeatured] = useState('');
+  // const [newCollection, setNewCollection] = useState('');
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [product, setProduct] = useState({
@@ -26,6 +29,8 @@ const EditProduct = () => {
     images: "",
     price: "",
     salePrice: "",
+    newCollection:'',
+    featured: '',
     category: "",
     brand: "PAPERLEAF",
     description: "",
@@ -35,13 +40,26 @@ const EditProduct = () => {
   useEffect(() => {
     getProduct(id);
     getCategory();
-  });
+  }, [id]);
 
   const getProduct = (id) => {
     axios.get(`${getProductURL}/${id}`)
       .then(response => {
-        setProduct((prev) => ({ ...prev, ...response.data }));
-        // setProduct(response.data);
+        const { name, image, images, price, salePrice, newCollection, featured, category, brand, description, countInStock } = response.data;
+        setProduct(product => ({
+          ...product,
+          name: name,
+          image: image,
+          images: images,
+          price: price,
+          salePrice: salePrice,
+          newCollection: newCollection,
+          featured: featured,
+          category: category,
+          brand: brand,
+          description: description,
+          countInStock: countInStock
+        }));
         setImages(response.data.images);
       }).catch(error => {
         if (error.response) {
@@ -73,7 +91,7 @@ const EditProduct = () => {
       })
   }
 
-  const addNewProductURL = 'http://localhost:5010/api/products';
+  // const saveProductURL = 'http://localhost:5010/api/products';
   const imageUploadURL = 'http://localhost:5010/api/upload';
   let file = null;
   // let temp_file = null;
@@ -196,13 +214,16 @@ const EditProduct = () => {
       });
   }
 
-  const createNewProduct = () => {
+  const saveProduct = () => {
     if (product.name && product.price && product.category &&
       product.brand && product.description && product.countInStock) {
-      axios.post(addNewProductURL, product)
+      axios.patch(`${getProductURL}/${id}`, product)
         .then(response => {
-          setSuccessMessage(`Product ${product.name} added Successfully`);
+          setSuccessMessage(`Product ${product.name} updated Successfully`);
           setErrorMessage("");
+          toast.dismiss();
+          toast.success(successMessage);
+          
         }).catch(error => {
           if (error.response) {
             console.error("Product");
@@ -266,22 +287,72 @@ const EditProduct = () => {
         </div>
 
         <div className="d-inline col-6 mb-3">
-          <label htmlFor="price" className="mb-2">Product price</label>
+          <label htmlFor="price" className="mb-2">Sale price</label>
           {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="number" name="price" id="price" min="0.00" step="0.01" presicion={2} value={product.price} onChange={handleChange} placeholder="Enter product price" required /> */}
-          <input className="form-control" type="number" name="price" id="price" min="0.00" step="0.01" presicion={2} value={product.price} onChange={handleChange} placeholder="Enter product price" required />
+          <input className="form-control" type="number" name="price" id="price" min="0.00" step="0.01" presicion={2} value={product.price} onChange={handleChange} placeholder="Enter Sale price" required />
         </div>
         <div className="d-inline col-6 mb-3">
-          <label htmlFor="salePrice" className="d-block mb-2">Product sale price</label>
+          <label htmlFor="salePrice" className="d-block mb-2">MRP</label>
           {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="number" name="salePrice" id="salePrice" min="0.00" step="0.01" presicion={2} value={product.salePrice} onChange={handleChange} placeholder="Enter product sale price" required /> */}
-          <input className="form-control" type="number" name="salePrice" id="salePrice" min="0.00" step="0.01" presicion={2} value={product.salePrice} onChange={handleChange} placeholder="Enter product sale price" required />
+          <input className="form-control" type="number" name="salePrice" id="salePrice" min="0.00" step="0.01" presicion={2} value={product.salePrice} onChange={handleChange} placeholder="Enter MRP" required />
         </div>
         <div className="d-inline col-6 mb-3">
           <label htmlFor="countInStock" className="d-block mb-2">Product Stock</label>
           {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" min="0" max="100" type="number" name="countInStock" id="countInStock" value={product.countInStock} onChange={handleChange} placeholder="Numbers of stock" required /> */}
           <input className="form-control" min="0" max="100" type="number" name="countInStock" id="countInStock" value={product.countInStock} onChange={handleChange} placeholder="Numbers of stock" required />
         </div>
-
-        <div></div>
+        <div className="d-inline col-6 mb-3">
+          <div className="d-flex flex-0 justify-content-start align-items-center">
+            <div className="me-2">
+              <label className="d-block mb-2">New Collection</label>
+              <div className="form-check form-switch">
+                <input
+                  className="form-check-input me-1"
+                  type="checkbox"
+                  role="switch"
+                  id="newCollection"
+                  checked={product.newCollection}
+                  onChange={() => {
+                    setProduct({
+                      ...product,
+                      "newCollection": !(product.newCollection)
+                    });
+                  }}
+                />
+                <label
+                  className="form-check-label ms-1"
+                  htmlFor="newCollection"
+                >
+                  New Collection
+                </label>
+              </div>
+            </div>
+            <div className="ms-4">
+              <label className="d-block mb-2">Product Featured</label>
+              <div className="form-check form-switch">
+                <input
+                  className="form-check-input me-1"
+                  type="checkbox"
+                  role="switch"
+                  id="productFeatured"
+                  checked={product.featured}
+                  onChange={() => {
+                    setProduct({
+                      ...product,
+                      "featured": !(product.featured)
+                    });
+                  }}
+                />
+                <label
+                  className="form-check-label ms-1"
+                  htmlFor="productFeatured"
+                >
+                  Featured
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="d-inline col-6 mb-3">
           <label htmlFor="prodImage" className="mb-2">Product image</label>
           <div className="input-group-md">
@@ -302,7 +373,7 @@ const EditProduct = () => {
 
         <div className="col-6 mb-3">
           {images.map((image) => (
-            <img src={`http://localhost:5010${image}`} className="mx-2 mb-3" alt="product" style={{ width: '100px', height: '100px' }} />
+            <img key={image} src={`http://localhost:5010${image}`} className="mx-2 mb-3" alt="product" style={{ width: '100px', height: '100px' }} />
           ))}
         </div>
 
@@ -320,10 +391,10 @@ const EditProduct = () => {
         {errorMessage}
       </span>
       <br />
-      <div className="my-4">
-        <button className="btn btn-md btn-primary w-25 center" type="button" onClick={createNewProduct}>Add Product</button>
+      <div className="my-2">
+        <button className="btn btn-md btn-primary" type="button" onClick={saveProduct}>Save Product</button>
       </div>
-      <br />
+      <br/>
       <span className="text-success">
         {successMessage}
       </span>

@@ -43,7 +43,7 @@ const Contact = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="contact_info_sec">
+                                <div class="contact_info_sec text-white">
                                     <h4>Contact Info</h4>
                                     <div class="d-flex info_single align-items-center">
                                         <i class="bi bi-phone"></i>
@@ -62,7 +62,6 @@ const Contact = () => {
                                         </span>
                                         {/* <span>1000+ Travel partners and 65+ Service city across India, USA, Canada & UAE</span> */}
                                     </div>
-
                                 </div>
                             </div>
                         </div>
