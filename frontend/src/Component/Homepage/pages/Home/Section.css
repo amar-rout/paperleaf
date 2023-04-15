@@ -1,4 +1,4 @@
-.product-grid {
+/* .product-grid {
     background-color: #fff;
     font-family: 'Work Sans', sans-serif;
     text-align: center;
@@ -152,4 +152,7 @@
     .product-grid {
         margin: 0 0 30px;
     }
+} */
+.product {
+    font-weight: 500;
 }

@@ -19,7 +19,7 @@ import {
 
 
 import "./Home.css";
-import "./Section.css";
+// import "./Section.css";
 import { Link, useNavigate } from "react-router-dom";
 import HomeFeaturedProducts from "./HomeFeaturedProducts/HomeFeaturedProducts";
 
@@ -149,10 +149,10 @@ const Home = () => {
                                     <div className="mb-2 ">
                                         <ul className="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li className="nav-item mx-2" role="presentation">
-                                                <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="/pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Top Products</button>
+                                                <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Top Products</button>
                                             </li>
                                             <li className="nav-item mx-2" role="presentation">
-                                                <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="/pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Featured Products</button>
+                                                <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Featured Products</button>
                                             </li>
                                         </ul>
                                     </div>
@@ -192,10 +192,10 @@ const Home = () => {
                                     <div className="mb-2">
                                         <ul className="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li className="nav-item mx-2" role="presentation">
-                                                <button className="nav-link active" id="pills-top-tab" data-bs-toggle="pill" data-bs-target="/pills-top" type="button" role="tab" aria-controls="pills-top" aria-selected="true">Top Products</button>
+                                                <button className="nav-link active" id="pills-top-tab" data-bs-toggle="pill" data-bs-target="#pills-top" type="button" role="tab" aria-controls="pills-top" aria-selected="true">Top Products</button>
                                             </li>
                                             <li className="nav-item mx-2" role="presentation">
-                                                <button className="nav-link" id="pills-featured-tab" data-bs-toggle="pill" data-bs-target="/pills-featured" type="button" role="tab" aria-controls="pills-featured" aria-selected="false">Featured Products</button>
+                                                <button className="nav-link" id="pills-featured-tab" data-bs-toggle="pill" data-bs-target="#pills-featured" type="button" role="tab" aria-controls="pills-featured" aria-selected="false">Featured Products</button>
                                             </li>
                                         </ul>
                                     </div>
@@ -215,7 +215,7 @@ const Home = () => {
                     {/* <SectionInfo1 /> */}
                     <SectionInfo />
                     {/* <SliderView /> */}
-                    <SectionInfo1 />
+                    {/* <SectionInfo1 /> */}
                 </>
             }
         </main>
@@ -437,67 +437,67 @@ const NewSection = () => {
     );
 }
 
-const SectionInfo1 = () => {
-    return (
-        <div className="container px-5">
-            <div className="row my-4">
-                <div className="col-md-3 col-sm-6"></div>
-                <div className="col-md-3 col-sm-6">
-                    <div className="product-grid">
-                        <div className="product-image">
-                            <a href="/" className="image">
-                                <img className="pic-1" src="http://localhost:5010/uploads/image-1681551757369.jpg" alt="prod" />
-                                <img className="pic-2" src="http://localhost:5010/uploads/image-1681551757369.jpg" alt="prod" />
-                            </a>
-                            <ul className="product-links">
-                                <li><a href="/"><i className="fa fa-shopping-cart"></i></a></li>
-                                <li><a href="/"><i className="far fa-heart"></i></a></li>
-                                <li><a href="/"><i className="fa fa-random"></i></a></li>
-                                <li><a href="/"><i className="fa fa-search"></i></a></li>
-                            </ul>
-                        </div>
-                        <div className="product-content">
-                            <ul className="rating">
-                                <li className="fa fa-star"></li>
-                                <li className="fa fa-star"></li>
-                                <li className="fa fa-star"></li>
-                                <li className="fa fa-star"></li>
-                                <li className="far fa-star"></li>
-                            </ul>
-                            <h3 className="title"><a href="/">Women's Blouse Top</a></h3>
-                            <div className="price">$85.55</div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-3 col-sm-6">
-                    <div className="product-grid">
-                        <div className="product-image">
-                            <a href="/" className="image">
-                                <img className="pic-1" src="http://localhost:5010/uploads/image-1681550837241.jpg" alt="prod" />
-                                <img className="pic-2" src="http://localhost:5010/uploads/image-1681550837241.jpg" alt="prod" />
-                            </a>
-                            <ul className="product-links">
-                                <li><a href="/"><i className="fa fa-shopping-cart"></i></a></li>
-                                <li><a href="/"><i className="far fa-heart"></i></a></li>
-                                <li><a href="/"><i className="fa fa-random"></i></a></li>
-                                <li><a href="/"><i className="fa fa-search"></i></a></li>
-                            </ul>
-                        </div>
-                        <div className="product-content">
-                            <ul className="rating">
-                                <li className="fa fa-star"></li>
-                                <li className="fa fa-star"></li>
-                                <li className="fa fa-star"></li>
-                                <li className="far fa-star"></li>
-                                <li className="far fa-star"></li>
-                            </ul>
-                            <h3 className="title"><a href="/">Men's Jacket</a></h3>
-                            <div className="price">$88.88</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+// const SectionInfo1 = () => {
+//     return (
+//         <div className="container px-5">
+//             <div className="row my-4">
+//                 <div className="col-md-3 col-sm-6"></div>
+//                 <div className="col-md-3 col-sm-6">
+//                     <div className="product-grid">
+//                         <div className="product-image">
+//                             <a href="/" className="image">
+//                                 <img className="pic-1" src="http://localhost:5010/uploads/image-1681551757369.jpg" alt="prod" />
+//                                 <img className="pic-2" src="http://localhost:5010/uploads/image-1681551757369.jpg" alt="prod" />
+//                             </a>
+//                             <ul className="product-links">
+//                                 <li><a href="/"><i className="fa fa-shopping-cart"></i></a></li>
+//                                 <li><a href="/"><i className="far fa-heart"></i></a></li>
+//                                 <li><a href="/"><i className="fa fa-random"></i></a></li>
+//                                 <li><a href="/"><i className="fa fa-search"></i></a></li>
+//                             </ul>
+//                         </div>
+//                         <div className="product-content">
+//                             <ul className="rating">
+//                                 <li className="fa fa-star"></li>
+//                                 <li className="fa fa-star"></li>
+//                                 <li className="fa fa-star"></li>
+//                                 <li className="fa fa-star"></li>
+//                                 <li className="far fa-star"></li>
+//                             </ul>
+//                             <h3 className="title"><a href="/">Women's Blouse Top</a></h3>
+//                             <div className="price">$85.55</div>
+//                         </div>
+//                     </div>
+//                 </div>
+//                 <div className="col-md-3 col-sm-6">
+//                     <div className="product-grid">
+//                         <div className="product-image">
+//                             <a href="/" className="image">
+//                                 <img className="pic-1" src="http://localhost:5010/uploads/image-1681550837241.jpg" alt="prod" />
+//                                 <img className="pic-2" src="http://localhost:5010/uploads/image-1681550837241.jpg" alt="prod" />
+//                             </a>
+//                             <ul className="product-links">
+//                                 <li><a href="/"><i className="fa fa-shopping-cart"></i></a></li>
+//                                 <li><a href="/"><i className="far fa-heart"></i></a></li>
+//                                 <li><a href="/"><i className="fa fa-random"></i></a></li>
+//                                 <li><a href="/"><i className="fa fa-search"></i></a></li>
+//                             </ul>
+//                         </div>
+//                         <div className="product-content">
+//                             <ul className="rating">
+//                                 <li className="fa fa-star"></li>
+//                                 <li className="fa fa-star"></li>
+//                                 <li className="fa fa-star"></li>
+//                                 <li className="far fa-star"></li>
+//                                 <li className="far fa-star"></li>
+//                             </ul>
+//                             <h3 className="title"><a href="/">Men's Jacket</a></h3>
+//                             <div className="price">$88.88</div>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
         // <section className="featured section-padding">
         //     <div className="container pb-25">
         //         <div className="row">
@@ -540,8 +540,8 @@ const SectionInfo1 = () => {
         //         </div>
         //     </div>
         // </section>
-    );
-};
+//     );
+// };
 
 const SectionInfo = () => {
     return (
