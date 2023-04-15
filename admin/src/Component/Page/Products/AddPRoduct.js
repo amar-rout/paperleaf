@@ -255,14 +255,14 @@ const AddProduct = () => {
         </div>
 
         <div className="d-inline col-6 mb-3">
-          <label htmlFor="price" className="mb-2">Product price</label>
+          <label htmlFor="price" className="mb-2">Sale price</label>
           {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="number" name="price" id="price" min="0.00" step="0.01" presicion={2} value={product.price} onChange={handleChange} placeholder="Enter product price" required /> */}
           <input className="form-control" type="number" name="price" id="price" min="0.00" step="0.01" presicion={2} value={product.price} onChange={handleChange} placeholder="Enter product price" required />
         </div>
         <div className="d-inline col-6 mb-3">
-          <label htmlFor="salePrice" className="d-block mb-2">Product sale price</label>
-          {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="number" name="salePrice" id="salePrice" min="0.00" step="0.01" presicion={2} value={product.salePrice} onChange={handleChange} placeholder="Enter product sale price" required /> */}
-          <input className="form-control" type="number" name="salePrice" id="salePrice" min="0.00" step="0.01" presicion={2} value={product.salePrice} onChange={handleChange} placeholder="Enter product sale price" required />
+          <label htmlFor="salePrice" className="d-block mb-2">MRP</label>
+          {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="number" name="salePrice" id="salePrice" min="0.00" step="0.01" presicion={2} value={product.salePrice} onChange={handleChange} placeholder="Enter MRP" required /> */}
+          <input className="form-control" type="number" name="salePrice" id="salePrice" min="0.00" step="0.01" presicion={2} value={product.salePrice} onChange={handleChange} placeholder="Enter MRP" required />
         </div>
         <div className="d-inline col-6 mb-3">
           <label htmlFor="countInStock" className="d-block mb-2">Product Stock</label>
