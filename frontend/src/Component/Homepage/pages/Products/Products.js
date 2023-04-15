@@ -108,17 +108,17 @@ const Products = () => {
                                             <img className="p-1" src={product.image} alt="product" style={{ width: "64px", height: "64px" }} />
                                         </div>
                                     </div> */}
-                                    <div>
+                                    <div className='px-4'>
                                         <Slider
                                             asNavFor={nav2}
                                             ref={slider => (slider1 = slider)}>
                                             <div>
-                                                <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: "100%", height: "400px" }} />
+                                                <img src={`http://192.168.29.178:5010${product.image}`} alt="product" style={{ width: "100%", height: "400px" }} />
                                             </div>
                                             {product.images && product.images.map((image) => {
                                                 return (
                                                     <div>
-                                                        <img src={`http://localhost:5010${image}`} alt="product" style={{ width: "100%", height: "400px" }} />
+                                                        <img src={`http://192.168.29.178:5010${image}`} alt="product" style={{ width: "100%", height: "400px" }} />
                                                     </div>
                                                 )
                                             })}
@@ -139,22 +139,22 @@ const Products = () => {
                                             focusOnSelect={true}
                                         >
                                             <div>
-                                                <img src={`http://localhost:5010${product.image}`} className='p-2' alt={product.image} style={{ width: "90px", height: "90px" }} />
+                                                <img src={`http://192.168.29.178:5010${product.image}`} className='p-2' alt={product.image} style={{ width: "90px", height: "90px" }} />
                                             </div>
                                             {product.images && product.images.map((image) => {
                                                 return (
                                                     <div>
-                                                        <img src={`http://localhost:5010${image}`} className='p-2' alt="product" style={{ width: "90px", height: "90px" }} />
+                                                        <img src={`http://192.168.29.178:5010${image}`} className='p-2' alt="product" style={{ width: "90px", height: "90px" }} />
                                                     </div>
                                                 )
                                             })}
-                                            {product.images && product.images.map((image) => {
+                                            {/* {product.images && product.images.map((image) => {
                                                 return (
                                                     <div>
                                                         <img src={`http://localhost:5010${image}`} className='p-2' alt="product" style={{ width: "90px", height: "90px" }} />
                                                     </div>
                                                 )
-                                            })}
+                                            })} */}
                                         </Slider>
                                     </div>
                                 </div>

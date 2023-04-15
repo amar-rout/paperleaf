@@ -38,7 +38,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                 {/* <h4 className="pb-5 text-center">
                     <span className="border-bottom border-2">{title}</span>
                 </h4> */}
-                <div className="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1 g-sm-2 g-md-3 g-lg-4">
+                <div className="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-1 g-sm-2 g-md-3 g-lg-4">
                     {products.map((product) => (
                         <div key={product._id} className="col">
                             <div className="card product_card p-0 p-md-0 m-0 shadow-sm rounded-0">

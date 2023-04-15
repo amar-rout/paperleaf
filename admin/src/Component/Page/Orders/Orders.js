@@ -3,24 +3,26 @@ import React from 'react'
 function Orders() {
   return (
     <>
-      <div className="container px-5">
-        <div className="row">
+      <div className="container my-4 px-5">
+        {/* <div className="row">
           <div className="col-12 my-4">
             <div className="page-title-box d-flex align-items-center justify-content-between"><h4 className="mb-0">Orders</h4>
               <div className="page-title-right">
                 <nav className="" aria-label="breadcrumb">
                   <ol className="breadcrumb m-0">
-                    <li className="breadcrumb-item">
-                      <a href="/ecommerce-orders">Ecommerce</a></li>
+                    <li className="breadcrumb-item"><a href="/ecommerce-orders">Ecommerce</a></li>
                     <li className="active breadcrumb-item" aria-current="page">Orders</li>
                   </ol>
                 </nav>
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="row"><div className="col-12">
           <div className="card">
+            <div className="card-header">
+              <h4 className="mb-0">Orders</h4>
+            </div>
             <div className="card-body">
               <div className="mb-2 row">
                 <div className="col-sm-4">
@@ -36,7 +38,7 @@ function Orders() {
                 </div>
                 <div className="col-sm-8">
                   <div className="text-sm-end">
-                    <button type="button" className="btn-rounded mb-2 me-2 btn btn-success">
+                    <button type="button" className="rounded-pill mb-2 me-2 btn btn-success">
                       <i className="mdi mdi-plus me-1"></i> Add New Order</button>
                   </div>
                 </div>
@@ -60,9 +62,9 @@ function Orders() {
                       <td><a className="text-body fw-bold" href="/ecommerce-orders">#NZ1572</a></td>
                       <td>04 Apr, 2020</td>
                       <td>Lasse C. Overgaard</td>
-                      <td>$172</td>
-                      <td><span className="badge badge-success ">Paid</span></td>
-                      <td><button className="btn btn-light btn-rounded">Invoice <i className="mdi mdi-download ms-2"></i></button></td>
+                      <td>₹172</td>
+                      <td><span className="badge bg-success rounded-pill">Paid</span></td>
+                      <td><button className="btn btn-light rounded-pill">Invoice <i class="bi bi-download"></i></button></td>
                       <td><a className="me-3 text-primary" href="/ecommerce-orders"><i className="mdi mdi-pencil font-size-18"></i></a>
                         <a className="text-danger" href="/ecommerce-orders">
                           <i className="mdi mdi-trash-can font-size-18">
@@ -74,9 +76,9 @@ function Orders() {
                         <input type="checkbox" className="selection-input-4" /></td>
                         <td>
                           <a className="text-body fw-bold" href="/ecommerce-orders">#NZ1571</a></td><td>03 Apr, 2020</td>
-                        <td>Johan E. Knudsen</td><td>$165</td>
-                        <td><span className="font-size-12 badge-soft-warning badge badge-warning badge-pill">unpaid</span></td>
-                        <td><button className="btn btn-light btn-rounded">Invoice <i className="mdi mdi-download ms-2"></i></button></td>
+                        <td>Johan E. Knudsen</td><td>₹165</td>
+                        <td><span className="badge bg-warning rounded-pill">unpaid</span></td>
+                        <td><button className="btn btn-light rounded-pill">Invoice <i class="bi bi-download"></i></button></td>
                         <td><a className="me-3 text-primary" href="/ecommerce-orders">
                           <i className="mdi mdi-pencil font-size-18"></i></a>
                           <a className="text-danger" href="/ecommerce-orders">
@@ -84,9 +86,9 @@ function Orders() {
                       <tr><td className="selection-cell">
                         <input type="checkbox" className="selection-input-4" /></td>
                         <td><a className="text-body fw-bold" href="/ecommerce-orders">#NZ1570</a></td><td>03 Apr, 2020</td>
-                        <td>Lasse C. Overgaard</td><td>$146</td>
-                        <td><span className="font-size-12 badge-soft-success badge badge-success badge-pill">Paid</span></td>
-                        <td><button className="btn btn-light btn-rounded">Invoice <i className="mdi mdi-download ms-2"></i></button></td>
+                        <td>Lasse C. Overgaard</td><td>₹146</td>
+                        <td><span className=" badge bg-success rounded-pill">Paid</span></td>
+                        <td><button className="btn btn-light rounded-pill">Invoice <i class="bi bi-download"></i></button></td>
                         <td><a className="me-3 text-primary" href="/ecommerce-orders">
                           <i className="mdi mdi-pencil font-size-18"></i></a>
                           <a className="text-danger" href="/ecommerce-orders">
@@ -94,25 +96,25 @@ function Orders() {
                       <tr><td className="selection-cell">
                         <input type="checkbox" className="selection-input-4" /></td>
                         <td><a className="text-body fw-bold" href="/ecommerce-orders">#NZ1569</a></td>
-                        <td>02 Apr, 2020</td><td>Nikolaj S. Henriksen</td><td>$183</td>
-                        <td><span className="font-size-12 badge-soft-success badge badge-success badge-pill">Paid</span></td>
-                        <td><button className="btn btn-light btn-rounded">Invoice <i className="mdi mdi-download ms-2"></i></button></td>
+                        <td>02 Apr, 2020</td><td>Nikolaj S. Henriksen</td><td>₹183</td>
+                        <td><span className=" badge bg-success rounded-pill">Paid</span></td>
+                        <td><button className="btn btn-light rounded-pill">Invoice <i class="bi bi-download"></i></button></td>
                         <td><a className="me-3 text-primary" href="/ecommerce-orders"><i className="mdi mdi-pencil font-size-18"></i></a>
                           <a className="text-danger" href="/ecommerce-orders"><i className="mdi mdi-trash-can font-size-18"></i></a></td></tr>
                       <tr><td className="selection-cell">
                         <input type="checkbox" className="selection-input-4" /></td>
                         <td><a className="text-body fw-bold" href="/ecommerce-orders">#NZ1568</a></td>
                         <td>01 Apr, 2020</td>
-                        <td>Nikolaj S. Henriksen</td><td>$160</td>
-                        <td><span className="font-size-12 badge-soft-danger badge badge-danger badge-pill">Chargeback</span></td><td><button className="btn btn-light btn-rounded">Invoice <i className="mdi mdi-download ms-2"></i></button></td>
+                        <td>Nikolaj S. Henriksen</td><td>₹160</td>
+                        <td><span className="font-size-12 bg-soft-danger badge bg-danger rounded-pill">Chargeback</span></td><td><button className="btn btn-light rounded-pill">Invoice <i class="bi bi-download"></i></button></td>
                         <td><a className="me-3 text-primary" href="/ecommerce-orders"><i className="mdi mdi-pencil font-size-18"></i></a>
                           <a className="text-danger" href="/ecommerce-orders"><i className="mdi mdi-trash-can font-size-18"></i></a></td></tr>
                       <tr><td className="selection-cell">
                         <input type="checkbox" className="selection-input-4" /></td>
                         <td><a className="text-body fw-bold" href="/ecommerce-orders">#NZ1567</a></td>
-                        <td>31 Mar, 2020</td><td>Herbert C. Patton</td><td>$105</td>
-                        <td><span className="font-size-12 badge-soft-warning badge badge-warning badge-pill">unpaid</span></td>
-                        <td><button className="btn btn-light btn-rounded">Invoice <i className="mdi mdi-download ms-2"></i></button></td>
+                        <td>31 Mar, 2020</td><td>Herbert C. Patton</td><td>₹105</td>
+                        <td><span className="font-size-12 bg-soft-warning badge bg-warning rounded-pill">unpaid</span></td>
+                        <td><button className="btn btn-light rounded-pill">Invoice <i class="bi bi-download"></i></button></td>
                         <td><a className="me-3 text-primary" href="/ecommerce-orders"><i className="mdi mdi-pencil font-size-18"></i></a>
                           <a className="text-danger" href="/ecommerce-orders"><i className="mdi mdi-trash-can font-size-18"></i></a></td></tr>
                       <tr><td className="selection-cell">
@@ -120,18 +122,18 @@ function Orders() {
                         <td><a className="text-body fw-bold" href="/ecommerce-orders">#NZ1566</a></td>
                         <td>30 Mar, 2020</td>
                         <td>Nikolaj S. Henriksen</td>
-                        <td>$112</td>
-                        <td><span className="font-size-12 badge-soft-success badge badge-success badge-pill">Paid</span></td>
-                        <td><button className="btn btn-light btn-rounded">Invoice <i className="mdi mdi-download ms-2"></i></button></td>
+                        <td>₹112</td>
+                        <td><span className=" badge bg-success rounded-pill">Paid</span></td>
+                        <td><button className="btn btn-light rounded-pill">Invoice <i class="bi bi-download"></i></button></td>
                         <td><a className="me-3 text-primary" href="/ecommerce-orders"><i className="mdi mdi-pencil font-size-18"></i></a>
                           <a className="text-danger" href="/ecommerce-orders"><i className="mdi mdi-trash-can font-size-18"></i></a></td></tr>
                       <tr><td className="selection-cell">
                         <input type="checkbox" className="selection-input-4" /></td>
                         <td>
                           <a className="text-body fw-bold" href="/ecommerce-orders">#NZ1565</a></td>
-                        <td>29 Mar, 2020</td><td>Mathias N. Klausen</td><td>$123</td>
-                        <td><span className="font-size-12 badge-soft-success badge badge-success badge-pill">Paid</span></td>
-                        <td><button className="btn btn-light btn-rounded">Invoice <i className="mdi mdi-download ms-2"></i></button></td>
+                        <td>29 Mar, 2020</td><td>Mathias N. Klausen</td><td>₹123</td>
+                        <td><span className=" badge bg-success rounded-pill">Paid</span></td>
+                        <td><button className="btn btn-light rounded-pill">Invoice <i class="bi bi-download"></i></button></td>
                         <td><a className="me-3 text-primary" href="/ecommerce-orders"><i className="mdi mdi-pencil font-size-18"></i></a>
                           <a className="text-danger" href="/ecommerce-orders">
                             <i className="mdi mdi-trash-can font-size-18">
@@ -142,10 +144,10 @@ function Orders() {
                           <a className="text-body fw-bold" href="/ecommerce-orders">#NZ1563</a></td>
                         <td>28 Mar, 2020</td>
                         <td>Herbert C. Patton</td>
-                        <td>$141</td>
-                        <td><span className="font-size-12 badge-soft-success badge badge-success badge-pill">Paid</span></td>
+                        <td>₹141</td>
+                        <td><span className=" badge bg-success rounded-pill">Paid</span></td>
                         <td>
-                          <button className="btn btn-light btn-rounded">Invoice <i className="mdi mdi-download ms-2"></i></button></td>
+                          <button className="btn btn-light rounded-pill">Invoice <i class="bi bi-download"></i></button></td>
                         <td>
                           <a className="me-3 text-primary" href="/ecommerce-orders"><i className="mdi mdi-pencil font-size-18"></i></a>
                           <a className="text-danger" href="/ecommerce-orders">
@@ -157,10 +159,10 @@ function Orders() {
                           <a className="text-body fw-bold" href="/ecommerce-orders">#NZ1562</a></td>
                         <td>28 Mar, 2020</td>
                         <td>Lasse C. Overgaard</td>
-                        <td>$164</td>
-                        <td><span className="font-size-12 badge-soft-warning badge badge-warning badge-pill">unpaid</span></td>
+                        <td>₹164</td>
+                        <td><span className="font-size-12 bg-soft-warning badge bg-warning rounded-pill">unpaid</span></td>
                         <td>
-                          <button className="btn btn-light btn-rounded">Invoice <i className="mdi mdi-download ms-2"></i></button></td>
+                          <button className="btn btn-light rounded-pill">Invoice <i class="bi bi-download"></i></button></td>
                         <td><a className="me-3 text-primary" href="/ecommerce-orders">
                           <i className="mdi mdi-pencil font-size-18"></i></a>
                           <a className="text-danger" href="/ecommerce-orders">

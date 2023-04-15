@@ -19,6 +19,7 @@ import {
 
 
 import "./Home.css";
+import "./Section.css";
 import { Link, useNavigate } from "react-router-dom";
 import HomeFeaturedProducts from "./HomeFeaturedProducts/HomeFeaturedProducts";
 
@@ -92,11 +93,11 @@ const Home = () => {
                     </h6>
                 </div>
                 {/* <div className="col-6">
-                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <button className="carousel-control-prev" type="button" data-bs-target="/carouselExampleControls" data-bs-slide="prev">
                         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span className="visually-hidden">Previous</span>
                     </button>
-                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <button className="carousel-control-next" type="button" data-bs-target="/carouselExampleControls" data-bs-slide="next">
                         <span className="carousel-control-next-icon" aria-hidden="true"></span>
                         <span className="visually-hidden">Next</span>
                     </button>
@@ -118,11 +119,11 @@ const Home = () => {
 
                     {/* <p className="border border-top border-1 p-0 m-0"></p> */}
                     {/* <HomeTopRatedProducts title="Featured Products" topProducts={featuredProduct} /> */}
-                    {/* <ul class="nav nav-pills nav-fill">
-                        <li class="nav-item">
+                    {/* <ul className="nav nav-pills nav-fill">
+                        <li className="nav-item">
                             <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
                         </li>
-                        <li class="nav-item">
+                        <li className="nav-item">
                             <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
                         </li>
                     </ul> */}
@@ -146,20 +147,20 @@ const Home = () => {
                                 </div>
                                 <div className="col-12 col-md-9 mb-2">
                                     <div className="mb-2 ">
-                                        <ul class="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
-                                            <li class="nav-item mx-2" role="presentation">
-                                                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Top Products</button>
+                                        <ul className="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
+                                            <li className="nav-item mx-2" role="presentation">
+                                                <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="/pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Top Products</button>
                                             </li>
-                                            <li class="nav-item mx-2" role="presentation">
-                                                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Featured Products</button>
+                                            <li className="nav-item mx-2" role="presentation">
+                                                <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="/pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Featured Products</button>
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="tab-content" id="pills-tabContent">
-                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                                    <div className="tab-content" id="pills-tabContent">
+                                        <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
                                             <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
                                         </div>
-                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                                        <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
                                             <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
                                         </div>
                                     </div>
@@ -189,20 +190,20 @@ const Home = () => {
                                 </div>
                                 <div className="col-12 col-md-9 mb-2">
                                     <div className="mb-2">
-                                        <ul class="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
-                                            <li class="nav-item mx-2" role="presentation">
-                                                <button class="nav-link active" id="pills-top-tab" data-bs-toggle="pill" data-bs-target="#pills-top" type="button" role="tab" aria-controls="pills-top" aria-selected="true">Top Products</button>
+                                        <ul className="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
+                                            <li className="nav-item mx-2" role="presentation">
+                                                <button className="nav-link active" id="pills-top-tab" data-bs-toggle="pill" data-bs-target="/pills-top" type="button" role="tab" aria-controls="pills-top" aria-selected="true">Top Products</button>
                                             </li>
-                                            <li class="nav-item mx-2" role="presentation">
-                                                <button class="nav-link" id="pills-featured-tab" data-bs-toggle="pill" data-bs-target="#pills-featured" type="button" role="tab" aria-controls="pills-featured" aria-selected="false">Featured Products</button>
+                                            <li className="nav-item mx-2" role="presentation">
+                                                <button className="nav-link" id="pills-featured-tab" data-bs-toggle="pill" data-bs-target="/pills-featured" type="button" role="tab" aria-controls="pills-featured" aria-selected="false">Featured Products</button>
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="tab-content" id="pills-tabContent">
-                                        <div class="tab-pane fade show active" id="pills-top" role="tabpanel" aria-labelledby="pills-top-tab" tabindex="0">
+                                    <div className="tab-content" id="pills-tabContent">
+                                        <div className="tab-pane fade show active" id="pills-top" role="tabpanel" aria-labelledby="pills-top-tab" tabindex="0">
                                             <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
                                         </div>
-                                        <div class="tab-pane fade" id="pills-featured" role="tabpanel" aria-labelledby="pills-featured-tab" tabindex="0">
+                                        <div className="tab-pane fade" id="pills-featured" role="tabpanel" aria-labelledby="pills-featured-tab" tabindex="0">
                                             <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
                                         </div>
                                     </div>
@@ -214,6 +215,7 @@ const Home = () => {
                     {/* <SectionInfo1 /> */}
                     <SectionInfo />
                     {/* <SliderView /> */}
+                    <SectionInfo1 />
                 </>
             }
         </main>
@@ -316,7 +318,7 @@ const Deals = () => {
                                     </a>
                                 </span>
                                 <div className="my-3">
-                                    <span className="fw-bold fs-4 me-2" style={{ color: '#088178' }} >₹139.00</span>
+                                    <span className="fw-bold fs-4 me-2" style={{ color: '/088178' }} >₹139.00</span>
                                     <span className="fw-semibold fs-5 text-danger text-decoration-line-through ms-2">₹160.99</span>
                                 </div>
                             </div>
@@ -360,7 +362,7 @@ const Deals = () => {
                                     </a>
                                 </span>
                                 <div className="my-3">
-                                    <span className="fw-bold fs-4 me-2" style={{ color: '#088178' }} >₹139.00</span>
+                                    <span className="fw-bold fs-4 me-2" style={{ color: '/088178' }} >₹139.00</span>
                                     <span className="fw-semibold fs-5 text-danger text-decoration-line-through ms-2">₹160.99</span>
                                 </div>
                             </div>
@@ -435,52 +437,111 @@ const NewSection = () => {
     );
 }
 
-// const SectionInfo1 = () => {
-//     return (
-//         <section class="featured section-padding">
-//             <div class="container pb-25">
-//                 <div class="row">
-//                     <div class="col-lg-2 col-md-4 col-06 mb-md-3 mb-lg-0">
-//                         <div class="banner-features" style={{ visibility: 'visible' }}>
-//                             <img src="assets/imgs/theme/icons/feature-1.png" alt="" />
-//                             <h4 class="bg-dark small text-light p-4">Free Shipping</h4>
-//                         </div>
-//                     </div>
-//                     <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-//                         <div class="banner-features" style={{ visibility: 'visible' }}>
-//                             <img src="assets/imgs/theme/icons/feature-2.png" alt="" />
-//                             <h4 class="bg-info small text-light p-4">Online order</h4>
-//                         </div>
-//                     </div>
-//                     <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-//                         <div class="banner-features" style={{ visibility: 'visible' }}>
-//                             <img src="assets/imgs/theme/icons/feature-3.png" alt="" />
-//                             <h4 class="bg-success small text-light p-4">Save Money</h4>
-//                         </div>
-//                     </div>
-//                     <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-//                         <div class="banner-features" style={{ visibility: 'visible' }}>
-//                             <img src="assets/imgs/theme/icons/feature-4.png" alt="" />
-//                             <h4 class="bg-4">Promotions</h4>
-//                         </div>
-//                     </div>
-//                     <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-//                         <div class="banner-features" style={{ visibility: 'visible' }}>
-//                             <img src="assets/imgs/theme/icons/feature-5.png" alt="" />
-//                             <h4 class="bg-5">Happy Sell</h4>
-//                         </div>
-//                     </div>
-//                     <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-//                         <div class="banner-features" style={{ visibility: 'visible' }}>
-//                             <img src="assets/imgs/theme/icons/feature-6.png" alt="" />
-//                             <h4 class="bg-6">24/7 Support</h4>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </section>
-//     );
-// };
+const SectionInfo1 = () => {
+    return (
+        <div className="container px-5">
+            <div className="row my-4">
+                <div className="col-md-3 col-sm-6"></div>
+                <div className="col-md-3 col-sm-6">
+                    <div className="product-grid">
+                        <div className="product-image">
+                            <a href="/" className="image">
+                                <img className="pic-1" src="http://localhost:5010/uploads/image-1681551757369.jpg" alt="prod" />
+                                <img className="pic-2" src="http://localhost:5010/uploads/image-1681551757369.jpg" alt="prod" />
+                            </a>
+                            <ul className="product-links">
+                                <li><a href="/"><i className="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="/"><i className="far fa-heart"></i></a></li>
+                                <li><a href="/"><i className="fa fa-random"></i></a></li>
+                                <li><a href="/"><i className="fa fa-search"></i></a></li>
+                            </ul>
+                        </div>
+                        <div className="product-content">
+                            <ul className="rating">
+                                <li className="fa fa-star"></li>
+                                <li className="fa fa-star"></li>
+                                <li className="fa fa-star"></li>
+                                <li className="fa fa-star"></li>
+                                <li className="far fa-star"></li>
+                            </ul>
+                            <h3 className="title"><a href="/">Women's Blouse Top</a></h3>
+                            <div className="price">$85.55</div>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-3 col-sm-6">
+                    <div className="product-grid">
+                        <div className="product-image">
+                            <a href="/" className="image">
+                                <img className="pic-1" src="http://localhost:5010/uploads/image-1681550837241.jpg" alt="prod" />
+                                <img className="pic-2" src="http://localhost:5010/uploads/image-1681550837241.jpg" alt="prod" />
+                            </a>
+                            <ul className="product-links">
+                                <li><a href="/"><i className="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="/"><i className="far fa-heart"></i></a></li>
+                                <li><a href="/"><i className="fa fa-random"></i></a></li>
+                                <li><a href="/"><i className="fa fa-search"></i></a></li>
+                            </ul>
+                        </div>
+                        <div className="product-content">
+                            <ul className="rating">
+                                <li className="fa fa-star"></li>
+                                <li className="fa fa-star"></li>
+                                <li className="fa fa-star"></li>
+                                <li className="far fa-star"></li>
+                                <li className="far fa-star"></li>
+                            </ul>
+                            <h3 className="title"><a href="/">Men's Jacket</a></h3>
+                            <div className="price">$88.88</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        // <section className="featured section-padding">
+        //     <div className="container pb-25">
+        //         <div className="row">
+        //             <div className="col-lg-2 col-md-4 col-06 mb-md-3 mb-lg-0">
+        //                 <div className="banner-features" style={{ visibility: 'visible' }}>
+        //                     <img src="assets/imgs/theme/icons/feature-1.png" alt="" />
+        //                     <h4 className="bg-dark small text-light p-4">Free Shipping</h4>
+        //                 </div>
+        //             </div>
+        //             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+        //                 <div className="banner-features" style={{ visibility: 'visible' }}>
+        //                     <img src="assets/imgs/theme/icons/feature-2.png" alt="" />
+        //                     <h4 className="bg-info small text-light p-4">Online order</h4>
+        //                 </div>
+        //             </div>
+        //             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+        //                 <div className="banner-features" style={{ visibility: 'visible' }}>
+        //                     <img src="assets/imgs/theme/icons/feature-3.png" alt="" />
+        //                     <h4 className="bg-success small text-light p-4">Save Money</h4>
+        //                 </div>
+        //             </div>
+        //             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+        //                 <div className="banner-features" style={{ visibility: 'visible' }}>
+        //                     <img src="assets/imgs/theme/icons/feature-4.png" alt="" />
+        //                     <h4 className="bg-4">Promotions</h4>
+        //                 </div>
+        //             </div>
+        //             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+        //                 <div className="banner-features" style={{ visibility: 'visible' }}>
+        //                     <img src="assets/imgs/theme/icons/feature-5.png" alt="" />
+        //                     <h4 className="bg-5">Happy Sell</h4>
+        //                 </div>
+        //             </div>
+        //             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+        //                 <div className="banner-features" style={{ visibility: 'visible' }}>
+        //                     <img src="assets/imgs/theme/icons/feature-6.png" alt="" />
+        //                     <h4 className="bg-6">24/7 Support</h4>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </div>
+        // </section>
+    );
+};
 
 const SectionInfo = () => {
     return (
