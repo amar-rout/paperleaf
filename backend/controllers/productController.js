@@ -165,9 +165,12 @@ export const createProductAdmin = asyncHandler(async (req, res) => {
 export const updateProductAdmin = asyncHandler(async (req, res) => {
   const object = await ProductModel.findById(sanitize(req.params.id));
   if (object) {
-    object.image = sanitize(req.body.image) || object.image;
+    // object.image = sanitize(req.body.image) || object.image;
     object.name = sanitize(req.body.name) || object.name;
     object.price = sanitize(req.body.price) || object.price;
+    object.salePrice = sanitize(req.body.salePrice) || object.salePrice;
+    object.image = sanitize(req.body.image)  || object.image,
+    object.images = sanitize(req.body.images)  || object.images,
     object.category = sanitize(req.body.category) || object.category;
     object.brand = sanitize(req.body.brand) || object.brand;
     object.description = sanitize(req.body.description) || object.description;

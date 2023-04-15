@@ -223,7 +223,7 @@ const EditProduct = () => {
           setErrorMessage("");
           toast.dismiss();
           toast.success(successMessage);
-          
+          navigate("/products");
         }).catch(error => {
           if (error.response) {
             console.error("Product");

@@ -64,13 +64,14 @@ function Products() {
                   <th>Image</th>
                   <th>Name</th>
                   <th>Category</th>
-                  <th>Price</th>
+                  <th>MRP</th>
+                  <th>Sale Price</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {products.map((product) => {
-                  const { _id, name, image, category, price } = product;
+                  const { _id, name, image, category, price, salePrice } = product;
                   return (
                     <tr key={_id}>
                       <td>
@@ -78,6 +79,7 @@ function Products() {
                       </td>
                       <td>{name}</td>
                       <td>{category}</td>
+                      <td>{currINR.format(salePrice)}</td>
                       <td>{currINR.format(price)}</td>
                       <td>
                         <div className="d-flex justify-content-center align-item-center">
