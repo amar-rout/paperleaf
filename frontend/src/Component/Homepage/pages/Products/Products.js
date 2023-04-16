@@ -23,6 +23,8 @@ const Products = () => {
     let slider1 = '';
     let slider2 = '';
 
+    const serverURL = process.env.REACT_APP_SERVER_URL;
+
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -113,12 +115,12 @@ const Products = () => {
                                             asNavFor={nav2}
                                             ref={slider => (slider1 = slider)}>
                                             <div>
-                                                <img src={`http://192.168.29.178:5010${product.image}`} alt="product" style={{ width: "100%", height: "400px" }} />
+                                                <img src={`${serverURL}${product.image}`} alt="product" style={{ width: "100%", height: "400px" }} />
                                             </div>
                                             {product.images && product.images.map((image) => {
                                                 return (
                                                     <div>
-                                                        <img src={`http://192.168.29.178:5010${image}`} alt="product" style={{ width: "100%", height: "400px" }} />
+                                                        <img src={`${serverURL}${image}`} alt="product" style={{ width: "100%", height: "400px" }} />
                                                     </div>
                                                 )
                                             })}
@@ -139,12 +141,12 @@ const Products = () => {
                                             focusOnSelect={true}
                                         >
                                             <div>
-                                                <img src={`http://192.168.29.178:5010${product.image}`} className='p-2' alt={product.image} style={{ width: "90px", height: "90px" }} />
+                                                <img src={`${serverURL}${product.image}`} className='p-2' alt={product.image} style={{ width: "90px", height: "90px" }} />
                                             </div>
                                             {product.images && product.images.map((image) => {
                                                 return (
                                                     <div>
-                                                        <img src={`http://192.168.29.178:5010${image}`} className='p-2' alt="product" style={{ width: "90px", height: "90px" }} />
+                                                        <img src={`${serverURL}${image}`} className='p-2' alt="product" style={{ width: "90px", height: "90px" }} />
                                                     </div>
                                                 )
                                             })}

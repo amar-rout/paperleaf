@@ -93,21 +93,21 @@
   .card-img-top {
     /* width: 200px; */
     /* height: 320px; */
-    height: 280px;
+    height: 240px;
   }
 }
 @media (min-width: 992px) {
   .card-img-top {
     /* width: 200px; */
     /* height: 340px; */
-    height: 280px;
+    height: 240px;
   }
 }
 @media (min-width: 1200px) {
   .card-img-top {
     /* width: 200px; */
     /* height: 380px; */
-    height: 280px;
+    height: 240px;
   }
 }
 
