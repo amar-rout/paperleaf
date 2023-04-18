@@ -34,12 +34,12 @@ const HomeFeaturedProducts = ({ title, topProducts }) => {
 
         <section className="marketing bg-light">
             {/* <div className="container m-0 m-sm-default p-1 p-sm-default"> */}
-            <div className="container">
+            <div className="container-fluid">
                 {/* <h4 className="pb-5 text-center">
                     <span className="border-bottom border-2">{title}</span>
                 </h4> */}
 
-                <div className="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1 g-sm-2 g-md-3 g-lg-4">
+                <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 g-1 g-sm-2 g-md-3 g-lg-5">
                     {products.map((product) => (
                         <div key={product._id} className="col">
                             <div className="card product_card p-0 p-md-0 m-0 shadow-sm rounded-0"

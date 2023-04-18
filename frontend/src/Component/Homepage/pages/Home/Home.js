@@ -69,19 +69,19 @@ const Home = () => {
     return (
         <main>
             {/* <div className="py-3 bg-dark bg-pattern mb-4"></div> */}
-            {/* <div className="container"> */}
-            <div className="row bg-dark bg-pattern py-3">
-                <div className="col-12">
-                    <div className="text-center text-white">
-                        <span className="fs-6 fw-semibold ls-2" style={{ color: "rgb(234, 255, 150)" }}>
-                            <i className="bi bi-lightning-charge-fill fs-5"></i>
-                            &nbsp;&nbsp; Happy Holiday Deals on Everything &nbsp;&nbsp;
-                            <i className="bi bi-lightning-charge-fill fs-5"></i>
-                        </span>
+            <div className="container">
+                <div className="row bg-dark bg-pattern py-3">
+                    <div className="col-12">
+                        <div className="text-center text-white">
+                            <span className="fs-6 fw-semibold ls-2" style={{ color: "rgb(234, 255, 150)" }}>
+                                <i className="bi bi-lightning-charge-fill fs-5"></i>
+                                &nbsp;&nbsp; Happy Holiday Deals on Everything &nbsp;&nbsp;
+                                <i className="bi bi-lightning-charge-fill fs-5"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
-            {/* </div> */}
 
             {/* <span className="fs-6 fw-semibold ls-2" style={{ color: "rgba(200, 160, 40)" }}> */}
             {/* rgb(234, 255, 150) */}
@@ -131,9 +131,9 @@ const Home = () => {
 
                     </div>
                     <div className="bg-light">
-                        <div className="container">
+                        <div className="container-fluid">
                             <div className="row">
-                                <div className="col-12 col-md-3 mb-2">
+                                <div className="col-12 col-md-4 mb-2">
                                     <div className="card">
                                         <div className="bg-info-subtle p-4"
                                             style={{ minHeight: 400, backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }} >
@@ -145,7 +145,7 @@ const Home = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-12 col-md-9 mb-2">
+                                <div className="col-12 col-md-8 mb-2">
                                     <div className="mb-2 ">
                                         <ul className="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li className="nav-item mx-2" role="presentation">
@@ -172,7 +172,7 @@ const Home = () => {
                     <div className="bg-light py-5">
                         <div className="container">
                             <div className="row">
-                                <div className="col-12 col-md-3 px-4 mb-2">
+                                <div className="col-12 col-md-2 px-4 mb-2">
                                     <div className="text-center">
                                         <h4>Monthly Best Sale</h4>
                                     </div>
@@ -188,13 +188,14 @@ const Home = () => {
                                         <img src="/assets/images/special_offer_home.png" alt="special offer" style={{ minHeight: 400 }} />
                                     </div>
                                 </div>
-                                <div className="col-12 col-md-9 mb-2">
+                                {/* <div className="col-12 col-md-1"></div> */}
+                                <div className="col-12 col-md-10 mb-2">
                                     <div className="mb-2">
                                         <ul className="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
-                                            <li className="nav-item mx-2" role="presentation">
+                                            <li className="nav-item" role="presentation">
                                                 <button className="nav-link active" id="pills-top-tab" data-bs-toggle="pill" data-bs-target="#pills-top" type="button" role="tab" aria-controls="pills-top" aria-selected="true">Top Products</button>
                                             </li>
-                                            <li className="nav-item mx-2" role="presentation">
+                                            <li className="nav-item" role="presentation">
                                                 <button className="nav-link" id="pills-featured-tab" data-bs-toggle="pill" data-bs-target="#pills-featured" type="button" role="tab" aria-controls="pills-featured" aria-selected="false">Featured Products</button>
                                             </li>
                                         </ul>
@@ -498,48 +499,48 @@ const NewSection = () => {
 //                 </div>
 //             </div>
 //         </div>
-        // <section className="featured section-padding">
-        //     <div className="container pb-25">
-        //         <div className="row">
-        //             <div className="col-lg-2 col-md-4 col-06 mb-md-3 mb-lg-0">
-        //                 <div className="banner-features" style={{ visibility: 'visible' }}>
-        //                     <img src="assets/imgs/theme/icons/feature-1.png" alt="" />
-        //                     <h4 className="bg-dark small text-light p-4">Free Shipping</h4>
-        //                 </div>
-        //             </div>
-        //             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-        //                 <div className="banner-features" style={{ visibility: 'visible' }}>
-        //                     <img src="assets/imgs/theme/icons/feature-2.png" alt="" />
-        //                     <h4 className="bg-info small text-light p-4">Online order</h4>
-        //                 </div>
-        //             </div>
-        //             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-        //                 <div className="banner-features" style={{ visibility: 'visible' }}>
-        //                     <img src="assets/imgs/theme/icons/feature-3.png" alt="" />
-        //                     <h4 className="bg-success small text-light p-4">Save Money</h4>
-        //                 </div>
-        //             </div>
-        //             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-        //                 <div className="banner-features" style={{ visibility: 'visible' }}>
-        //                     <img src="assets/imgs/theme/icons/feature-4.png" alt="" />
-        //                     <h4 className="bg-4">Promotions</h4>
-        //                 </div>
-        //             </div>
-        //             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-        //                 <div className="banner-features" style={{ visibility: 'visible' }}>
-        //                     <img src="assets/imgs/theme/icons/feature-5.png" alt="" />
-        //                     <h4 className="bg-5">Happy Sell</h4>
-        //                 </div>
-        //             </div>
-        //             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
-        //                 <div className="banner-features" style={{ visibility: 'visible' }}>
-        //                     <img src="assets/imgs/theme/icons/feature-6.png" alt="" />
-        //                     <h4 className="bg-6">24/7 Support</h4>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </section>
+// <section className="featured section-padding">
+//     <div className="container pb-25">
+//         <div className="row">
+//             <div className="col-lg-2 col-md-4 col-06 mb-md-3 mb-lg-0">
+//                 <div className="banner-features" style={{ visibility: 'visible' }}>
+//                     <img src="assets/imgs/theme/icons/feature-1.png" alt="" />
+//                     <h4 className="bg-dark small text-light p-4">Free Shipping</h4>
+//                 </div>
+//             </div>
+//             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+//                 <div className="banner-features" style={{ visibility: 'visible' }}>
+//                     <img src="assets/imgs/theme/icons/feature-2.png" alt="" />
+//                     <h4 className="bg-info small text-light p-4">Online order</h4>
+//                 </div>
+//             </div>
+//             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+//                 <div className="banner-features" style={{ visibility: 'visible' }}>
+//                     <img src="assets/imgs/theme/icons/feature-3.png" alt="" />
+//                     <h4 className="bg-success small text-light p-4">Save Money</h4>
+//                 </div>
+//             </div>
+//             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+//                 <div className="banner-features" style={{ visibility: 'visible' }}>
+//                     <img src="assets/imgs/theme/icons/feature-4.png" alt="" />
+//                     <h4 className="bg-4">Promotions</h4>
+//                 </div>
+//             </div>
+//             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+//                 <div className="banner-features" style={{ visibility: 'visible' }}>
+//                     <img src="assets/imgs/theme/icons/feature-5.png" alt="" />
+//                     <h4 className="bg-5">Happy Sell</h4>
+//                 </div>
+//             </div>
+//             <div className="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
+//                 <div className="banner-features" style={{ visibility: 'visible' }}>
+//                     <img src="assets/imgs/theme/icons/feature-6.png" alt="" />
+//                     <h4 className="bg-6">24/7 Support</h4>
+//                 </div>
+//             </div>
+//         </div>
+//     </div>
+// </section>
 //     );
 // };
 

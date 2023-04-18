@@ -52,26 +52,26 @@
 
 .card-img-top {
   width: 75%;
-  height: 140px;
+  height: 240px;
   opacity: 1;
   transition-duration: 0.2s;
 }
 @media (min-width: 392px) {
   .card-img-top {
-    width: 240px;
-      height: 160px;
+    /* width: 240px; */
+      height: 240px;
   }
 }
 @media (min-width: 480px) {
   .card-img-top {
-    width: 240px;
-      height: 180px;
+    /* width: 240px; */
+      height: 240px;
   }
 }
 @media (min-width: 576px) {
   .card-img-top {
-    width: 240px;
-      height: 180px;
+    /* width: 240px; */
+      height: 200px;
   }
 }
 /* @media (min-width: 768px) {

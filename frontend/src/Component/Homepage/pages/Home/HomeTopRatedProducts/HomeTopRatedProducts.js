@@ -34,11 +34,11 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
 
         <section className="marketing bg-light">
             {/* <div className="container m-0 m-sm-default p-1 p-sm-default"> */}
-            <div className="container">
+            {/* <div className="container-fluid"> */}
                 {/* <h4 className="pb-5 text-center">
                     <span className="border-bottom border-2">{title}</span>
                 </h4> */}
-                <div className="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1 g-sm-2 g-md-3 g-lg-4">
+                <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 g-2 g-sm-2 g-md-4 g-lg-3">
                     {products.map((product) => (
                         <div key={product._id} className="col">
                             <div className="card product_card p-0 p-md-0 m-0 rounded-0"
@@ -72,7 +72,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                                 {/* <img src={product.image} className="card-img-top rounded-4" alt="card 1" /> */}
                                 {/* <img src='/assets/images/productImages/product1.jpg' className="card-img-top rounded-4" alt="card 1" /> */}
                                 <img src={product.image} className="card-img-top rounded-0" alt="card 1" />
-                                <div className="card-body p-2 bg-light">
+                                <div className="card-body bg-light">
                                     {/* <p className="lh-md-1 my-0 text-muted small">{product.category}</p>
                                     <p className="card-title lh-md-1 my-0 my-md-1"><b>{product.name}</b></p>
                                     <span className="lh-sm my-0 d-flex justify-content-start align-items-center">
@@ -136,7 +136,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                         </div>
                     ))}
                 </div>
-            </div>
+            {/* </div> */}
         </section>
     );
 }

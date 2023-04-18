@@ -168,7 +168,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                 {loading &&
                     <div className="d-flex justify-content-center align-items-center">
                         <div className="spinner-grow text-info" role="status">
-                            <span className="visually-hidden">Loading...</span>
+                            {/* <span className="visually-hidden">Loading...</span> */}
                         </div>
                     </div>
                 }
@@ -183,7 +183,7 @@ const CategoryItems = ({ paramsValue, urlLink }) => {
                     // <div className="row">
                     //     <div className="col-12 col-md-4"></div>
                     //     <div className="col-12 col-md-8">
-                            <div className="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1 g-sm-2 g-md-4 g-lg-5">
+                            <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 g-1 g-sm-2 g-md-4 g-lg-5">
                                 {products.map((product) => (
                                     <div key={product._id} className="col">
                                         <div className="card product_card bg-body p-0 p-md-0 m-0 shadow-sm rounded-0 border border-0">
