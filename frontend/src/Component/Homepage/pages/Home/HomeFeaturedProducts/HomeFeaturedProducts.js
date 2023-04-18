@@ -34,7 +34,7 @@ const HomeFeaturedProducts = ({ title, topProducts }) => {
 
         <section className="marketing bg-light">
             {/* <div className="container m-0 m-sm-default p-1 p-sm-default"> */}
-            <div className="container-fluid">
+            <div className="container-fluid p-0 m-0">
                 {/* <h4 className="pb-5 text-center">
                     <span className="border-bottom border-2">{title}</span>
                 </h4> */}
@@ -73,7 +73,7 @@ const HomeFeaturedProducts = ({ title, topProducts }) => {
                                 {/* <img src={product.image} className="card-img-top rounded-4" alt="card 1" /> */}
                                 {/* <img src='/assets/images/productImages/product1.jpg' className="card-img-top rounded-4" alt="card 1" /> */}
                                 <img src={product.image} className="card-img-top rounded-0" alt="card 1" />
-                                <div className="card-body p-2">
+                                <div className="card-body p-1">
                                     {/* <p className="lh-md-1 my-0 text-muted small">{product.category}</p>
                                     <p className="card-title lh-md-1 my-0 my-md-1"><b>{product.name}</b></p>
                                     <p className="d-none d-sm lh-md-1 my-0 text-muted">{product.category}</p>
@@ -91,7 +91,7 @@ const HomeFeaturedProducts = ({ title, topProducts }) => {
                                         />
                                         <span className="ps-1 text-muted" style={{ fontSize: "14px" }}><span className="fw-600">{product.rating}</span> ({product.numReviews})</span>
                                     </span> */}
-                                    <div className="d-flex flex-0 justify-content-between align-items-center">
+                                    {/* <div className="d-flex flex-0 justify-content-between align-items-center">
                                         <p className="lh-md-1 my-0 fw-semibold text-muted small" style={{ fontSize: "12px", fontWeight: 400 }} >
                                             {product.category}
                                         </p>
@@ -115,14 +115,42 @@ const HomeFeaturedProducts = ({ title, topProducts }) => {
                                                 ({product.numReviews})
                                             </span>
                                         </span>
-                                    </div>
-                                    <p className="card-title lh-md-1 my-0 my-md-1" style={{ fontSize: "14px" }}><b>{product.name}</b></p>
+                                    </div> */}
+                                    {/* <p className="card-title lh-md-1 my-0 my-md-1" style={{ fontSize: "14px" }}><b>{product.name}</b></p>
                                     <p className="fw-bold lh-1 my-2">
                                         <span>₹{product.price}</span>
                                         {product.salePrice > 0 &&
                                             <span className="ms-2 text-decoration-line-through text-danger">₹{product.salePrice}</span>
                                         }
+                                    </p> */}
+                                    <p className="fw-normal p-0 m-0" style={{ fontSize: "14px" }}>
+                                        {product.name}
                                     </p>
+                                    <p className="text-muted p-0 m-0" style={{ fontSize: "14px" }}>
+                                        <span>₹{product.price}</span>
+                                        {product.salePrice > 0 &&
+                                            <span className="ms-2 text-decoration-line-through text-danger">₹{product.salePrice}</span>
+                                        }
+                                    </p>
+                                    <span className="d-flex justify-content-start align-items-center">
+                                        <ReactStars {...{
+                                            size: 11,
+                                            count: 5,
+                                            activeColor: "#fdad01",
+                                            value: product.rating,
+                                            a11y: true,
+                                            isHalf: true,
+                                            emptyIcon: <i className="bi bi-star" />,
+                                            halfIcon: <i className="bi bi-star-half" />,
+                                            filledIcon: <i className="bi bi-star-fill" />,
+                                            edit: false,
+                                        }}
+                                        />
+                                        <span className="fw-normal text-muted ms-1" style={{ fontSize: "14px" }}>
+                                            <span className="">{product.rating} </span>
+                                            ({product.numReviews})
+                                        </span>
+                                    </span>
                                     {/* <button type="button" className="btn bg-warning w-100 d-flex justify-content-center align-items-center"
                                         onClick={() => navigate(`/products/${product._id}`)}>
                                         <svg className="d-none d-sm" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
