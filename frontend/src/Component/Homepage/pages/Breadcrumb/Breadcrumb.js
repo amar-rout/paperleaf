@@ -13,17 +13,18 @@ const Breadcrumb = ({ links }) => {
                             <>
                                 {!linkTo.active ?
                                     <li key={link} className="breadcrumb-item" >
-                                        <Link to={linkTo.link} className="text-decoration-none fs-6 text-secondary link-warning">{linkTo.name}</Link>
+                                        <Link to={linkTo.link} className="text-decoration-none text-secondary link-warning" style={{fontSize:'14px'}}>{linkTo.name}</Link>
                                     </li>
                                     :
-                                    <li key={link} className="breadcrumb-item fs-6 active" >
-                                        <span className="fs-6">{linkTo.name}</span>
+                                    <li key={link} className="breadcrumb-item active" >
+                                        <span className="text-decoration-none text-secondary" style={{fontSize:'14px'}}>{linkTo.name}</span>
                                     </li>
                                 }
                             </>
                         ))}
                     </ol>
                 </nav>
+                <hr/>
             </div>
         </div>
     )

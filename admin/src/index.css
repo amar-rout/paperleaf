@@ -12,10 +12,50 @@ code {
     monospace;
 } */
 
-body {
+/* body {
   font-size: 1rem;
   font-family: "Nunito", sans-serif;
   font-weight: initial;
   line-height: normal;
   -webkit-font-smoothing: antialiased;
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700;800;900&display=swap');
+body {
+  margin: 0;
+  /* font-family: 'Mullish', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif !important; */
+  /* font-family: 'Nunito Sans', sans-serif; */
+  font-family: 'Noto Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/*********************************************/
+/*              GENERAL CSS                 "/
+/*********************************************/
+
+p {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+}
+p b{
+  font-weight: 600;
+}
+
+button {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+}
+a {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+}
+

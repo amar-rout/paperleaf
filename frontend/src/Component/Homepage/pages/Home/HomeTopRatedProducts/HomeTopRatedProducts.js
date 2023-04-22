@@ -38,7 +38,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
             {/* <h4 className="pb-5 text-center">
                     <span className="border-bottom border-2">{title}</span>
                 </h4> */}
-            <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 g-2 g-sm-2 g-md-4 g-lg-3">
+            <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 g-3 g-sm-3 g-md-4 g-lg-4">
                 {products.map((product) => (
                     <div key={product._id} className="col">
                         <div className="card product_card p-0 p-md-0 m-0 rounded-0"
@@ -65,8 +65,10 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                                         </svg>
                                     </button>
                                 }
-                                {product.countInStock < 1 && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle text-muted rounded-pill z-index-1" style={{ zIndex: 1000 }}>Out of Stock</span>}
-                                {product.isNewInStore && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-dark-subtle text-dark rounded-pill z-index-1" style={{ zIndex: 999 }}>New</span>}
+                                {/* {product.countInStock < 1 && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle rounded-pill z-index-1" style={{ zIndex: 1000 }}>Out of Stock</span>}
+                                {product.isNewInStore && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-dark-subtle text-dark rounded-pill z-index-1" style={{ zIndex: 999 }}>New</span>} */}
+                                {product.countInStock < 1 && <span className="position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle text-muted rounded-pill text-uppercase fw-semibold z-index-1" style={{ zIndex: 1000 }}><small>Out of Stock</small></span>}
+                                {product.newCollection && <span className="position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-warning-subtle text-dark rounded-pill text-uppercase fw-semibold z-index-1" style={{ zIndex: 999 }}><small>New</small></span>}
                             </div>
                             {/* <img src='/assets/images/productImages/product1.jpg' className="card-img-top bg-info-subtle rounded-4" alt="card 1" /> */}
                             {/* <img src={product.image} className="card-img-top rounded-4" alt="card 1" /> */}
@@ -124,7 +126,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                                             <span className="ms-2 text-decoration-line-through text-danger">₹{product.salePrice}</span>
                                         }
                                     </p> */}
-                                <p className="fw-normal p-0 m-0" style={{ fontSize: "14px" }}>
+                                {/* <p className="fw-normal p-0 m-0" style={{ fontSize: "14px" }}>
                                     {product.name}
                                 </p>
                                 <p className="text-muted p-0 m-0" style={{ fontSize: "14px" }}>
@@ -132,10 +134,19 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                                     {product.salePrice > 0 &&
                                         <span className="ms-2 text-decoration-line-through text-danger">₹{product.salePrice}</span>
                                     }
+                                </p> */}
+                                <p className="fw-normal text-uppercase p-0 m-0 mb-1" style={{ fontSize: "13px" }}>
+                                    <small>{product.name}</small>
+                                </p>
+                                <p className="text-dark fw-semibold p-0 m-0 mb-1" style={{ fontSize: "13px" }}>
+                                    <span>₹{product.price}</span>
+                                    {product.salePrice > 0 &&
+                                        <span className="ms-2 text-decoration-line-through text-danger">₹{product.salePrice}</span>
+                                    }
                                 </p>
                                 <span className="d-flex justify-content-start align-items-center">
                                     <ReactStars {...{
-                                        size: 11,
+                                        size: 10,
                                         count: 5,
                                         activeColor: "#fdad01",
                                         value: product.rating,
@@ -147,7 +158,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                                         edit: false,
                                     }}
                                     />
-                                    <span className="fw-normal text-muted ms-1" style={{ fontSize: "14px" }}>
+                                    <span className="fw-normal text-muted ms-1" style={{ fontSize: "12px" }}>
                                         <span className="">{product.rating} </span>
                                         ({product.numReviews})
                                     </span>

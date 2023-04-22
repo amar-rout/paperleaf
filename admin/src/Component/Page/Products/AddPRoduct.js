@@ -133,7 +133,7 @@ const AddProduct = () => {
         setErrorMessage(error.response.data.message);
         setSuccessMessage("");
         toast.dismiss();
-        toast.error('Produt image not uploaded');
+        toast.error('Product image not uploaded');
       });
   }
 
@@ -184,7 +184,7 @@ const AddProduct = () => {
         setErrorMessage(error.response.data.message)
         setSuccessMessage("");
         toast.dismiss();
-        toast.error('Produt image not uploaded');
+        toast.error('Product images not uploaded');
       });
   }
 

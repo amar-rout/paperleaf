@@ -4,7 +4,8 @@ import products from './data/products.js';
 import homeinformations from './data/homeinformations.js';
 
 import HomeModel from './models/homeModel.js';
-import CategoryModel from './models/categoryModel.js';
+import CategoryModel from './models/categoryModel.js'
+import CouponModel from './models/couponModel.js';
 import UserModel from './models/userModel.js';
 import ProductModel from './models/productModel.js';
 import OrderModel from './models/orderModel.js';
@@ -19,6 +20,7 @@ const importData = async () => {
     await HomeModel.deleteMany();
     await OrderModel.deleteMany();
     await CategoryModel.deleteMany();
+    await CouponModel.deleteMany();
     await ProductModel.deleteMany();
     await UserModel.deleteMany();
 
@@ -45,6 +47,7 @@ const purgeData = async () => {
     await HomeModel.deleteMany();
     await OrderModel.deleteMany();
     await CategoryModel.deleteMany();
+    await CouponModel.deleteMany();
     await ProductModel.deleteMany();
     await UserModel.deleteMany();
 

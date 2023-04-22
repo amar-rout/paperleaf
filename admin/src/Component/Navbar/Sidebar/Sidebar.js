@@ -49,6 +49,25 @@ const Sidebar = () => {
                         </div>
                     </li>
                     <li className="mb-1">
+                        <button className="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#coupons-collapse" aria-expanded="true">
+                            Collections
+                        </button>
+                        <div className="collapse show" id="coupons-collapse" style={{}}>
+                            <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li>
+                                    <Navbarlink to="/coupons" className="link-dark d-inline-flex text-decoration-none rounded">
+                                        List Collections
+                                    </Navbarlink>
+                                </li>
+                                <li>
+                                    <Navbarlink to="/addCoupons" className="link-dark d-inline-flex text-decoration-none rounded">
+                                        Add Collections
+                                    </Navbarlink>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li className="mb-1">
                         <button className="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#category-collapse" aria-expanded="true">
                             Category
                         </button>

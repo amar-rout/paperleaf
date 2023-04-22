@@ -131,9 +131,9 @@ const Home = () => {
 
                     </div>
                     <div className="bg-light">
-                        <div className="container-fluid">
+                        <div className="container pt-4 pb-2">
                             <div className="row">
-                                <div className="col-12 col-md-2 mb-2">
+                                {/* <div className="col-12 col-md-2 mb-2">
                                     <div className="card">
                                         <div className="bg-info-subtle p-4"
                                             style={{ minHeight: 400, backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }} >
@@ -144,8 +144,8 @@ const Home = () => {
                                             </Link>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="col-12 col-md-10 mb-2">
+                                </div> */}
+                                <div className="col-12 col-md-12 mb-2">
                                     <div className="mb-2 ">
                                         <ul className="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li className="nav-item mx-2" role="presentation">

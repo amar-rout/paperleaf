@@ -33,22 +33,22 @@ const Footer = () => {
                     </div>
                 </div>
             </section> */}
-            <section className="pt-3 footer-mid">
+            <section className="footer-mid">
                 <div className="container pt-3 pb-2">
                     <div className="row">
                         <div className="col-lg-4 col-md-6">
                             <div className="font-md mb-md-5 mb-lg-0">
-                                <div className="" style={{ visibility: 'visible' }}>
+                                <div className="text-center" style={{ visibility: 'visible' }}>
                                     <a href="index.html"><img height="70" width="70" src="/assets/images/logo/logo2.png" alt="logo" /></a>
                                 </div>
-                                <h6 className="my-2 fw-400 text-muted" style={{ visibility: 'visible' }}>Contact</h6>
+                                <h6 className="my-2 fw-400 text-muted text-decoration-underline" style={{ visibility: 'visible' }}>Contact us</h6>
                                 <p className="d-flex justify-content-start align-items-start" style={{ visibility: 'visible' }}>
-                                    <span className="me-2"><strong><small>Address:</small></strong></span>
-                                    <span className=""><small>Plot No. 1710/2978, Kanchana Palace, Pandra, Cuttack - Puri Bypass Rd, Laxmisagar, Bhubaneswar, Odisha 751006</small></span>
+                                    <span className="me-2 fw-semibold">Address: </span>
+                                    <span className="">Plot No. 1710/2978, Kanchana Palace, Pandra, Cuttack - Puri Bypass Rd, Laxmisagar, Bhubaneswar, Odisha 751006</span>
                                 </p>
                                 <p className="d-flex justify-content-start align-items-start" style={{ visibility: 'visible' }}>
-                                    <span className="me-2"><strong><small>Phone:</small></strong></span>
-                                    <span className=""><small>+91 9692 852 485</small></span>
+                                    <span className="me-2 fw-semibold">Phone: </span>
+                                    <span className="">+91 9692852485</span>
                                 </p>
                                 {/* <p className="row" style={{ visibility: 'visible' }}>
                                     <span className="col-lg-4 col-md-4 col-4 m-0">
@@ -63,15 +63,13 @@ const Footer = () => {
                                     </span>
                                 </p> */}
                                 <p className="d-flex justify-content-start align-items-start" style={{ visibility: 'visible' }}>
-                                    <span className="me-2">
-                                        <strong><small>Contact Hours : </small></strong>
+                                    <span className="me-2 fw-semibold">
+                                        Contact Hours :
                                     </span>
                                     <span className="">
-                                        <small>
-                                            Mon to Fri ( 9.00AM - 10.00PM),<br />
-                                            Sat ( 9.00AM - 2.00PM ),<br />
-                                            Sun ( Holiday )
-                                        </small>
+                                        Mon to Fri (9.00AM - 10.00PM),<br />
+                                        Sat ( 9.00AM - 2.00PM ),<br />
+                                        Sun ( Holiday )
                                     </span>
                                 </p>
                                 <h6 className="text-muted"><small>Follow us on :</small></h6>

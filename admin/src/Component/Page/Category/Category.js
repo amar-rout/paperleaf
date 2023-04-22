@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify';
+
+import './Category.css';
 
 function Category() {
   const [categoryData, setCategoryData] = useState({ name: '', status: '' });
@@ -59,15 +61,15 @@ function Category() {
         });
     }
   }
-  
+
   const handleStatus = (id, name, status) => {
-    let statusData = {"name": name, "status": !status};
+    let statusData = { "name": name, "status": !status };
     console.log(statusData);
     axios.patch(`${getCategoryURL}/${id}`, statusData)
       .then(response => {
         toast.dismiss();
         let message = !status ? "activated" : "deactivated";
-        toast.success(`${name} ${message}`);
+        toast.success(`Category ${name} ${message}`);
       }).catch(error => {
         if (error.response) {
           toast.dismiss();
@@ -135,6 +137,15 @@ function Category() {
                 <option value="false">Deactive</option>
               </select>
             </div>
+            {/* <div className='col-12'>
+              <label class="switch">
+                <input type="checkbox" id="togBtn" />
+                <div class="slider round">
+                  <span class="on">PUBLISHED</span>
+                  <span class="off">UNPUBLISHED</span>
+                </div>
+              </label>
+            </div> */}
             <div className='col-12'>
               <button
                 type="submit"
@@ -176,16 +187,16 @@ function Category() {
                             className="form-check-input me-1"
                             type="checkbox"
                             role="switch"
-                            id="flexSwitchCheckDefault"
+                            id="status"
                             defaultChecked={status}
                             onChange={() => handleStatus(_id, name, status)}
                           // disabled={ adminData.userType !== "super admin" && id <= 4}
                           />
                           <label
-                            className="form-check-label ms-1"
-                            htmlFor="flexSwitchCheckDefault"
+                            className="form-check-label text-dark ms-1"
+                            htmlFor="status"
                           >
-                            {status}
+                            {status ? <small>Activated</small> : <small>Dectivated</small>}
                           </label>
 
                           {/* <select
