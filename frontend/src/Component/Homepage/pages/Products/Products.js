@@ -28,8 +28,8 @@ const Products = () => {
     let slider2 = '';
 
     const navigate = useNavigate();
-    // const serverURL = process.env.REACT_APP_SERVER_URL;
-    const serverURL = "http://192.168.29.28:5010";
+    const serverURL = process.env.REACT_APP_SERVER_URL;
+    // const serverURL = "http://192.168.29.28:5010";
     // 192.168.29.28";
 
     const [loading, setLoading] = useState(false);
