@@ -44,11 +44,13 @@ import EditAddress from './Component/Homepage/pages/User/UserAddress/EditAddress
 import UserNotification from './Component/Homepage/pages/User/UserNotification/UserNotification';
 import UserPayment from './Component/Homepage/pages/User/UserPayment/UserPayment';
 import UserSetting from './Component/Homepage/pages/User/UserSetting/UserSetting';
-import Checkout from './Component/Homepage/pages/Checkout/Checkout';
+// import Checkout from './Component/Homepage/pages/Checkout/Checkout';
 // import CheckoutDetails from './Component/Homepage/pages/Checkout/CheckoutDetails';
 import Products from './Component/Homepage/pages/Products/Products';
 import CategoryItems from './Component/Homepage/pages/Category/CategoryItems/CategoryItems';
 import TermsConditions from './Component/Homepage/pages/TermsConditions/TermsConditions';
+import CheckoutNew from './Component/Homepage/pages/Checkout/CheckoutNew';
+// import CheckoutDetails from './Component/Homepage/pages/Checkout/CheckoutDetails';
 
 
 const PageNotFound = () => {
@@ -90,7 +92,7 @@ function App() {
               <Route path="*" element={<ComingSoon />} />
             </Route>
             <Route path="/carts" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout" element={<CheckoutNew />} />
             <Route path="/wishlists" element={<Wishlist />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

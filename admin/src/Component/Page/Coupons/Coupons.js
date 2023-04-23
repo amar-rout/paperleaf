@@ -8,14 +8,14 @@ function Coupon() {
 
   const initialData = {
     couponName: '',
-    status: '',
+    status: 'Active',
     discountType: '',
     discountAmount: 0,
     discountPercentage: 0,
     minPurchaseAmount: 0,
     startDate: '',
     endDate: '',
-    punlished: ''
+    punlished: false
   };
   const [couponData, setCouponData] = useState(initialData);
   const [coupons, setCoupons] = useState([]);
@@ -41,6 +41,7 @@ function Coupon() {
     axios.get(`${couponURL}/all`)
       .then(response => {
         setCoupons(response.data);
+        // console.log(coupons);
       }).catch(error => {
         if (error.response) {
           toast.dismiss()
@@ -56,9 +57,9 @@ function Coupon() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const itemInCategories = coupons.find((item) => item.couponName === couponData.couponName);
-    console.log(itemInCategories);
-    if (itemInCategories) {
+    const itemInCoupons = coupons.find((item) => item.couponName === couponData.couponName);
+    // console.log(itemInCategories);
+    if (itemInCoupons) {
       toast.dismiss();
       toast.error(`Coupon ${couponData.couponName} is already exist.`)
     } else {
@@ -81,13 +82,42 @@ function Coupon() {
   }
 
   const handleStatus = (id, couponName, status) => {
-    let statusData = { "couponName": couponName, "status": !status };
+    let statusVal;
+    console.log("status: " + status);
+    if (status && status === "Active") {
+      statusVal = "Inactive";
+    } else {
+      statusVal = "Active";
+    }
+    let statusData = { "couponName": couponName, "status": statusVal };
     console.log(statusData);
-    axios.patch(`${couponURL}/${id}`, statusData)
+    axios.patch(`${couponURL}coupon/${id}`, statusData)
       .then(response => {
         toast.dismiss();
-        let message = !status ? "activated" : "deactivated";
+        let message = statusVal === "Active" ? "activated" : "deactivated";
         toast.success(`Coupon ${couponName} ${message}`);
+      }).catch(error => {
+        if (error.response) {
+          toast.dismiss();
+          toast.error(error.response.data.message);
+        } else if (error.request) {
+          toast.dismiss();
+          toast.error(error.request);
+        } else {
+          toast.dismiss();
+          toast.error(error.message);
+        }
+      })
+  }
+
+  const handlePublished = (id, name, status) => {
+    let statusData = { "couponName": name, "published": !status };
+    console.log(statusData);
+    axios.patch(`${couponURL}coupon/${id}`, statusData)
+      .then(response => {
+        toast.dismiss();
+        let message = !status ? "Published" : "Unpublished";
+        toast.success(`Coupon ${name} ${message}`);
       }).catch(error => {
         if (error.response) {
           toast.dismiss();
@@ -253,7 +283,7 @@ function Coupon() {
                 />
               </div>
               <div className="col-12">
-                <label for="discountType" class="form-label">Status<sup className='text-danger'>*</sup></label>
+                <label for="status" class="form-label">Status<sup className='text-danger'>*</sup></label>
                 <select
                   className="form-select"
                   name="status" id='status'
@@ -261,8 +291,8 @@ function Coupon() {
                   onChange={handleChange}
                   required
                 >
-                  <option value="true">Active</option>
-                  <option value="false">Deactive</option>
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Deactive</option>
                 </select>
               </div>
               <div className="col-12">
@@ -304,8 +334,9 @@ function Coupon() {
                   <th>Coupon</th>
                   <th>Status</th>
                   <th>Discount Type</th>
-                  <th>Discount Rs.</th>
-                  <th>Discount %</th>
+                  <th>Discount Amount(₹)</th>
+                  <th>Discount Percentage %</th>
+                  <th>Min Purch Amount(₹)</th>
                   <th>Start Date</th>
                   <th>End Date</th>
                   <th>Published</th>
@@ -314,7 +345,7 @@ function Coupon() {
               </thead>
               <tbody>
                 {coupons.map((coupon) => {
-                  const { _id, couponName, status, discountType, discountAmount, discountPercentage, startDate, endDate, published } = coupon;
+                  const { _id, couponName, status, discountType, discountAmount, discountPercentage, minPurchaseAmount, startDate, endDate, published } = coupon;
 
                   return (
                     <tr key={_id}>
@@ -327,7 +358,13 @@ function Coupon() {
                             type="checkbox"
                             role="switch"
                             id="status"
-                            defaultChecked={status}
+                            // value={() => {
+                            // console.log(status);
+                            // status === "Active" ? 'true' : 'false';  
+                            // }}
+                            defaultChecked={status === "Active"}
+                            // defaultChecked={status}
+                            //  coupon.status === "Active" ? true : false }
                             onChange={() => handleStatus(_id, couponName, status)}
                           // disabled={ adminData.userType !== "super admin" && id <= 4}
                           />
@@ -354,6 +391,7 @@ function Coupon() {
                       <td>{discountType}</td>
                       <td>{currINR.format(discountAmount)}</td>
                       <td>{discountPercentage}</td>
+                      <td>{minPurchaseAmount}</td>
                       <td>{new Date(startDate).toLocaleDateString("en-IN")}</td>
                       <td>{new Date(endDate).toLocaleDateString("en-IN")}</td>
                       {/* { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }; */}
@@ -365,7 +403,8 @@ function Coupon() {
                             role="switch"
                             id="status"
                             defaultChecked={published}
-                            onChange={() => handleStatus(_id, couponName, status)}
+                            // value={published}
+                            onChange={() => handlePublished(_id, couponName, published)}
                           />
                           {/* <label
                             className="form-check-label text-dark ms-1"

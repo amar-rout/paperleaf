@@ -37,14 +37,14 @@ const Sidebar = () => {
                             <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li>
                                     <Navbarlink to="/coupons" className="link-dark d-inline-flex text-decoration-none rounded">
-                                        List Coupons
+                                        Coupons
                                     </Navbarlink>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <Navbarlink to="/addCoupons" className="link-dark d-inline-flex text-decoration-none rounded">
                                         Add Coupons
                                     </Navbarlink>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                     </li>

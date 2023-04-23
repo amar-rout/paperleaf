@@ -53,23 +53,12 @@ const Checkout = () => {
                                     <label class="form-label fs-base" for="c-country">Country</label>
                                     <select class="form-select form-select-lg" required="" id="c-country">
                                         <option value="" selected="" disabled="">Select a country</option>
-                                        <option value="Australia">Australia</option>
-                                        <option value="Belgium">Belgium</option>
-                                        <option value="Canada">Canada</option>
-                                        <option value="Denmark">Denmark</option>
-                                        <option value="USA">USA</option>
+                                        <option value="Australia">India</option>
                                     </select>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <label class="form-label fs-base" for="c-city">City</label>
-                                    <select class="form-select form-select-lg" required="" id="c-city">
-                                        <option value="" selected="" disabled="">Select a city</option>
-                                        <option value="Sydney">Sydney</option>
-                                        <option value="Brussels">Brussels</option>
-                                        <option value="Toronto">Toronto</option>
-                                        <option value="Copenhagen">Copenhagen</option>
-                                        <option value="New York">New York</option>
-                                    </select>
+                                    <input type='text' class="form-select form-select-lg" required="" name='city' id="city" />                                        
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <label class="form-label fs-base" for="c-zip">Zip code</label>

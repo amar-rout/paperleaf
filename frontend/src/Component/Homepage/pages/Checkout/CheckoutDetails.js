@@ -1,8 +1,23 @@
 import React from 'react';
+import bootstrap from 'bootstrap/dist/js/bootstrap.min.js';
+import $ from "jquery";
 
 import './Checkout.css';
 
 function CheckoutDetails() {
+
+    const next = () => {
+        const nextTabLinkEl = $('.nav-tabs .active').closest('li').next('li').find('a')[0];
+        const nextTab = new bootstrap.Tab(nextTabLinkEl);
+        nextTab.show();
+    }
+
+    const prev = () => {
+        const prevTabLinkEl = $('.nav-tabs .active').closest('li').prev('li').find('a')[0];
+        const prevTab = new bootstrap.Tab(prevTabLinkEl);
+        prevTab.show();
+    }
+
     return (
         <div className='container p-3'>
             <div className='row'>
@@ -174,14 +189,19 @@ function CheckoutDetails() {
                                                 </div>
                                             </form>
                                         </div>
-                                        <div class="mt-4 text-end"><a class="btn btn-success" href="/ecommerce-checkout">Complete
-                                            order</a></div>
+                                        <div class="mt-4 text-end">
+                                            <a class="btn btn-success">Completeorder</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <ul class="pager wizard twitter-bs-wizard-pager-link">
-                                <li class="previous disabled"><a href="/ecommerce-checkout">Previous</a></li>
-                                <li class="next"><a href="/ecommerce-checkout">Next</a></li>
+                                <li class="previous disabled">
+                                    <a onClick={prev}>Previous</a>
+                                </li>
+                                <li class="next">
+                                    <a className='btn btn-primary' onClick={next}>Next</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
