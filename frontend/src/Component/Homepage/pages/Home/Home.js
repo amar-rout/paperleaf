@@ -172,11 +172,11 @@ const Home = () => {
                     <div className="bg-light py-5">
                         <div className="container">
                             <div className="row">
-                                <div className="col-12 col-md-2 px-4 mb-2">
+                                {/* <div className="col-12 col-md-2 px-4 mb-2">
                                     <div className="text-center">
                                         <h4>Monthly Best Sale</h4>
                                     </div>
-                                    <div className="card">
+                                    <div className="card"> */}
                                         {/* <div className="bg-info-subtle p-4"
                                             style={{ minHeight: 400, backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }} >
                                             <span className="fs-6 fw-normal ls-1"><small>Smart Offer</small></span>
@@ -185,11 +185,11 @@ const Home = () => {
                                                 Shop now <i className="bi bi-arrow-right ms-2"></i>
                                             </Link>
                                         </div> */}
-                                        <img src="/assets/images/special_offer_home.png" alt="special offer" style={{ minHeight: 400 }} />
+                                        {/* <img src="/assets/images/special_offer_home.png" alt="special offer" style={{ minHeight: 400 }} />
                                     </div>
-                                </div>
+                                </div> */}
                                 {/* <div className="col-12 col-md-1"></div> */}
-                                <div className="col-12 col-md-10 mb-2">
+                                <div className="col-12 col-md-12 mb-2">
                                     <div className="mb-2">
                                         <ul className="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li className="nav-item" role="presentation">

@@ -35,8 +35,12 @@ export const getCouponById = asyncHandler(async (req, res) => {
 // @access Private
 export const getCouponByName = asyncHandler(async (req, res) => {
     const object = await CouponModel.findOne({ couponName: sanitize(req.query.name) });
-    console.log(req.query.name);
-    if (object) {
+
+    let startDate = new Date(object.startDate);
+    let endDate = new Date(object.endDate);
+    let today = new Date();
+
+    if (object && object.status === "Active" && object.published === true && startDate <= today && endDate >= today) {
         res.json(object);
     } else {
         res.status(404);
@@ -54,6 +58,7 @@ export const createCoupon = asyncHandler(async (req, res) => {
         discountType: sanitize(req.body.discountType),
         discountAmount: sanitize(req.body.discountAmount),
         discountPercentage: sanitize(req.body.discountPercentage),
+        minPurchaseAmount: sanitize(req.body.minPurchaseAmount),
         startDate: sanitize(req.body.startDate),
         endDate: sanitize(req.body.endDate),
         published: sanitize(req.body.published)
@@ -73,6 +78,7 @@ export const updateCoupon = asyncHandler(async (req, res) => {
         object.discountType = sanitize(req.body.discountType) || object.discountType;
         object.discountAmount = sanitize(req.body.discountAmount) || object.discountAmount;
         object.discountPercentage = sanitize(req.body.discountPercentage) || object.discountPercentage;
+        object.minPurchaseAmount = sanitize(req.body.minPurchaseAmount) || object.minPurchaseAmount;
         object.startDate = sanitize(req.body.startDate) || object.startDate;
         object.endDate = sanitize(req.body.endDate) || object.endDate;
         object.published = sanitize(req.body.published) || object.published;

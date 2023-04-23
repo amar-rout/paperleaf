@@ -5,42 +5,37 @@ import { toast } from 'react-toastify';
 import './Coupons.css';
 
 function Coupon() {
-  const [couponData, setCouponData] = useState({
+
+  const initialData = {
     couponName: '',
     status: '',
     discountType: '',
     discountAmount: 0,
     discountPercentage: 0,
+    minPurchaseAmount: 0,
     startDate: '',
     endDate: '',
     punlished: ''
-  });
+  };
+  const [couponData, setCouponData] = useState(initialData);
   const [coupons, setCoupons] = useState([]);
 
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setCouponData(prev => ({ ...prev, [name]: value }))
-  }
-  
-  const handleReset = () => {
-    setCouponData({
-      couponName: '',
-      status: '',
-      discountType: '',
-      discountAmount: 0,
-      discountPercentage: 0,
-      startDate: '',
-      endDate: '',
-      punlished: ''
-    });
-  }
-
   const couponURL = "http://localhost:5010/api/coupons/";
+
+  let currINR = new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+  });
 
   useEffect(() => {
     getCoupon();
   });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCouponData(prev => ({ ...prev, [name]: value }));
+  }
+  const handleReset = () => { setCouponData(initialData) }
 
   const getCoupon = () => {
     axios.get(`${couponURL}/all`)
@@ -133,11 +128,11 @@ function Coupon() {
         <div className="card-header py-1 ">
           <h4 className="fw-bold">Add Coupon</h4>
         </div>
-        <div className="card-body">
+        <div className="card-body bg-light">
           <form onSubmit={handleSubmit} onReset={handleReset} >
             <div className={'row row-cols-lg-auto g-3 align-items-center justify-content-start'}>
               <div className="col-12">
-                <label for="couponName" class="form-label">Coupon name</label>
+                <label for="couponName" class="form-label">Coupon name<sup className='text-danger'>*</sup></label>
                 <input
                   type="text" id='couponName'
                   className="form-control"
@@ -159,7 +154,7 @@ function Coupon() {
               </label>
             </div> */}
               <div className="col-12">
-                <label for="discountType" class="form-label">Discount type</label>
+                <label for="discountType" class="form-label">Discount type<sup className='text-danger'>*</sup></label>
                 <select
                   className="form-select"
                   name="discountType" id='discountType'
@@ -168,7 +163,7 @@ function Coupon() {
                   onChange={handleChange}
                   required
                 >
-                  <option value="">-- Select Status --</option>
+                  <option value="">-- Disc type --</option>
                   <option value="Percentage">Percentage</option>
                   <option value="Amount">Amount</option>
                 </select>
@@ -176,7 +171,7 @@ function Coupon() {
 
               {couponData.discountType === 'Percentage' ?
                 <div className="col-12">
-                  <label for="discountPercentage" class="form-label">Discount %</label>
+                  <label for="discountPercentage" class="form-label">Discount %<sup className='text-danger'>*</sup></label>
                   <div class="input-group">
                     <span class="input-group-text">%</span>
                     <input
@@ -194,15 +189,16 @@ function Coupon() {
                 </div>
                 :
                 <div className="col-12">
-                  <label for="discountAmount" class="form-label">Discount Amount Rs.</label>
+                  <label for="discountAmount" class="form-label">Discount Amount(₹)<sup className='text-danger'>*</sup></label>
                   <div class="input-group">
-                    <span class="input-group-text">%</span>
+                    <span class="input-group-text">₹</span>
                     <input
                       type="number" id='discountAmount'
                       className="form-control"
-                      placeholder="Rs."
-                      min={0}
-                      max={10000}
+                      placeholder="₹"
+                      min={0.00}
+                      max={10000.00}
+                      step={0.05}
                       name="discountAmount"
                       value={couponData.discountAmount}
                       onChange={handleChange}
@@ -211,11 +207,53 @@ function Coupon() {
                   </div>
                 </div>
               }
+              {/* minPurchaseAmount */}
               <div className="col-12">
-
+                <label for="minPurchaseAmount" class="form-label">Min Purchase Amount(₹)<sup className='text-danger'>*</sup></label>
+                <div class="input-group">
+                  <span class="input-group-text">₹</span>
+                  <input
+                    type="number" id='minPurchaseAmount'
+                    className="form-control"
+                    placeholder="₹"
+                    min={0.00}
+                    max={10000.00}
+                    step={0.05}
+                    name="minPurchaseAmount"
+                    value={couponData.minPurchaseAmount}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
               </div>
               <div className="col-12">
-                <label for="discountType" class="form-label">Status</label>
+                <label for="startDate" class="form-label">Start Date<sup className='text-danger'>*</sup></label>
+                <input
+                  type="date" id='startDate'
+                  className="form-control shadow-none"
+                  placeholder="Coupon start date"
+                  name="startDate"
+                  min={new Date().toISOString().split("T")[0]}
+                  value={couponData.startDate}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="col-12">
+                <label for="endDate" class="form-label">End Date<sup className='text-danger'>*</sup></label>
+                <input
+                  type="date" id='endDate'
+                  className="form-control shadow-none"
+                  placeholder="Coupon expiry date"
+                  name="endDate"
+                  min={couponData.startDate}
+                  value={couponData.endDate}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="col-12">
+                <label for="discountType" class="form-label">Status<sup className='text-danger'>*</sup></label>
                 <select
                   className="form-select"
                   name="status" id='status'
@@ -223,16 +261,32 @@ function Coupon() {
                   onChange={handleChange}
                   required
                 >
-                  <option value="">-- Select Status --</option>
                   <option value="true">Active</option>
                   <option value="false">Deactive</option>
                 </select>
               </div>
+              <div className="col-12">
+                <label for="published" class="form-label">Published</label>
+                <select
+                  className="form-select"
+                  name="published" id='published'
+                  value={couponData.published}
+                  defaultChecked={true}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="true">Active</option>
+                  <option value="false">Deactive</option>
+                </select>
+              </div>
+              <div className='col-12'>
+                <div className='mt-4'>
+                  <button type="reset" className="btn btn-secondary me-2 px-4">Clear</button>
+                  <button type="submit" className="btn btn-success ms-2">Add Coupon</button>
+                </div>
+              </div>
             </div>
-            <div className='mt-4'>
-              <button type="reset" className="btn btn-light me-2 px-4">Clear</button>
-              <button type="submit" className="btn btn-success ms-2">Add Coupon</button>
-            </div>
+
           </form>
         </div>
       </div>
@@ -298,7 +352,7 @@ function Coupon() {
                         </div>
                       </td>
                       <td>{discountType}</td>
-                      <td>{discountAmount}</td>
+                      <td>{currINR.format(discountAmount)}</td>
                       <td>{discountPercentage}</td>
                       <td>{new Date(startDate).toLocaleDateString("en-IN")}</td>
                       <td>{new Date(endDate).toLocaleDateString("en-IN")}</td>

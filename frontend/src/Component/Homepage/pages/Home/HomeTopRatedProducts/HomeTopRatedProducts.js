@@ -41,7 +41,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
             <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 g-3 g-sm-3 g-md-4 g-lg-4">
                 {products.map((product) => (
                     <div key={product._id} className="col">
-                        <div className="card product_card p-0 p-md-0 m-0 rounded-0"
+                        <div className="card bg-light product_card p-0 p-md-0 m-0 rounded-0"
                             onClick={() => navigate(`/products/${product._id}`)}>
                             <div className="position-relative">
                                 {wishlistItems.find((item) => item.wId === product._id) ?
@@ -73,7 +73,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                             {/* <img src='/assets/images/productImages/product1.jpg' className="card-img-top bg-info-subtle rounded-4" alt="card 1" /> */}
                             {/* <img src={product.image} className="card-img-top rounded-4" alt="card 1" /> */}
                             {/* <img src='/assets/images/productImages/product1.jpg' className="card-img-top rounded-4" alt="card 1" /> */}
-                            <img src={product.image} className="card-img-top rounded-0" alt="card 1" />
+                            <img src={product.image} className="card-img-top bg-light rounded-4" alt="card 1" />
                             <div className="card-body bg-light p-1">
                                 {/* <p className="lh-md-1 my-0 text-muted small">{product.category}</p>
                                     <p className="card-title lh-md-1 my-0 my-md-1"><b>{product.name}</b></p>

@@ -1,0 +1,75 @@
+.twitter-bs-wizard .twitter-bs-wizard-nav {
+	position: relative;
+}
+.twitter-bs-wizard .twitter-bs-wizard-nav:before {
+	content: "";
+	width: 100%;
+	height: 2px;
+	background-color: 300;
+	position: absolute;
+	left: 0;
+	top: 26px;
+}
+.twitter-bs-wizard .twitter-bs-wizard-nav .step-number {
+	display: inline-block;
+	width: 38px;
+	height: 38px;
+	line-height: 34px;
+	border: 2px solid blue;
+	color: blue;
+	text-align: center;
+	border-radius: 50%;
+	position: relative;
+	background-color: grey;
+}
+@media (max-width: 991.98px) {
+	.twitter-bs-wizard .twitter-bs-wizard-nav .step-number {
+		display: block;
+		margin: 0 auto 8px !important;
+	}
+}
+.twitter-bs-wizard .twitter-bs-wizard-nav .nav-link .step-title {
+	display: block;
+	margin-top: 8px;
+	font-weight: bold;
+}
+@media (max-width: 575.98px) {
+	.twitter-bs-wizard .twitter-bs-wizard-nav .nav-link .step-title {
+		display: none;
+	}
+}
+.twitter-bs-wizard .twitter-bs-wizard-nav .nav-link.active {
+	background-color: transparent;
+	color: gray;
+}
+.twitter-bs-wizard .twitter-bs-wizard-nav .nav-link.active .step-number {
+	background-color: primary;
+	color: white;
+}
+.twitter-bs-wizard .twitter-bs-wizard-pager-link {
+	padding-top: 24px;
+	padding-left: 0;
+	list-style: none;
+	margin-bottom: 0;
+}
+.twitter-bs-wizard .twitter-bs-wizard-pager-link li {
+	display: inline-block;
+}
+.twitter-bs-wizard .twitter-bs-wizard-pager-link li a {
+	display: inline-block;
+	padding: .47rem .75rem;
+	background-color: blue;
+	color: white;
+	border-radius: .25rem;
+}
+.twitter-bs-wizard .twitter-bs-wizard-pager-link li.disabled a {
+	cursor: not-allowed;
+	background-color: #2929ff;
+}
+.twitter-bs-wizard .twitter-bs-wizard-pager-link li.next {
+	float: right;
+}
+.twitter-bs-wizard-tab-content {
+	padding-top: 24px;
+	min-height: 262px;
+}

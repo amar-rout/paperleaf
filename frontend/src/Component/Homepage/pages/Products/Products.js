@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ReactStars from "react-rating-stars-component";
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
@@ -12,18 +12,25 @@ import { clearState, productDetailsAsync, selectProduct, getStatus, getError } f
 import { addCartAsync } from "../../../../app/cartSlice";
 import { ToastContainer } from 'react-toastify';
 
+import './Products.css';
+import RecentlyViewedProducts from '../Home/RecentlyViewedProducts/RecentlyViewedProducts';
 
 const Products = () => {
     const [productID, setProductID] = useState("");
     const [productName, setProductName] = useState("");
     const [product, setProduct] = useState({});
 
+    const [modalImgInfo, setModalImgInfo] = useState("");
+
     const [nav1, setNav1] = useState(null);
     const [nav2, setNav2] = useState(null);
     let slider1 = '';
     let slider2 = '';
 
-    const serverURL = process.env.REACT_APP_SERVER_URL;
+    const navigate = useNavigate();
+    // const serverURL = process.env.REACT_APP_SERVER_URL;
+    const serverURL = "http://192.168.29.28:5010";
+    // 192.168.29.28";
 
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -87,15 +94,51 @@ const Products = () => {
             {loading ?
                 <div className="container my-5 py-5 text-center">
                     <div className="spinner-border" style={{ width: '3rem', height: '3rem' }} role="status">
-                        <span className="">Loading...</span>
+                        <span className="visually-hidden">Loading...</span>
                     </div>
                 </div>
                 :
                 <>
                     {errorMessage === '' && <>{errorMessage}</>}
-                    <section className="album py-3 bg-light-subtle">
-                        <div className="container bg-body shadow p-md-5 p-2">
+                    <section className="album py-3 px-3 bg-light-subtle">
+                        <div className="container bg-body p-md-5">
                             <div className="row mb-50">
+                                <div className="d-none d-md-block col-md-1">
+                                    <Slider
+                                        asNavFor={nav1}
+                                        ref={slider => (slider2 = slider)}
+                                        infinite={true}
+                                        slidesToShow={4}
+                                        slidesToScroll={1}
+                                        vertical={true}
+                                        verticalSwiping={true}
+                                        swipeToSlide={true}
+                                        focusOnSelect={true}
+                                    >
+                                        <div>
+                                            <img src={`${serverURL}${product.image}`}
+                                                onClick={() => setModalImgInfo(product.image)}
+                                                className='' alt={product.image} style={{ width: "80px", height: "auto" }} />
+                                        </div>
+                                        {product.images && product.images.map((image) => {
+                                            return (
+                                                <div>
+                                                    <img src={`${serverURL}${image}`}
+
+                                                        className='' alt="product" style={{ width: "80px", height: "auto" }} />
+                                                </div>
+                                            )
+                                        })}
+
+                                        {/* {product.images && product.images.map((image) => {
+                                                return (
+                                                    <div>
+                                                        <img src={`http://localhost:5010${image}`} className='p-2' alt="product" style={{ width: "90px", height: "90px" }} />
+                                                    </div>
+                                                )
+                                            })} */}
+                                    </Slider>
+                                </div>
                                 <div className="col-12 col-md-4">
                                     {/* <div className={`detail-gallery mx-md-5 px-2 px-md-5 ${stickyClass}`}> */}
                                     {/* <div className="mx-md-5 px-2 px-md-5">
@@ -110,17 +153,24 @@ const Products = () => {
                                             <img className="p-1" src={product.image} alt="product" style={{ width: "64px", height: "64px" }} />
                                         </div>
                                     </div> */}
-                                    <div className='px-4'>
+                                    <div className='px-2'>
                                         <Slider
                                             asNavFor={nav2}
-                                            ref={slider => (slider1 = slider)}>
+                                            ref={slider => (slider1 = slider)}
+                                            adaptiveHeight={true}>
                                             <div>
-                                                <img src={`${serverURL}${product.image}`} alt="product" style={{ width: "100%", height: "400px" }} />
+                                                <img src={`${serverURL}${product.image}`}
+                                                    onClick={() => setModalImgInfo(product.image)}
+                                                    data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                                    alt="product" style={{ width: "100%", height: "auto" }} />
                                             </div>
                                             {product.images && product.images.map((image) => {
                                                 return (
                                                     <div>
-                                                        <img src={`${serverURL}${image}`} alt="product" style={{ width: "100%", height: "400px" }} />
+                                                        <img src={`${serverURL}${image}`}
+                                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                                            onClick={() => setModalImgInfo(image)}
+                                                            alt="product" style={{ width: "100%", height: "auto" }} />
                                                     </div>
                                                 )
                                             })}
@@ -133,34 +183,9 @@ const Products = () => {
                                             })} */}
 
                                         </Slider>
-                                        <Slider
-                                            asNavFor={nav1}
-                                            ref={slider => (slider2 = slider)}
-                                            slidesToShow={4}
-                                            swipeToSlide={true}
-                                            focusOnSelect={true}
-                                        >
-                                            <div>
-                                                <img src={`${serverURL}${product.image}`} className='p-2' alt={product.image} style={{ width: "90px", height: "90px" }} />
-                                            </div>
-                                            {product.images && product.images.map((image) => {
-                                                return (
-                                                    <div>
-                                                        <img src={`${serverURL}${image}`} className='p-2' alt="product" style={{ width: "90px", height: "90px" }} />
-                                                    </div>
-                                                )
-                                            })}
-                                            {/* {product.images && product.images.map((image) => {
-                                                return (
-                                                    <div>
-                                                        <img src={`http://localhost:5010${image}`} className='p-2' alt="product" style={{ width: "90px", height: "90px" }} />
-                                                    </div>
-                                                )
-                                            })} */}
-                                        </Slider>
                                     </div>
                                 </div>
-                                <div className="col-12 col-md-8">
+                                <div className="col-12 col-md-6">
                                     <div className="detail-info mx-md-3 px-2 px-md-3 py-2 py-md-0">
                                         <div className="d-flex justify-content-between align-items-center">
                                             {product.countInStock > 0 ?
@@ -290,6 +315,51 @@ const Products = () => {
                                         </ul> */}
                                     </div>
                                 </div>
+                                {/* Modal Start */}
+                                <div>
+                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style={{ backgroundColor: 'transparent' }}>
+                                                    {/* <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                                        onClick={() => setModalImgInfo("")}></button> */}
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                                        style={{ right: '10px' }}
+                                                        onClick={() => setModalImgInfo("")}></button>
+                                                </div>
+
+
+
+                                                {/* <div class="modal-body"> */}
+                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                                        onClick={() => setModalImgInfo("")}></button> */}
+                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                                    style={{ right: '10px' }}
+                                                    onClick={() => setModalImgInfo("")}></button> */}
+                                                <div class="zoom_outer">
+                                                    <div id="zoom">
+                                                        <img src={`${serverURL}${modalImgInfo}`} alt="zoom" style={{ width: '100%', height: 'auto' }} />
+                                                    </div>
+                                                </div>
+                                                {/* <button type="button" class="btn btn-light" style={{ position: 'absolute', bottom: '10px', right: '10px' }}
+                                                    onClick={() => setModalImgInfo("")}
+                                                    data-bs-dismiss="modal">Close</button> */}
+                                                {/* </div> */}
+                                                {/* <div class="modal-footer">
+                                                     <button type="button" class="btn btn-secondary"
+                                                        onClick={() => setModalImgInfo("")}
+                                                        data-bs-dismiss="modal">Close</button> 
+                                                {/* <button type="button" class="btn btn-primary">Understood</button> */}
+                                                {/* </div> */}
+                                                {/* <button type="button" class="btn btn-light" style={{ bottom: '10px', right: '10px' }}
+                                                    onClick={() => setModalImgInfo("")}
+                                                    data-bs-dismiss="modal">Close</button> */}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* Modal End */}
 
                                 {/* ReactSlick slider Begin */}
                                 {/* <div class="row p-5">
@@ -638,6 +708,41 @@ const Products = () => {
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='col-12'>
+                                    <RecentlyViewedProducts />
+                                </div>
+                                <div className='col-12'>
+                                    <h5 className='text-center my-4'>Categories</h5>
+                                    <div className="" style={{ overflowX: 'scroll' }}>
+                                        {/* row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 g-2 g-sm-2 g-md-3 g-lg-4 */}
+                                        <div className="text-center d-flex justify-content-start align-items-center">
+                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dupattas')}>
+                                                <img src="/assets/images/catImages/dupattas_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                <h6 className="category-txt fw-normal pt-2 category-text">Dupattas</h6>
+                                            </button>
+                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dress')}>
+                                                <img src="/assets/images/catImages/dress_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                <h6 className="category-txt fw-normal pt-2">Dress</h6>
+                                            </button>
+                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Fabrics')}>
+                                                <img src="/assets/images/catImages/fabrics_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                <h6 className="category-txt fw-normal pt-2">Fabrics</h6>
+                                            </button>
+                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/DressMaterial')}>
+                                                <img src="/assets/images/catImages/dressmaterial_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                <h6 className="category-txt fw-normal pt-2">Dress Material</h6>
+                                            </button>
+                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Jewellery')}>
+                                                <img src="/assets/images/catImages/jewellery_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                <h6 className="category-txt fw-normal pt-2">Jewellery</h6>
+                                            </button>
+                                            <button className="category-btn col btn btn-default cat-btn opacity-1" onClick={() => navigate('/category/newCollections')}>
+                                                <img src="/assets/images/catImages/newcollection_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                <h6 className="category-txt fw-normal pt-2">New Collections</h6>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

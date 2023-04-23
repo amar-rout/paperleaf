@@ -45,6 +45,7 @@ import UserNotification from './Component/Homepage/pages/User/UserNotification/U
 import UserPayment from './Component/Homepage/pages/User/UserPayment/UserPayment';
 import UserSetting from './Component/Homepage/pages/User/UserSetting/UserSetting';
 import Checkout from './Component/Homepage/pages/Checkout/Checkout';
+// import CheckoutDetails from './Component/Homepage/pages/Checkout/CheckoutDetails';
 import Products from './Component/Homepage/pages/Products/Products';
 import CategoryItems from './Component/Homepage/pages/Category/CategoryItems/CategoryItems';
 import TermsConditions from './Component/Homepage/pages/TermsConditions/TermsConditions';

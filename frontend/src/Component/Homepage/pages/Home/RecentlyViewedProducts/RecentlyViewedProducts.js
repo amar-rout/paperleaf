@@ -1,5 +1,5 @@
 import React from "react";
-import Slider from "react-slick";
+// import Slider from "react-slick";
 
 // import SliderView from "./SliderView";
 // import "slick-carousel/slick/slick.css";
@@ -9,23 +9,23 @@ import "./RecentlyViewedProducts.css";
 
 const RecentlyViewedProducts = () => {
 
-    const settings = {
-        className: "center",
-        // dots: true,
-        infinite: true,
-        slidesToShow: 1,
-        slidesPerRow: 1,
-        // speed: 500,
-        // rows: 3,
-        // slidesToScroll: 1,
-        swipeToSlide: true,
-        // adaptiveHeight: true,
-        afterChange: function (index) {
-            console.log(
-                `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-            );
-        }
-    }
+    // const settings = {
+    //     className: "center",
+    //     // dots: true,
+    //     infinite: true,
+    //     slidesToShow: 1,
+    //     slidesPerRow: 1,
+    //     // speed: 500,
+    //     // rows: 3,
+    //     // slidesToScroll: 1,
+    //     swipeToSlide: true,
+    //     // adaptiveHeight: true,
+    //     afterChange: function (index) {
+    //         console.log(
+    //             `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
+    //         );
+    //     }
+    // }
 
     return (
         <>
@@ -35,8 +35,8 @@ const RecentlyViewedProducts = () => {
                     <h4 className="pb-5 text-center">
                         <span className="border-bottom border-2">Recently Viewed products</span>
                     </h4>
-                    <Slider {...settings}>
-                        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2 g-sm-3 g-md-4 g-lg-5">
+                    {/* <Slider {...settings}> */}
+                        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2 g-sm-3 g-md-4 g-lg-2">
                             <div class="col">
                                 <div class="card p-0 m-0 shadow-sm rounded-4">
                                     <div class="position-relative">
@@ -222,7 +222,7 @@ const RecentlyViewedProducts = () => {
                                 </div>
                             </div>
                         </div>
-                    </Slider>
+                    {/* </Slider> */}
                 </div>
             </section>
             {/* <SliderView /> */}

@@ -41,6 +41,12 @@ code {
 /*********************************************/
 /*              GENERAL CSS                 "/
 /*********************************************/
+*{
+  font-size: 14px;
+  font-family: 'Noto Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 p {
   font-family: 'Noto Sans', sans-serif;

@@ -13,6 +13,13 @@ const couponSchema = mongoose.Schema({
             required: true,
             default: 'Active'
         },
+        // couponType:{
+        //     type: String,
+        //     trim: true,
+        //     enum: ['User', 'UserGroup', 'Category', 'Collection'],
+        //     required: true,
+        //     default: 'Percentage'
+        // },
         discountType: {
             type: String,
             trim: true,
@@ -29,6 +36,11 @@ const couponSchema = mongoose.Schema({
             type: Number,
             required: true,
             default: 0
+        },
+        minPurchaseAmount: {
+            type: Number,
+            required: true,
+            default: 0.0
         },
         startDate: {
             type: Date,

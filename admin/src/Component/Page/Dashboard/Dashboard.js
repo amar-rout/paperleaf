@@ -84,7 +84,7 @@ function Dashboard() {
           <div className="card card-light-blue">
             <div className="card-body">
               <div className='d-flex align-items-center'>
-                <div className='px-4 text-white fs-3'>
+                <div className='px-2 text-white fs-3'>
                   <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
                 </div>
                 <div>
