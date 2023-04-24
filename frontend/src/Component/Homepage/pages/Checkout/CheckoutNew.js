@@ -26,18 +26,27 @@ function CheckoutNew() {
 
     return (
         <div className='container px-5 py-3'>
+            <h5 className='text-center my-4 text-decoration-underline'>Checkout Details</h5>
             <div className='row'>
                 <div className='col-12 col-md-8'>
-
-                    <ul class="nav nav-tabs nav-pills">
+                    <ul class="nav nav-fill">
                         <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#home">Home</a>
+                            <a class="nav-link active text-center" data-bs-toggle="tab" href="#home">
+                                <span class="step-number">01</span>
+                                <span class="step-title d-block">Billing Info</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#menu1">Menu 1</a>
+                            <a class="nav-link text-center" data-bs-toggle="tab" href="#menu1">
+                                <span class="step-number">02</span>
+                                <span class="step-title d-block">Shipping Info</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" href="#menu2">Menu 2</a>
+                            <a class="nav-link text-center" data-bs-toggle="tab" href="#menu2">
+                                <span class="step-number">03</span>
+                                <span class="step-title d-block">Payment Info</span>
+                            </a>
                         </li>
                     </ul>
                     <div class="tab-content">

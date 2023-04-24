@@ -15,7 +15,7 @@ function Coupon() {
     minPurchaseAmount: 0,
     startDate: '',
     endDate: '',
-    punlished: false
+    published: ''
   };
   const [couponData, setCouponData] = useState(initialData);
   const [coupons, setCoupons] = useState([]);
@@ -110,14 +110,21 @@ function Coupon() {
       })
   }
 
-  const handlePublished = (id, name, status) => {
-    let statusData = { "couponName": name, "published": !status };
-    console.log(statusData);
-    axios.patch(`${couponURL}coupon/${id}`, statusData)
+  const handlePublished = (id, couponName, published) => {
+    let publishVal;
+    console.log("Published: " + published);
+    if (published && published === true) {
+      publishVal = "false";
+    } else {
+      publishVal = "true";
+    }
+    let publishedData = { "couponName": couponName, "published": publishVal };
+    console.log(publishedData);
+    axios.patch(`${couponURL}coupon/${id}`, publishedData)
       .then(response => {
         toast.dismiss();
-        let message = !status ? "Published" : "Unpublished";
-        toast.success(`Coupon ${name} ${message}`);
+        let message = publishVal === "true" ? "Published" : "Unpublished";
+        toast.success(`Coupon ${couponName} ${message}`);
       }).catch(error => {
         if (error.response) {
           toast.dismiss();
@@ -173,16 +180,6 @@ function Coupon() {
                   required
                 />
               </div>
-              {/* <div className='col-12 d-block'>
-              <span className='d-block mb-2'>Discount type</span>
-              <label class="switch d-block">
-                <input type="checkbox" name="discountType" onChange={handleChange} id="togBtn" />
-                <div class="slider round">
-                  <span class="on">Percentage</span>
-                  <span class="off">Amount</span>
-                </div>
-              </label>
-            </div> */}
               <div className="col-12">
                 <label for="discountType" class="form-label">Discount type<sup className='text-danger'>*</sup></label>
                 <select
@@ -358,34 +355,12 @@ function Coupon() {
                             type="checkbox"
                             role="switch"
                             id="status"
-                            // value={() => {
-                            // console.log(status);
-                            // status === "Active" ? 'true' : 'false';  
-                            // }}
+                            
                             defaultChecked={status === "Active"}
-                            // defaultChecked={status}
-                            //  coupon.status === "Active" ? true : false }
+                            
                             onChange={() => handleStatus(_id, couponName, status)}
                           // disabled={ adminData.userType !== "super admin" && id <= 4}
                           />
-                          {/* <label
-                            className="form-check-label text-dark ms-1"
-                            htmlFor="status"
-                          >
-                            {status ? <small>Activated</small> : <small>Dectivated</small>}
-                          </label> */}
-
-                          {/* <select
-                            className="form-select"
-                            couponName="status"
-                            value={status}
-                            onChange={() => handleStatus({ _id, status })}
-                          >
-                            <option value="" selected>-- Select Status --</option>
-                            <option value="true">Active</option>
-                            <option value="false">Deactive</option>
-                          </select> */}
-
                         </div>
                       </td>
                       <td>{discountType}</td>
@@ -406,12 +381,6 @@ function Coupon() {
                             // value={published}
                             onChange={() => handlePublished(_id, couponName, published)}
                           />
-                          {/* <label
-                            className="form-check-label text-dark ms-1"
-                            htmlFor="status"
-                          >
-                            {status ? <small>Activated</small> : <small>Dectivated</small>}
-                          </label> */}
                         </div>
                       </td>
                       <td>
@@ -439,3 +408,44 @@ function Coupon() {
 }
 
 export default Coupon;
+
+
+/* <div className='col-12 d-block'>
+              <span className='d-block mb-2'>Discount type</span>
+              <label class="switch d-block">
+                <input type="checkbox" name="discountType" onChange={handleChange} id="togBtn" />
+                <div class="slider round">
+                  <span class="on">Percentage</span>
+                  <span class="off">Amount</span>
+                </div>
+              </label>
+            </div> */
+            // value={() => {
+                            // console.log(status);
+                            // status === "Active" ? 'true' : 'false';  
+                            // }}
+            /* <label
+                            className="form-check-label text-dark ms-1"
+                            htmlFor="status"
+                          >
+                            {status ? <small>Activated</small> : <small>Dectivated</small>}
+                          </label> */
+
+                          /* <select
+                            className="form-select"
+                            couponName="status"
+                            value={status}
+                            onChange={() => handleStatus({ _id, status })}
+                          >
+                            <option value="" selected>-- Select Status --</option>
+                            <option value="true">Active</option>
+                            <option value="false">Deactive</option>
+                          </select> */
+/* <label
+// defaultChecked={status}
+                            //  coupon.status === "Active" ? true : false }
+                            className="form-check-label text-dark ms-1"
+                            htmlFor="status"
+                          >
+                            {status ? <small>Activated</small> : <small>Dectivated</small>}
+                          </label> */

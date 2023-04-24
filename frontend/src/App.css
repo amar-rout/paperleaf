@@ -54,6 +54,8 @@
   width: 75%;
   height: 240px;
   opacity: 1;
+  object-fit: cover;
+  image-rendering: auto;
   transition-duration: 0.2s;
 }
 @media (min-width: 392px) {
