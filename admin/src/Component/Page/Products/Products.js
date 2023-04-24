@@ -94,7 +94,7 @@ function Products() {
                   return (
                     <tr key={_id}>
                       <td>
-                        <img src={`http://localhost:5010${image}`} alt="product" style={{ width: '50px', height: '50px' }} />
+                        <img src={`http://localhost:5010${image}`} alt="product" style={{ width: '20%', height: 'auto' }} />
                       </td>
                       <td>{name}</td>
                       <td>{category}</td>
