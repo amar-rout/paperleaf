@@ -302,6 +302,7 @@ const Products = () => {
                                             }
                                         </div>
                                     </div>
+                                    
                                     <p className="text-muted fw-normal small mb-4"><small>*Please contact our service helpdesk if you want to order more than 5 pieces in a single order</small></p>
                                     <div className="my-4 d-flex flex-0 justify-content-start align-items-center">
                                         {/* <div className="me-2">
