@@ -31,9 +31,9 @@ function CheckoutNew() {
                 <div className='row'>
                     <div className='col-12 col-md-8'>
                         <div className='bg-white py-3'>
-                            <ul class="nav nav-fill w-100">
+                            <ul class="nav nav-fill check_nav w-100">
                                 <li class="nav-item">
-                                    <a class="nav-link active text-center" data-bs-toggle="tab" href="#home">
+                                    <a class="nav-link check_nav-link active text-center" data-bs-toggle="tab" href="#home">
                                         <span class="step-number">01</span>
                                         <span class="step-title d-block">Billing Info</span>
                                     </a>

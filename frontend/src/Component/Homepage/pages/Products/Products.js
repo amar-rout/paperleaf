@@ -27,8 +27,8 @@ const Products = () => {
     let slider1 = '';
     let slider2 = '';
 
-    const responsiveSetting = [ {
-        breakpoint:480,
+    const responsiveSetting = [{
+        breakpoint: 480,
         settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
@@ -134,7 +134,7 @@ const Products = () => {
                                             return (
                                                 <div>
                                                     <img src={`${serverURL}${image}`}
-
+                                                        onClick={() => setModalImgInfo(product.image)}
                                                         className='' alt="product" style={{ width: "80px", height: "auto" }} />
                                                 </div>
                                             )
@@ -174,25 +174,25 @@ const Products = () => {
                                             dots={true}
                                             responsive={responsiveSetting}
                                         >
-                                        <div>
-                                            <img className='px-1'
-                                                src={`${serverURL}${product.image}`}
-                                                onClick={() => setModalImgInfo(product.image)}
-                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                                alt="product" style={{ width: "100%", height: "auto" }} />
-                                        </div>
-                                        {product.images && product.images.map((image) => {
-                                            return (
-                                                <div>
-                                                    <img className='px-1'
-                                                        src={`${serverURL}${image}`}
-                                                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                                        onClick={() => setModalImgInfo(image)}
-                                                        alt="product" style={{ width: "100%", height: "auto" }} />
-                                                </div>
-                                            )
-                                        })}
-                                        {/* {product.images && product.images.map((image) => {
+                                            <div>
+                                                <img className='px-1'
+                                                    src={`${serverURL}${product.image}`}
+                                                    onClick={() => setModalImgInfo(product.image)}
+                                                    data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                                    alt="product" style={{ width: "100%", height: "auto" }} />
+                                            </div>
+                                            {product.images && product.images.map((image) => {
+                                                return (
+                                                    <div>
+                                                        <img className='px-1'
+                                                            src={`${serverURL}${image}`}
+                                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                                            onClick={() => setModalImgInfo(image)}
+                                                            alt="product" style={{ width: "100%", height: "auto" }} />
+                                                    </div>
+                                                )
+                                            })}
+                                            {/* {product.images && product.images.map((image) => {
                                                 return (
                                                     <div>
                                                         <img src={`http://localhost:5010${image}`} alt="product" style={{ width: "100%", height: "400px" }} />
@@ -200,188 +200,188 @@ const Products = () => {
                                                 )
                                             })} */}
 
-                                    </Slider>
+                                        </Slider>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="col-12 col-md-5">
-                                <div className="detail-info mx-md-3 px-2 px-md-3 py-2 py-md-0">
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        {product.countInStock > 0 ?
-                                            <>
-                                                <span className="px-2 py-1 small bg-success-subtle text-success rounded">In Stock</span>
-                                            </>
-                                            :
-                                            <span className="px-2 py-1 small bg-danger-subtle text-danger rounded">Out of Stocks</span>
-                                        }
-                                        <span className='d-flex justify-content-end align-items-center '>
-                                            <ReactStars classNames=""  {...{
-                                                size: 18,
-                                                count: 5,
-                                                color: "#feeecc",
-                                                activeColor: "#fdad01",
-                                                value: product.rating,
-                                                a11y: true,
-                                                edit: false,
-                                                isHalf: true
-                                            }} />
-                                            <span className="small ms-1 me-5 text-muted">
-                                                <span className=''>{product.rating}</span>
-                                                {/* style={{ color: '#fdad01' }} */}
-                                                <span className='ms-1'>({product.numReviews} reviews)</span>
+                                <div className="col-12 col-md-5">
+                                    <div className="detail-info mx-md-3 px-2 px-md-3 py-2 py-md-0">
+                                        <div className="d-flex justify-content-between align-items-center">
+                                            {product.countInStock > 0 ?
+                                                <>
+                                                    <span className="px-2 py-1 small bg-success-subtle text-success rounded">In Stock</span>
+                                                </>
+                                                :
+                                                <span className="px-2 py-1 small bg-danger-subtle text-danger rounded">Out of Stocks</span>
+                                            }
+                                            <span className='d-flex justify-content-end align-items-center '>
+                                                <ReactStars classNames=""  {...{
+                                                    size: 18,
+                                                    count: 5,
+                                                    color: "#feeecc",
+                                                    activeColor: "#fdad01",
+                                                    value: product.rating,
+                                                    a11y: true,
+                                                    edit: false,
+                                                    isHalf: true
+                                                }} />
+                                                <span className="small ms-1 me-5 text-muted">
+                                                    <span className=''>{product.rating}</span>
+                                                    {/* style={{ color: '#fdad01' }} */}
+                                                    <span className='ms-1'>({product.numReviews} reviews)</span>
+                                                </span>
                                             </span>
-                                        </span>
-                                    </div>
-                                    <p className="mt-2 mb-3 small fw-semibold text-muted">PAPERLEAF</p>
-                                    <h2 className="title-detail fw-bold" style={{ fontFamily: 'Montserrat !important' }}>{product.name}</h2>
-                                    <div>
-                                        <span className="text-brand fs-3 fw-bold text-muted">₹{product.price}</span>
-                                        {product.salePrice > 0 && <span className="ms-2 ms-md-4 fs-3 fw-bold text-muted text-decoration-line-through">₹{product.salePrice}</span>}
-                                        {/* <span className="ms-2 ms-md-4 fs-6 fw-bold text-muted">Flat 25% Off</span> */}
-                                    </div>
-                                    <div className="bt-1 border-color-1 mt-15 mb-15"></div>
-                                    {/* <div className="short-desc mb-30">
+                                        </div>
+                                        <p className="mt-2 mb-3 small fw-semibold text-muted">PAPERLEAF</p>
+                                        <h2 className="title-detail fw-bold" style={{ fontFamily: 'Montserrat !important' }}>{product.name}</h2>
+                                        <div>
+                                            <span className="text-brand fs-3 fw-bold text-muted">₹{product.price}</span>
+                                            {product.salePrice > 0 && <span className="ms-2 ms-md-4 fs-3 fw-bold text-muted text-decoration-line-through">₹{product.salePrice}</span>}
+                                            {/* <span className="ms-2 ms-md-4 fs-6 fw-bold text-muted">Flat 25% Off</span> */}
+                                        </div>
+                                        <div className="bt-1 border-color-1 mt-15 mb-15"></div>
+                                        {/* <div className="short-desc mb-30">
                                             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam rem officia, corrupti reiciendis minima nisi modi, quasi, odio minus dolore impedit fuga eum eligendi? Officia doloremque facere quia. Voluptatum, accusantium!</p>
                                         </div> */}
-                                    {/* <div className="product_sort_info font-xs mb-30">
+                                        {/* <div className="product_sort_info font-xs mb-30">
                                             <ul className='text-decoration-none'>
                                                 <li className="mb-1"><i className="fi-rs-crown mr-5"></i> 1 Year AL Jazeera Brand Warranty</li>
                                                 <li className="mb-1"><i className="fi-rs-refresh mr-5"></i> 30 Day Return Policy</li>
                                                 <li><i className="bi bi-card mr-5"></i> Cash on Delivery available</li>
                                             </ul>
                                         </div> */}
-                                    <div className="my-4 d-flex flex-0 justify-content-start align-items-center">
-                                        <div>
-                                            <span className="me-2">Size </span>
+                                        <div className="my-4 d-flex flex-0 justify-content-start align-items-center">
+                                            <div>
+                                                <span className="me-2">Size </span>
+                                            </div>
+                                            <div class="" role="group" aria-label="Basic radio toggle button group">
+                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" />
+                                                <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio1"><small>XS</small></label>
+
+                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+                                                <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio2"><small>S</small></label>
+
+                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
+                                                <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio3"><small>M</small></label>
+
+                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" />
+                                                <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio4"><small>L</small></label>
+
+                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" />
+                                                <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio5"><small>XL</small></label>
+
+                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off" />
+                                                <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio6"><small>XXL</small></label>
+                                            </div>
                                         </div>
-                                        <div class="" role="group" aria-label="Basic radio toggle button group">
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" />
-                                            <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio1"><small>XS</small></label>
-
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
-                                            <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio2"><small>S</small></label>
-
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
-                                            <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio3"><small>M</small></label>
-
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" />
-                                            <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio4"><small>L</small></label>
-
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" />
-                                            <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio5"><small>XL</small></label>
-
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off" />
-                                            <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio6"><small>XXL</small></label>
+                                        <div className="d-flex flex-0 justify-content-start align-items-center">
+                                            <div>
+                                                <span className="me-2">Quantity </span>
+                                            </div>
+                                            <div className="input-group input-group-sm" style={{ maxWidth: 150 }}>
+                                                {prodQuantity > 1 ?
+                                                    <button className="btn btn-outline-dark fs-xl px-3" type="button" data-decrement=""
+                                                        onClick={() => setProdQuantity(prodQuantity - 1)}>
+                                                        <i className="bi bi-dash-lg"></i>
+                                                    </button>
+                                                    :
+                                                    <button className="btn btn-outline-dark fs-xl px-3 disabled" type="button" data-decrement="">
+                                                        <i className="bi bi-dash-lg"></i>
+                                                    </button>
+                                                }
+                                                <span className="form-control shadow-none disabled border-dark text-center">{prodQuantity}</span>
+                                                {/* value={product.qty} /> */}
+                                                {prodQuantity < 5 ?
+                                                    <button className="btn btn-outline-dark fs-xl px-3" type="button" data-decrement=""
+                                                        onClick={() => setProdQuantity(prodQuantity + 1)}>
+                                                        <i className="bi bi-plus-lg"></i>
+                                                    </button>
+                                                    :
+                                                    <button className="btn btn-outline-dark fs-xl px-3 disabled" type="button" data-decrement="">
+                                                        <i className="bi bi-dash-lg"></i>
+                                                    </button>
+                                                }
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="d-flex flex-0 justify-content-start align-items-center">
-                                        <div>
-                                            <span className="me-2">Quantity </span>
-                                        </div>
-                                        <div className="input-group input-group-sm" style={{ maxWidth: 150 }}>
-                                            {prodQuantity > 1 ?
-                                                <button className="btn btn-outline-dark fs-xl px-3" type="button" data-decrement=""
-                                                    onClick={() => setProdQuantity(prodQuantity - 1)}>
-                                                    <i className="bi bi-dash-lg"></i>
-                                                </button>
-                                                :
-                                                <button className="btn btn-outline-dark fs-xl px-3 disabled" type="button" data-decrement="">
-                                                    <i className="bi bi-dash-lg"></i>
-                                                </button>
-                                            }
-                                            <span className="form-control shadow-none disabled border-dark text-center">{prodQuantity}</span>
-                                            {/* value={product.qty} /> */}
-                                            {prodQuantity < 5 ?
-                                                <button className="btn btn-outline-dark fs-xl px-3" type="button" data-decrement=""
-                                                    onClick={() => setProdQuantity(prodQuantity + 1)}>
-                                                    <i className="bi bi-plus-lg"></i>
-                                                </button>
-                                                :
-                                                <button className="btn btn-outline-dark fs-xl px-3 disabled" type="button" data-decrement="">
-                                                    <i className="bi bi-dash-lg"></i>
-                                                </button>
-                                            }
-                                        </div>
-                                    </div>
-                                    
-                                    <p className="text-muted fw-normal small mb-4"><small>*Please contact our service helpdesk if you want to order more than 5 pieces in a single order</small></p>
-                                    <div className="my-4 d-flex flex-0 justify-content-start align-items-center">
-                                        {/* <div className="me-2">
+
+                                        <p className="text-muted fw-normal small mb-4"><small>*Please contact our service helpdesk if you want to order more than 5 pieces in a single order</small></p>
+                                        <div className="my-4 d-flex flex-0 justify-content-start align-items-center">
+                                            {/* <div className="me-2">
                                                 <button type="submit" className="btn btn-warning px-3"><small>Add to cart</small></button>
                                             </div> */}
-                                        {/* <button type="button" className="btn btn-sm bg-warning w-100 d-flex justify-content-center align-items-center" */}
-                                        <button type="button" className="btn btn-warning px-3"
-                                            // onClick={() => dispatch(addCartAsync({ pId: product._id, qty: 1 }))}>
-                                            onClick={() => handleAddCart(product._id, prodQuantity)}>
-                                            {/* <i className="bi bi-cart d-none d-sm-inline"></i> */}
-                                            <span className="fw-normal">Add to cart</span>
-                                            <ToastContainer className="mb-sm-1 text-start fs-6 small" />
-                                        </button>
-                                        <div className="ms-2">
-                                            <button type="submit" className="btn btn-outline-dark px-3"><small>Buy now</small></button>
+                                            {/* <button type="button" className="btn btn-sm bg-warning w-100 d-flex justify-content-center align-items-center" */}
+                                            <button type="button" className="btn btn-warning px-3"
+                                                // onClick={() => dispatch(addCartAsync({ pId: product._id, qty: 1 }))}>
+                                                onClick={() => handleAddCart(product._id, prodQuantity)}>
+                                                {/* <i className="bi bi-cart d-none d-sm-inline"></i> */}
+                                                <span className="fw-normal">Add to cart</span>
+                                                <ToastContainer className="mb-sm-1 text-start fs-6 small" />
+                                            </button>
+                                            <div className="ms-2">
+                                                <button type="submit" className="btn btn-outline-dark px-3"><small>Buy now</small></button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    {/* <div className="detail-extralink">
+                                        {/* <div className="detail-extralink">
                                             <div className="product-extra-link2">
                                                 <button type="submit" className="button button-add-to-cart">Add to cart</button>
                                                 <a aria-label="Add To Wishlist" className="action-btn hover-up" href="shop-wishlist.html"><i className="fi-rs-heart"></i></a>
                                                 <a aria-label="Compare" className="action-btn hover-up" href="shop-compare.html"><i className="fi-rs-shuffle"></i></a>
                                             </div>
                                         </div> */}
-                                    {/* <ul className="product-meta font-xs color-grey mt-50">
+                                        {/* <ul className="product-meta font-xs color-grey mt-50">
                                             <li className="mb-5">SKU: <a href="/">FWM15VKT</a></li>
                                             <li className="mb-5">Tags: <a href="/" rel="tag">Cloth</a>, <a href="/" rel="tag">Women</a>, <a href="/" rel="tag">Dress</a> </li>
                                             <li>Availability:<span className="in-stock text-success ml-5">8 Items In Stock</span></li>
                                         </ul> */}
+                                    </div>
                                 </div>
-                            </div>
-                            {/* Modal Start */}
-                            <div>
-                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header" style={{ backgroundColor: 'transparent' }}>
-                                                {/* <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                {/* Modal Start */}
+                                <div>
+                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style={{ backgroundColor: 'transparent' }}>
+                                                    {/* <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                                         onClick={() => setModalImgInfo("")}></button> */}
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                                    style={{ right: '10px' }}
-                                                    onClick={() => setModalImgInfo("")}></button>
-                                            </div>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                                        style={{ right: '10px' }}
+                                                        onClick={() => setModalImgInfo("")}></button>
+                                                </div>
 
 
 
-                                            {/* <div class="modal-body"> */}
-                                            {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                                {/* <div class="modal-body"> */}
+                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                                         onClick={() => setModalImgInfo("")}></button> */}
-                                            {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                                     style={{ right: '10px' }}
                                                     onClick={() => setModalImgInfo("")}></button> */}
-                                            <div class="zoom_outer">
-                                                <div id="zoom">
-                                                    <img src={`${serverURL}${modalImgInfo}`} alt="zoom" style={{ width: '100%', height: 'auto' }} />
+                                                <div class="zoom_outer">
+                                                    <div id="zoom">
+                                                        <img src={`${serverURL}${modalImgInfo}`} alt="zoom" style={{ width: '100%', height: 'auto' }} />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {/* <button type="button" class="btn btn-light" style={{ position: 'absolute', bottom: '10px', right: '10px' }}
+                                                {/* <button type="button" class="btn btn-light" style={{ position: 'absolute', bottom: '10px', right: '10px' }}
                                                     onClick={() => setModalImgInfo("")}
                                                     data-bs-dismiss="modal">Close</button> */}
-                                            {/* </div> */}
-                                            {/* <div class="modal-footer">
+                                                {/* </div> */}
+                                                {/* <div class="modal-footer">
                                                      <button type="button" class="btn btn-secondary"
                                                         onClick={() => setModalImgInfo("")}
                                                         data-bs-dismiss="modal">Close</button> 
                                                 {/* <button type="button" class="btn btn-primary">Understood</button> */}
-                                            {/* </div> */}
-                                            {/* <button type="button" class="btn btn-light" style={{ bottom: '10px', right: '10px' }}
+                                                {/* </div> */}
+                                                {/* <button type="button" class="btn btn-light" style={{ bottom: '10px', right: '10px' }}
                                                     onClick={() => setModalImgInfo("")}
                                                     data-bs-dismiss="modal">Close</button> */}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            {/* Modal End */}
+                                {/* Modal End */}
 
-                            {/* ReactSlick slider Begin */}
-                            {/* <div class="row p-5">
+                                {/* ReactSlick slider Begin */}
+                                {/* <div class="row p-5">
                                     <div class="col-md-4">
                                         <div>
                                             <Slider ref={slider => (slider1 = slider)}>
@@ -432,11 +432,11 @@ const Products = () => {
                                         </div>
                                     </div>
                                 </div> */}
-                            {/* ReactSlick slider End */}
+                                {/* ReactSlick slider End */}
 
-                            {/* Slick slider Begin */}
+                                {/* Slick slider Begin */}
 
-                            {/* <div class="row">
+                                {/* <div class="row">
                                     <div class="col-md-5">
                                         <div class="slick-wrapper">
                                             <div class="slider-for mb-3 slick-initialized slick-slider">
@@ -538,189 +538,190 @@ const Products = () => {
                                         </div>
                                     </div>
                                 </div> */}
-                            {/* Slick Slider End */}
+                                {/* Slick Slider End */}
 
-                            <div className="col-12">
-                                <div class="card w-100 p-0 m-0 mt-5">
-                                    <div class="card-header">
-                                        <ul class="nav nav-pills" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Descriptions</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews (3)</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="sss-tab" data-bs-toggle="tab" href="#sss" role="tab" aria-controls="sss" aria-selected="false">SSS</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade active show" id="description" role="tabpanel" aria-labelledby="description-tab">
-                                                <p class="font-weight-bold">Where was he raised?</p>
-                                                <p>Vivamus ultricies augue vitae commodo condimentum. Nullamfaucibus eros eu mauris
-                                                    feugiat, eget consectetur tortor tempus. Sed volutpatmollis dui eget fringilla.
-                                                    Vestibulum blandit urna ut tellus lobortis tristique.Vestibulum ante ipsum
-                                                    primis in
-                                                    faucibus orci luctus et ultrices posuere cubiliaCurae; Pellentesque quis cursus
-                                                    mauris. Nam in ornare erat. Vestibulum convallisenim ac massa dapibus
-                                                    consectetur.
-                                                    Maecenas facilisis eros ac felis mattis, egetauctor sapien varius.</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores
-                                                    dolorum
-                                                    earum fugiat nostrum obcaecati, quis ratione rerum sapiente soluta!</p>
-                                                <p class="font-weight-bold">Chemicals in</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur,
-                                                    reiciendis!</p>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, animi, aperiam
-                                                    corporis, dolorum fugiat fugit maxime nisi optio quo similique sit sunt tempora.
-                                                    Commodi culpa debitis deleniti dolore maiores, maxime praesentium. Autem dicta
-                                                    dolore ipsum molestiae quae, quasi soluta tempora.</p>
-                                            </div>
-                                            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                                                <div class="row">
-                                                    <div class="col-lg-8">
-                                                        <div class="mb-5">
-                                                            <div class="display-6">4.0</div>
-                                                            <div class="d-flex gap-2 my-3">
-                                                                <i class="bi bi-star-fill icon-lg text-warning"></i>
-                                                                <i class="bi bi-star-fill icon-lg text-warning"></i>
-                                                                <i class="bi bi-star-fill icon-lg text-warning"></i>
-                                                                <i class="bi bi-star-fill icon-lg text-warning"></i>
-                                                                <i class="bi bi-star-fill icon-lg text-muted"></i>
-                                                                <span>(3)</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="list-group list-group-flush mb-4">
-                                                            <div class="list-group-item d-flex px-0">
-                                                                <div class="avatar flex-shrink-0 me-3">
-                                                                    <span class="avatar-text bg-purple rounded-circle">R</span>
-                                                                </div>
-                                                                <div>
-                                                                    <h5 class="mb-1">Rodger Stutely</h5>
-                                                                    <div class="d-flex gap-2 mb-3">
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-muted"></i>
-                                                                    </div>
-                                                                    <div>I love your products. It is very easy and fun to use this panel. I would
-                                                                        recommend it
-                                                                        to
-                                                                        everyone.
-                                                                    </div>
+                                <div className="col-12">
+                                    <div class="card w-100 p-0 m-0 mt-5">
+                                        <div class="card-header">
+                                            <ul class="nav nav-pills" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Descriptions</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews (3)</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="sss-tab" data-bs-toggle="tab" href="#sss" role="tab" aria-controls="sss" aria-selected="false">SSS</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade active show" id="description" role="tabpanel" aria-labelledby="description-tab">
+                                                    <p class="font-weight-bold">Where was he raised?</p>
+                                                    <p>Vivamus ultricies augue vitae commodo condimentum. Nullamfaucibus eros eu mauris
+                                                        feugiat, eget consectetur tortor tempus. Sed volutpatmollis dui eget fringilla.
+                                                        Vestibulum blandit urna ut tellus lobortis tristique.Vestibulum ante ipsum
+                                                        primis in
+                                                        faucibus orci luctus et ultrices posuere cubiliaCurae; Pellentesque quis cursus
+                                                        mauris. Nam in ornare erat. Vestibulum convallisenim ac massa dapibus
+                                                        consectetur.
+                                                        Maecenas facilisis eros ac felis mattis, egetauctor sapien varius.</p>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores
+                                                        dolorum
+                                                        earum fugiat nostrum obcaecati, quis ratione rerum sapiente soluta!</p>
+                                                    <p class="font-weight-bold">Chemicals in</p>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur,
+                                                        reiciendis!</p>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, animi, aperiam
+                                                        corporis, dolorum fugiat fugit maxime nisi optio quo similique sit sunt tempora.
+                                                        Commodi culpa debitis deleniti dolore maiores, maxime praesentium. Autem dicta
+                                                        dolore ipsum molestiae quae, quasi soluta tempora.</p>
+                                                </div>
+                                                <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                                                    <div class="row">
+                                                        <div class="col-lg-8">
+                                                            <div class="mb-5">
+                                                                <div class="display-6">4.0</div>
+                                                                <div class="d-flex gap-2 my-3">
+                                                                    <i class="bi bi-star-fill icon-lg text-warning"></i>
+                                                                    <i class="bi bi-star-fill icon-lg text-warning"></i>
+                                                                    <i class="bi bi-star-fill icon-lg text-warning"></i>
+                                                                    <i class="bi bi-star-fill icon-lg text-warning"></i>
+                                                                    <i class="bi bi-star-fill icon-lg text-muted"></i>
+                                                                    <span>(3)</span>
                                                                 </div>
                                                             </div>
-                                                            <div class="list-group-item d-flex px-0">
-                                                                <div class="avatar flex-shrink-0 me-3">
-                                                                    <span class="avatar-text bg-orange rounded-circle">C</span>
-                                                                </div>
-                                                                <div>
-                                                                    <h5 class="mb-1">Corly Hailston</h5>
-                                                                    <div class="d-flex gap-2 mb-3">
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                            <div class="list-group list-group-flush mb-4">
+                                                                <div class="list-group-item d-flex px-0">
+                                                                    <div class="avatar flex-shrink-0 me-3">
+                                                                        <span class="avatar-text bg-purple rounded-circle">R</span>
                                                                     </div>
-                                                                    <div>I love your products. It is very easy and fun to use this panel. I would
-                                                                        recommend it
-                                                                        to
-                                                                        everyone.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="list-group-item d-flex px-0">
-                                                                <div class="avatar flex-shrink-0 me-3">
-                                                                    <img src="../../assets/images/user/man_avatar2.jpg" class="rounded-circle" alt="" />
-                                                                </div>
-                                                                <div>
-                                                                    <h5 class="mb-1">Hurleigh Smallcomb</h5>
-                                                                    <div class="d-flex gap-2 mb-3">
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                    </div>
-                                                                    <div>I love your products. It is very easy and fun to use this panel. I would
-                                                                        recommend it
-                                                                        to
-                                                                        everyone.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <form>
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Comment:</label>
-                                                                <textarea rows="3" class="form-control" placeholder="Your opinion on the product"></textarea>
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Rate:</label>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="rating-example">
-                                                                        <div class="jq-star" style={{ width: 22, height: 22 }}>
+                                                                    <div>
+                                                                        <h5 class="mb-1">Rodger Stutely</h5>
+                                                                        <div class="d-flex gap-2 mb-3">
+                                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                                            <i class="bi bi-star-fill text-muted"></i>
+                                                                        </div>
+                                                                        <div>I love your products. It is very easy and fun to use this panel. I would
+                                                                            recommend it
+                                                                            to
+                                                                            everyone.
                                                                         </div>
                                                                     </div>
-                                                                    <div class="live-rating ms-3"></div>
+                                                                </div>
+                                                                <div class="list-group-item d-flex px-0">
+                                                                    <div class="avatar flex-shrink-0 me-3">
+                                                                        <span class="avatar-text bg-orange rounded-circle">C</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <h5 class="mb-1">Corly Hailston</h5>
+                                                                        <div class="d-flex gap-2 mb-3">
+                                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                                        </div>
+                                                                        <div>I love your products. It is very easy and fun to use this panel. I would
+                                                                            recommend it
+                                                                            to
+                                                                            everyone.
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="list-group-item d-flex px-0">
+                                                                    <div class="avatar flex-shrink-0 me-3">
+                                                                        <img src="../../assets/images/user/man_avatar2.jpg" class="rounded-circle" alt="" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <h5 class="mb-1">Hurleigh Smallcomb</h5>
+                                                                        <div class="d-flex gap-2 mb-3">
+                                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                                        </div>
+                                                                        <div>I love your products. It is very easy and fun to use this panel. I would
+                                                                            recommend it
+                                                                            to
+                                                                            everyone.
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <button class="btn btn-primary mt-3" type="button" id="button-addon2">Send Review</button>
-                                                        </form>
+                                                            <form>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Comment:</label>
+                                                                    <textarea rows="3" class="form-control" placeholder="Your opinion on the product"></textarea>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Rate:</label>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="rating-example">
+                                                                            <div class="jq-star" style={{ width: 22, height: 22 }}>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="live-rating ms-3"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <button class="btn btn-primary mt-3" type="button" id="button-addon2">Send Review</button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="sss" role="tabpanel" aria-labelledby="sss-tab">
-                                                <div class="accordion" id="accordionExample">
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="headingOne">
-                                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                                How are the delivery processes carried out?
-                                                            </button>
-                                                        </h2>
-                                                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                            <div class="accordion-body">It has survived not only five centuries, but
-                                                                also the leap into electronic typesetting, remaining essentially
-                                                                unchanged. It was popularised in the 1960s with the release of
-                                                                Letraset sheets containing Lorem Ipsum passages, and more recently
-                                                                with desktop publishing software like Aldus PageMaker including
-                                                                versions of Lorem Ipsum.
+                                                <div class="tab-pane fade" id="sss" role="tabpanel" aria-labelledby="sss-tab">
+                                                    <div class="accordion" id="accordionExample">
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header" id="headingOne">
+                                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                                    How are the delivery processes carried out?
+                                                                </button>
+                                                            </h2>
+                                                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                                <div class="accordion-body">It has survived not only five centuries, but
+                                                                    also the leap into electronic typesetting, remaining essentially
+                                                                    unchanged. It was popularised in the 1960s with the release of
+                                                                    Letraset sheets containing Lorem Ipsum passages, and more recently
+                                                                    with desktop publishing software like Aldus PageMaker including
+                                                                    versions of Lorem Ipsum.
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="headingTwo">
-                                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                                Is there a payment option at the door?
-                                                            </button>
-                                                        </h2>
-                                                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                                            <div class="accordion-body">It has survived not only five centuries, but
-                                                                also the leap into electronic typesetting, remaining essentially
-                                                                unchanged. It was popularised in the 1960s with the release of
-                                                                Letraset sheets containing Lorem Ipsum passages, and more recently
-                                                                with desktop publishing software like Aldus PageMaker including
-                                                                versions of Lorem Ipsum.
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header" id="headingTwo">
+                                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                                    Is there a payment option at the door?
+                                                                </button>
+                                                            </h2>
+                                                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                                                <div class="accordion-body">It has survived not only five centuries, but
+                                                                    also the leap into electronic typesetting, remaining essentially
+                                                                    unchanged. It was popularised in the 1960s with the release of
+                                                                    Letraset sheets containing Lorem Ipsum passages, and more recently
+                                                                    with desktop publishing software like Aldus PageMaker including
+                                                                    versions of Lorem Ipsum.
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="headingThree">
-                                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                                How many can I order at the same time?
-                                                            </button>
-                                                        </h2>
-                                                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                                            <div class="accordion-body">It has survived not only five centuries, but
-                                                                also the leap into electronic typesetting, remaining essentially
-                                                                unchanged. It was popularised in the 1960s with the release of
-                                                                Letraset sheets containing Lorem Ipsum passages, and more recently
-                                                                with desktop publishing software like Aldus PageMaker including
-                                                                versions of Lorem Ipsum.
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header" id="headingThree">
+                                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                                    How many can I order at the same time?
+                                                                </button>
+                                                            </h2>
+                                                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                                                <div class="accordion-body">It has survived not only five centuries, but
+                                                                    also the leap into electronic typesetting, remaining essentially
+                                                                    unchanged. It was popularised in the 1960s with the release of
+                                                                    Letraset sheets containing Lorem Ipsum passages, and more recently
+                                                                    with desktop publishing software like Aldus PageMaker including
+                                                                    versions of Lorem Ipsum.
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -729,46 +730,45 @@ const Products = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className='col-12'>
-                                <RecentlyViewedProducts />
-                            </div>
-                            <div className='col-12'>
-                                <h5 className='text-center my-4'>Categories</h5>
-                                <div className="" style={{ overflowX: 'scroll' }}>
-                                    {/* row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 g-2 g-sm-2 g-md-3 g-lg-4 */}
-                                    <div className="text-center d-flex justify-content-start align-items-center">
-                                        <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dupattas')}>
-                                            <img src="/assets/images/catImages/dupattas_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
-                                            <h6 className="category-txt fw-normal pt-2 category-text">Dupattas</h6>
-                                        </button>
-                                        <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dress')}>
-                                            <img src="/assets/images/catImages/dress_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
-                                            <h6 className="category-txt fw-normal pt-2">Dress</h6>
-                                        </button>
-                                        <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Fabrics')}>
-                                            <img src="/assets/images/catImages/fabrics_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
-                                            <h6 className="category-txt fw-normal pt-2">Fabrics</h6>
-                                        </button>
-                                        <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/DressMaterial')}>
-                                            <img src="/assets/images/catImages/dressmaterial_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
-                                            <h6 className="category-txt fw-normal pt-2">Dress Material</h6>
-                                        </button>
-                                        <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Jewellery')}>
-                                            <img src="/assets/images/catImages/jewellery_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
-                                            <h6 className="category-txt fw-normal pt-2">Jewellery</h6>
-                                        </button>
-                                        <button className="category-btn col btn btn-default cat-btn opacity-1" onClick={() => navigate('/category/newCollections')}>
-                                            <img src="/assets/images/catImages/newcollection_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
-                                            <h6 className="category-txt fw-normal pt-2">New Collections</h6>
-                                        </button>
+                                <div className='col-12'>
+                                    <RecentlyViewedProducts />
+                                </div>
+                                <div className='col-12'>
+                                    <h5 className='text-center my-4'>Categories</h5>
+                                    <div className="" style={{ overflowX: 'scroll' }}>
+                                        {/* row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 g-2 g-sm-2 g-md-3 g-lg-4 */}
+                                        <div className="text-center d-flex justify-content-start align-items-center">
+                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dupattas')}>
+                                                <img src="/assets/images/catImages/dupattas_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                <h6 className="category-txt fw-normal pt-2 category-text">Dupattas</h6>
+                                            </button>
+                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dress')}>
+                                                <img src="/assets/images/catImages/dress_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                <h6 className="category-txt fw-normal pt-2">Dress</h6>
+                                            </button>
+                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Fabrics')}>
+                                                <img src="/assets/images/catImages/fabrics_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                <h6 className="category-txt fw-normal pt-2">Fabrics</h6>
+                                            </button>
+                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/DressMaterial')}>
+                                                <img src="/assets/images/catImages/dressmaterial_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                <h6 className="category-txt fw-normal pt-2">Dress Material</h6>
+                                            </button>
+                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Jewellery')}>
+                                                <img src="/assets/images/catImages/jewellery_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                <h6 className="category-txt fw-normal pt-2">Jewellery</h6>
+                                            </button>
+                                            <button className="category-btn col btn btn-default cat-btn opacity-1" onClick={() => navigate('/category/newCollections')}>
+                                                <img src="/assets/images/catImages/newcollection_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                <h6 className="category-txt fw-normal pt-2">New Collections</h6>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-        </>
+                    </section>
+                </>
             }
         </>
     )
