@@ -30,7 +30,21 @@ div#zoom>img {
 .category-btn:hover .category-txt {
     transform: scale(1.1);
 }
+/* btn-outline-dark text-dark link-warning
+.product-size-btn {
+    background-color: transparent;
+    color:rgba(22, 22, 26, 0.18)
+}
 
+.product-size-btn:hover {
+    background-color: black;
+    color:goldenrod
+}
+
+.product-size-btn .active {
+    background-color: black;
+    color:goldenrod
+} */
 @media (min-width: 576px) {
     .category_product_image {
         width: 120px;

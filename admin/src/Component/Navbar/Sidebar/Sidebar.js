@@ -1,9 +1,21 @@
 import React from "react";
 import './Sidebar.css';
-import { Link, Outlet, useMatch, useResolvedPath } from "react-router-dom";
+import { Link, Outlet, useMatch, useNavigate, useResolvedPath } from "react-router-dom";
 import Footer from "../../Footer/Footer";
 
+
 const Sidebar = () => {
+
+    // const [user, setUser] = useState([]);
+
+    const user = JSON.parse(localStorage.getItem('admin_user'));
+    const navigate = useNavigate();
+
+    const signout = () => {
+        localStorage.setItem('admin_user', JSON.stringify(""));
+        navigate('/login');
+    }
+
     return (
         <>
             <div className="flex-shrink-0 p-3 bg-light" style={{ width: '280px', "overflowY": 'auto' }}>
@@ -157,20 +169,22 @@ const Sidebar = () => {
                     </li> */}
                 </ul>
             </div>
-            {/* <div className="position-absolute fixed-bottom px-4 py-3 bg-white" style={{ width: "280px" }}>
+            <div className="position-absolute fixed-bottom px-4 py-3 bg-white" style={{ width: "280px" }}>
                 <div className="dropdown">
                     <a href="/" className="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
-                        <strong>Amarendra Rout</strong>
+                        <strong>{user && user.name}</strong>
                     </a>
                     <ul className="dropdown-menu text-small shadow" style={{}}>
                         <li><a className="dropdown-item" href="/">Profile</a></li>
                         <li><a className="dropdown-item" href="/">Settings</a></li>
                         <li><hr className="dropdown-divider" /></li>
-                        <li><a className="dropdown-item" href="/">Sign out</a></li>
+                        <li>
+                            <a className="dropdown-item" href="/" onClick={signout}>Sign out</a>
+                        </li>
                     </ul>
                 </div>
-            </div> */}
+            </div>
             <div className="b-example-divider b-example-vr"></div>
             <div className="bg-light w-100" style={{overflowY: 'scroll'}}>
                 <Outlet />

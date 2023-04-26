@@ -321,10 +321,10 @@ const AddProduct = () => {
                 <input className="form-control" type="file" name="prodImages" id="prodImages" onChange={handleImagesChange} placeholder="Choose product image" multiple />
               </div>
             </div>
-            <div className="col-6 mb-3">
+            <div className="col-4 mb-3">
               {imageInputShow && <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: '100px', height: '100px' }} />}
             </div>
-            <div className="col-6 mb-3">
+            <div className="col-8 mb-3">
               {multiImageInputShow &&
                 images.map((image) => (
                   <img key={image} src={`http://localhost:5010${image}`} className="mx-2 mb-3" alt="product" style={{ width: '100px', height: '100px' }} />

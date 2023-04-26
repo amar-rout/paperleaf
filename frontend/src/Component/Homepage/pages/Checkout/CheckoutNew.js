@@ -39,19 +39,19 @@ function CheckoutNew() {
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-center" data-bs-toggle="tab" href="#menu1">
+                                    <a class="nav-link check_nav-link text-center" data-bs-toggle="tab" href="#menu1">
                                         <span class="step-number">02</span>
                                         <span class="step-title d-block">Shipping Info</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-center" data-bs-toggle="tab" href="#menu2">
+                                    <a class="nav-link check_nav-link text-center" data-bs-toggle="tab" href="#menu2">
                                         <span class="step-number">03</span>
                                         <span class="step-title d-block">Payment Info</span>
                                     </a>
                                 </li>
                             </ul>
-                            <div class="tab-content">
+                            <div class="tab-content mt-2 mt-md-4">
                                 <div class="tab-pane container active" id="home">
                                     <div class="row g-2">
                                         <div class="col-12 col-md-4 px-2">
@@ -181,19 +181,19 @@ function CheckoutNew() {
                                             </div> */}
                                         <div class="btn-group w-100 payment-method" role="group" aria-label="Basic radio toggle button group">
                                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
-                                            <label class="py-3 px-4 ms-2 me-2 w-25 btn btn-outline-primary rounded-2 text-start" for="btnradio1">
+                                            <label class="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" for="btnradio1">
                                                 <i class="bi bi-credit-card-2-front me-3" style={{ fontSize: '24px' }}></i>
                                                 <span className='fw-normal d-block d-md-inline'>Credit/Debit Card</span>
                                             </label>
 
                                             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked />
-                                            <label class="py-3 px-4 ms-2 me-2 w-25 btn btn-outline-primary rounded-2 text-start" for="btnradio2">
+                                            <label class="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" for="btnradio2">
                                                 <i class="bi bi-wallet me-3" style={{ fontSize: '24px' }}></i>
                                                 <span className='fw-normal d-block d-md-inline'>Wallet</span>
                                             </label>
 
                                             <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked />
-                                            <label class="py-3 px-4 ms-2 me-2 w-25 btn btn-outline-primary rounded-2 text-start" for="btnradio3">
+                                            <label class="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" for="btnradio3">
                                                 <i class="bi bi-cash me-3" style={{ fontSize: '24px' }}></i>
                                                 <span className='fw-normal d-block d-md-inline'>Cash on delivery</span>
                                             </label>
@@ -202,25 +202,34 @@ function CheckoutNew() {
                                         <h5 class="my-3 font-size-14">For card Payment</h5>
                                         <div class="p-4 border">
                                             <form>
-                                                <div class="mb-3"><label for="cardnameInput" class="form-label">Name on
-                                                    card</label><input id="cardnameInput" placeholder="Name on Card" type="text"
-                                                        class="form-control form-control" /></div>
+                                                <div class="mb-3">
+                                                    <label for="cardnameInput" class="form-label small">
+                                                        Name on card
+                                                    </label>
+                                                    <input id="cardnameInput" placeholder="Name on Card" type="text" class="form-control form-control" />
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-sm-6 col-lg-4">
-                                                        <div class="mb-3 mb-lg-0"><label for="cardnumberInput" class="form-label">Card
-                                                            Number</label><input id="cardnumberInput"
-                                                                placeholder="0000 0000 0000 0000" type="text"
-                                                                class="form-control form-control" /></div>
+                                                        <div class="mb-3 mb-lg-0">
+                                                            <label for="cardnumberInput" class="form-label small">
+                                                                Card Number
+                                                            </label>
+                                                            <input id="cardnumberInput" placeholder="0000 0000 0000 0000" type="text" class="form-control form-control" /></div>
                                                     </div>
                                                     <div class="col-sm-6 col-lg-4">
-                                                        <div class="mb-3 mb-lg-0"><label for="expirydateInput" class="form-label">Expiry
-                                                            date</label><input id="expirydateInput" placeholder="MM/YY" type="text"
-                                                                class="form-control form-control" /></div>
+                                                        <div class="mb-3 mb-lg-0">
+                                                            <label for="expirydateInput" class="form-label small">
+                                                                Expiry date
+                                                            </label>
+                                                            <input id="expirydateInput" placeholder="MM/YY" type="text"
+                                                                class="form-control form-control" />
+                                                        </div>
                                                     </div>
                                                     <div class="col-sm-6 col-lg-4">
-                                                        <div class="mb-3 mb-lg-0"><label for="cvvcodeInput" class="form-label">CVV
-                                                            Code</label><input id="cvvcodeInput" placeholder="Enter CVV Code"
-                                                                type="text" class="form-control form-control" /></div>
+                                                        <div class="mb-3 mb-lg-0">
+                                                            <label for="cvvcodeInput" class="form-label small">CVV Code</label>
+                                                            <input id="cvvcodeInput" placeholder="Enter CVV Code" type="text" class="form-control form-control" />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </form>

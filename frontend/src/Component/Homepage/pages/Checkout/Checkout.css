@@ -125,9 +125,9 @@
 }
 
 
-.payment-method {
-	/* display: block; */
-}
+/* .payment-method {
+	display: block;
+} */
 
 @media (min-width: 992px) {
 	.check_nav .check_nav-link .step-number {
@@ -155,7 +155,7 @@
 
 
 
-.pager-link {
+/* .pager-link {
 	padding-top: 24px;
 	padding-left: 0;
 	list-style: none;
@@ -181,9 +181,9 @@
 
 .pager-link li.next {
 	float: right;
-}
+} */
 
-.tab-content {
+/* .tab-content {
 	padding-top: 24px;
 	min-height: 262px;
-}
+} */

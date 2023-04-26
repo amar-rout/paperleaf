@@ -208,10 +208,10 @@ const Products = () => {
                                         <div className="d-flex justify-content-between align-items-center">
                                             {product.countInStock > 0 ?
                                                 <>
-                                                    <span className="px-2 py-1 small bg-success-subtle text-success rounded">In Stock</span>
+                                                    <span className="bg-success-subtle text-success rounded-pill px-2 small">In stock</span>
                                                 </>
                                                 :
-                                                <span className="px-2 py-1 small bg-danger-subtle text-danger rounded">Out of Stocks</span>
+                                                <span className="bg-danger-subtle text-danger rounded-pill px-2">Out of Stocks</span>
                                             }
                                             <span className='d-flex justify-content-end align-items-center '>
                                                 <ReactStars classNames=""  {...{
@@ -231,11 +231,14 @@ const Products = () => {
                                                 </span>
                                             </span>
                                         </div>
-                                        <p className="mt-2 mb-3 small fw-semibold text-muted">PAPERLEAF</p>
-                                        <h2 className="title-detail fw-bold" style={{ fontFamily: 'Montserrat !important' }}>{product.name}</h2>
+                                        <p className="my-2 fw-semibold text-muted"><small>PAPERLEAF</small></p>
+                                        <h6 className="">
+                                            {/* style={{ fontFamily: 'Montserrat !important' }} */}
+                                            {product.name}
+                                        </h6>
                                         <div>
-                                            <span className="text-brand fs-3 fw-bold text-muted">₹{product.price}</span>
-                                            {product.salePrice > 0 && <span className="ms-2 ms-md-4 fs-3 fw-bold text-muted text-decoration-line-through">₹{product.salePrice}</span>}
+                                            {product.salePrice > 0 && <span className="fw-semibold fs-5 me-3 text-danger text-decoration-line-through">₹{product.salePrice}</span>}
+                                            <span className="fw-semibold fs-5 text-muted">₹{product.price}</span>
                                             {/* <span className="ms-2 ms-md-4 fs-6 fw-bold text-muted">Flat 25% Off</span> */}
                                         </div>
                                         <div className="bt-1 border-color-1 mt-15 mb-15"></div>
@@ -251,35 +254,35 @@ const Products = () => {
                                         </div> */}
                                         <div className="my-4 d-flex flex-0 justify-content-start align-items-center">
                                             <div>
-                                                <span className="me-2">Size </span>
+                                                <span className="me-2" style={{ fontSize: '14px' }}>Size </span>
                                             </div>
                                             <div class="" role="group" aria-label="Basic radio toggle button group">
                                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" />
-                                                <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio1"><small>XS</small></label>
+                                                <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio1"><small>XS</small></label>
 
                                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
-                                                <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio2"><small>S</small></label>
+                                                <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio2"><small>S</small></label>
 
                                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
-                                                <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio3"><small>M</small></label>
+                                                <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio3"><small>M</small></label>
 
                                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" />
-                                                <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio4"><small>L</small></label>
+                                                <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio4"><small>L</small></label>
 
                                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" />
-                                                <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio5"><small>XL</small></label>
+                                                <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio5"><small>XL</small></label>
 
                                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off" />
-                                                <label class="btn btn-outline-danger me-2 p-0 m-0" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio6"><small>XXL</small></label>
+                                                <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio6"><small>XXL</small></label>
                                             </div>
                                         </div>
-                                        <div className="d-flex flex-0 justify-content-start align-items-center">
+                                        <div className="d-flex justify-content-start align-items-center">
                                             <div>
-                                                <span className="me-2">Quantity </span>
+                                                <span className="me-2" style={{ fontSize: '14px' }}>Quantity</span>
                                             </div>
                                             <div className="input-group input-group-sm" style={{ maxWidth: 150 }}>
                                                 {prodQuantity > 1 ?
-                                                    <button className="btn btn-outline-dark fs-xl px-3" type="button" data-decrement=""
+                                                    <button className="btn btn-outline-dark fs-xl px-3 py-1" type="button" data-decrement=""
                                                         onClick={() => setProdQuantity(prodQuantity - 1)}>
                                                         <i className="bi bi-dash-lg"></i>
                                                     </button>
@@ -291,7 +294,7 @@ const Products = () => {
                                                 <span className="form-control shadow-none disabled border-dark text-center">{prodQuantity}</span>
                                                 {/* value={product.qty} /> */}
                                                 {prodQuantity < 5 ?
-                                                    <button className="btn btn-outline-dark fs-xl px-3" type="button" data-decrement=""
+                                                    <button className="btn btn-outline-dark fs-xl px-3 py-1" type="button" data-decrement=""
                                                         onClick={() => setProdQuantity(prodQuantity + 1)}>
                                                         <i className="bi bi-plus-lg"></i>
                                                     </button>
@@ -303,22 +306,22 @@ const Products = () => {
                                             </div>
                                         </div>
 
-                                        <p className="text-muted fw-normal small mb-4"><small>*Please contact our service helpdesk if you want to order more than 5 pieces in a single order</small></p>
+                                        {/* <p className="text-muted fw-normal small mb-4"><small>*Please contact our service helpdesk if you want to order more than 5 pieces in a single order</small></p> */}
                                         <div className="my-4 d-flex flex-0 justify-content-start align-items-center">
                                             {/* <div className="me-2">
                                                 <button type="submit" className="btn btn-warning px-3"><small>Add to cart</small></button>
                                             </div> */}
                                             {/* <button type="button" className="btn btn-sm bg-warning w-100 d-flex justify-content-center align-items-center" */}
-                                            <button type="button" className="btn btn-warning px-3"
+                                            <button type="button" className="btn btn-warning px-4 py-2"
                                                 // onClick={() => dispatch(addCartAsync({ pId: product._id, qty: 1 }))}>
                                                 onClick={() => handleAddCart(product._id, prodQuantity)}>
                                                 {/* <i className="bi bi-cart d-none d-sm-inline"></i> */}
                                                 <span className="fw-normal">Add to cart</span>
                                                 <ToastContainer className="mb-sm-1 text-start fs-6 small" />
                                             </button>
-                                            <div className="ms-2">
+                                            {/* <div className="ms-2">
                                                 <button type="submit" className="btn btn-outline-dark px-3"><small>Buy now</small></button>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         {/* <div className="detail-extralink">
                                             <div className="product-extra-link2">
@@ -548,26 +551,19 @@ const Products = () => {
                                                     <a class="nav-link active" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Descriptions</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews (3)</a>
+                                                    <a class="nav-link" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews ({product.rating})</a>
                                                 </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="sss-tab" data-bs-toggle="tab" href="#sss" role="tab" aria-controls="sss" aria-selected="false">SSS</a>
-                                                </li>
+                                                {/* <li class="nav-item">
+                                                    <a class="nav-link" id="sss-tab" data-bs-toggle="tab" href="#sss" role="tab" aria-controls="sss" aria-selected="false">Specification</a>
+                                                </li> */}
                                             </ul>
                                         </div>
                                         <div class="card-body">
                                             <div class="tab-content">
                                                 <div class="tab-pane fade active show" id="description" role="tabpanel" aria-labelledby="description-tab">
-                                                    <p class="font-weight-bold">Where was he raised?</p>
-                                                    <p>Vivamus ultricies augue vitae commodo condimentum. Nullamfaucibus eros eu mauris
-                                                        feugiat, eget consectetur tortor tempus. Sed volutpatmollis dui eget fringilla.
-                                                        Vestibulum blandit urna ut tellus lobortis tristique.Vestibulum ante ipsum
-                                                        primis in
-                                                        faucibus orci luctus et ultrices posuere cubiliaCurae; Pellentesque quis cursus
-                                                        mauris. Nam in ornare erat. Vestibulum convallisenim ac massa dapibus
-                                                        consectetur.
-                                                        Maecenas facilisis eros ac felis mattis, egetauctor sapien varius.</p>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores
+                                                    {/* <p class="font-weight-bold">Where was he raised?</p> */}
+                                                    <p>{product.description}</p>
+                                                    {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores
                                                         dolorum
                                                         earum fugiat nostrum obcaecati, quis ratione rerum sapiente soluta!</p>
                                                     <p class="font-weight-bold">Chemicals in</p>
@@ -576,13 +572,13 @@ const Products = () => {
                                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, animi, aperiam
                                                         corporis, dolorum fugiat fugit maxime nisi optio quo similique sit sunt tempora.
                                                         Commodi culpa debitis deleniti dolore maiores, maxime praesentium. Autem dicta
-                                                        dolore ipsum molestiae quae, quasi soluta tempora.</p>
+                                                        dolore ipsum molestiae quae, quasi soluta tempora.</p> */}
                                                 </div>
                                                 <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                                                     <div class="row">
                                                         <div class="col-lg-8">
                                                             <div class="mb-5">
-                                                                <div class="display-6">4.0</div>
+                                                                {/* <div class="display-6">4</div>
                                                                 <div class="d-flex gap-2 my-3">
                                                                     <i class="bi bi-star-fill icon-lg text-warning"></i>
                                                                     <i class="bi bi-star-fill icon-lg text-warning"></i>
@@ -590,91 +586,124 @@ const Products = () => {
                                                                     <i class="bi bi-star-fill icon-lg text-warning"></i>
                                                                     <i class="bi bi-star-fill icon-lg text-muted"></i>
                                                                     <span>(3)</span>
-                                                                </div>
+                                                                </div> */}
+                                                                <span className="display-6">{product.rating} </span>
+                                                                <span className="d-flex justify-content-start align-items-center">
+                                                                    <ReactStars {...{
+                                                                        size: 14,
+                                                                        count: 5,
+                                                                        activeColor: "#fdad01",
+                                                                        value: product.rating,
+                                                                        a11y: true,
+                                                                        isHalf: true,
+                                                                        emptyIcon: <i className="bi bi-star" />,
+                                                                        halfIcon: <i className="bi bi-star-half" />,
+                                                                        filledIcon: <i className="bi bi-star-fill" />,
+                                                                        edit: false,
+                                                                    }} />
+                                                                    <span className="fw-normal text-muted ms-1">
+                                                                        {/* style={{ fontSize: "12px" }} */}
+                                                                        ({product.numReviews})
+                                                                    </span>
+                                                                </span>
                                                             </div>
                                                             <div class="list-group list-group-flush mb-4">
                                                                 <div class="list-group-item d-flex px-0">
                                                                     <div class="avatar flex-shrink-0 me-3">
-                                                                        <span class="avatar-text bg-purple rounded-circle">R</span>
+                                                                        <span class="bg-dark text-warning rounded-circle px-2 py-1">{'Rhea'.charAt(0)}</span>
                                                                     </div>
                                                                     <div>
-                                                                        <h5 class="mb-1">Rodger Stutely</h5>
-                                                                        <div class="d-flex gap-2 mb-3">
-                                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                                            <i class="bi bi-star-fill text-muted"></i>
+                                                                        <div className='d-flex justify-content-between align-items-center mb-3'>
+                                                                            <p class="mb-0 fw-600 fs-6">Rhea</p>
+                                                                            <ReactStars {...{
+                                                                                size: 14,
+                                                                                count: 5,
+                                                                                activeColor: "#fdad01",
+                                                                                value: 3.5,
+                                                                                a11y: true,
+                                                                                isHalf: true,
+                                                                                emptyIcon: <i className="bi bi-star" />,
+                                                                                halfIcon: <i className="bi bi-star-half" />,
+                                                                                filledIcon: <i className="bi bi-star-fill" />,
+                                                                                edit: false,
+                                                                            }} />
                                                                         </div>
-                                                                        <div>I love your products. It is very easy and fun to use this panel. I would
-                                                                            recommend it
-                                                                            to
-                                                                            everyone.
-                                                                        </div>
+                                                                        <p>I love your products. I would recommend it to everyone.</p>
+                                                                        {/* </div> */}
                                                                     </div>
                                                                 </div>
-                                                                <div class="list-group-item d-flex px-0">
-                                                                    <div class="avatar flex-shrink-0 me-3">
-                                                                        <span class="avatar-text bg-orange rounded-circle">C</span>
+                                                                {/* <div class="list-group-item d-flex px-0">
+                                                                <div class="avatar flex-shrink-0 me-3">
+                                                                    <span class="avatar-text bg-orange rounded-circle">C</span>
+                                                                </div>
+                                                                <div>
+                                                                    <h5 class="mb-1">Corly Hailston</h5>
+                                                                    <div class="d-flex gap-2 mb-3">
+                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                        <i class="bi bi-star-fill text-warning"></i>
                                                                     </div>
-                                                                    <div>
-                                                                        <h5 class="mb-1">Corly Hailston</h5>
-                                                                        <div class="d-flex gap-2 mb-3">
-                                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                                        </div>
-                                                                        <div>I love your products. It is very easy and fun to use this panel. I would
-                                                                            recommend it
-                                                                            to
-                                                                            everyone.
-                                                                        </div>
+                                                                    <div>I love your products. It is very easy and fun to use this panel. I would
+                                                                        recommend it
+                                                                        to
+                                                                        everyone.
                                                                     </div>
                                                                 </div>
-                                                                <div class="list-group-item d-flex px-0">
-                                                                    <div class="avatar flex-shrink-0 me-3">
-                                                                        <img src="../../assets/images/user/man_avatar2.jpg" class="rounded-circle" alt="" />
+                                                            </div> */}
+                                                                {/* <div class="list-group-item d-flex px-0">
+                                                                <div class="avatar flex-shrink-0 me-3">
+                                                                    <img src="../../assets/images/user/man_avatar2.jpg" class="rounded-circle" alt="" />
+                                                                </div>
+                                                                <div>
+                                                                    <h5 class="mb-1">Hurleigh Smallcomb</h5>
+                                                                    <div class="d-flex gap-2 mb-3">
+                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                        <i class="bi bi-star-fill text-warning"></i>
                                                                     </div>
-                                                                    <div>
-                                                                        <h5 class="mb-1">Hurleigh Smallcomb</h5>
-                                                                        <div class="d-flex gap-2 mb-3">
-                                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                                            <i class="bi bi-star-fill text-warning"></i>
-                                                                        </div>
-                                                                        <div>I love your products. It is very easy and fun to use this panel. I would
-                                                                            recommend it
-                                                                            to
-                                                                            everyone.
-                                                                        </div>
+                                                                    <div>I love your products. It is very easy and fun to use this panel. I would
+                                                                        recommend it
+                                                                        to
+                                                                        everyone.
                                                                     </div>
                                                                 </div>
+                                                            </div> */}
                                                             </div>
                                                             <form>
                                                                 <div class="mb-3">
-                                                                    <label class="form-label">Comment:</label>
-                                                                    <textarea rows="3" class="form-control" placeholder="Your opinion on the product"></textarea>
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label class="form-label">Rate:</label>
-                                                                    <div class="d-flex align-items-center">
+                                                                    <div class="d-flex justify-content-start align-items-center">
+                                                                        <span class="me-2">Rate:</span>
                                                                         <div class="rating-example">
-                                                                            <div class="jq-star" style={{ width: 22, height: 22 }}>
-                                                                            </div>
+                                                                            <ReactStars {...{
+                                                                                size: 24,
+                                                                                count: 5,
+                                                                                activeColor: "#fdad01",
+                                                                                // value: 3.5,
+                                                                                a11y: true,
+                                                                                isHalf: true,
+                                                                                emptyIcon: <i className="bi bi-star" />,
+                                                                                halfIcon: <i className="bi bi-star-half" />,
+                                                                                filledIcon: <i className="bi bi-star-fill" />,
+                                                                                edit: true,
+                                                                            }} />
                                                                         </div>
                                                                         <div class="live-rating ms-3"></div>
                                                                     </div>
                                                                 </div>
-                                                                <button class="btn btn-primary mt-3" type="button" id="button-addon2">Send Review</button>
+                                                                <div class="mb-3">
+                                                                    <label class="form-label">Comment:</label>
+                                                                    <textarea rows="3" class="form-control" placeholder="Your opinion on the product"></textarea>
+                                                                </div>
+                                                                <button class="btn btn-warning fw-normal mt-3 px-4 py-2" type="button" id="button-addon2"> POST </button>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="sss" role="tabpanel" aria-labelledby="sss-tab">
+                                                {/* <div class="tab-pane fade" id="sss" role="tabpanel" aria-labelledby="sss-tab">
                                                     <div class="accordion" id="accordionExample">
                                                         <div class="accordion-item">
                                                             <h2 class="accordion-header" id="headingOne">
@@ -725,7 +754,7 @@ const Products = () => {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         </div>
                                     </div>

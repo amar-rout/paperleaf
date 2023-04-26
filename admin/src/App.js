@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 // import Footer from './Component/Footer/Footer';
 // import Navbar from './Component/Navbar/Navbar';
 // import logo from './logo.svg';
@@ -8,7 +8,7 @@ import './App.css';
 
 
 // React-tostify
-import {ToastContainer} from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 import Homepage from './Component/Homepage';
@@ -29,6 +29,9 @@ import Orders from './Component/Page/Orders/Orders';
 import OrderDetails from './Component/Page/Orders/OrderDetails';
 import Users from './Component/Page/User/Users';
 import UserDetails from './Component/Page/User/UserDetails';
+import Login from './Component/Login/Login';
+import Register from './Component/Register/Register';
+import { useEffect } from 'react';
 
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
@@ -37,11 +40,25 @@ import UserDetails from './Component/Page/User/UserDetails';
 
 
 function App() {
+
+  // const user = JSON.parse(localStorage.getItem('admin_user'));
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (user && user !== "") {
+  //     navigate('/');
+  //   }
+  //   else {
+  //     navigate('/login');
+  //   }
+  // })
+
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Homepage />}>
+        <Route path="/" element=<Homepage /> >
           <Route index element={<Dashboard />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
           <Route path="/category" element={<Category />} />
           <Route path="/category/:id" element={<CategoryDetails />} />
           <Route path="/category/:id/edit" element={<EditCategory />} />

@@ -370,11 +370,11 @@ const EditProduct = () => {
                 {/* <button className="btn btn-primary" type="button" onClick={uploadMultipleImage}>Upload Image</button> */}
               </div>
             </div>
-            <div className="col-3 mb-3">
+            <div className="col-4 mb-3">
               <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: '100px', height: '100px' }} />
             </div>
 
-            <div className="col-9 mb-3">
+            <div className="col-8 mb-3">
               {images.map((image) => (
                 <img key={image} src={`http://localhost:5010${image}`} className="mx-2 mb-3" alt="product" style={{ width: '100px', height: '100px' }} />
               ))}
