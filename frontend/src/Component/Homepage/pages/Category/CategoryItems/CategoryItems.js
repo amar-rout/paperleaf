@@ -184,13 +184,13 @@ const CategoryItems = () => {
                         // <div className="row">
                         //     <div className="col-12 col-md-4"></div>
                         //     <div className="col-12 col-md-8">
-                        <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 g-3 g-sm-3 g-md-4 g-lg-2">
+                        <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 g-3 g-sm-3 g-md-4 g-lg-4">
                             {products.map((product) => (
                                 <div key={product._id} className="col">
-                                    {/* <div className="card product-card bg-light p-0 p-md-0 m-0 rounded-0 border border-0"> */}
-                                    <div className="card product-item bg-light p-0 p-md-0 m-0 rounded-0 border border-0">
-                                        <div className="position-relative">
-                                            {/* {wishlistItems.find((item) => item.wId === product._id) ?
+                                    {/* <div className="card product-card bg-light p-0 p-md-0 m-0 shadow-0 rounded-0 border border-0"> */}
+                                    <div className="card product-item bg-light p-0 p-md-0 m-0 rounded-0 border border-0" style={{ boxShadow: 'none' }}>
+                                        {/* <div className="position-relative"> */}
+                                        {/* {wishlistItems.find((item) => item.wId === product._id) ?
                                                 <button type="button" className="btn btn-sm btn-default bg-light wishlist_button_active position-absolute top-0 end-0 p-1 mt-1 me-1 shadow opacity-75 rounded-circle"
                                                     onClick={() => handleRemoveWishlist(product._id)}>
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -205,11 +205,11 @@ const CategoryItems = () => {
                                                     </svg>
                                                 </button>
                                             } */}
-                                            {/* {product.countInStock < 1 && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle text-muted rounded-pill z-index-1" style={{ zIndex: 1000 }}>Out of Stock</span>}
+                                        {/* {product.countInStock < 1 && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle text-muted rounded-pill z-index-1" style={{ zIndex: 1000 }}>Out of Stock</span>}
                                         {product.countInStock > 1 && product.newCollection && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-success-subtle text-success rounded-pill z-index-1" style={{ zIndex: 999 }}>New</span>} */}
-                                            {product.countInStock < 1 && <span className="position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle text-muted rounded-pill text-uppercase fw-semibold z-index-1" style={{ zIndex: 1000 }}><small>Out of Stock</small></span>}
-                                            {product.newCollection && <span className="position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-warning-subtle text-dark rounded-pill text-uppercase fw-semibold z-index-1" style={{ zIndex: 999 }}><small>New</small></span>}
-                                        </div>
+                                        {product.countInStock < 1 && <span className="position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle text-muted rounded-pill text-uppercase fw-semibold z-index-1" style={{ zIndex: 1000 }}><small>Out of Stock</small></span>}
+                                        {product.newCollection && <span className="position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-warning-subtle text-dark rounded-pill text-uppercase fw-semibold z-index-1" style={{ zIndex: 999 }}><small>New</small></span>}
+                                        {/* </div> */}
                                         {/* <div className="position-relative">
                                                 {wishlistItems.find((item) => item.wId === product._id) ?
                                                     <button type="button" className="btn btn-sm btn-default bg-light wishlist_button_active position-absolute top-100 end-100 p-1 mt-1 me-1 shadow opacity-75 rounded-circle"
@@ -229,12 +229,13 @@ const CategoryItems = () => {
                                             </div> */}
                                         {/* <img src="./assets/images/productImages/product1.jpg" className="card-img-top rounded-4" alt="card 1" /> */}
                                         {/* <div className="product-item"> */}
-                                            {/* <img src={product.image} onClick={() => handleProductShow(product._id)} className="card-img-top rounded-4" alt="card 1" /> */}
-                                            {/* <div class="product-image-container">
+                                        {/* <img src={product.image} onClick={() => handleProductShow(product._id)} className="card-img-top bg-light" alt="card 1" /> */}
+                                        {/* <div class="product-image-container">
                                                 <img src={product.image} onClick={() => handleProductShow(product._id)} className="product-image rounded-4" alt="card 1" />
                                             </div> */}
+                                        <div className="product-item">
                                             <div className="product">
-                                                <img src={product.image} onClick={() => handleProductShow(product._id)} className="rounded-4" alt="card 1" />
+                                                <img src={product.image} onClick={() => handleProductShow(product._id)} className="" alt="card 1" />
                                                 <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
                                                     <li class="icon">
                                                         <i class="bi bi-arrows-move"></i>
@@ -247,11 +248,12 @@ const CategoryItems = () => {
                                                     </li>
                                                 </ul>
                                             </div>
-                                            {/* onClick={() => handleAddCart(product._id, product.name)}> */}
-                                                        {/* <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        </div>
+                                        {/* onClick={() => handleAddCart(product._id, product.name)}> */}
+                                        {/* <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M2.99707 3.49609C2.99707 3.21995 3.22093 2.99609 3.49707 2.99609H3.93543C4.66237 2.99609 5.07976 3.46917 5.32152 3.94075C5.4872 4.2639 5.6065 4.65813 5.70508 4.99951H15.9999C16.6634 4.99951 17.1429 5.63392 16.9619 6.27229L15.4664 11.5468C15.2225 12.4073 14.4368 13.0012 13.5423 13.0012H8.46306C7.56125 13.0012 6.77099 12.3977 6.5336 11.5277L5.89118 9.17338C5.88723 9.16268 5.88361 9.15177 5.88034 9.14067L4.851 5.6429C4.81568 5.52686 4.78318 5.41439 4.7518 5.3058C4.65195 4.96027 4.56346 4.65406 4.43165 4.39696C4.2723 4.08613 4.12597 3.99609 3.93543 3.99609H3.49707C3.22093 3.99609 2.99707 3.77224 2.99707 3.49609ZM6.84471 8.86872L7.49833 11.2645C7.61702 11.6995 8.01215 12.0012 8.46306 12.0012H13.5423C13.9895 12.0012 14.3824 11.7043 14.5044 11.274L15.9999 5.99951H6.00063L6.84471 8.86872ZM10 15.4995C10 16.3279 9.32843 16.9995 8.5 16.9995C7.67157 16.9995 7 16.3279 7 15.4995C7 14.6711 7.67157 13.9995 8.5 13.9995C9.32843 13.9995 10 14.6711 10 15.4995ZM9 15.4995C9 15.2234 8.77614 14.9995 8.5 14.9995C8.22386 14.9995 8 15.2234 8 15.4995C8 15.7757 8.22386 15.9995 8.5 15.9995C8.77614 15.9995 9 15.7757 9 15.4995ZM15 15.4995C15 16.3279 14.3284 16.9995 13.5 16.9995C12.6716 16.9995 12 16.3279 12 15.4995C12 14.6711 12.6716 13.9995 13.5 13.9995C14.3284 13.9995 15 14.6711 15 15.4995ZM14 15.4995C14 15.2234 13.7761 14.9995 13.5 14.9995C13.2239 14.9995 13 15.2234 13 15.4995C13 15.7757 13.2239 15.9995 13.5 15.9995C13.7761 15.9995 14 15.7757 14 15.4995Z" fill="#fff" />
                                                     </svg> */}
-                                            {/* <div className="position-relative">
+                                        {/* <div className="position-relative">
                                                 {!product.countInStock > 0 ?
                                                     <button type="button" className="d-flex justify-content-between align-items-center btn btn-sm btn-default bg-dark text-white position-absolute wishlist_button bottom-0 end-0 px-2 mb-1 me-1 shadow opacity-75 rounded-pill">
                                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -271,7 +273,7 @@ const CategoryItems = () => {
                                                 }
                                             </div> */}
                                         {/* </div> */}
-                                        <div className="card-body px-1 py-1">
+                                        <div className="card-body bg-light px-1 py-1" style={{ boxShadow: 'none' }}>
                                             {/* <div onClick={() => navigate(`/products/${product.name}`)}> */}
                                             <div onClick={() => handleProductShow(product._id)}>
                                                 {/* <p className="my-0 text-muted small"><small>{product.category}</small></p>

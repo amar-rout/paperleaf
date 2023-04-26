@@ -49,7 +49,7 @@ function Products() {
   }
 
   const handleDelete = () => {
-    const{name, id} = modalInfo;
+    const { name, id } = modalInfo;
     const deleteProductURL = `http://localhost:5010/api/products/${id}`;
     axios.delete(deleteProductURL)
       .then((response) => {
@@ -77,31 +77,59 @@ function Products() {
         </div>
         <div className="card-body">
           <div className="table-responsive">
-            <table className="table align-items-center text-center ">
-              <thead className="thead-light ">
+            <table className="table align-middle align-items-center text-center table-striped table-hover table-borderless">
+              <thead className="table-dark">
                 <tr>
                   <th>Image</th>
                   <th>Name</th>
                   <th>Category</th>
                   <th>MRP</th>
                   <th>Sale Price</th>
+                  <th>New Collection</th>
+                  <th>Featured</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {products.map((product) => {
-                  const { _id, name, image, category, price, salePrice } = product;
+                  const { _id, name, image, category, price, salePrice, newCollection, featured } = product;
                   return (
                     <tr key={_id}>
                       <td>
-                        <img src={`http://localhost:5010${image}`} alt="product" style={{ width: '20%', height: 'auto' }} />
+                        <img src={`http://localhost:5010${image}`} alt="product" style={{ width: '32px', height: '32px' }} />
                       </td>
-                      <td>{name}</td>
-                      <td>{category}</td>
-                      <td>{currINR.format(salePrice)}</td>
-                      <td>{currINR.format(price)}</td>
-                      <td>
-                        <div className="d-flex justify-content-center align-item-center">
+                      <td className='text-start'>{name}</td>
+                      <td className='text-start'>{category}</td>
+                      <td className='text-end'>{currINR.format(salePrice)}</td>
+                      <td className='text-end'>{currINR.format(price)}</td>
+                      <td className='text-end'>
+                        <div className="form-check form-switch d-flex justify-content-center align-items-center">
+                          <input
+                            className="form-check-input me-1"
+                            type="checkbox"
+                            role="switch"
+                            id="status"
+                            defaultChecked={newCollection}
+                            // value={published}
+                            // onChange={() => handlePublished(_id, couponName, published)}
+                          />
+                        </div>
+                      </td>
+                      <td className='text-end'>
+                      <div className="form-check form-switch d-flex justify-content-center align-items-center">
+                          <input
+                            className="form-check-input bg-success border-0 me-1"
+                            type="checkbox"
+                            role="switch"
+                            id="status"
+                            defaultChecked={featured}
+                            // value={published}
+                            // onChange={() => handlePublished(_id, couponName, published)}
+                          />
+                        </div>
+                      </td>
+                      <td className=''>
+                        <div className="d-flex justify-content-end align-item-center">
                           <button type="button" id="editButton"
                             className="btn btn-default p-0 m-0 px-2 py-1"
                             onClick={() => handleEdit(_id)}
@@ -162,9 +190,9 @@ function Products() {
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-light px-3 py-2" data-bs-dismiss="modal"
-                            onClick={()=> {
-                              setModalInfo({name: '', id: ''});
-                            }}>No, Keep It</button>
+                      onClick={() => {
+                        setModalInfo({ name: '', id: '' });
+                      }}>No, Keep It</button>
                     <button type="button" class="btn btn-success px-3 py-2"
                       data-bs-dismiss="modal" onClick={() => handleDelete()}>
                       Yes, Delete It

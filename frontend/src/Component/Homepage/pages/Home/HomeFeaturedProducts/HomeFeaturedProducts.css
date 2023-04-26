@@ -1,4 +1,4 @@
-.product_card {
+/* .product_card {
     box-shadow: none;
     transition: transform .2s ease-in-out !important;
 }
@@ -8,10 +8,10 @@
 }
 
 .product_card:hover img {
-    /* box-shadow: 1px 8px 20px 0 rgba(22, 22, 26, 0.18) !important; */
+    // box-shadow: 1px 8px 20px 0 rgba(22, 22, 26, 0.18) !important;
     width: 100%;
     transform: scaleY(1.02);
-}
+} */
 
 .wishlist_button {
     z-index: 1000;

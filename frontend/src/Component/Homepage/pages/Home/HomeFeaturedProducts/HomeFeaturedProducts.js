@@ -42,37 +42,55 @@ const HomeFeaturedProducts = ({ title, topProducts }) => {
             <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-5 g-3 g-sm-3 g-md-4 g-lg-4">
                 {products.map((product) => (
                     <div key={product._id} className="col">
-                        <div className="card product_card p-0 p-md-0 m-0 rounded-0"
+                        <div className="card product_card p-0 p-md-0 m-0 rounded-0" style={{boxShadow:'none'}}
                             onClick={() => navigate(`/products/${product._id}`)}>
-                            <div className="position-relative">
+                            {/* <div className="position-relative">
                                 {wishlistItems.find((item) => item.wId === product._id) ?
                                     <button type="button" className="btn btn-sm btn-default bg-light wishlist_button_active position-absolute top-0 end-0 p-1 mt-1 me-1 shadow opacity-75 rounded-circle"
-                                        onClick={() => handleRemoveWishlist(product._id)}>
+                                        onClick={() => handleRemoveWishlist(product._id)}> */}
                                         {/* <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M9.38843 4.28963C7.69278 2.57693 4.94954 2.5686 3.26122 4.2739C1.5729 5.9792 1.58114 8.75004 3.27679 10.4627L9.55368 16.8028C9.81404 17.0657 10.2362 17.0657 10.4965 16.8028L16.7408 10.4994C18.4252 8.78856 18.4199 6.02549 16.7239 4.31249C15.0252 2.59671 12.2807 2.58838 10.5894 4.29673L9.99299 4.90026L9.38843 4.28963Z" fill="#212121" />
                                             </svg> */}
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        {/* <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M12.8199 5.57912L11.9992 6.40163L11.1759 5.57838C9.07688 3.47931 5.67361 3.47931 3.57455 5.57838C1.47548 7.67744 1.47548 11.0807 3.57455 13.1798L11.4699 21.0751C11.7628 21.368 12.2377 21.368 12.5306 21.0751L20.432 13.1783C22.5264 11.0723 22.53 7.67857 20.4306 5.57912C18.3277 3.47623 14.9228 3.47623 12.8199 5.57912Z" fill="#212121" />
                                         </svg>
                                     </button>
                                     :
                                     <button type="button" className="btn btn-sm btn-default bg-light wishlist_button position-absolute top-0 end-0 p-1 mt-1 me-1 shadow opacity-75 rounded-circle"
-                                        onClick={() => handleAddWishlist(product._id, product.name, product.category, product.price, product.image)}>
+                                        onClick={() => handleAddWishlist(product._id, product.name, product.category, product.price, product.image)}> */}
                                         {/* <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M10.4965 16.8028L16.7408 10.4994C18.4252 8.78856 18.4199 6.02549 16.7239 4.31249C15.0611 2.63292 12.3961 2.5895 10.6978 4.19086C10.6612 4.22539 10.6251 4.26068 10.5894 4.29673L9.99299 4.90026L9.38843 4.28963C9.35529 4.25616 9.32175 4.22333 9.28783 4.19116C7.58595 2.57726 4.91654 2.60193 3.26122 4.2739C1.5729 5.9792 1.58114 8.75004 3.27679 10.4627L9.55368 16.8028C9.81404 17.0657 10.2362 17.0657 10.4965 16.8028ZM11.3 5.00029C12.5964 3.69135 14.7025 3.69204 16.0133 5.01604C17.3253 6.34123 17.3272 8.47734 16.0292 9.79681L16.0282 9.79783L10.0252 15.8577L3.98743 9.75919C2.67408 8.43263 2.67286 6.28953 3.97185 4.97746C5.26525 3.67106 7.36984 3.67208 8.6778 4.99319L9.63801 5.96306C9.8338 6.16082 10.1534 6.16067 10.349 5.96272L11.3 5.00029Z" fill="#212121" />
                                             </svg> */}
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        {/* <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M12.8199 5.57912L11.9992 6.40163L11.1759 5.57838C9.07688 3.47931 5.67361 3.47931 3.57455 5.57838C1.47548 7.67744 1.47548 11.0807 3.57455 13.1798L11.4699 21.0751C11.7628 21.368 12.2377 21.368 12.5306 21.0751L20.432 13.1783C22.5264 11.0723 22.53 7.67857 20.4306 5.57912C18.3277 3.47623 14.9228 3.47623 12.8199 5.57912ZM19.3684 12.1206L12.0002 19.4842L4.63521 12.1191C3.12192 10.6058 3.12192 8.15232 4.63521 6.63904C6.14849 5.12575 8.602 5.12575 10.1153 6.63904L11.4727 7.99648C11.7706 8.29435 12.2553 8.28854 12.5459 7.98363L13.8806 6.63978C15.3977 5.12268 17.8528 5.12268 19.3699 6.63978C20.8836 8.15343 20.881 10.5997 19.3684 12.1206Z" fill="#212121" />
                                         </svg>
                                     </button>
-                                }
-                                {product.countInStock < 1 && <span className="position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle text-muted rounded-pill text-uppercase fw-semibold z-index-1" style={{ zIndex: 1000 }}><small>Out of Stock</small></span>}
-                                {product.newCollection && <span className="position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-warning-subtle text-dark rounded-pill text-uppercase fw-semibold z-index-1" style={{ zIndex: 999 }}><small>New</small></span>}
-                            </div>
+                                } */}
+                                {product.countInStock < 1 && <span className="position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle text-muted rounded-pill text-uppercase z-index-1" style={{ zIndex: 1000 }}><small>Out of Stock</small></span>}
+                                {product.newCollection && <span className="position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-warning-subtle text-dark rounded-pill text-uppercase z-index-1" style={{ zIndex: 999 }}><small>New</small></span>}
+                            {/* </div> */}
                             {/* <img src='/assets/images/productImages/product1.jpg' className="card-img-top bg-info-subtle rounded-4" alt="card 1" /> */}
                             {/* <img src={product.image} className="card-img-top rounded-4" alt="card 1" /> */}
                             {/* <img src='/assets/images/productImages/product1.jpg' className="card-img-top rounded-4" alt="card 1" /> */}
-                            <img src={product.image} className="card-img-top rounded-0" alt="card 1" />
+                            {/* <img src={product.image} className="card-img-top rounded-0" alt="card 1" /> */}
+                            <div className="product-item">
+                                <div className="product">
+                                    {/* <img src={product.image} onClick={() => handleProductShow(product._id)} className="" alt="card 1" /> */}
+                                    <img src={product.image} className="" alt="card 1" />
+                                    {/* onClick={() => navigate(`/products/${product._id}`)} */}
+                                    <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+                                        <li class="icon">
+                                            <i class="bi bi-arrows-move"></i>
+                                        </li>
+                                        <li class="icon mx-3">
+                                            <i class="bi bi-heart"></i>
+                                        </li>
+                                        <li class="icon">
+                                            <i class="bi bi-bag"></i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                             <div className="card-body bg-light p-1">
                                 {/* <p className="lh-md-1 my-0 text-muted small">{product.category}</p>
                                     <p className="card-title lh-md-1 my-0 my-md-1"><b>{product.name}</b></p>
