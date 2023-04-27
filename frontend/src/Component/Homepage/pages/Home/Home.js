@@ -557,7 +557,7 @@ const SectionInfo = () => {
                                     FREE SHIPPING
                                 </p>
                                 <p className="mb-0 small">
-                                    From all orders over <span className="fw-semibold">₹</span>1000
+                                    From all orders over <span className="fw-semibold">₹</span>2000
                                 </p>
                             </div>
                         </div>
