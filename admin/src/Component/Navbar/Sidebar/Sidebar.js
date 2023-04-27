@@ -13,7 +13,7 @@ const Sidebar = () => {
 
     const signout = () => {
         localStorage.setItem('admin_user', JSON.stringify(""));
-        navigate('/login');
+        navigate('/login', {replace: 0});
     }
 
     return (
@@ -34,7 +34,7 @@ const Sidebar = () => {
                         <div className="collapse show" id="home-collapse" style={{}}>
                             <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                 <li>
-                                    <Navbarlink to="/" className="link-dark d-inline-flex text-decoration-none rounded">
+                                    <Navbarlink to="/dashboard" className="link-dark d-inline-flex text-decoration-none rounded">
                                         Dashboard Overview
                                     </Navbarlink>
                                 </li>

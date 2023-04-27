@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js';
 import $ from "jquery";
@@ -23,6 +23,31 @@ function CheckoutNew() {
     // });
     // $('.btnPrevious').click(function () {
     // });
+
+    const [cartItems, setCartItems] = useState([]);
+
+    useEffect(() => {
+        setCartItems(JSON.parse(localStorage.getItem("cartItems")));
+    }, []);
+
+    const getTotal = () => {
+        let total = 0
+        cartItems.forEach(item => {
+            total += item.price * item.qty ;
+        })
+        return total;
+    }
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'INR',
+        minimumFractionDigits: 2
+    })
+
+    const totalAmount = getTotal();
+    const shippingCost = 0;
+    const estmdTaxAmount = 0;
+    const discountAmount = 0;
+    const grandTotal = totalAmount + shippingCost + estmdTaxAmount + discountAmount;
 
     return (
         <div className='bg-light py-5'>
@@ -248,26 +273,30 @@ function CheckoutNew() {
                     </div>
                     <div className='col-12 col-md-4'>
                         <div className='bg-white py-3 px-2'>
-                            <span class="mb-4 h6">Order Details (Total 2 items)</span>
+                            <span class="mb-4 h6">Order Details (Total {cartItems.length} items)</span>
                             <hr class="my-7" />
                             <ul class="list-group list-group-lg list-group-flush-y list-group-flush-x mb-7">
-                                <li class="list-group-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-4">
-                                            <a href="product.html">
-                                                <img src="/assets/images/productImages/product6.jpg" width="100" alt="..." class="img-fluid" />
-                                            </a>
-                                        </div>
-                                        <div class="col">
-                                            <p class="mb-4 fs-sm fw-bold">
-                                                <a class="text-body" href="product.html">Cotton floral print Dress</a> <br />
-                                                <span class="text-muted">₹40.00</span>
-                                            </p>
-                                            <div class="fs-sm text-muted">Size: M <br />Color: Red</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
+                                {cartItems.map((item) => {
+                                    return (
+                                        <li class="list-group-item" >
+                                            <div class="row align-items-center">
+                                                <div class="col-4">
+                                                    <a href="product.html">
+                                                        <img src={`http://localhost:5010${item.image}`} width="48" alt="..." class="img-fluid" />
+                                                    </a>
+                                                </div>
+                                                <div class="col">
+                                                    <p class="mb-4 fs-sm fw-bold">
+                                                        <a class="text-body" href="product.html">{item.name}</a> <br />
+                                                        <span class="text-muted">₹{item.price}</span>
+                                                    </p>
+                                                    {/* <div class="fs-sm text-muted">Size: M <br />Color: Red</div> */}
+                                                </div>
+                                            </div>
+                                        </li>
+                                    )
+                                })}
+                                {/* <li class="list-group-item">
                                     <div class="row align-items-center">
                                         <div class="col-4">
                                             <a href="product.html">
@@ -282,22 +311,22 @@ function CheckoutNew() {
                                             <div class="fs-sm text-muted">Size: M <br />Color: Brown</div>
                                         </div>
                                     </div>
-                                </li>
+                                </li> */}
                             </ul>
                             <div class="card mb-9 bg-light my-3 ">
                                 <div class="card-body">
                                     <ul class="list-group list-group-sm list-group-flush-y list-group-flush-x">
                                         <li class="list-group-item d-flex">
-                                            <span>Subtotal</span> <span class="ms-auto fs-sm">₹89.00</span>
+                                            <span>Subtotal</span> <span class="ms-auto fs-sm">{formatter.format(totalAmount)}</span>
                                         </li>
                                         <li class="list-group-item d-flex">
-                                            <span>Tax</span> <span class="ms-auto fs-sm">₹00.00</span>
+                                            <span>Tax</span> <span class="ms-auto fs-sm">{formatter.format(estmdTaxAmount)}</span>
                                         </li>
                                         <li class="list-group-item d-flex">
-                                            <span>Shipping</span> <span class="ms-auto fs-sm">₹8.00</span>
+                                            <span>Shipping</span> <span class="ms-auto fs-sm">{formatter.format(shippingCost)}</span>
                                         </li>
                                         <li class="list-group-item d-flex fs-lg fw-bold">
-                                            <span>Total</span> <span class="ms-auto">₹97.00</span>
+                                            <span>Total</span> <span class="ms-auto">{formatter.format(grandTotal)}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -316,7 +345,7 @@ function CheckoutNew() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -41,24 +41,28 @@ import { useEffect } from 'react';
 
 function App() {
 
-  // const user = JSON.parse(localStorage.getItem('admin_user'));
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (user && user !== "") {
-  //     navigate('/');
-  //   }
-  //   else {
-  //     navigate('/login');
-  //   }
-  // })
+  const user = JSON.parse(localStorage.getItem('admin_user'));
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user && user !== "") {
+      navigate('/');
+    }
+    else {
+      navigate('/login');
+    }
+  }, [user, navigate]);
 
   return (
     <div className="App">
       <Routes>
+
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
         <Route path="/" element=<Homepage /> >
+          {/* <Route path="/" element=<Homepage /> /> */}
           <Route index element={<Dashboard />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
+          {/* <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} /> */}
           <Route path="/category" element={<Category />} />
           <Route path="/category/:id" element={<CategoryDetails />} />
           <Route path="/category/:id/edit" element={<EditCategory />} />
