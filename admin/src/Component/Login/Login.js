@@ -1,12 +1,12 @@
 import React from "react";
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import "./Login.css";
 import { useState } from "react";
 // import { useEffect } from "react";
 
-const Login = () => {
+const Login = ({ updateUser }) => {
 
     // const serverURL = process.env.REACT_APP_SERVER_URL;
 
@@ -50,6 +50,7 @@ const Login = () => {
                 .then(response => {
                     setErrorMessage('Login Successful');
                     localStorage.setItem('admin_user', JSON.stringify(response.data));
+                    updateUser(response.data);
                     navigate('/');
                 })
                 .catch(error => {
@@ -65,13 +66,13 @@ const Login = () => {
                 <h4 className="mb-4 text-center">Login to Paperleaf</h4>
                 <div className="row my-5">
                     <div className="col-1 col-md-2 col-lg-4"></div>
-                    
+
                     <div className="col-10 col-md-8 col-lg-4 px-4 px-md-5">
-                        <div className="text-start start-0 p-0 m-0">
+                        {/* <div className="text-start start-0 p-0 m-0">
                             Don't have an account yet?
                             <a href="/register" className="px-1 fw-normal fs-small text-dark link-warning" type="button">Register</a>
-                        </div>
-                        <h4 class="h5 mt-3 mb-3 fw-normal">Please sign in</h4>
+                        </div> */}
+                        <h4 class="h6 mt-3 mb-3 fw-normal">Please login to continue admin panel</h4>
                         <div className="mt-4">
                             <label className="form-label">
                                 Username
@@ -82,6 +83,12 @@ const Login = () => {
                                     type="text" name="email" value={user.email} onChange={handleChange} placeholder="Ener your Email or Phone" required={true}
                                     style={{ minHeight: "48px !important" }} />
                             </div>
+                            {/* <div class="input-group mb-3">
+                                <span class="input-group-text border-1 bg-light border-dark" id="email"><i className="bi bi-envelope fs-lg"></i></span>
+                                <input type="text" class="form-control shadow-none border-1 border-dark"
+                                name="email" value={user.email} onChange={handleChange} placeholder="Ener your Email or Phone" required={true}
+                               aria-label="name" aria-describedby="email" />
+                            </div> */}
                         </div>
                         <div className="d-flex justify-content-between align-items center">
                             <label className="form-label">Password</label>

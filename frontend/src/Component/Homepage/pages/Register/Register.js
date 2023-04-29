@@ -136,7 +136,7 @@ const Register = () => {
                             <div className="col-12 col-md-6">
                                 <label className="form-label">Phone</label>
                                 <div className="input-group input-group-merge border border-0">
-                                    <button type="button" disabled className="btn border-1 border-secondary py-3 px-3 fs-6 rounded-0 rounded-start-3 mb-3 text-decoration-none shadow-none">IN (+91)</button>
+                                    <button type="button" disabled className="btn border-1 border-secondary py-3 px-3 fs-6 rounded-0 rounded-start-3 mb-3 text-decoration-none shadow-none fw-normal">IN (+91)</button>
                                     <input className="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-end-3 mb-3 text-decoration-none shadow-none"
                                         name="phone" type="tel" pattern="[0-9]{10}" minLength="10" maxLength="10"
                                         value={user.phone} onChange={handleChange} placeholder="Enter your phone" autoComplete="off" />
@@ -146,10 +146,10 @@ const Register = () => {
                                 <label className="form-label">Gender</label>
                                 <div className="btn-group w-100 opacity-1 mb-3" role="group" aria-label="Basic radio toggle button group">
                                     <input type="radio" className="btn-check" name="gender" value="Male" id="btnradio1" checked={user.gender === "Male"} onChange={handleChange} autoComplete="off" />
-                                    <label className="btn btn-outline-dark py-3" htmlFor="btnradio1">Male</label>
+                                    <label className="btn btn-outline-dark py-3 rounded-2 me-2 fw-normal" htmlFor="btnradio1">Male</label>
 
                                     <input type="radio" className="btn-check" name="gender" value="Female" id="btnradio2" checked={user.gender === "Female"} onChange={handleChange} autoComplete="off" />
-                                    <label className="btn btn-outline-dark py-3" htmlFor="btnradio2">Female</label>
+                                    <label className="btn btn-outline-dark py-3 rounded-2 ms-2 fw-normal" htmlFor="btnradio2">Female</label>
 
                                     {/* <input type="radio" className="btn-check" name="gender" value="Others" id="btnradio3" checked={user.gender === "Others"} onChange={handleChange} autoComplete="off" />
                                     <label className="btn btn-outline-dark  py-3" htmlFor="btnradio3">Others</label> */}
@@ -200,11 +200,11 @@ const Register = () => {
                                     {errorMessage}
                                 </div>
                             </div>
-                            <div className="col-12">
+                            <div className="col-12 text-center">
                                 {registerStatus !== 'LOADING' ?
-                                    <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fw-semibold" type="button" onClick={register}>Register</button>
+                                    <button className="btn btn-md btn-default btn-warning rounded-2 fw-normal fs-6" type="button" onClick={register}>Register</button>
                                     :
-                                    <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fw-semibold" type="button" disabled>
+                                    <button className="btn btn-md btn-default btn-warning rounded-2 fw-normal fs-6" type="button" disabled>
                                         <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                         Loading...
                                     </button>

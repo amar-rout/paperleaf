@@ -7,6 +7,7 @@ import connectDB from './config/db.js';
 import bodyParser from "body-parser";
 
 import homeRoutes from './routes/homeRoutes.js';
+import tokenRoutes from './routes/tokenRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import couponRoutes from './routes/couponRoutes.js';
@@ -42,6 +43,7 @@ const corsOrigin = [
 app.use(cors(corsOrigin));
 
 app.use('/api/homepage', homeRoutes);
+app.use('/api/token', tokenRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/coupons', couponRoutes);

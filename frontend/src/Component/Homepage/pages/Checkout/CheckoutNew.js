@@ -4,6 +4,7 @@ import bootstrap from 'bootstrap/dist/js/bootstrap.min.js';
 import $ from "jquery";
 
 import './Checkout.css';
+import { Link } from 'react-router-dom';
 
 function CheckoutNew() {
 
@@ -24,15 +25,18 @@ function CheckoutNew() {
     // $('.btnPrevious').click(function () {
     // });
 
-    const [cartItems, setCartItems] = useState([]);
+    const [checkoutItems, setCheckoutItems] = useState([]);
 
     useEffect(() => {
-        setCartItems(JSON.parse(localStorage.getItem("cartItems")));
+        const items = JSON.parse(localStorage.getItem("checkoutItems"));
+        if (items) {
+            setCheckoutItems(items);   
+        }
     }, []);
 
     const getTotal = () => {
         let total = 0
-        cartItems.forEach(item => {
+        checkoutItems.forEach(item => {
             total += item.price * item.qty ;
         })
         return total;
@@ -56,216 +60,216 @@ function CheckoutNew() {
                 <div className='row'>
                     <div className='col-12 col-md-8'>
                         <div className='bg-white py-3'>
-                            <ul class="nav nav-fill check_nav w-100">
-                                <li class="nav-item">
-                                    <a class="nav-link check_nav-link active text-center" data-bs-toggle="tab" href="#home">
-                                        <span class="step-number">01</span>
-                                        <span class="step-title d-block">Billing Info</span>
+                            <ul className="nav nav-fill check_nav w-100">
+                                <li className="nav-item">
+                                    <a className="nav-link check_nav-link active text-center" data-bs-toggle="tab" href="#home">
+                                        <span className="step-number">01</span>
+                                        <span className="step-title d-block">Billing Info</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link check_nav-link text-center" data-bs-toggle="tab" href="#menu1">
-                                        <span class="step-number">02</span>
-                                        <span class="step-title d-block">Shipping Info</span>
+                                <li className="nav-item">
+                                    <a className="nav-link check_nav-link text-center" data-bs-toggle="tab" href="#menu1">
+                                        <span className="step-number">02</span>
+                                        <span className="step-title d-block">Shipping Info</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link check_nav-link text-center" data-bs-toggle="tab" href="#menu2">
-                                        <span class="step-number">03</span>
-                                        <span class="step-title d-block">Payment Info</span>
+                                <li className="nav-item">
+                                    <a className="nav-link check_nav-link text-center" data-bs-toggle="tab" href="#menu2">
+                                        <span className="step-number">03</span>
+                                        <span className="step-title d-block">Payment Info</span>
                                     </a>
                                 </li>
                             </ul>
-                            <div class="tab-content mt-2 mt-md-4">
-                                <div class="tab-pane container active" id="home">
-                                    <div class="row g-2">
-                                        <div class="col-12 col-md-4 px-2">
-                                            <label class="form-label small ms-2" for="c-fn">Name</label>
-                                            <input class="form-control" name='name' type="text" placeholder="Enter full name" required="" id="name" />
+                            <div className="tab-content mt-2 mt-md-4">
+                                <div className="tab-pane container active" id="home">
+                                    <div className="row g-2">
+                                        <div className="col-12 col-md-4 px-2">
+                                            <label className="form-label small ms-2" for="c-fn">Name</label>
+                                            <input className="form-control" name='name' type="text" placeholder="Enter full name" required="" id="name" />
                                         </div>
-                                        {/* <div class="col-12 col-md-6">
-                                            <label class="form-label small" for="c-ln">Last name</label>
-                                            <input class="form-control" type="text" placeholder="Your last name" required="" id="c-ln" />
+                                        {/* <div className="col-12 col-md-6">
+                                            <label className="form-label small" for="c-ln">Last name</label>
+                                            <input className="form-control" type="text" placeholder="Your last name" required="" id="c-ln" />
                                         </div> */}
-                                        <div class="col-12 col-md-4 px-2">
-                                            <label class="form-label small" for="c-email">Email</label>
-                                            <input class="form-control" type="email" placeholder="Email address" required="" id="c-email" />
+                                        <div className="col-12 col-md-4 px-2">
+                                            <label className="form-label small" for="c-email">Email</label>
+                                            <input className="form-control" type="email" placeholder="Email address" required="" id="c-email" />
                                         </div>
-                                        <div class="col-12 col-md-4 px-2">
-                                            <label class="form-label small" for="c-phone">Phone</label>
+                                        <div className="col-12 col-md-4 px-2">
+                                            <label className="form-label small" for="c-phone">Phone</label>
                                             <div className='input-group'>
-                                                <span class="input-group-text">+91</span>
-                                                <input class="form-control" type="tel" placeholder="Enter phone number" required="" id="phone" />
+                                                <span className="input-group-text">+91</span>
+                                                <input className="form-control" type="tel" placeholder="Enter phone number" required="" id="phone" />
                                             </div>
                                         </div>
-                                        <div class="col-12 col-md-6 px-2">
-                                            <label class="form-label small" for="c-address">Address line 1</label>
-                                            <input class="form-control" type="text" name='address1' required="" id="address1" />
+                                        <div className="col-12 col-md-6 px-2">
+                                            <label className="form-label small" for="c-address">Address line 1</label>
+                                            <input className="form-control" type="text" name='address1' required="" id="address1" />
                                         </div>
-                                        <div class="col-12 col-md-6 px-2">
-                                            <label class="form-label small" for="c-address">Address line 2</label>
-                                            <input class="form-control" type="text" name='address2' required="" id="address2" />
+                                        <div className="col-12 col-md-6 px-2">
+                                            <label className="form-label small" for="c-address">Address line 2</label>
+                                            <input className="form-control" type="text" name='address2' required="" id="address2" />
                                         </div>
-                                        <div class="col-12 col-md-4 px-2">
-                                            <label class="form-label small" for="c-country">Country</label>
-                                            <select class="form-select" required="" name='country' id="country">
+                                        <div className="col-12 col-md-4 px-2">
+                                            <label className="form-label small" for="c-country">Country</label>
+                                            <select className="form-select" required="" name='country' id="country">
                                                 <option value="" selected="" disabled="">Select a country</option>
                                                 <option value="Australia">India</option>
                                             </select>
                                         </div>
-                                        <div class="col-12 col-md-4 px-2">
-                                            <label class="form-label small" for="c-city">City</label>
-                                            <input type='text' class="form-select" required="" name='city' id="city" />
+                                        <div className="col-12 col-md-4 px-2">
+                                            <label className="form-label small" for="c-city">City</label>
+                                            <input type='text' className="form-select" required="" name='city' id="city" />
                                         </div>
-                                        <div class="col-12 col-md-4 px-2">
-                                            <label class="form-label small" for="c-zip">Zip code</label>
-                                            <input class="form-control" type="text" name="zipcode" placeholder="Enter zip code" required="" id="zipcode" />
+                                        <div className="col-12 col-md-4 px-2">
+                                            <label className="form-label small" for="c-zip">Zip code</label>
+                                            <input className="form-control" type="text" name="zipcode" placeholder="Enter zip code" required="" id="zipcode" />
                                         </div>
 
-                                        {/* <div class="col-12">
-                                    <label class="form-label fs-base" for="c-notes">Order notes <span class="text-muted">(optional)</span></label>
-                                    <textarea class="form-control form-control-lg" rows="3" id="c-notes"></textarea>
+                                        {/* <div className="col-12">
+                                    <label className="form-label fs-base" for="c-notes">Order notes <span className="text-muted">(optional)</span></label>
+                                    <textarea className="form-control form-control-lg" rows="3" id="c-notes"></textarea>
                                 </div> */}
-                                        <div class="col-12">
-                                            <div class="form-check my-3 ms-2">
-                                                <input class="form-control form-check-input shadow-none p-1" type="checkbox" id="same-address" />
-                                                <label class="form-check-label fw-normal small mx-2" for="same-address">Billing address same as delivery</label>
+                                        <div className="col-12">
+                                            <div className="form-check my-3 ms-2">
+                                                <input className="form-control form-check-input shadow-none p-1" type="checkbox" id="same-address" />
+                                                <label className="form-check-label fw-normal small mx-2" for="same-address">Billing address same as delivery</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div className='mt-4 mb-2 d-flex flex-0 justify-content-between align-items-center'>
-                                        {/* <a class="btn btn-outline-dark px-3 py-2 disabled" onClick={prev}>Back</a> */}
+                                        {/* <a className="btn btn-outline-dark px-3 py-2 disabled" onClick={prev}>Back</a> */}
                                         <span></span>
-                                        <a class="btn btn-primary px-3 py-2" onClick={next}>Next</a>
+                                        <Link className="btn btn-primary px-3 py-2" onClick={next}>Next</Link>
                                     </div>
                                 </div>
-                                <div class="tab-pane container fade" id="menu1">
+                                <div className="tab-pane container fade" id="menu1">
                                     <div>
-                                        <div class="card-title fs-6 fw-400">Shipping information</div>
-                                        <p class="card-title-desc">It will be as simple as occidental in fact</p>
-                                        <div class="row">
-                                            <div class="col-sm-6 col-lg-6 mb-4">
-                                                <div class="border rounded active shipping-address card">
-                                                    <div class="card-body"><a class="float-end ms-1" href="/ecommerce-checkout">Edit</a>
-                                                        <p class="mb-4 fw-semibold">Address 1</p>
-                                                        <h6 class="mb-2">Bradley McMillian</h6>
-                                                        <p class="mb-1">109 Clarksburg Park Road Show Low, AZ 85901</p>
-                                                        <p class="mb-0">Mo. 012-345-6789</p>
+                                        <div className="card-title fs-6 fw-400">Shipping information</div>
+                                        <p className="card-title-desc">It will be as simple as occidental in fact</p>
+                                        <div className="row">
+                                            <div className="col-sm-6 col-lg-6 mb-4">
+                                                <div className="border rounded active shipping-address card">
+                                                    <div className="card-body"><a className="float-end ms-1" href="/ecommerce-checkout">Edit</a>
+                                                        <p className="mb-4 fw-semibold">Address 1</p>
+                                                        <h6 className="mb-2">Bradley McMillian</h6>
+                                                        <p className="mb-1">109 Clarksburg Park Road Show Low, AZ 85901</p>
+                                                        <p className="mb-0">Mo. 012-345-6789</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6 col-lg-6 mb-4">
-                                                <div class="border rounded shipping-address card">
-                                                    <div class="card-body"><a class="float-end ms-1" href="/ecommerce-checkout">Edit</a>
-                                                        <p class="mb-4 fw-semibold">Address 2</p>
-                                                        <h6 class="mb-2">Bradley McMillian</h6>
-                                                        <p class="mb-1">109 Clarksburg Park Road Show Low, AZ 85901</p>
-                                                        <p class="mb-0">Mo. 012-345-6789</p>
+                                            <div className="col-sm-6 col-lg-6 mb-4">
+                                                <div className="border rounded shipping-address card">
+                                                    <div className="card-body"><a className="float-end ms-1" href="/ecommerce-checkout">Edit</a>
+                                                        <p className="mb-4 fw-semibold">Address 2</p>
+                                                        <h6 className="mb-2">Bradley McMillian</h6>
+                                                        <p className="mb-1">109 Clarksburg Park Road Show Low, AZ 85901</p>
+                                                        <p className="mb-0">Mo. 012-345-6789</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className='mt-4 d-flex flex-0 justify-content-between align-items-center'>
-                                        <a class="btn btn-outline-dark px-3 py-2" onClick={prev}>Back</a>
-                                        <a class="btn btn-primary" onClick={next}>Next</a>
+                                        <Link className="btn btn-outline-dark px-3 py-2" onClick={prev}>Back</Link>
+                                        <Link className="btn btn-primary" onClick={next}>Next</Link>
                                     </div>
                                 </div>
-                                <div class="tab-pane container fade" id="menu2">
-                                    <div class="card-title fw-normal">Payment information</div>
-                                    <p class="card-title-desc">It will be as simple as occidental in fact</p>
+                                <div className="tab-pane container fade" id="menu2">
+                                    <div className="card-title fw-normal">Payment information</div>
+                                    <p className="card-title-desc">It will be as simple as occidental in fact</p>
                                     <div>
-                                        <p class="small">Payment method :</p>
-                                        {/* <div class="row"> */}
-                                        {/* <div class="col-sm-6 col-lg-4">
-                                                <div><label class="form-label card-radio-label mb-3"><input name="pay-method"
+                                        <p className="small">Payment method :</p>
+                                        {/* <div className="row"> */}
+                                        {/* <div className="col-sm-6 col-lg-4">
+                                                <div><label className="form-label card-radio-label mb-3"><input name="pay-method"
                                                     id="pay-methodoption1" type="radio"
-                                                    class="card-radio-input form-check-input" />
-                                                    <div class="card-radio"><i
-                                                        class="fab fa-cc-mastercard font-size-24 align-middle me-2"></i><span>Credit
+                                                    className="card-radio-input form-check-input" />
+                                                    <div className="card-radio"><i
+                                                        className="fab fa-cc-mastercard font-size-24 align-middle me-2"></i><span>Credit
                                                             / Debit Card</span></div>
                                                 </label></div>
                                             </div>
-                                            <div class="col-sm-6 col-lg-4">
+                                            <div className="col-sm-6 col-lg-4">
                                                 <div>
-                                                <label class="form-label card-radio-label mb-3">
-                                                <input name="pay-method" id="pay-methodoption2" type="radio" class="card-radio-input form-check-input" />
-                                                    <div class="card-radio"><i
-                                                        class="fab fa-cc-paypal font-size-24 align-middle me-2"></i><span>Paypal</span>
+                                                <label className="form-label card-radio-label mb-3">
+                                                <input name="pay-method" id="pay-methodoption2" type="radio" className="card-radio-input form-check-input" />
+                                                    <div className="card-radio"><i
+                                                        className="fab fa-cc-paypal font-size-24 align-middle me-2"></i><span>Paypal</span>
                                                     </div>
                                                 </label></div>
                                             </div>
-                                            <div class="col-sm-6 col-lg-4">
-                                                <div><label class="form-label card-radio-label mb-3"><input name="pay-method"
+                                            <div className="col-sm-6 col-lg-4">
+                                                <div><label className="form-label card-radio-label mb-3"><input name="pay-method"
                                                     id="pay-methodoption3" type="radio"
-                                                    class="card-radio-input form-check-input" />
-                                                    <div class="card-radio"><i
-                                                        class="far fa-money-bill-alt font-size-24 align-middle me-2"></i><span>Cash
+                                                    className="card-radio-input form-check-input" />
+                                                    <div className="card-radio"><i
+                                                        className="far fa-money-bill-alt font-size-24 align-middle me-2"></i><span>Cash
                                                             on Delivery</span></div>
                                                 </label></div>
                                             </div> */}
-                                        <div class="btn-group w-100 payment-method" role="group" aria-label="Basic radio toggle button group">
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
-                                            <label class="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" for="btnradio1">
-                                                <i class="bi bi-credit-card-2-front me-3" style={{ fontSize: '24px' }}></i>
-                                                <span className='fw-normal d-block d-md-inline'>Credit/Debit Card</span>
+                                        <div className="btn-group w-100 payment-method" role="group" aria-label="Basic radio toggle button group">
+                                            <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
+                                            <label className="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" for="btnradio1">
+                                                <i className="bi bi-credit-card-2-front me-3" style={{ fontSize: '24px' }}></i>
+                                                <span className='fw-normal d-block d-md-inline'>Credit / Debit Card</span>
                                             </label>
 
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked />
-                                            <label class="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" for="btnradio2">
-                                                <i class="bi bi-wallet me-3" style={{ fontSize: '24px' }}></i>
+                                            <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked />
+                                            <label className="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" for="btnradio2">
+                                                <i className="bi bi-wallet me-3" style={{ fontSize: '24px' }}></i>
                                                 <span className='fw-normal d-block d-md-inline'>Wallet</span>
                                             </label>
 
-                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked />
-                                            <label class="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" for="btnradio3">
-                                                <i class="bi bi-cash me-3" style={{ fontSize: '24px' }}></i>
+                                            <input type="radio" className="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked />
+                                            <label className="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" for="btnradio3">
+                                                <i className="bi bi-cash me-3" style={{ fontSize: '24px' }}></i>
                                                 <span className='fw-normal d-block d-md-inline'>Cash on delivery</span>
                                             </label>
                                         </div>
                                         {/* </div> */}
-                                        <h5 class="my-3 font-size-14">For card Payment</h5>
-                                        <div class="p-4 border">
+                                        <h5 className="my-3 font-size-14">For card Payment</h5>
+                                        <div className="p-4 border">
                                             <form>
-                                                <div class="mb-3">
-                                                    <label for="cardnameInput" class="form-label small">
+                                                <div className="mb-3">
+                                                    <label for="cardnameInput" className="form-label small">
                                                         Name on card
                                                     </label>
-                                                    <input id="cardnameInput" placeholder="Name on Card" type="text" class="form-control form-control" />
+                                                    <input id="cardnameInput" placeholder="Name on Card" type="text" className="form-control form-control" />
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-sm-6 col-lg-4">
-                                                        <div class="mb-3 mb-lg-0">
-                                                            <label for="cardnumberInput" class="form-label small">
+                                                <div className="row">
+                                                    <div className="col-sm-6 col-lg-4">
+                                                        <div className="mb-3 mb-lg-0">
+                                                            <label for="cardnumberInput" className="form-label small">
                                                                 Card Number
                                                             </label>
-                                                            <input id="cardnumberInput" placeholder="0000 0000 0000 0000" type="text" class="form-control form-control" /></div>
+                                                            <input id="cardnumberInput" placeholder="0000 0000 0000 0000" type="text" className="form-control form-control" /></div>
                                                     </div>
-                                                    <div class="col-sm-6 col-lg-4">
-                                                        <div class="mb-3 mb-lg-0">
-                                                            <label for="expirydateInput" class="form-label small">
+                                                    <div className="col-sm-6 col-lg-4">
+                                                        <div className="mb-3 mb-lg-0">
+                                                            <label for="expirydateInput" className="form-label small">
                                                                 Expiry date
                                                             </label>
                                                             <input id="expirydateInput" placeholder="MM/YY" type="text"
-                                                                class="form-control form-control" />
+                                                                className="form-control form-control" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-6 col-lg-4">
-                                                        <div class="mb-3 mb-lg-0">
-                                                            <label for="cvvcodeInput" class="form-label small">CVV Code</label>
-                                                            <input id="cvvcodeInput" placeholder="Enter CVV Code" type="text" class="form-control form-control" />
+                                                    <div className="col-sm-6 col-lg-4">
+                                                        <div className="mb-3 mb-lg-0">
+                                                            <label for="cvvcodeInput" className="form-label small">CVV Code</label>
+                                                            <input id="cvvcodeInput" placeholder="Enter CVV Code" type="text" className="form-control form-control" />
                                                         </div>
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
-                                        {/* <div class="mt-4 text-end">
-                                            <a class="btn btn-success fw-normal text-center px-3 py-2 my-3">Complete order</a>
+                                        {/* <div className="mt-4 text-end">
+                                            <a className="btn btn-success fw-normal text-center px-3 py-2 my-3">Complete order</a>
                                         </div> */}
                                     </div>
                                     <div className='mt-4 d-flex flex-0 justify-content-between align-items-center'>
-                                        <a class="btn btn-outline-dark px-3 py-2" onClick={prev}>Back</a>
-                                        <a class="btn btn-success" onClick={next}>Complete Order</a>
+                                        <Link className="btn btn-outline-dark px-3 py-2" onClick={prev}>Back</Link>
+                                        <Link className="btn btn-success" onClick={next}>Complete Order</Link>
                                     </div>
                                 </div>
                             </div>
@@ -273,74 +277,74 @@ function CheckoutNew() {
                     </div>
                     <div className='col-12 col-md-4'>
                         <div className='bg-white py-3 px-2'>
-                            <span class="mb-4 h6">Order Details (Total {cartItems.length} items)</span>
-                            <hr class="my-7" />
-                            <ul class="list-group list-group-lg list-group-flush-y list-group-flush-x mb-7">
-                                {cartItems.map((item) => {
+                            <span className="mb-4 h6">Order Details (Total {checkoutItems.length} items)</span>
+                            <hr className="my-7" />
+                            <ul className="list-group list-group-lg list-group-flush-y list-group-flush-x mb-7">
+                                {checkoutItems.map((item) => {
                                     return (
-                                        <li class="list-group-item" >
-                                            <div class="row align-items-center">
-                                                <div class="col-4">
+                                        <li className="list-group-item" >
+                                            <div className="row align-items-center">
+                                                <div className="col-4">
                                                     <a href="product.html">
-                                                        <img src={`http://localhost:5010${item.image}`} width="48" alt="..." class="img-fluid" />
+                                                        <img src={`http://localhost:5010${item.image}`} width="48" alt="..." className="img-fluid" />
                                                     </a>
                                                 </div>
-                                                <div class="col">
-                                                    <p class="mb-4 fs-sm fw-bold">
-                                                        <a class="text-body" href="product.html">{item.name}</a> <br />
-                                                        <span class="text-muted">₹{item.price}</span>
+                                                <div className="col">
+                                                    <p className="mb-4 fs-sm fw-bold">
+                                                        <a className="text-body" href="product.html">{item.name}</a> <br />
+                                                        <span className="text-muted">₹{item.price}</span>
                                                     </p>
-                                                    {/* <div class="fs-sm text-muted">Size: M <br />Color: Red</div> */}
+                                                    {/* <div className="fs-sm text-muted">Size: M <br />Color: Red</div> */}
                                                 </div>
                                             </div>
                                         </li>
                                     )
                                 })}
-                                {/* <li class="list-group-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-4">
+                                {/* <li className="list-group-item">
+                                    <div className="row align-items-center">
+                                        <div className="col-4">
                                             <a href="product.html">
-                                                <img src="/assets/images/productImages/product1.jpg" width="100" alt="..." class="img-fluid" />
+                                                <img src="/assets/images/productImages/product1.jpg" width="100" alt="..." className="img-fluid" />
                                             </a>
                                         </div>
-                                        <div class="col">
-                                            <p class="mb-4 fs-sm fw-bold">
-                                                <a class="text-body" href="product.html">Suede cross body Bag</a> <br />
-                                                <span class="text-muted">₹49.00</span>
+                                        <div className="col">
+                                            <p className="mb-4 fs-sm fw-bold">
+                                                <a className="text-body" href="product.html">Suede cross body Bag</a> <br />
+                                                <span className="text-muted">₹49.00</span>
                                             </p>
-                                            <div class="fs-sm text-muted">Size: M <br />Color: Brown</div>
+                                            <div className="fs-sm text-muted">Size: M <br />Color: Brown</div>
                                         </div>
                                     </div>
                                 </li> */}
                             </ul>
-                            <div class="card mb-9 bg-light my-3 ">
-                                <div class="card-body">
-                                    <ul class="list-group list-group-sm list-group-flush-y list-group-flush-x">
-                                        <li class="list-group-item d-flex">
-                                            <span>Subtotal</span> <span class="ms-auto fs-sm">{formatter.format(totalAmount)}</span>
+                            <div className="card mb-9 bg-light my-3 ">
+                                <div className="card-body">
+                                    <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
+                                        <li className="list-group-item d-flex">
+                                            <span>Subtotal</span> <span className="ms-auto fs-sm">{formatter.format(totalAmount)}</span>
                                         </li>
-                                        <li class="list-group-item d-flex">
-                                            <span>Tax</span> <span class="ms-auto fs-sm">{formatter.format(estmdTaxAmount)}</span>
+                                        <li className="list-group-item d-flex">
+                                            <span>Tax</span> <span className="ms-auto fs-sm">{formatter.format(estmdTaxAmount)}</span>
                                         </li>
-                                        <li class="list-group-item d-flex">
-                                            <span>Shipping</span> <span class="ms-auto fs-sm">{formatter.format(shippingCost)}</span>
+                                        <li className="list-group-item d-flex">
+                                            <span>Shipping</span> <span className="ms-auto fs-sm">{formatter.format(shippingCost)}</span>
                                         </li>
-                                        <li class="list-group-item d-flex fs-lg fw-bold">
-                                            <span>Total</span> <span class="ms-auto">{formatter.format(grandTotal)}</span>
+                                        <li className="list-group-item d-flex fs-lg fw-bold">
+                                            <span>Total</span> <span className="ms-auto">{formatter.format(grandTotal)}</span>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            <p class="mb-7 px-5 text-center small text-gray-500">
+                            <p className="mb-7 px-5 text-center small text-gray-500">
                                 Your personal data will be used to process your order, support
                                 your experience throughout this website, and for other purposes
                                 described in our privacy policy.
                             </p>
-                            <div className='text-end'>
-                                <button class="btn btn-dark fw-normal text-center px-3 py-2 my-3">
+                            {/* <div className='text-end'>
+                                <button className="btn btn-dark fw-normal text-center px-3 py-2 my-3">
                                     Place order
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

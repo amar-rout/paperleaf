@@ -17,7 +17,7 @@ const CartItems = (products) => {
     const getTotal = () => {
         let total = 0
         cartItems.forEach(item => {
-            total += item.price * item.qty ;
+            total += item.price * item.qty;
         })
         return total;
     }
@@ -32,6 +32,10 @@ const CartItems = (products) => {
     const estmdTaxAmount = 0;
     const discountAmount = 0;
     const grandTotal = totalAmount + shippingCost + estmdTaxAmount + discountAmount;
+
+    const setCheckoutItems = () => {
+        localStorage.setItem("checkout_items", JSON.stringify(cartItems));
+    }
 
     return (
         <>
@@ -53,7 +57,7 @@ const CartItems = (products) => {
                                                 </a>
                                             </span>
                                             <div>
-                                                <span className="small"><small>{product.category}</small></span>, 
+                                                <span className="small"><small>{product.category}</small></span>,
                                                 <span className="small">Size: <span className="text-dark fw-medium">{product.size}</span></span>
                                             </div>
                                         </div>
@@ -120,19 +124,21 @@ const CartItems = (products) => {
                             </table>
                         </div>
                     </div>
-                    <div class="alert alert-warning mt-3" role="alert">
-                        Use coupon code <strong>FIRSTBUY</strong> and get 10% discount !
-                    </div>
-                    <div class="input-group border border-1 rounded-pill mt-3 py-1 p-2">
+                    <p class="alert alert-warning mt-3" role="alert">
+                        Use coupon code <b>FIRSTBUY</b> and get 10% discount !
+                    </p>
+                    <div class="input-group border border-1 rounded-2 mt-3 py-1 p-2">
                         <input type="text" class="form-control shadow-none border-0 py-2" placeholder="Coupon code" aria-label="Recipient's username" />
-                        <button class="btn btn-default bg-info-subtle rounded-pill px-3 py-2 small" type="button"><small>APPLY</small></button>
+                        <button class="btn btn-default bg-info-subtle rounded-2 fw-semibold py-2" type="button">APPLY</button>
                     </div>
-                    <Link to="/checkout" className="w-100 btn bg-dark text-white float-end shadow-none border-dark px-5 py-2 my-3" type="button">
-                        <small>PROCEED TO CHECKOUT</small>
-                    </Link>
-                    <Link to="/" className="text-dark fs-6 fw-semibold text-decoration-none link-warning mt-3" type="button">
-                        <i className="bi bi-arrow-left"></i> Continue Shopping
-                    </Link>
+                    <div className="d-flex justify-content-between align-items-center my-3">
+                        <Link to="/" className="btn btn-outline-dark fs-6 fw-normal" type="button">
+                            <small>Continue Shopping</small>
+                        </Link>
+                        <Link to="/checkout" onClick={setCheckoutItems} className="btn btn-warning shadow-none fw-normal fs-6" type="button">
+                            <small>Place order</small>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </>

@@ -21,6 +21,7 @@ import {
 
 import {
     addCartAsync,
+    getListCartItems,
 } from "../../../../../app/cartSlice";
 
 import {
@@ -51,6 +52,7 @@ const CategoryItems = () => {
     let currPage = useSelector(getPage);
     const listCatProduct = useSelector(selectListCatProducts);
     const wishlistItems = useSelector(getWishlistItems);
+    const cartItems = useSelector(getListCartItems);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -207,8 +209,8 @@ const CategoryItems = () => {
                                             } */}
                                         {/* {product.countInStock < 1 && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle text-muted rounded-pill z-index-1" style={{ zIndex: 1000 }}>Out of Stock</span>}
                                         {product.countInStock > 1 && product.newCollection && <span className="product-card-label position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-success-subtle text-success rounded-pill z-index-1" style={{ zIndex: 999 }}>New</span>} */}
-                                        {product.countInStock < 1 && <span className="position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-light-subtle text-muted rounded-pill text-uppercase fw-semibold z-index-1" style={{ zIndex: 1000 }}><small>Out of Stock</small></span>}
-                                        {product.newCollection && <span className="position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-warning-subtle text-dark rounded-pill text-uppercase fw-semibold z-index-1" style={{ zIndex: 999 }}><small>New</small></span>}
+                                        {product.countInStock < 1 && <span className="position-absolute top-0 start-0 mt-3 ms-5 translate-middle badge bg-danger text-light rounded-pill text-uppercase fw-semibold z-index-1" style={{ zIndex: 1000 }}><small>Out of Stock</small></span>}
+                                        {product.newCollection && <span className="position-absolute top-0 start-0 mt-3 ms-4 translate-middle badge bg-success text-light rounded-pill text-uppercase fw-semibold z-index-1" style={{ zIndex: 999 }}><small>New</small></span>}
                                         {/* </div> */}
                                         {/* <div className="position-relative">
                                                 {wishlistItems.find((item) => item.wId === product._id) ?
@@ -237,14 +239,31 @@ const CategoryItems = () => {
                                             <div className="product">
                                                 <img src={product.image} onClick={() => handleProductShow(product._id)} className="" alt="card 1" />
                                                 <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                                                    <li class="icon">
-                                                        <i class="bi bi-arrows-move"></i>
-                                                    </li>
-                                                    <li class="icon mx-3">
-                                                        <i class="bi bi-heart"></i>
-                                                    </li>
+                                                    {wishlistItems.find((item) => item.wId === product._id) ?
+                                                        <li class="icon active" onClick={() => handleRemoveWishlist(product._id)}>
+                                                            <i class="bi bi-heart-fill"></i>
+                                                        </li>
+                                                        :
+                                                        <li class="icon" onClick={() => handleAddWishlist(product._id, product.name, product.category, product.price, product.image)}>
+                                                            <i class="bi bi-heart"></i>
+                                                        </li>
+                                                    }
+                                                    {cartItems.find((item) => item.pId === product._id) ?
+                                                        <li class="icon active mx-3" onClick={() => handleAddCart(product._id, product.name)}>
+                                                            <i class="bi bi-cart-fill"></i>
+                                                        </li>
+                                                        :
+                                                        <li class="icon mx-3" onClick={() => handleAddCart(product._id, product.name)}>
+                                                            <i class="bi bi-cart"></i>
+                                                        </li>
+                                                    }
+                                                    {/* <li class="icon mx-3" onClick={() => handleAddCart(product._id, product.name)}>
+                                                        <i class="bi bi-cart"></i>
+                                                        <i class="bi bi-cart-fill"></i>
+                                                    </li> */}
                                                     <li class="icon">
                                                         <i class="bi bi-bag"></i>
+                                                        {/* <i class="bi bi-bag-fill"></i> */}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -374,7 +393,7 @@ const CategoryItems = () => {
                             ))}
                         </div>
                         //     </div>
-                        // </div>
+                        // </div >
                     }
 
                     <div className="mt-5">
@@ -408,8 +427,8 @@ const CategoryItems = () => {
                             </>
                         )}
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
         </>
     );
 }

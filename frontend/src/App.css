@@ -175,6 +175,13 @@
   color: goldenrod;
 }
 
+.product-item .product .icons .active {
+  /* background-color: #b71c1c;
+  color: #fff; */
+  background-color: black;
+  color: goldenrod;
+}
+
 .product-item .product .icons .icon:nth-last-of-type(3) {
   transition-delay: 0.2s;
 }

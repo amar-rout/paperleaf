@@ -13,7 +13,7 @@ const Sidebar = () => {
 
     const signout = () => {
         localStorage.setItem('admin_user', JSON.stringify(""));
-        navigate('/login', {replace: 0});
+        navigate('/login', { replace: 0 });
     }
 
     return (
@@ -176,9 +176,9 @@ const Sidebar = () => {
                         <strong>{user && user.name}</strong>
                     </a>
                     <ul className="dropdown-menu text-small shadow" style={{}}>
-                        <li><a className="dropdown-item" href="/">Profile</a></li>
+                        {/* <li><a className="dropdown-item" href="/">Profile</a></li>
                         <li><a className="dropdown-item" href="/">Settings</a></li>
-                        <li><hr className="dropdown-divider" /></li>
+                        <li><hr className="dropdown-divider" /></li> */}
                         <li>
                             <a className="dropdown-item" href="/" onClick={signout}>Sign out</a>
                         </li>
@@ -186,9 +186,13 @@ const Sidebar = () => {
                 </div>
             </div>
             <div className="b-example-divider b-example-vr"></div>
-            <div className="bg-light w-100" style={{overflowY: 'scroll'}}>
-                <Outlet />
-                <Footer />
+            <div className="bg-light w-100" style={{ overflowY: 'scroll' }}>
+                <div className="" style={{minHeight: '94vh'}}>
+                    <Outlet />
+                </div>
+                <div className="bg-white p-2" style={{minHeight: '6vh'}}>
+                    <Footer />
+                </div>
             </div>
         </>
     );

@@ -29,9 +29,9 @@ import Orders from './Component/Page/Orders/Orders';
 import OrderDetails from './Component/Page/Orders/OrderDetails';
 import Users from './Component/Page/User/Users';
 import UserDetails from './Component/Page/User/UserDetails';
-// import Login from './Component/Login/Login';
-// import Register from './Component/Register/Register';
-// import { useEffect } from 'react';
+import Login from './Component/Login/Login';
+import Register from './Component/Register/Register';
+import { useState, useEffect } from 'react';
 
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
@@ -41,28 +41,41 @@ import UserDetails from './Component/Page/User/UserDetails';
 
 function App() {
 
-  // const user = JSON.parse(localStorage.getItem('admin_user'));
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setLoginUser] = useState({});
+
   // const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (user && user !== "") {
-  //     navigate('/');
-  //   }
-  //   else {
-  //     navigate('/login');
-  //   }
-  // }, [user, navigate]);
+
+  useEffect(() => {
+    setLoginUser(JSON.parse(localStorage.getItem("admin_user")))
+    setIsLoading(false);
+  }, [])
+
+  const updateUser = (user) => {
+    localStorage.setItem("admin_user", JSON.stringify(user))
+    setLoginUser(user);
+  }
 
   return (
     <div className="App">
       <Routes>
-
-        {/* <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} /> */}
-        <Route path="/" element=<Homepage /> >
-          {/* <Route path="/" element=<Homepage /> /> */}
+        <Route exact path="/" element={
+          isLoading ?
+            <div className="d-flex flex-column justify-content-center align-items-center mt-5 pt-5">
+              <div className="spinner-grow spinner-grow-md mt-5" role="status">
+                <span className="sr-only visually-hidden">Loading...</span>
+              </div>
+              <h6>Loading...</h6>
+            </div>
+            :
+            user && user.email && user.token ?
+              <Homepage updateUser={updateUser} loginUser={user} />
+              :
+              <Login updateUser={updateUser} />
+              }
+          >
+          <Route exact path="/" element={<Homepage updateUser={updateUser} loginUser={user} />} />
           <Route index element={<Dashboard />} />
-          {/* <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} /> */}
           <Route path="/category" element={<Category />} />
           <Route path="/category/:id" element={<CategoryDetails />} />
           <Route path="/category/:id/edit" element={<EditCategory />} />
@@ -79,10 +92,33 @@ function App() {
           <Route path="/orders/:id" element={<OrderDetails />} />
           <Route path="/users" element={<Users />} />
           <Route path="/users/:id" element={<UserDetails />} />
-        </Route>
+          <Route path='/login' element={<Login updateUser={updateUser} />} />
+          <Route path='/register' element={<Register />} />
+          </Route>
+        {/* <Route path="/" element=<Homepage /> >
+            <Route index element={<Dashboard />} />
+            <Route path="/category" element={<Category />} />
+            <Route path="/category/:id" element={<CategoryDetails />} />
+            <Route path="/category/:id/edit" element={<EditCategory />} />
+            <Route path="/addCategory" element={<AddCategory />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
+            <Route path="/products/:id/edit" element={<EditProduct />} />
+            <Route path="/addProduct" element={<AddProduct />} />
+            <Route path="/coupons" element={<Coupons />} />
+            <Route path="/coupons/:id" element={<CouponsDetails />} />
+            <Route path="/coupons/:id/edit" element={<EditCoupons />} />
+            <Route path="/addCoupons" element={<AddCoupons />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/orders/:id" element={<OrderDetails />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/users/:id" element={<UserDetails />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+        </Route> */}
       </Routes>
       <ToastContainer />
-    </div>
+    </div >
   );
 }
 
