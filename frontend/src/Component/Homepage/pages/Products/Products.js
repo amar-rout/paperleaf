@@ -174,17 +174,12 @@ const Products = () => {
                                             dots={true}
                                             responsive={responsiveSetting}
                                         >
-                                            {/* <div>
+                                            <div>
                                                 <img className='px-1'
                                                     src={`${serverURL}${product.image}`}
                                                     onClick={() => setModalImgInfo(product.image)}
                                                     data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                                                     alt="product" style={{ width: "100%", height: "auto" }} />
-                                            </div> */}
-                                            <div className='gallery-container' id='gallery-container'>
-                                                <a data-lg-size="2500-2500" class="gallery-item" data-src={`${serverURL}${product.image}`} data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@entrycube' >Diego Guzmán </a></h4> <p> Location - <a href='https://unsplash.com/s/photos/fushimi-inari-taisha-shrine-senbontorii%2C-68%E7%95%AA%E5%9C%B0-fukakusa-yabunouchicho%2C-fushimi-ward%2C-kyoto%2C-japan'>Fushimi Ward, Kyoto, Japan</a></p>">
-                                                    <img class="img-fluid" alt={product.image} src={`${serverURL}${product.image}`} />
-                                                </a>
                                             </div>
                                             {product.images && product.images.map((image) => {
                                                 return (
