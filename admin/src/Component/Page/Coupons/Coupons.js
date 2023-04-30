@@ -20,7 +20,7 @@ function Coupon() {
   const [couponData, setCouponData] = useState(initialData);
   const [coupons, setCoupons] = useState([]);
 
-  const couponURL = "http://localhost:5010/api/coupons/";
+  const couponURL = "/api/coupons/";
 
   let currINR = new Intl.NumberFormat('en-IN', {
     style: 'currency',
