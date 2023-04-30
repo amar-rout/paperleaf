@@ -124,18 +124,19 @@ const CartItems = (products) => {
                             </table>
                         </div>
                     </div>
+                    <div class="input-group border border-1 rounded-2 mt-3 py-1 p-2">
+                        <input type="text" class="form-control shadow-none border-0 py-2" placeholder="Coupon code" aria-label="Recipient's username" />
+                        <button class="btn btn-warning rounded-2 fw-semibold py-2 px-4" type="button">Apply Coupon</button>
+                        {/* bg-warning-subtle */}
+                    </div>
                     <p class="alert alert-warning mt-3" role="alert">
                         Use coupon code <b>FIRSTBUY</b> and get 10% discount !
                     </p>
-                    <div class="input-group border border-1 rounded-2 mt-3 py-1 p-2">
-                        <input type="text" class="form-control shadow-none border-0 py-2" placeholder="Coupon code" aria-label="Recipient's username" />
-                        <button class="btn btn-default bg-info-subtle rounded-2 fw-semibold py-2" type="button">APPLY</button>
-                    </div>
-                    <div className="d-flex justify-content-between align-items-center my-3">
-                        <Link to="/" className="btn btn-outline-dark fs-6 fw-normal" type="button">
+                    <div className="d-flex justify-content-between align-items-center my-3 gap-2">
+                        <Link to="/" className="btn btn-md btn-outline-dark w-100 py-2 fs-6 fw-normal small" type="button">
                             <small>Continue Shopping</small>
                         </Link>
-                        <Link to="/checkout" onClick={setCheckoutItems} className="btn btn-warning shadow-none fw-normal fs-6" type="button">
+                        <Link to="/checkout" onClick={setCheckoutItems} className="btn btn-md btn-warning w-100 py-2 fs-5 fw-normal" type="button">
                             <small>Place order</small>
                         </Link>
                     </div>

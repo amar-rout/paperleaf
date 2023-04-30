@@ -24,8 +24,8 @@ code {
 p {
   font-family: 'Noto Sans', sans-serif;
   font-weight: 400;
-  font-size: small;
-  text-align: justify;
+  /* font-size: 14px !important; */
+  /* text-align: justify; */
 }
 
 p b {

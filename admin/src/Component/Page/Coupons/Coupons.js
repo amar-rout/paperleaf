@@ -15,7 +15,7 @@ function Coupon() {
     minPurchaseAmount: 0,
     startDate: '',
     endDate: '',
-    published: ''
+    published: 'true'
   };
   const [couponData, setCouponData] = useState(initialData);
   const [coupons, setCoupons] = useState([]);
@@ -288,6 +288,7 @@ function Coupon() {
                   onChange={handleChange}
                   required
                 >
+                  <option value="">-- Select --</option>
                   <option value="Active">Active</option>
                   <option value="Inactive">Deactive</option>
                 </select>
@@ -302,6 +303,7 @@ function Coupon() {
                   onChange={handleChange}
                   required
                 >
+                  <option value="">-- Select --</option>
                   <option value="true">Active</option>
                   <option value="false">Deactive</option>
                 </select>
