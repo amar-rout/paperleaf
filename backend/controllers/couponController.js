@@ -81,16 +81,14 @@ export const createCoupon = asyncHandler(async (req, res) => {
 export const updateCoupon = asyncHandler(async (req, res) => {
     const object = await CouponModel.findById(sanitize(req.params.id));
     if (object) {
-        console.log(req.body.couponName);
         object.couponName = sanitize(req.body.couponName) || object.couponName;
         object.status = sanitize(req.body.status) || object.status;
         object.discountType = sanitize(req.body.discountType) || object.discountType;
-        object.discountAmount = sanitize(req.body.discountAmount) || object.discountAmount;
-        object.discountPercentage = sanitize(req.body.discountPercentage) || object.discountPercentage;
-        object.minPurchaseAmount = sanitize(req.body.minPurchaseAmount) || object.minPurchaseAmount;
+        object.discountAmount = sanitize(req.body.discountAmount);
+        object.discountPercentage = sanitize(req.body.discountPercentage);
+        object.minPurchaseAmount = sanitize(req.body.minPurchaseAmount);
         object.startDate = sanitize(req.body.startDate) || object.startDate;
         object.endDate = sanitize(req.body.endDate) || object.endDate;
-        console.log(req.body.published);
         object.published = sanitize(req.body.published) || object.published;
         // Update coupons
         const updatedObj = await object.save();

@@ -20,12 +20,30 @@ function Coupon() {
   const [couponData, setCouponData] = useState(initialData);
   const [coupons, setCoupons] = useState([]);
 
+  const [edit, setEdit] = useState(false);
+
   const couponURL = "/api/coupons/";
 
   let currINR = new Intl.NumberFormat('en-IN', {
     style: 'currency',
     currency: 'INR',
   });
+
+  // useEffect(() => {
+  //   axios.get(`${couponURL}/all`)
+  //     .then(response => {
+  //       setCoupons(response.data);
+  //     }).catch(error => {
+  //       if (error.response) {
+  //         toast.dismiss()
+  //         toast.error(error.response.data.message)
+  //       } else if (error.request) {
+  //       } else {
+  //         toast.dismiss()
+  //         toast.error(error.message)
+  //       }
+  //     })
+  // }, []);
 
   useEffect(() => {
     getCoupon();
@@ -41,13 +59,11 @@ function Coupon() {
     axios.get(`${couponURL}/all`)
       .then(response => {
         setCoupons(response.data);
-        // console.log(coupons);
       }).catch(error => {
         if (error.response) {
           toast.dismiss()
           toast.error(error.response.data.message)
         } else if (error.request) {
-          // Handle proper error messages
         } else {
           toast.dismiss()
           toast.error(error.message)
@@ -140,11 +156,65 @@ function Coupon() {
   }
 
   const handleDelete = (id) => {
-    axios.delete(`${couponURL}/${id}`)
+    axios.delete(`/api/coupons/${id}`)
       .then(response => {
-        const itemInCategories = coupons.find((item) => item._id === id);
+        const couponDetails = coupons.find((item) => item._id === id);
         toast.dismiss();
-        toast.success(`${itemInCategories.couponName} deleted successfully.`);
+        toast.success(`${couponDetails.couponName} deleted successfully.`);
+      }).catch(error => {
+        if (error.response) {
+          toast.dismiss();
+          toast.error(error.response.data.message);
+        } else if (error.request) {
+          // Handle proper error messages
+        } else {
+          toast.dismiss();
+          toast.error(error.message);
+        }
+      })
+  }
+  const [couponId, setCouponID] = useState("");
+  const handleEdit = (id) => {
+    setEdit(true);
+    let couponDetails = coupons.find((item) => item._id === id);
+    let startDate = new Date(couponDetails.startDate);
+    let endDate = new Date(couponDetails.endDate);
+    couponDetails.startDate = startDate;
+    couponDetails.endDate = endDate;
+    setCouponData(couponDetails);
+    setCouponID(id);
+  }
+
+  const handleSaveCoupon = () => {
+    const config = {"headers": {
+      "Content-Type": "application/json"
+    }};
+
+    let discountAmount = 0;
+    let discountPercentage = 0;
+    if (couponData.discountType === 'Amount') {
+      discountAmount = couponData.discountAmount;
+    } else {
+      discountPercentage = couponData.discountPercentage;
+    }
+
+    const couponDetails = {
+      couponName: couponData.couponName,
+      discountType: couponData.discountType,
+      discountAmount: discountAmount,
+      discountPercentage: discountPercentage,
+      minPurchaseAmount: couponData.minPurchaseAmount,
+      published: couponData.published,
+      status:couponData.status 
+    }; 
+
+    axios.patch(`http://localhost:5010/api/coupons/coupon/${couponId}`, couponDetails, config)
+      .then(response => {
+        const couponDetails = coupons.find((item) => item._id === couponId);
+        toast.dismiss();
+        toast.success(`${couponDetails.couponName} updated successfully.`);
+        setEdit(false);
+        setCouponData(initialData);
       }).catch(error => {
         if (error.response) {
           toast.dismiss();
@@ -163,7 +233,7 @@ function Coupon() {
       {/* Add Coupon */}
       <div className="card  my-5 mx-auto" >
         <div className="card-header py-1 ">
-          <h4 className="fw-bold">Add Coupon</h4>
+          <h4 className="fw-bold">{edit ? "Edit Coupon": "Add Coupon"}</h4>
         </div>
         <div className="card-body bg-light">
           <form onSubmit={handleSubmit} onReset={handleReset} >
@@ -310,8 +380,18 @@ function Coupon() {
               </div>
               <div className='col-12'>
                 <div className='mt-4'>
+                {
+                  edit ?
+                  <button type="button" className="btn btn-secondary me-2 px-4"
+                    onClick={handleSaveCoupon}>
+                    Save
+                  </button>
+                  :
+                  <>
                   <button type="reset" className="btn btn-secondary me-2 px-4">Clear</button>
                   <button type="submit" className="btn btn-success ms-2">Add Coupon</button>
+                  </>
+                }
                 </div>
               </div>
             </div>
@@ -388,7 +468,7 @@ function Coupon() {
                       <td>
                         <div className="d-flex justify-content-center align-items-center">
                           <button type="button" className="btn btn-sm btn-light me-1"
-                            onClick={() => handleDelete(_id)}>
+                            onClick={() => handleEdit(_id)}>
                             Edit
                           </button>
                           <button type="button" className="btn btn-sm btn-danger ms-1"
