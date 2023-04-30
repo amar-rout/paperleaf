@@ -40,6 +40,10 @@ export const getCouponByName = asyncHandler(async (req, res) => {
     let endDate = new Date(object.endDate);
     let today = new Date();
 
+    // console.log("Start " + startDate);
+    // console.log('end ' + endDate);
+    // console.log('t ' + today);
+
     if (object && object.status === "Active" && object.published === true && startDate <= today && endDate >= today) {
         res.json(object);
     } else {
@@ -52,6 +56,10 @@ export const getCouponByName = asyncHandler(async (req, res) => {
 // @route PUT /api/category/
 // @access Private
 export const createCoupon = asyncHandler(async (req, res) => {
+
+    // const startDate = new Date(req.body.startDate);
+    // const endDate = new Date(req.body.endDate);
+
     const object = new CouponModel({
         couponName: sanitize(req.body.couponName),
         status: sanitize(req.body.status),

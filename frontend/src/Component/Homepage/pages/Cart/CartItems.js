@@ -3,12 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { getCartCount, incrementQuantity, decrementQuantity, removeCartItem } from "../../../../app/cartSlice";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const CartItems = (products) => {
     const cartCount = useSelector(getCartCount);
     const dispatch = useDispatch();
 
+    const serverURL = process.env.REACT_APP_SERVER_URL;
     const [cartItems, setCartItems] = useState([]);
+    const [coupon, setCoupon] = useState({
+        "couponName": ""
+    });
 
     useEffect(() => {
         setCartItems(products.products)
@@ -28,13 +34,48 @@ const CartItems = (products) => {
     })
 
     const totalAmount = getTotal();
-    const shippingCost = 0;
-    const estmdTaxAmount = 0;
-    const discountAmount = 0;
-    const grandTotal = totalAmount + shippingCost + estmdTaxAmount + discountAmount;
+    const [shippingCost, setShippingCost] = useState(0);
+    // let estmdTaxAmount = 0;
+    const [discountAmount, setDiscountAmount] = useState(0);
+    const [grandTotal, setGrandTotal] = useState(0);
+
+    useEffect(() => {
+        setGrandTotal(totalAmount + shippingCost - discountAmount);
+    },[setGrandTotal, totalAmount, shippingCost, discountAmount]);
+
+    useEffect(() => {
+        if (grandTotal < 2000) {
+            setShippingCost(100);
+        } else {
+            setShippingCost(0);
+        }
+    },[grandTotal, setShippingCost]);
 
     const setCheckoutItems = () => {
         localStorage.setItem("checkout_items", JSON.stringify(cartItems));
+    }
+
+    const handleCouponChange = (e) => {
+        const { name, value } = e.target;
+        setCoupon(prev => ({ ...prev, [name]: value }));
+    }
+
+    const applyCoupon = async () => {
+        const config = { "headers": { "Content-Type": "application/json" } }
+        // const coupon_name = encodeURIComponent(coupon.couponName);
+        const result = await axios.get(`/api/coupons/?name=${coupon.couponName}`, config);
+        if (result) {
+            if (grandTotal >= result.data.minPurchaseAmount) {
+                if (result.data.discountType === 'Amount') {
+                    setDiscountAmount(result.data.discountAmount);
+                } else {
+                    setDiscountAmount(grandTotal * (result.data.discountPercentage / 100));
+                }
+            } else {
+                toast.error('Min purchase amount');
+            }
+
+        }
     }
 
     return (
@@ -47,6 +88,7 @@ const CartItems = (products) => {
                             <div key={product.pId} className="d-flex align-items-center border-top py-4 py-md-4">
                                 <a className="d-inline-block flex-shrink-0 bg-light-subtle rounded-1 p-sm-2 p-xl-3 mb-2 mb-sm-0" href={`/products/${product.pId}`}>
                                     <img src={product.image} width="75" alt="Product" />
+                                    {/* <img src={`${serverURL}${product.image}`} width="75" alt="Product" /> */}
                                 </a>
                                 <div className="w-100 ps-3 ps-sm-4">
                                     <div className="d-flex">
@@ -112,10 +154,10 @@ const CartItems = (products) => {
                                         <td>Shipping Charge :</td>
                                         <td className="text-end">{formatter.format(shippingCost)}</td>
                                     </tr>
-                                    <tr>
+                                    {/* <tr>
                                         <td>Estimated Tax : </td>
                                         <td className="text-end">{formatter.format(estmdTaxAmount)}</td>
-                                    </tr>
+                                    </tr> */}
                                     <tr>
                                         <th className="text-muted">Total :</th>
                                         <th className="text-end">{formatter.format(grandTotal)}</th>
@@ -125,11 +167,13 @@ const CartItems = (products) => {
                         </div>
                     </div>
                     <div class="input-group border border-1 rounded-2 mt-3 py-1 p-2">
-                        <input type="text" class="form-control shadow-none border-0 py-2" placeholder="Coupon code" aria-label="Recipient's username" />
-                        <button class="btn btn-warning rounded-2 fw-semibold py-2 px-4" type="button">Apply Coupon</button>
-                        {/* bg-warning-subtle */}
+                        <input type="text" name="couponName" value={coupon.couponName} onChange={handleCouponChange} class="form-control shadow-none border-0 py-2" placeholder="Coupon code" aria-label="Recipient's username" />
+                        <button class="btn btn-warning rounded-2 fw-normal fs-6 py-2 px-4" type="button"
+                            onClick={applyCoupon}>
+                            Apply
+                        </button>
                     </div>
-                    <p class="alert alert-warning mt-3" role="alert">
+                    <p class="alert alert-warning mt-3 small" role="alert">
                         Use coupon code <b>FIRSTBUY</b> and get 10% discount !
                     </p>
                     <div className="d-flex justify-content-between align-items-center my-3 gap-2">

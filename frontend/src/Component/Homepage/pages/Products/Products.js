@@ -231,8 +231,8 @@ const Products = () => {
                                                 </span>
                                             </span>
                                         </div>
-                                        <p className="my-2 fw-semibold text-muted"><small>PAPERLEAF</small></p>
-                                        <h6 className="">
+                                        <p className="my-4 fw-semibold text-muted"><small>PAPERLEAF</small></p>
+                                        <h6 className="my-4">
                                             {/* style={{ fontFamily: 'Montserrat !important' }} */}
                                             {product.name}
                                         </h6>
@@ -252,31 +252,37 @@ const Products = () => {
                                                 <li><i className="bi bi-card mr-5"></i> Cash on Delivery available</li>
                                             </ul>
                                         </div> */}
-                                        <div className="my-4 d-flex flex-0 justify-content-start align-items-center">
-                                            <div>
-                                                <span className="me-2" style={{ fontSize: '14px' }}>Size </span>
-                                            </div>
-                                            <div class="" role="group" aria-label="Basic radio toggle button group">
-                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" />
-                                                <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio1"><small>XS</small></label>
+                                        {product.category === 'Dress' &&
+                                            <>
+                                                <div className="w-100 mt-2 mb-3 d-flex flex-0 justify-content-between align-items-center">
+                                                    <div>
+                                                        <span className="" style={{ fontSize: '14px' }}>Size </span>
+                                                    </div>
+                                                    <button className="btn btn-default text-decoration-underline link-dark fw-normal" data-bs-toggle="modal" data-bs-target="#sizeChart" style={{ fontSize: '14px' }}>Size chart</button>
+                                                </div>
+                                                <div className='mb-3'>
+                                                    <div class="" role="group" aria-label="Basic radio toggle button group">
 
-                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
-                                                <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio2"><small>S</small></label>
+                                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+                                                        <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio2"><small>S</small></label>
 
-                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
-                                                <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio3"><small>M</small></label>
+                                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
+                                                        <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio3"><small>M</small></label>
 
-                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" />
-                                                <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio4"><small>L</small></label>
+                                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" />
+                                                        <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio4"><small>L</small></label>
 
-                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" />
-                                                <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio5"><small>XL</small></label>
+                                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" />
+                                                        <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio5"><small>XL</small></label>
 
-                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off" />
-                                                <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio6"><small>XXL</small></label>
-                                            </div>
-                                        </div>
-                                        <div className="d-flex justify-content-start align-items-center">
+                                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off" />
+                                                        <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio6"><small>XXL</small></label>
+                                                    </div>
+                                                </div>
+                                            </>
+                                        }
+
+                                        <div className="my-4 d-flex justify-content-start align-items-center">
                                             <div>
                                                 <span className="me-2" style={{ fontSize: '14px' }}>Quantity</span>
                                             </div>
@@ -339,17 +345,107 @@ const Products = () => {
                                 </div>
                                 {/* Modal Start */}
                                 <div>
-                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal fade" id="sizeChart" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="sizeChartLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="sizeChartLabel">Size Chart</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <small>
+                                                        <p>You can customise the product by adding notes when you add the product to your cart.</p>
+                                                        <p>Please note : Sizes 5XL, 6XL and all customised products require mandatory prepayment and cannot be returned or exchanged.</p>
+                                                        <p>Below measurements are garment measurements in inches.</p>
+                                                    </small>
+                                                    <div className='table-responsive text-center'>
+                                                        <table className='table table-light table-striped'>
+                                                            <thead className='fw-normal fs-6'>
+                                                                <tr>
+                                                                    <th>Size</th>
+                                                                    <th>Bust</th>
+                                                                    <th>Waist</th>
+                                                                    <th>Hips</th>
+                                                                    <th>Shoulder</th>
+                                                                    <th>Length</th>
+                                                                    <th>Armhole</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>S</td>
+                                                                    <td>34 (36)</td>
+                                                                    <td>32 (34)</td>
+                                                                    <td>38 (40)</td>
+                                                                    <td>14</td>
+                                                                    <td>45</td>
+                                                                    <td>16</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>M</td>
+                                                                    <td>36 (38)</td>
+                                                                    <td>34 (36)</td>
+                                                                    <td>40 (42)</td>
+                                                                    <td>14.5</td>
+                                                                    <td>45</td>
+                                                                    <td>16</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>L</td>
+                                                                    <td>38 (40)</td>
+                                                                    <td>36 (38)</td>
+                                                                    <td>42 (44)</td>
+                                                                    <td>15</td>
+                                                                    <td>45</td>
+                                                                    <td>16</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>XL</td>
+                                                                    <td>40 (42)</td>
+                                                                    <td>38 (40)</td>
+                                                                    <td>44 (46)</td>
+                                                                    <td>15.6</td>
+                                                                    <td>45</td>
+                                                                    <td>16</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>XXL</td>
+                                                                    <td>42 (44)</td>
+                                                                    <td>40 (42)</td>
+                                                                    <td>46 (48)</td>
+                                                                    <td>16</td>
+                                                                    <td>45</td>
+                                                                    <td>16</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    {/* <button type="button" class="btn btn-primary">Understood</button> */}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* Modal End */}
+                                {/* Modal Start */}
+                                <div>
+                                    <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
-                                                <div class="modal-header" style={{ backgroundColor: 'transparent' }}>
-                                                    {/* <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                                {/* data-bs-backdrop="static" data-bs-keyboard="false" */}
+                                                {/* <div class="modal-header bg-body" style={{ backgroundColor: 'transparent !important'}}> */}
+                                                {/* <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                                         onClick={() => setModalImgInfo("")}></button> */}
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                                         style={{ right: '10px' }}
-                                                        onClick={() => setModalImgInfo("")}></button>
-                                                </div>
+                                                        onClick={() => setModalImgInfo("")}>
+                                                    </button>
+                                                </div> */}
 
 
 

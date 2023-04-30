@@ -9,8 +9,8 @@ import './Products.css'
 const EditProduct = () => {
 
   // const navigate = useNavigate()
-  const getProductURL = "http://localhost:5010/api/products/";
-  const getCategoryURL = "http://localhost:5010/api/category/";
+  const getProductURL = "/api/products/";
+  const getCategoryURL = "/api/category/";
   const { id } = useParams();
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
@@ -92,7 +92,7 @@ const EditProduct = () => {
   }
 
   // const saveProductURL = 'http://localhost:5010/api/products';
-  const imageUploadURL = 'http://localhost:5010/api/upload';
+  const imageUploadURL = '/api/upload';
   let file = null;
   // let temp_file = null;
   let files = null;

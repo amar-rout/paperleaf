@@ -24,7 +24,7 @@ const Breadcrumb = ({ links }) => {
                         ))}
                     </ol>
                 </nav>
-                <hr/>
+                {/* <hr/> */}
             </div>
         </div>
     )

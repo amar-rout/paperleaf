@@ -15,8 +15,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import Homepage from './Component/Homepage/Homepage';
 import ComingSoon from './Component/Homepage/pages/ComingSoon/ComingSoon';
