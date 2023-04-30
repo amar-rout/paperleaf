@@ -14,7 +14,8 @@ const Homepage = ({ updateUser, loginUser }) => {
     const [isValidUser, setIsValidUser] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate()
-    const userValidateURL = `${process.env.REACT_APP_SERVER_URL}api/users/validateToken`
+    // const userValidateURL = `${process.env.REACT_APP_SERVER_URL}api/users/validateToken`
+    const userValidateURL = `api/users/validateToken`;
     // const token = loginUser.token
 
     useEffect(() => {
