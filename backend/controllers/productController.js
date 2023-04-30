@@ -51,7 +51,6 @@ export const getProductById = asyncHandler(async (req, res) => {
     throw new Error('Bad ObjectId');
   }
   const product = await ProductModel.findById(sanitize(req.params.id));
-  console.log("Images :- " + product.images);
   if (product) {
     res.json(product);
   } else {

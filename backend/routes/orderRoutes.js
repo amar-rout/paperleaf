@@ -1,5 +1,7 @@
 import express from 'express';
 import {
+  createNewOrder,
+  successOrder,
   addOrderItems,
   getAllOrders,
   getOrderById,
@@ -13,12 +15,19 @@ const router = express.Router();
 
 router
   .route('/')
-  .post(protect, addOrderItems)
+  .post(addOrderItems)
   .get(protect, isAdmin, getAllOrders);
+  // .post(protect, addOrderItems)
+  // .get(protect, isAdmin, getAllOrders);
+
+router.route('/newOrder').post(createNewOrder);
+router.route('/:id/success').post(successOrder);
+// router.route('/newOrder').get(protect, createNewOrder);
 
 router.route('/myorders').get(protect, getOrderUserOrders);
 
-router.route('/:id/pay').put(protect, putUpdateOrderPay);
+router.route('/:id/pay').put(putUpdateOrderPay);
+// router.route('/:id/pay').put(protect, putUpdateOrderPay);
 
 router.route('/:id/deliver').put(protect, isAdmin, putUpdateOrderToDelivered);
 

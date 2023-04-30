@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-
+import axios from 'axios';
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js';
 import $ from "jquery";
 
+
 import './Checkout.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Alert } from 'bootstrap';
 
 function CheckoutNew() {
 
+    const navigate = useNavigate();
+    // const [messageData, setMessageData] = useState("");
     const next = () => {
         const nextTabLinkEl = $('.nav-fill .active').closest('li').next('li').find('a')[0];
         const nextTab = new bootstrap.Tab(nextTabLinkEl);
@@ -26,18 +30,33 @@ function CheckoutNew() {
     // });
 
     const [checkoutItems, setCheckoutItems] = useState([]);
+    const [user, setUser] = useState({});
+
+    const [paymentMethod, setPaymentMethod] = useState('');
 
     useEffect(() => {
         const items = JSON.parse(localStorage.getItem("checkoutItems"));
+        const user = JSON.parse(localStorage.getItem("user"));
         if (items) {
-            setCheckoutItems(items);   
+            setCheckoutItems(items);
+        }
+        if (user) {
+            setUser(user);
         }
     }, []);
+
+    // useEffect(() => {
+    //     if (messageData === 'Success') {
+    //         navigate(`/checkout/order/success`);
+    //     } else {
+    //         navigate(`/checkout`);
+    //     }
+    // }, [messageData, navigate]);
 
     const getTotal = () => {
         let total = 0
         checkoutItems.forEach(item => {
-            total += item.price * item.qty ;
+            total += item.price * item.qty;
         })
         return total;
     }
@@ -52,6 +71,106 @@ function CheckoutNew() {
     const estmdTaxAmount = 0;
     const discountAmount = 0;
     const grandTotal = totalAmount + shippingCost + estmdTaxAmount + discountAmount;
+
+
+    const processOrder = () => {
+        if (paymentMethod === 'cod') {
+            console.log('success');
+        } else if (paymentMethod === 'online') {
+            displayRazorpay();
+        }
+        else {
+            return 'Please select one payment method';
+        }
+    }
+
+    const loadScript = (src) => {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement("script");
+            script.src = src;
+            script.onload = () => {
+                resolve(true);
+            };
+            script.onerror = () => {
+                resolve(false);
+                reject('Unable to load script');
+            };
+            document.body.appendChild(script);
+        });
+    }
+
+    const displayRazorpay = async () => {
+        const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
+        if (!res) {
+            alert("Razorpay SDK failed to load. Are you online?");
+            return;
+        }
+        // const config = { headers: { 'Authorization': `Bearer ${user.token}`, }, };
+        // console.log(config);
+        // creating a new order
+        // const result = await axios.post("http://localhost:5010/api/orders/newOrder", config);
+        const result = await axios.post("http://localhost:5010/api/orders/newOrder");
+
+        if (!result) {
+            alert("Server error. Are you online?");
+            return;
+        }
+        // Getting the order details back
+        const { amount, id: order_id, currency } = result.data;
+
+        const options = {
+            key: "rzp_test_5jd0R7gE1RSPoa", // Enter the Key ID generated from the Dashboard
+            amount: amount.toString(),
+            currency: currency,
+            name: "Paperleaf",
+            description: "Test Transaction",
+            // image: { logo },
+            order_id: order_id,
+            // callback_url: 'https://localhost:3000/checkout/success',
+            // redirect: true,
+            handler: async function (response) {
+                const data = {
+                    orderCreationId: order_id,
+                    razorpayPaymentId: response.razorpay_payment_id,
+                    razorpayOrderId: response.razorpay_order_id,
+                    razorpaySignature: response.razorpay_signature,
+                };
+
+                console.log(data);
+                const config = { headers: { 'Content-Type': 'application/json', }, };
+                const result = await axios.post(`http://localhost:5010/api/orders/${order_id}/success`, data, config);
+                alert(result.data.msg);
+                // if (result.data.msg === 'Success') {
+                //     global.location.href(`http://localhost:3000/checkout/${order_id}/success`);
+                // } else {
+                //     global.location.href('/checkout');
+                // }
+                // setMessageData(result.data.msg);
+            },
+            prefill: {
+                name: "Amarendra Rout",
+                email: "amarendrarout34@gmail.com",
+                contact: "7043096106",
+            },
+            notes: {
+                address: "Paperleaf Corporate Office",
+            },
+            theme: {
+                color: "#61dafb",
+            },
+        };
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+        paymentObject.on('payment.failed', function (response) {
+            alert(response.error.code);
+            alert(response.error.description);
+            alert(response.error.source);
+            alert(response.error.step);
+            alert(response.error.reason);
+            alert(response.error.metadata.order_id);
+            alert(response.error.metadata.payment_id);
+        });
+    }
 
     return (
         <div className='bg-light py-5'>
@@ -208,27 +327,31 @@ function CheckoutNew() {
                                                             on Delivery</span></div>
                                                 </label></div>
                                             </div> */}
-                                        <div className="btn-group w-100 payment-method" role="group" aria-label="Basic radio toggle button group">
-                                            <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked />
-                                            <label className="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" for="btnradio1">
-                                                <i className="bi bi-credit-card-2-front me-3" style={{ fontSize: '24px' }}></i>
-                                                <span className='fw-normal d-block d-md-inline'>Credit / Debit Card</span>
+                                        <div className="btn-group payment-method" role="group" aria-label="Basic radio toggle button group">
+                                            <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autocomplete="off" />
+                                            <label className="py-2 px-4 me-2 w-25 btn btn-outline-dark btn-payment rounded-2 text-start" for="btnradio1"
+                                                onClick={() => setPaymentMethod('online')}
+                                            >
+                                                <i className="bi bi-credit-card-2-front me-1 me-md-3" style={{ fontSize: '24px' }}></i>
+                                                <span className='fw-normal'>Razorpay</span>
                                             </label>
 
-                                            <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked />
+                                            {/* <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked />
                                             <label className="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" for="btnradio2">
                                                 <i className="bi bi-wallet me-3" style={{ fontSize: '24px' }}></i>
                                                 <span className='fw-normal d-block d-md-inline'>Wallet</span>
-                                            </label>
+                                            </label> */}
 
-                                            <input type="radio" className="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked />
-                                            <label className="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" for="btnradio3">
-                                                <i className="bi bi-cash me-3" style={{ fontSize: '24px' }}></i>
-                                                <span className='fw-normal d-block d-md-inline'>Cash on delivery</span>
+                                            <input type="radio" className="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
+                                            <label className="py-2 px-2 px-md-4 w-25 btn btn-outline-dark btn-payment rounded-2 text-start" for="btnradio3"
+                                                onClick={() => setPaymentMethod('cod')}
+                                            >
+                                                <i className="bi bi-cash me-1 me-md-3" style={{ fontSize: '24px' }}></i>
+                                                <span className='fw-normal '>Cash on Delivery</span>
                                             </label>
                                         </div>
                                         {/* </div> */}
-                                        <h5 className="my-3 font-size-14">For card Payment</h5>
+                                        {/* <h5 className="my-3 font-size-14">For card Payment</h5>
                                         <div className="p-4 border">
                                             <form>
                                                 <div className="mb-3">
@@ -262,14 +385,14 @@ function CheckoutNew() {
                                                     </div>
                                                 </div>
                                             </form>
-                                        </div>
+                                        </div> */}
                                         {/* <div className="mt-4 text-end">
                                             <a className="btn btn-success fw-normal text-center px-3 py-2 my-3">Complete order</a>
                                         </div> */}
                                     </div>
                                     <div className='mt-4 d-flex flex-0 justify-content-between align-items-center'>
                                         <Link className="btn btn-outline-dark px-3 py-2" onClick={prev}>Back</Link>
-                                        <Link className="btn btn-success" onClick={next}>Complete Order</Link>
+                                        <Link className="btn btn-warning btn-md px-4" onClick={processOrder}>Pay now</Link>
                                     </div>
                                 </div>
                             </div>

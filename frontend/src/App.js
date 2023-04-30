@@ -50,6 +50,8 @@ import Products from './Component/Homepage/pages/Products/Products';
 import CategoryItems from './Component/Homepage/pages/Category/CategoryItems/CategoryItems';
 import TermsConditions from './Component/Homepage/pages/TermsConditions/TermsConditions';
 import CheckoutNew from './Component/Homepage/pages/Checkout/CheckoutNew';
+import OrderSuccess from './Component/Homepage/pages/Checkout/OrderSuccess';
+
 // import CheckoutDetails from './Component/Homepage/pages/Checkout/CheckoutDetails';
 
 
@@ -93,6 +95,7 @@ function App() {
             </Route>
             <Route path="/carts" element={<Cart />} />
             <Route path="/checkout" element={<CheckoutNew />} />
+            <Route path="/checkout/success" element={<OrderSuccess />} />
             <Route path="/wishlists" element={<Wishlist />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

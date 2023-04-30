@@ -125,9 +125,15 @@
 }
 
 
-/* .payment-method {
-	display: block;
-} */
+.payment-method {
+	width: 100%;
+}
+
+.btn-payment {
+	--bs-btn-active-color: goldenrod !important;
+  	--bs-btn-active-bg: black !important;
+  	--bs-btn-active-border-color: black !important;
+}
 
 @media (min-width: 992px) {
 	.check_nav .check_nav-link .step-number {
@@ -138,6 +144,7 @@
 		font-size: 12px;
 	}
 	.payment-method {
+		width: 50%;
 		display: flex;
 		flex-wrap: nowrap;
 		flex: content;

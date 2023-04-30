@@ -1,10 +1,94 @@
 import mercadopago from 'mercadopago';
 import asyncHandler from 'express-async-handler';
 import OrderModel from '../models/orderModel.js';
+import PaymentModel from '../models/paymentModel.js';
 import ProductModel from '../models/productModel.js';
 import sanitize from '../utils/sanitize.js';
 import Mongoose from 'mongoose';
 import axios from 'axios';
+import Razorpay from 'razorpay';
+import crypto from 'crypto';
+// const Razorpay = require("razorpay");
+
+// @desc Create new order
+// @route POST /api/orders
+// @access Private
+export const createNewOrder = asyncHandler(async (req, res) => {
+  try {
+    const instance = new Razorpay({
+      key_id: "rzp_test_5jd0R7gE1RSPoa",
+      key_secret: "XvY6c8ukwbGyyqA0Xc5cu49q",
+    });
+    const options = {
+      amount: 1000, // amount in smallest currency unit
+      currency: "INR",
+      receipt: "receipt_order_74394",
+    };
+
+    const order = await instance.orders.create(options);
+
+    if (!order) return res.status(500).send("Some error occured");
+
+    res.json(order);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+
+// @desc Create new order
+// @route POST /api/orders
+// @access Private
+export const successOrder = asyncHandler(async (req, res) => {
+  // const { id } = req.params.id;
+  try {
+    const {
+      orderCreationId,
+      razorpayPaymentId,
+      razorpayOrderId,
+      razorpaySignature,
+    } = req.body;
+    // Creating our own digest
+    // The format should be like this:
+    // digest = hmac_sha256(orderCreationId + "|" + razorpayPaymentId, secret);
+    const shasum = crypto.createHmac("sha256", "XvY6c8ukwbGyyqA0Xc5cu49q");
+    shasum.update(`${orderCreationId}|${razorpayPaymentId}`);
+    const digest = shasum.digest("hex");
+
+    // comaparing our digest with the actual signature
+    if (digest !== razorpaySignature) {
+      return res.status(400).json({ msg: "Transaction is not legit!" });
+    }
+
+    // THE PAYMENT IS LEGIT & VERIFIED
+    // YOU CAN SAVE THE DETAILS IN YOUR DATABASE IF YOU WANT
+
+    const payment = new PaymentModel({
+      orderCreationId: orderCreationId,
+      razorpayPaymentId: razorpayPaymentId,
+      razorpayOrderId: razorpayOrderId,
+      razorpaySignature: razorpaySignature,
+    });
+
+    console.log(payment);
+
+    const createdPayment = await payment.save();
+
+    // res.json({
+    //   msg: "success",
+    //   orderId: razorpayOrderId,
+    //   paymentId: razorpayPaymentId,
+    // });
+    response.render('http://localhost:3000/checkout/success', {
+      msg: "success",
+      orderId: razorpayOrderId,
+      paymentId: razorpayPaymentId,
+    });
+    // res.status(201).json(createdPayment);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 
 // @desc Create new order
 // @route POST /api/orders
@@ -14,6 +98,7 @@ export const addOrderItems = asyncHandler(async (req, res) => {
     orderItems,
     orderItemsQty,
     shippingAddress,
+    billingAddress,
     paymentMethod,
   } = req.body;
   let iArr = [];
@@ -36,9 +121,10 @@ export const addOrderItems = asyncHandler(async (req, res) => {
     }
 
     let pref;
-    let shippingPrice = +itemsPrice > 100 ? 0 : 100;
+    let shippingPrice = +itemsPrice > 1000 ? 0 : 100;
     let taxPrice = Number(0.15 * +itemsPrice).toFixed(2);
     let totalPrice = +itemsPrice + +taxPrice + +shippingPrice;
+
 
     if (paymentMethod === 'MercadoPago') {
       mercadopago.configurations.setAccessToken(
