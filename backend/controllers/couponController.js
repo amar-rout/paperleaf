@@ -36,16 +36,13 @@ export const getCouponById = asyncHandler(async (req, res) => {
 export const getCouponByName = asyncHandler(async (req, res) => {
     const object = await CouponModel.findOne({ couponName: sanitize(req.query.name) });
 
-    let startDate = new Date(object.startDate);
-    let endDate = new Date(object.endDate);
-    let today = new Date();
-
-    // console.log("Start " + startDate);
-    // console.log('end ' + endDate);
-    // console.log('t ' + today);
-
-    if (object && object.status === "Active" && object.published === true && startDate <= today && endDate >= today) {
-        res.json(object);
+    if (object && object.status === "Active" && object.published === true) {
+        let startDate = new Date(object.startDate);
+        let endDate = new Date(object.endDate);
+        let today = new Date();
+        if (startDate <= today && endDate >= today) {
+            res.json(object);
+        }
     } else {
         res.status(404);
         throw new Error('Coupon not found');

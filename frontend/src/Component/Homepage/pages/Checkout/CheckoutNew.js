@@ -30,15 +30,20 @@ function CheckoutNew() {
     // });
 
     const [checkoutItems, setCheckoutItems] = useState([]);
+    const [checkoutAmount, setCheckoutAmount] = useState([]);
     const [user, setUser] = useState({});
 
     const [paymentMethod, setPaymentMethod] = useState('');
 
     useEffect(() => {
-        const items = JSON.parse(localStorage.getItem("checkoutItems"));
+        const items = JSON.parse(localStorage.getItem("checkout_items"));
+        const checkoutDetails = JSON.parse(localStorage.getItem("checkout_details"));
         const user = JSON.parse(localStorage.getItem("user"));
         if (items) {
             setCheckoutItems(items);
+        }
+        if (checkoutDetails) {
+            setCheckoutAmount(checkoutDetails);
         }
         if (user) {
             setUser(user);
@@ -53,29 +58,28 @@ function CheckoutNew() {
     //     }
     // }, [messageData, navigate]);
 
-    const getTotal = () => {
-        let total = 0
-        checkoutItems.forEach(item => {
-            total += item.price * item.qty;
-        })
-        return total;
-    }
+    // const getTotal = () => {
+    //     let total = 0
+    //     checkoutItems.forEach(item => {
+    //         total += item.price * item.qty;
+    //     })
+    //     return total;
+    // }
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'INR',
         minimumFractionDigits: 2
     })
 
-    const totalAmount = getTotal();
-    const shippingCost = 0;
-    const estmdTaxAmount = 0;
-    const discountAmount = 0;
-    const grandTotal = totalAmount + shippingCost + estmdTaxAmount + discountAmount;
+    // const totalAmount = getTotal();
+    // const shippingCost = 0;
+    // const estmdTaxAmount = 0;
+    // const discountAmount = 0;
+    // const grandTotal = totalAmount + shippingCost + estmdTaxAmount - discountAmount;
 
 
     const processOrder = () => {
         if (paymentMethod === 'cod') {
-            // console.log('success');
             alert('Order Success');
         } else if (paymentMethod === 'online') {
             displayRazorpay();
@@ -416,7 +420,10 @@ function CheckoutNew() {
                                                 <div className="col">
                                                     <p className="mb-4 fs-sm fw-bold">
                                                         <a className="text-body" href="product.html">{item.name}</a> <br />
-                                                        <span className="text-muted">₹{item.price}</span>
+                                                        <span className='d-flex justify-content-between align-items-center'>
+                                                            <span className="fw-normal">₹{item.price} * {item.qty}</span>
+                                                            <span className="fw-normal">₹{item.price * item.qty}</span>
+                                                        </span>
                                                     </p>
                                                     {/* <div className="fs-sm text-muted">Size: M <br />Color: Red</div> */}
                                                 </div>
@@ -445,16 +452,16 @@ function CheckoutNew() {
                                 <div className="card-body">
                                     <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
                                         <li className="list-group-item d-flex">
-                                            <span>Subtotal</span> <span className="ms-auto fs-sm">{formatter.format(totalAmount)}</span>
+                                            <span>Subtotal</span> <span className="ms-auto fs-sm">{formatter.format(checkoutAmount.totalAmount)}</span>
                                         </li>
                                         <li className="list-group-item d-flex">
-                                            <span>Tax</span> <span className="ms-auto fs-sm">{formatter.format(estmdTaxAmount)}</span>
+                                            <span>Discount</span> <span className="ms-auto fs-sm">{checkoutAmount.discountAmount > 0 && "-"} {formatter.format(checkoutAmount.discountAmount)}</span>
                                         </li>
                                         <li className="list-group-item d-flex">
-                                            <span>Shipping</span> <span className="ms-auto fs-sm">{formatter.format(shippingCost)}</span>
+                                            <span>Shipping</span> <span className="ms-auto fs-sm">{formatter.format(checkoutAmount.shippingCost)}</span>
                                         </li>
                                         <li className="list-group-item d-flex fs-lg fw-bold">
-                                            <span>Total</span> <span className="ms-auto">{formatter.format(grandTotal)}</span>
+                                            <span>Total</span> <span className="ms-auto">{formatter.format(checkoutAmount.grandTotal)}</span>
                                         </li>
                                     </ul>
                                 </div>

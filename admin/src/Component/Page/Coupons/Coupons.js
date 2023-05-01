@@ -56,7 +56,7 @@ function Coupon() {
   const handleReset = () => { setCouponData(initialData) }
 
   const getCoupon = () => {
-    axios.get(`${couponURL}/all`)
+    axios.get(`${couponURL}all`)
       .then(response => {
         setCoupons(response.data);
       }).catch(error => {
@@ -185,7 +185,13 @@ function Coupon() {
     setCouponID(id);
   }
 
-  const handleSaveCoupon = () => {
+  const handleCouponClear = () => {
+    setEdit(true);
+    setCouponData(initialData);
+    setCouponID("");
+  }
+
+  const handleCouponSave = () => {
     const config = {"headers": {
       "Content-Type": "application/json"
     }};
@@ -382,10 +388,19 @@ function Coupon() {
                 <div className='mt-4'>
                 {
                   edit ?
-                  <button type="button" className="btn btn-secondary me-2 px-4"
-                    onClick={handleSaveCoupon}>
+                  <>
+                  <button className="btn btn-danger me-2 px-4"
+                  // onClick={() => {
+                  //   setEdit(false);
+                  //   setCouponData(initialData);
+                  // }}
+                  onClick={handleCouponClear}
+                  >Clear</button>
+                  <button type="button" className="btn btn-success me-2 px-4"
+                    onClick={handleCouponSave}>
                     Save
                   </button>
+                  </>
                   :
                   <>
                   <button type="reset" className="btn btn-secondary me-2 px-4">Clear</button>

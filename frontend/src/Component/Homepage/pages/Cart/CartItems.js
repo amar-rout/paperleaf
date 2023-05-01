@@ -12,6 +12,7 @@ const CartItems = (products) => {
 
     const serverURL = process.env.REACT_APP_SERVER_URL;
     const [cartItems, setCartItems] = useState([]);
+    const [isCouponApplied, setCouponApplied] = useState(false);
     const [coupon, setCoupon] = useState({
         "couponName": ""
     });
@@ -38,21 +39,27 @@ const CartItems = (products) => {
     // let estmdTaxAmount = 0;
     const [discountAmount, setDiscountAmount] = useState(0);
     const [grandTotal, setGrandTotal] = useState(0);
-
+    const [totalAmt, setTotalAmt] = useState(0);
     useEffect(() => {
-        setGrandTotal(totalAmount + shippingCost - discountAmount);
-    },[setGrandTotal, totalAmount, shippingCost, discountAmount]);
-
-    useEffect(() => {
-        if (grandTotal < 2000) {
+        // setTotalAmt(totalAmount - discountAmount);
+        if (totalAmount < 2000) {
             setShippingCost(100);
+            setGrandTotal(totalAmount + shippingCost - discountAmount);
         } else {
             setShippingCost(0);
+            setGrandTotal(totalAmount + shippingCost - discountAmount);
         }
-    },[grandTotal, setShippingCost]);
+    }, [setTotalAmt, totalAmt, setGrandTotal, totalAmount, shippingCost, discountAmount, grandTotal, setShippingCost]);
 
     const setCheckoutItems = () => {
+        const checkoutDetails = {
+            totalAmount: totalAmount,
+            discountAmount: discountAmount,
+            shippingCost: shippingCost,
+            grandTotal: grandTotal
+        };
         localStorage.setItem("checkout_items", JSON.stringify(cartItems));
+        localStorage.setItem("checkout_details", JSON.stringify(checkoutDetails));
     }
 
     const handleCouponChange = (e) => {
@@ -63,19 +70,30 @@ const CartItems = (products) => {
     const applyCoupon = async () => {
         const config = { "headers": { "Content-Type": "application/json" } }
         // const coupon_name = encodeURIComponent(coupon.couponName);
-        const result = await axios.get(`/api/coupons/?name=${coupon.couponName}`, config);
-        if (result) {
-            if (grandTotal >= result.data.minPurchaseAmount) {
-                if (result.data.discountType === 'Amount') {
-                    setDiscountAmount(result.data.discountAmount);
-                } else {
-                    setDiscountAmount(grandTotal * (result.data.discountPercentage / 100));
-                }
-            } else {
-                toast.error('Min purchase amount');
-            }
 
-        }
+        await axios.get(`/api/coupons/?name=${coupon.couponName}`, config)
+            .then(response => {
+                if (grandTotal >= response.data.minPurchaseAmount) {
+                    setCouponApplied(true);
+                    if (response.data.discountType === 'Amount') {
+                        setDiscountAmount(response.data.discountAmount);
+                    } else {
+                        setDiscountAmount(grandTotal * (response.data.discountPercentage / 100));
+                    }
+                } else {
+                    setCouponApplied(false);
+                    toast.warning(`Minimum cart item should be greater than ${response.data.minPurchaseAmount}. Please add more items to apply this coupon.`);
+                }
+            }).catch(error => {
+                if (error.response) {
+                    toast.dismiss()
+                    toast.error(error.response.data.message)
+                } else if (error.request) {
+                } else {
+                    toast.dismiss()
+                    toast.error(error.message)
+                }
+            })
     }
 
     return (
@@ -148,16 +166,12 @@ const CartItems = (products) => {
                                     </tr>
                                     <tr>
                                         <td>Discount : </td>
-                                        <td className="text-end">{formatter.format(discountAmount)}</td>
+                                        <td className="text-end">{discountAmount > 0 && "-"} {formatter.format(discountAmount)}</td>
                                     </tr>
                                     <tr>
                                         <td>Shipping Charge :</td>
                                         <td className="text-end">{formatter.format(shippingCost)}</td>
                                     </tr>
-                                    {/* <tr>
-                                        <td>Estimated Tax : </td>
-                                        <td className="text-end">{formatter.format(estmdTaxAmount)}</td>
-                                    </tr> */}
                                     <tr>
                                         <th className="text-muted">Total :</th>
                                         <th className="text-end">{formatter.format(grandTotal)}</th>
@@ -166,16 +180,36 @@ const CartItems = (products) => {
                             </table>
                         </div>
                     </div>
-                    <div class="input-group border border-1 rounded-2 mt-3 py-1 p-2">
-                        <input type="text" name="couponName" value={coupon.couponName} onChange={handleCouponChange} class="form-control shadow-none border-0 py-2" placeholder="Coupon code" aria-label="Recipient's username" />
-                        <button class="btn btn-warning rounded-2 fw-normal fs-6 py-2 px-4" type="button"
-                            onClick={applyCoupon}>
-                            Apply
-                        </button>
-                    </div>
-                    <p class="alert alert-warning mt-3 small" role="alert">
-                        Use coupon code <b>FIRSTBUY</b> and get 10% discount !
-                    </p>
+                    {isCouponApplied ?
+                        <>
+                            <p class="d-flex align-items-center bg-success-subtle text-success rounded-2 small mt-3 py-2 px-2">
+                                <span className="me-auto">
+                                    Coupon <b>{coupon.couponName}</b> applied successfully.<br/>
+                                    Got total {formatter.format(discountAmount)} discount.
+                                </span>
+                                <button type="button" class="btn-close"
+                                    onClick={() => {
+                                        setCoupon({couponName: ""});
+                                        setDiscountAmount(0);
+                                        setCouponApplied(false);
+                                    }}
+                                ></button>
+                            </p>
+                        </>
+                        :
+                        <>
+                            <div class="input-group border border-1 rounded-2 mt-3 py-1 p-2">
+                                <input type="text" name="couponName" value={coupon.couponName} onChange={handleCouponChange} class="form-control shadow-none border-0 py-2" placeholder="Coupon code" aria-label="Recipient's username" />
+                                <button class="btn btn-default bg-warning rounded-2 fw-normal fs-6 py-2 px-4" type="button"
+                                    onClick={applyCoupon}>
+                                    Apply
+                                </button>
+                            </div>
+                            <p class="alert alert-success mt-3 small" role="alert">
+                                Use coupon code <b>FIRSTBUY</b> and get 10% discount !
+                            </p>
+                        </>
+                    }
                     <div className="d-flex justify-content-between align-items-center my-3 gap-2">
                         <Link to="/" className="btn btn-md btn-outline-dark w-100 py-2 fs-6 fw-normal small" type="button">
                             <small>Continue Shopping</small>
