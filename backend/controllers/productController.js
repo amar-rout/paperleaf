@@ -7,7 +7,7 @@ import Mongoose from 'mongoose';
 // @route GET /api/products
 // @access Public
 export const getProducts = asyncHandler(async (req, res) => {
-  const pageSize = 10;
+  const pageSize = 12;
   const page = Number(req.query.pageNumber);
 
   const keyword = req.query.keyword
@@ -75,7 +75,7 @@ export const getCategoryNames = asyncHandler(async (req, res) => {
 // @route GET /api/products/category/:cat
 // @access Public
 export const getProductByCategory = asyncHandler(async (req, res) => {
-  const pageSize = 10;
+  const pageSize = 12;
   const page = Number(req.query.pageNumber);
 
   const cat = sanitize(req.params.category);

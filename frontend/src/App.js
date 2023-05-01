@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
 
+import Slider from "react-slick";
 // Bootstrap CSS
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";

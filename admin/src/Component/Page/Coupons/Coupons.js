@@ -185,8 +185,8 @@ function Coupon() {
     setCouponID(id);
   }
 
-  const handleCouponClear = () => {
-    setEdit(true);
+  const handleCouponCancel = () => {
+    setEdit(false);
     setCouponData(initialData);
     setCouponID("");
   }
@@ -394,8 +394,8 @@ function Coupon() {
                   //   setEdit(false);
                   //   setCouponData(initialData);
                   // }}
-                  onClick={handleCouponClear}
-                  >Clear</button>
+                  onClick={handleCouponCancel}
+                  >Cancel</button>
                   <button type="button" className="btn btn-success me-2 px-4"
                     onClick={handleCouponSave}>
                     Save

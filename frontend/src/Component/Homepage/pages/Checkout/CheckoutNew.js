@@ -38,15 +38,15 @@ function CheckoutNew() {
     useEffect(() => {
         const items = JSON.parse(localStorage.getItem("checkout_items"));
         const checkoutDetails = JSON.parse(localStorage.getItem("checkout_details"));
-        const user = JSON.parse(localStorage.getItem("user"));
+        const loginUser = JSON.parse(localStorage.getItem("user"));
         if (items) {
             setCheckoutItems(items);
         }
         if (checkoutDetails) {
             setCheckoutAmount(checkoutDetails);
         }
-        if (user) {
-            setUser(user);
+        if (loginUser) {
+            setUser(loginUser);
         }
     }, []);
 
@@ -110,11 +110,22 @@ function CheckoutNew() {
             alert("Razorpay SDK failed to load. Are you online?");
             return;
         }
-        // const config = { headers: { 'Authorization': `Bearer ${user.token}`, }, };
-        // console.log(config);
-        // creating a new order
-        // const result = await axios.post("http://localhost:5010/api/orders/newOrder", config);
-        const result = await axios.post("/api/orders/newOrder");
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${user.token}`,
+                'Content-Type': 'application/json'
+            },
+        };
+        const orderData = {
+            items: checkoutItems,
+            billingAddress: [],
+            shippingAddress: [],
+            discountAmount : checkoutAmount.discountAmount,
+            grandTotal: checkoutAmount.grandTotal,
+            shippingCost: checkoutAmount.shippingCost,
+            totalAmount : checkoutAmount.totalAmount
+        };
+        const result = await axios.post("/api/orders/newOrder", orderData, config);
 
         if (!result) {
             alert("Server error. Are you online?");
