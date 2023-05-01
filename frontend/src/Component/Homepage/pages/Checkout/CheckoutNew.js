@@ -110,7 +110,7 @@ function CheckoutNew() {
         // console.log(config);
         // creating a new order
         // const result = await axios.post("http://localhost:5010/api/orders/newOrder", config);
-        const result = await axios.post("http://192.168.29.28:5010/api/orders/newOrder");
+        const result = await axios.post("/api/orders/newOrder");
 
         if (!result) {
             alert("Server error. Are you online?");
@@ -139,7 +139,7 @@ function CheckoutNew() {
 
                 console.log(data);
                 const config = { headers: { 'Content-Type': 'application/json', }, };
-                const result = await axios.post(`http://192.168.29.28:5010/api/orders/${order_id}/success`, data, config);
+                const result = await axios.post(`/api/orders/${order_id}/success`, data, config);
                 alert(result.data.msg);
                 // if (result.data.msg === 'Success') {
                 //     global.location.href(`http://localhost:3000/checkout/${order_id}/success`);
