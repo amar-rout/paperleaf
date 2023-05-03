@@ -44,7 +44,7 @@ const CategoryItems = () => {
 
     const [products, setProducts] = useState([]);
     const [errorMessage, setErrorMessage] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const getProductStatus = useSelector(getStatus);
     const getProductsError = useSelector(getError);

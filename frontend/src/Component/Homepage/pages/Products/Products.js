@@ -113,8 +113,8 @@ const Products = () => {
                     <section className="album py-3 px-3 bg-light-subtle">
                         <div className="container bg-body p-md-5">
                             <div className="row mb-50">
-                                <div className="d-none col-md-1"> {/* d-md-block */}
-                                    <Slider
+                                {/* <div className="d-none col-md-1"> d-md-block */}
+                                    {/* <Slider
                                         asNavFor={nav1}
                                         ref={slider => (slider2 = slider)}
                                         infinite={true}
@@ -138,7 +138,7 @@ const Products = () => {
                                                         className='' alt="product" style={{ width: "80px", height: "auto" }} />
                                                 </div>
                                             )
-                                        })}
+                                        })} */}
 
                                         {/* {product.images && product.images.map((image) => {
                                                 return (
@@ -147,8 +147,8 @@ const Products = () => {
                                                     </div>
                                                 )
                                             })} */}
-                                    </Slider>
-                                </div>
+                                    {/* </Slider> */}
+                                {/* </div> */}
                                 <div className="col-12 col-md-7 mb-4">
                                     {/* <div className={`detail-gallery mx-md-5 px-2 px-md-5 ${stickyClass}`}> */}
                                     {/* <div className="mx-md-5 px-2 px-md-5">

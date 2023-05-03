@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import $ from 'jquery';
 
 import './Products.css'
 
@@ -76,6 +77,30 @@ const AddProduct = () => {
   //     featured : !status
   //   })
   // }
+
+  const handleImageChangeNew = e => {
+    if (e.target.files && e.target.files[0]) {
+      console.log('target: ' + e.target);
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        console.log('reader: ' + e.target);
+        $('.file-upload-image').attr('src', e.target.result);
+        $('.file-upload-content').show();
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    } else {
+      removeUpload();
+    }
+  }
+
+  const removeUpload = () => {
+    // $('.file-upload-input').replaceWith(
+    //   $('.file-upload-input').clone()
+    // );
+    $('.file-upload-input').val(null);
+    $('.file-upload-content').hide();
+  }
+
   const handleImageChange = e => {
     file = e.target.files[0];
     if (file) {
@@ -307,12 +332,12 @@ const AddProduct = () => {
               <label htmlFor="description" className="d-block mb-2">Product description</label>
               {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="text" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Enter product description" required /> */}
               {/* <input className="form-control" type="text" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Enter product description" required /> */}
-              <textarea class="form-control" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Leave a comment here" style={{height: '100px'}} required></textarea>
+              <textarea class="form-control" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Leave a comment here" style={{ height: '100px' }} required></textarea>
             </div>
             <div className="d-inline col-4 mb-3">
               <label htmlFor="prodImage" className="mb-2">Product image</label>
               <div className="input-group-md">
-                <input className="form-control" type="file" name="prodImage" id="prodImage" onChange={handleImageChange} placeholder="Choose product image" required />
+                <input className="form-control file-upload-input" type="file" name="prodImage" id="prodImage" onChange={handleImageChange} placeholder="Choose product image" required />
               </div>
             </div>
             <div className="d-inline col-8 mb-3">
@@ -330,6 +355,16 @@ const AddProduct = () => {
                   <img key={image} src={`http://localhost:5010${image}`} className="mx-2 mb-3" alt="product" style={{ width: '100px', height: '100px' }} />
                 ))
               }
+            </div>
+            <div className="col-6 mb-3">
+              <input class="file-upload-input form-control" type='file' onChange={handleImageChangeNew} />
+            </div>
+            <div className="col-6 mb-3"></div>
+            <div className="col-6 mb-3">
+              <div className="file-upload-content position-relative w-25">
+                <img class="file-upload-image position-relative" src="#" alt="product" style={{ width: '100px', height: '100px' }} />
+                <button type="button" onClick={removeUpload} class="remove-image position-absolute start-100 top-0 align-middle">Remove</button>
+              </div>
             </div>
           </div>
           <div className="mt-2">
