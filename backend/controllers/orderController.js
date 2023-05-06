@@ -14,13 +14,16 @@ import crypto from 'crypto';
 // @route POST /api/orders
 // @access Private
 export const createNewOrder = asyncHandler(async (req, res) => {
+  const {grandTotal} = req.body;
+  let amount = grandTotal * 100;
+  console.log(amount);
   try {
     const instance = new Razorpay({
       key_id: "rzp_test_5jd0R7gE1RSPoa",
       key_secret: "XvY6c8ukwbGyyqA0Xc5cu49q",
     });
     const options = {
-      amount: 1000, // amount in smallest currency unit
+      amount: amount, // amount in smallest currency unit
       currency: "INR",
       receipt: "receipt_order_74394",
     };
@@ -79,12 +82,12 @@ export const successOrder = asyncHandler(async (req, res) => {
     //   orderId: razorpayOrderId,
     //   paymentId: razorpayPaymentId,
     // });
-    response.render('http://localhost:3000/checkout/success', {
-      msg: "success",
-      orderId: razorpayOrderId,
-      paymentId: razorpayPaymentId,
-    });
-    // res.status(201).json(createdPayment);
+    // response.render('http://localhost:3000/checkout/success', {
+    //   msg: "success",
+    //   orderId: razorpayOrderId,
+    //   paymentId: razorpayPaymentId,
+    // });
+    res.status(201).json({msg: 'success', createdPayment});
   } catch (error) {
     res.status(500).send(error);
   }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import $ from 'jquery';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,6 +17,12 @@ import './Products.css';
 import RecentlyViewedProducts from '../Home/RecentlyViewedProducts/RecentlyViewedProducts';
 
 const Products = () => {
+
+    let currINR = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+    });
+
     const [productID, setProductID] = useState("");
     const [productName, setProductName] = useState("");
     const [product, setProduct] = useState({});
@@ -55,6 +62,7 @@ const Products = () => {
     const [prodQuantity, setProdQuantity] = useState(1);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         setProductID(id);
         setNav1(slider1);
         setNav2(slider2);
@@ -88,6 +96,21 @@ const Products = () => {
         dispatch(clearState());
     }, [dispatch, id, productID]);
 
+    useEffect(() => {
+            $('.modal').on('shown.bs.modal', function () {
+                window.location.hash = "modal";
+            });
+            $('.close-icon').on('click', function () {
+                $(this).closest('.card').fadeOut();
+            });
+            $(window).on('hashchange', function (event) {
+                if (window.location.hash !== "#modal") {
+                    window.location.hash = "";
+                    $('.close').click();
+                }
+            });
+    }, []);
+
     const handleAddCart = (id, quantity) => {
         dispatch(addCartAsync({ pId: id, qty: quantity }));
     }
@@ -114,7 +137,7 @@ const Products = () => {
                         <div className="container bg-body p-md-5">
                             <div className="row mb-50">
                                 {/* <div className="d-none col-md-1"> d-md-block */}
-                                    {/* <Slider
+                                {/* <Slider
                                         asNavFor={nav1}
                                         ref={slider => (slider2 = slider)}
                                         infinite={true}
@@ -140,14 +163,14 @@ const Products = () => {
                                             )
                                         })} */}
 
-                                        {/* {product.images && product.images.map((image) => {
+                                {/* {product.images && product.images.map((image) => {
                                                 return (
                                                     <div>
                                                         <img src={`http://localhost:5010${image}`} className='p-2' alt="product" style={{ width: "90px", height: "90px" }} />
                                                     </div>
                                                 )
                                             })} */}
-                                    {/* </Slider> */}
+                                {/* </Slider> */}
                                 {/* </div> */}
                                 <div className="col-12 col-md-7 mb-4">
                                     {/* <div className={`detail-gallery mx-md-5 px-2 px-md-5 ${stickyClass}`}> */}
@@ -237,8 +260,8 @@ const Products = () => {
                                             {product.name}
                                         </h6>
                                         <div>
-                                            {product.salePrice > 0 && <span className="fw-semibold fs-5 me-3 text-danger text-decoration-line-through">₹{product.salePrice}</span>}
-                                            <span className="fw-semibold fs-5 text-muted">₹{product.price}</span>
+                                            {product.salePrice > 0 && <span className="fw-semibold fs-5 me-3 text-danger text-decoration-line-through">{currINR.format(product.salePrice)}</span>}
+                                            <span className="fw-semibold fs-5 text-muted">{currINR.format(product.price)}</span>
                                             {/* <span className="ms-2 ms-md-4 fs-6 fw-bold text-muted">Flat 25% Off</span> */}
                                         </div>
                                         <div className="bt-1 border-color-1 mt-15 mb-15"></div>
@@ -344,139 +367,140 @@ const Products = () => {
                                     </div>
                                 </div>
                                 {/* Modal Start */}
-                                <div>
-                                    <div class="modal fade" id="sizeChart" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="sizeChartLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="sizeChartLabel">Size Chart</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                {/* <div> */}
+                                {/* data-bs-backdrop="static" */}
+                                <div class="modal fade" id="sizeChart"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="sizeChartLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="sizeChartLabel">Size Chart</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <small>
+                                                    <p>You can customise the product by adding notes when you add the product to your cart.</p>
+                                                    <p>Please note : Sizes 5XL, 6XL and all customised products require mandatory prepayment and cannot be returned or exchanged.</p>
+                                                    <p>Below measurements are garment measurements in inches.</p>
+                                                </small>
+                                                <div className='table-responsive text-center'>
+                                                    <table className='table table-light table-striped'>
+                                                        <thead className='fw-normal fs-6'>
+                                                            <tr>
+                                                                <th>Size</th>
+                                                                <th>Bust</th>
+                                                                <th>Waist</th>
+                                                                <th>Hips</th>
+                                                                <th>Shoulder</th>
+                                                                <th>Length</th>
+                                                                {/* <th>Armhole</th> */}
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>S</td>
+                                                                <td>34</td>
+                                                                <td>32</td>
+                                                                <td>38</td>
+                                                                <td>14</td>
+                                                                <td>45</td>
+                                                                {/* <td>16</td> */}
+                                                            </tr>
+                                                            <tr>
+                                                                <td>M</td>
+                                                                <td>36</td>
+                                                                <td>34</td>
+                                                                <td>40</td>
+                                                                <td>14.5</td>
+                                                                <td>45</td>
+                                                                {/* <td>16</td> */}
+                                                            </tr>
+                                                            <tr>
+                                                                <td>L</td>
+                                                                <td>38</td>
+                                                                <td>36</td>
+                                                                <td>42</td>
+                                                                <td>15</td>
+                                                                <td>45</td>
+                                                                {/* <td>16</td> */}
+                                                            </tr>
+                                                            <tr>
+                                                                <td>XL</td>
+                                                                <td>40</td>
+                                                                <td>38</td>
+                                                                <td>44</td>
+                                                                <td>15.6</td>
+                                                                <td>45</td>
+                                                                {/* <td>16</td> */}
+                                                            </tr>
+                                                            <tr>
+                                                                <td>XXL</td>
+                                                                <td>42</td>
+                                                                <td>40</td>
+                                                                <td>46</td>
+                                                                <td>16</td>
+                                                                <td>45</td>
+                                                                {/* <td>16</td> */}
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <small>
-                                                        <p>You can customise the product by adding notes when you add the product to your cart.</p>
-                                                        <p>Please note : Sizes 5XL, 6XL and all customised products require mandatory prepayment and cannot be returned or exchanged.</p>
-                                                        <p>Below measurements are garment measurements in inches.</p>
-                                                    </small>
-                                                    <div className='table-responsive text-center'>
-                                                        <table className='table table-light table-striped'>
-                                                            <thead className='fw-normal fs-6'>
-                                                                <tr>
-                                                                    <th>Size</th>
-                                                                    <th>Bust</th>
-                                                                    <th>Waist</th>
-                                                                    <th>Hips</th>
-                                                                    <th>Shoulder</th>
-                                                                    <th>Length</th>
-                                                                    <th>Armhole</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>S</td>
-                                                                    <td>34 (36)</td>
-                                                                    <td>32 (34)</td>
-                                                                    <td>38 (40)</td>
-                                                                    <td>14</td>
-                                                                    <td>45</td>
-                                                                    <td>16</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>M</td>
-                                                                    <td>36 (38)</td>
-                                                                    <td>34 (36)</td>
-                                                                    <td>40 (42)</td>
-                                                                    <td>14.5</td>
-                                                                    <td>45</td>
-                                                                    <td>16</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>L</td>
-                                                                    <td>38 (40)</td>
-                                                                    <td>36 (38)</td>
-                                                                    <td>42 (44)</td>
-                                                                    <td>15</td>
-                                                                    <td>45</td>
-                                                                    <td>16</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>XL</td>
-                                                                    <td>40 (42)</td>
-                                                                    <td>38 (40)</td>
-                                                                    <td>44 (46)</td>
-                                                                    <td>15.6</td>
-                                                                    <td>45</td>
-                                                                    <td>16</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>XXL</td>
-                                                                    <td>42 (44)</td>
-                                                                    <td>40 (42)</td>
-                                                                    <td>46 (48)</td>
-                                                                    <td>16</td>
-                                                                    <td>45</td>
-                                                                    <td>16</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
+                                            </div>
 
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    {/* <button type="button" class="btn btn-primary">Understood</button> */}
-                                                </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                {/* <button type="button" class="btn btn-primary">Understood</button> */}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                {/* </div> */}
                                 {/* Modal End */}
                                 {/* Modal Start */}
-                                <div>
-                                    <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                {/* data-bs-backdrop="static" data-bs-keyboard="false" */}
-                                                {/* <div class="modal-header bg-body" style={{ backgroundColor: 'transparent !important'}}> */}
-                                                {/* <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                {/* <div> */}
+                                <div class="modal fade text-center" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            {/* data-bs-backdrop="static" data-bs-keyboard="false" */}
+                                            {/* <div class="modal-header bg-body" style={{ backgroundColor: 'transparent !important'}}> */}
+                                            {/* <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                                         onClick={() => setModalImgInfo("")}></button> */}
-                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                                        style={{ right: '10px' }}
-                                                        onClick={() => setModalImgInfo("")}>
-                                                    </button>
-                                                </div> */}
+                                            {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                                style={{ right: '10px' }}
+                                                onClick={() => setModalImgInfo("")}>
+                                            </button> */}
+                                            {/* </div> */}
 
 
 
-                                                {/* <div class="modal-body"> */}
-                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                            {/* <div class="modal-body"> */}
+                                            {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                                         onClick={() => setModalImgInfo("")}></button> */}
-                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                            {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                                     style={{ right: '10px' }}
                                                     onClick={() => setModalImgInfo("")}></button> */}
-                                                <div class="zoom_outer">
-                                                    <div id="zoom">
-                                                        <img src={`${serverURL}${modalImgInfo}`} alt="zoom" style={{ width: '100%', height: 'auto' }} />
-                                                    </div>
+                                            <div class="zoom_outer">
+                                                <div id="zoom">
+                                                    <img src={`${serverURL}${modalImgInfo}`} alt="zoom" style={{ width: '100%', height: 'auto' }} />
                                                 </div>
-                                                {/* <button type="button" class="btn btn-light" style={{ position: 'absolute', bottom: '10px', right: '10px' }}
+                                            </div>
+                                            {/* <button type="button" class="btn btn-light" style={{ position: 'absolute', bottom: '10px', right: '10px' }}
                                                     onClick={() => setModalImgInfo("")}
                                                     data-bs-dismiss="modal">Close</button> */}
-                                                {/* </div> */}
-                                                {/* <div class="modal-footer">
+                                            {/* </div> */}
+                                            {/* <div class="modal-footer">
                                                      <button type="button" class="btn btn-secondary"
                                                         onClick={() => setModalImgInfo("")}
                                                         data-bs-dismiss="modal">Close</button> 
                                                 {/* <button type="button" class="btn btn-primary">Understood</button> */}
-                                                {/* </div> */}
-                                                {/* <button type="button" class="btn btn-light" style={{ bottom: '10px', right: '10px' }}
+                                            {/* </div> */}
+                                            {/* <button type="button" class="btn btn-light" style={{ bottom: '10px', right: '10px' }}
                                                     onClick={() => setModalImgInfo("")}
                                                     data-bs-dismiss="modal">Close</button> */}
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                {/* </div> */}
                                 {/* Modal End */}
 
                                 {/* ReactSlick slider Begin */}
@@ -855,9 +879,9 @@ const Products = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='col-12'>
+                                {/* <div className='col-12'>
                                     <RecentlyViewedProducts />
-                                </div>
+                                </div> */}
                                 <div className='col-12'>
                                     <h5 className='text-center my-4'>Categories</h5>
                                     <div className="" style={{ overflowX: 'scroll' }}>

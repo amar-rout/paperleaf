@@ -155,9 +155,11 @@ function CheckoutNew() {
                 console.log(data);
                 const config = { headers: { 'Content-Type': 'application/json', }, };
                 const result = await axios.post(`/api/orders/${order_id}/success`, data, config);
-                alert(result.data.msg);
-                if(result)
-                    navigate('/orderSuccess');
+                alert(result.data);
+                if(result.data) {
+                    console.log(result.data.msg);
+                    navigate('/checkout/success');
+                }
                 
                 // if (result.data.msg === 'Success') {
                 //     global.location.href(`http://localhost:3000/checkout/${order_id}/success`);
@@ -175,7 +177,8 @@ function CheckoutNew() {
                 address: "Paperleaf Corporate Office",
             },
             theme: {
-                color: "#61dafb",
+                // color: "#61dafb",
+                color: "#f1c40f",
             },
         };
         const paymentObject = new window.Razorpay(options);

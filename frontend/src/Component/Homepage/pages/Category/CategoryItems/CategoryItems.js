@@ -43,6 +43,11 @@ import { toast } from "react-toastify";
 
 const CategoryItems = () => {
 
+    let currINR = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+    });
+
     const [category, setCategory] = useState("");
     // const [catName, setCatName] = useState("");
     const [page, setPage] = useState(1);
@@ -201,7 +206,7 @@ const CategoryItems = () => {
                     {products.length === 0 ?
                         <p className="text-center px-4">
                             <strong>
-                                Sorry! No products available for this category in this moment.
+                                {/* Sorry! No products available for this category in this moment. */}
                             </strong>
                         </p>
                         :
@@ -259,7 +264,10 @@ const CategoryItems = () => {
                                             </div> */}
                                         <div className="product-item">
                                             <div className="product">
-                                                <img src={product.image} onClick={() => handleProductShow(product._id)} className="" alt="card 1" />
+                                                {/* <img src={product.image} onClick={() => handleProductShow(product._id)} className="" alt="card 1" /> */}
+                                                <img src={product.image}
+                                                    srcset={`${product.image} 480w, ${product.image} 800w`}
+                                                    sizes="(max-width: 480px) 100vw, (max-width: 1024px) 50vw, 800px" alt={`${product.image}`} />
                                                 <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
                                                     {wishlistItems.find((item) => item.wId === product._id) ?
                                                         <li class="icon active" onClick={() => handleRemoveWishlist(product._id)}>
@@ -292,9 +300,10 @@ const CategoryItems = () => {
                                                         <i class="bi bi-cart"></i>
                                                         <i class="bi bi-cart-fill"></i>
                                                     </li> */}
-                                                    <li class="icon">
-                                                        <i class="bi bi-bag"></i>
+                                                    <li class="icon" onClick={() => handleProductShow(product._id)}>
+                                                        {/* <i class="bi bi-bag"></i> */}
                                                         {/* <i class="bi bi-bag-fill"></i> */}
+                                                        <i class="bi bi-eye"></i>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -380,9 +389,15 @@ const CategoryItems = () => {
                                                     <small>{product.name}</small>
                                                 </p>
                                                 <p className="text-dark fw-semibold p-0 m-0 mb-1" style={{ fontSize: "13px" }}>
-                                                    <span>₹{product.price}</span>
+                                                    {/* <span>₹{product.price}</span> */}
+                                                    <span>{currINR.format(product.price)}</span>
                                                     {product.salePrice > 0 &&
-                                                        <span className="ms-2 text-decoration-line-through text-danger">₹{product.salePrice}</span>
+                                                        <>
+                                                            {/* <span className="ms-2 text-decoration-line-through text-danger">₹{product.salePrice}</span> */}
+                                                            <span className="ms-2 text-decoration-line-through text-danger">
+                                                                {currINR.format(product.salePrice)}
+                                                            </span>
+                                                        </>
                                                     }
                                                 </p>
                                                 <span className="d-flex justify-content-start align-items-center">

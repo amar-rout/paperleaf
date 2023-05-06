@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/amar-rout/paperleaf/issues"
   },
-  "homepage": "https://github.com/amar-rout/paperleaf#readme"
+  "homepage": "https://github.com/amar-rout/paperleaf#readme",
+  "dependencies": {
+    "sharp": "^0.32.1"
+  }
 }
