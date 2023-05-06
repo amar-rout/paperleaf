@@ -35,23 +35,24 @@ export const validateToken = asyncHandler(async (req, res) => {
   // const { email, password } = req.body;
 
   // const user = await UserModel.findOne({ email });
-
-  const user = await UserModel.findById(req.user.id);
-
-  if (user) {
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      phone: user.phone,
-      gender: user.gender,
-      isAdmin: user.isAdmin,
-      token: generateToken(user.id),
-    });
-    // res.send('Token validation successful');
-  } else {
-    res.status(401);
-    throw new Error('Invalid token');
+  if (req.user && req.user !== 'undefined') {
+    console.log(req.user);
+    const user = await UserModel.findById(req.user.id);
+    if (user) {
+      res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        gender: user.gender,
+        isAdmin: user.isAdmin,
+        token: generateToken(user.id),
+      });
+      // res.send('Token validation successful');
+    } else {
+      res.status(401);
+      throw new Error('Invalid token');
+    }
   }
 });
 

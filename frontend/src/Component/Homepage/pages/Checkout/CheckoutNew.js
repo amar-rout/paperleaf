@@ -6,7 +6,7 @@ import $ from "jquery";
 
 import './Checkout.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { Alert } from 'bootstrap';
+// import { Alert } from 'bootstrap';
 
 function CheckoutNew() {
 
@@ -120,10 +120,10 @@ function CheckoutNew() {
             items: checkoutItems,
             billingAddress: [],
             shippingAddress: [],
-            discountAmount : checkoutAmount.discountAmount,
+            discountAmount: checkoutAmount.discountAmount,
             grandTotal: checkoutAmount.grandTotal,
             shippingCost: checkoutAmount.shippingCost,
-            totalAmount : checkoutAmount.totalAmount
+            totalAmount: checkoutAmount.totalAmount
         };
         const result = await axios.post("/api/orders/newOrder", orderData, config);
 
@@ -156,6 +156,9 @@ function CheckoutNew() {
                 const config = { headers: { 'Content-Type': 'application/json', }, };
                 const result = await axios.post(`/api/orders/${order_id}/success`, data, config);
                 alert(result.data.msg);
+                if(result)
+                    navigate('/orderSuccess');
+                
                 // if (result.data.msg === 'Success') {
                 //     global.location.href(`http://localhost:3000/checkout/${order_id}/success`);
                 // } else {
@@ -201,18 +204,21 @@ function CheckoutNew() {
                                         <span className="step-number">01</span>
                                         <span className="step-title d-block">Billing Info</span>
                                     </a>
+                                    <hr class="flex-fill track-line border border-2 border-success flex-shrink flex-fill" />
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link check_nav-link text-center" data-bs-toggle="tab" href="#menu1">
                                         <span className="step-number">02</span>
                                         <span className="step-title d-block">Shipping Info</span>
                                     </a>
+                                    <hr class="flex-fill track-line border border-2 border-success flex-shrink flex-fill" />
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link check_nav-link text-center" data-bs-toggle="tab" href="#menu2">
                                         <span className="step-number">03</span>
                                         <span className="step-title d-block">Payment Info</span>
                                     </a>
+                                    <hr class="flex-fill track-line border border-2 border-success flex-shrink flex-fill" />
                                 </li>
                             </ul>
                             <div className="tab-content mt-2 mt-md-4">
@@ -220,54 +226,62 @@ function CheckoutNew() {
                                     <div className="row g-2">
                                         <div className="col-12 col-md-4 px-2">
                                             <label className="form-label small ms-2" for="c-fn">Name</label>
-                                            <input className="form-control" name='name' type="text" placeholder="Enter full name" required="" id="name" />
+                                            <input className="form-control shadow-none border-1 border-secondary" name='name' type="text" placeholder="Enter full name" required="" id="name" />
                                         </div>
                                         {/* <div className="col-12 col-md-6">
                                             <label className="form-label small" for="c-ln">Last name</label>
-                                            <input className="form-control" type="text" placeholder="Your last name" required="" id="c-ln" />
+                                            <input className="form-control shadow-none border-1 border-secondary" type="text" placeholder="Your last name" required="" id="c-ln" />
                                         </div> */}
                                         <div className="col-12 col-md-4 px-2">
                                             <label className="form-label small" for="c-email">Email</label>
-                                            <input className="form-control" type="email" placeholder="Email address" required="" id="c-email" />
+                                            <input className="form-control shadow-none border-1 border-secondary" type="email" placeholder="Email address" required="" id="c-email" />
                                         </div>
                                         <div className="col-12 col-md-4 px-2">
                                             <label className="form-label small" for="c-phone">Phone</label>
                                             <div className='input-group'>
-                                                <span className="input-group-text">+91</span>
-                                                <input className="form-control" type="tel" placeholder="Enter phone number" required="" id="phone" />
+                                                <span className="input-group-text border-1 border-secondary">+91</span>
+                                                <input className="form-control shadow-none border-1 border-secondary" type="tel" placeholder="Enter phone number" required="" id="phone" />
                                             </div>
                                         </div>
                                         <div className="col-12 col-md-6 px-2">
                                             <label className="form-label small" for="c-address">Address line 1</label>
-                                            <input className="form-control" type="text" name='address1' required="" id="address1" />
+                                            <input className="form-control shadow-none border-1 border-secondary" type="text" name='address1' required="" id="address1" placeholder='Flat/Building/Plot No' />
                                         </div>
                                         <div className="col-12 col-md-6 px-2">
-                                            <label className="form-label small" for="c-address">Address line 2</label>
-                                            <input className="form-control" type="text" name='address2' required="" id="address2" />
+                                            <label className="form-label small" for="c-address">Landmark</label>
+                                            <input className="form-control shadow-none border-1 border-secondary" type="text" name='address1' required="" id="address1" placeholder='Landmark or Near by location' />
                                         </div>
-                                        <div className="col-12 col-md-4 px-2">
+                                        <div className="col-12">
+                                            <label className="form-label small" for="c-address">Address line 2</label>
+                                            <input className="form-control shadow-none border-1 border-secondary" type="text" name='address2' required="" id="address2" placeholder='Enter your address here' />
+                                        </div>
+                                        {/* <div className="col-12 col-md-4 px-2">
                                             <label className="form-label small" for="c-country">Country</label>
                                             <select className="form-select" required="" name='country' id="country">
                                                 <option value="" selected="" disabled="">Select a country</option>
                                                 <option value="Australia">India</option>
                                             </select>
-                                        </div>
+                                        </div> */}
                                         <div className="col-12 col-md-4 px-2">
                                             <label className="form-label small" for="c-city">City</label>
-                                            <input type='text' className="form-select" required="" name='city' id="city" />
+                                            <input type='text' className="form-control shadow-none border-1 border-secondary" required="" name='city' id="city" placeholder='Enter your city' />
                                         </div>
                                         <div className="col-12 col-md-4 px-2">
-                                            <label className="form-label small" for="c-zip">Zip code</label>
-                                            <input className="form-control" type="text" name="zipcode" placeholder="Enter zip code" required="" id="zipcode" />
+                                            <label className="form-label small" for="c-zip">State</label>
+                                            <input className="form-control shadow-none border-1 border-secondary" type="text" name="state" placeholder="Enter state" required="" id="state" />
+                                        </div>
+                                        <div className="col-12 col-md-4 px-2">
+                                            <label className="form-label small" for="c-zip">PIN Code</label>
+                                            <input className="form-control shadow-none border-1 border-secondary" type="text" name="pincode" placeholder="Enter pincode" required="" id="pincode" />
                                         </div>
 
                                         {/* <div className="col-12">
                                     <label className="form-label fs-base" for="c-notes">Order notes <span className="text-muted">(optional)</span></label>
-                                    <textarea className="form-control form-control-lg" rows="3" id="c-notes"></textarea>
+                                    <textarea className="form-control shadow-none border-1 border-secondary form-control shadow-none border-1 border-secondary-lg" rows="3" id="c-notes"></textarea>
                                 </div> */}
                                         <div className="col-12">
                                             <div className="form-check my-3 ms-2">
-                                                <input className="form-control form-check-input shadow-none p-1" type="checkbox" id="same-address" />
+                                                <input className="form-control shadow-none border-1 border-secondary form-check-input shadow-none p-1" type="checkbox" id="same-address" />
                                                 <label className="form-check-label fw-normal small mx-2" for="same-address">Billing address same as delivery</label>
                                             </div>
                                         </div>
@@ -374,7 +388,7 @@ function CheckoutNew() {
                                                     <label for="cardnameInput" className="form-label small">
                                                         Name on card
                                                     </label>
-                                                    <input id="cardnameInput" placeholder="Name on Card" type="text" className="form-control form-control" />
+                                                    <input id="cardnameInput" placeholder="Name on Card" type="text" className="form-control shadow-none border-1 border-secondary form-control shadow-none border-1 border-secondary" />
                                                 </div>
                                                 <div className="row">
                                                     <div className="col-sm-6 col-lg-4">
@@ -382,7 +396,7 @@ function CheckoutNew() {
                                                             <label for="cardnumberInput" className="form-label small">
                                                                 Card Number
                                                             </label>
-                                                            <input id="cardnumberInput" placeholder="0000 0000 0000 0000" type="text" className="form-control form-control" /></div>
+                                                            <input id="cardnumberInput" placeholder="0000 0000 0000 0000" type="text" className="form-control shadow-none border-1 border-secondary form-control shadow-none border-1 border-secondary" /></div>
                                                     </div>
                                                     <div className="col-sm-6 col-lg-4">
                                                         <div className="mb-3 mb-lg-0">
@@ -390,13 +404,13 @@ function CheckoutNew() {
                                                                 Expiry date
                                                             </label>
                                                             <input id="expirydateInput" placeholder="MM/YY" type="text"
-                                                                className="form-control form-control" />
+                                                                className="form-control shadow-none border-1 border-secondary form-control shadow-none border-1 border-secondary" />
                                                         </div>
                                                     </div>
                                                     <div className="col-sm-6 col-lg-4">
                                                         <div className="mb-3 mb-lg-0">
                                                             <label for="cvvcodeInput" className="form-label small">CVV Code</label>
-                                                            <input id="cvvcodeInput" placeholder="Enter CVV Code" type="text" className="form-control form-control" />
+                                                            <input id="cvvcodeInput" placeholder="Enter CVV Code" type="text" className="form-control shadow-none border-1 border-secondary form-control shadow-none border-1 border-secondary" />
                                                         </div>
                                                     </div>
                                                 </div>

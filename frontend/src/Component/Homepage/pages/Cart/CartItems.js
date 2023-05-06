@@ -1,21 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { getCartCount, incrementQuantity, decrementQuantity, removeCartItem } from "../../../../app/cartSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+import {
+    userVerifyAsync,
+    selectUser,
+    selectStatus,
+    selectErrorMessage,
+} from "../../../../app/userSlice";
+
 const CartItems = (products) => {
     const cartCount = useSelector(getCartCount);
     const dispatch = useDispatch();
-
-    const serverURL = process.env.REACT_APP_SERVER_URL;
+    const [user, setUser] = useState();
+    const loginUserState = useSelector(selectStatus);
+    const loginErrorMessage = useSelector(selectErrorMessage);
+    // const [errorMessage, setErrorMessage ] = useState("");
+    // const serverURL = process.env.REACT_APP_SERVER_URL;
     const [cartItems, setCartItems] = useState([]);
     const [isCouponApplied, setCouponApplied] = useState(false);
     const [coupon, setCoupon] = useState({
         "couponName": ""
     });
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const loggedUser = JSON.parse(localStorage.getItem("user"));
+        if(loggedUser)
+            setUser(loggedUser);
+    }, [setUser]);
 
     useEffect(() => {
         setCartItems(products.products)
@@ -68,44 +86,58 @@ const CartItems = (products) => {
     }
 
     const applyCoupon = async () => {
-        const config = { "headers": { "Content-Type": "application/json" } }
+        // const loggedUser = JSON.parse(localStorage.getItem("user"));
+        // console.log(loggedUser);
+        if (user && user.token) {
+            dispatch(userVerifyAsync()).unwrap()
+                .then(async (value) => {
+                    const config = { "headers": { "Content-Type": "application/json" } };
+                    await axios.get(`/api/coupons/?name=${coupon.couponName}`, config)
+                        .then(response => {
+                            if (grandTotal >= response.data.minPurchaseAmount) {
+                                setCouponApplied(true);
+                                if (response.data.discountType === 'Amount') {
+                                    setDiscountAmount(response.data.discountAmount);
+                                } else {
+                                    setDiscountAmount(grandTotal * (response.data.discountPercentage / 100));
+                                }
+                            } else {
+                                setCouponApplied(false);
+                                toast.warning(`Minimum cart item should be greater than ${response.data.minPurchaseAmount}. Please add more items to apply this coupon.`);
+                            }
+                        }).catch(error => {
+                            if (error.response) {
+                                toast.dismiss()
+                                toast.error(error.response.data.message)
+                            } else if (error.request) {
+                            } else {
+                                toast.dismiss()
+                                toast.error(error.message)
+                            }
+                        })
+                })
+                .catch((err) => {
+                    if(err === 'Bad token')
+                        toast.error('Your session got expired. Please sign in again to continue.');
+                    navigate('/login');
+                })
+        } else {
+            toast.error('Please login to apply the coupons');
+            navigate('/login');
+        }
         // const coupon_name = encodeURIComponent(coupon.couponName);
-
-        await axios.get(`/api/coupons/?name=${coupon.couponName}`, config)
-            .then(response => {
-                if (grandTotal >= response.data.minPurchaseAmount) {
-                    setCouponApplied(true);
-                    if (response.data.discountType === 'Amount') {
-                        setDiscountAmount(response.data.discountAmount);
-                    } else {
-                        setDiscountAmount(grandTotal * (response.data.discountPercentage / 100));
-                    }
-                } else {
-                    setCouponApplied(false);
-                    toast.warning(`Minimum cart item should be greater than ${response.data.minPurchaseAmount}. Please add more items to apply this coupon.`);
-                }
-            }).catch(error => {
-                if (error.response) {
-                    toast.dismiss()
-                    toast.error(error.response.data.message)
-                } else if (error.request) {
-                } else {
-                    toast.dismiss()
-                    toast.error(error.message)
-                }
-            })
     }
 
     return (
         <>
             <div className="row">
                 <div className="col-12 col-md-8">
-                    <div className="pt-1 px-2 px-md-5">
+                    <div className="pt-1 px-md-5">
                         <h5 className="pb-2 pt-md-2 my-4 mt-lg-5 fs-6">My Cart<span className="fs-base fw-normal text-muted"> ({cartCount} items)</span></h5>
                         {cartItems.map((product) =>
-                            <div key={product.pId} className="d-flex align-items-center border-top py-4 py-md-4">
-                                <a className="d-inline-block flex-shrink-0 bg-light-subtle rounded-1 p-sm-2 p-xl-3 mb-2 mb-sm-0" href={`/products/${product.pId}`}>
-                                    <img src={product.image} width="75" alt="Product" />
+                            <div key={product.pId} className="d-flex align-items-center mb-2">
+                                <a className="d-inline-block flex-shrink-0 bg-light-subtle rounded-1 mb-sm-0" href={`/products/${product.pId}`}>
+                                    <img src={product.image} className="" width={120} height={140} alt="Product" />
                                     {/* <img src={`${serverURL}${product.image}`} width="75" alt="Product" /> */}
                                 </a>
                                 <div className="w-100 ps-3 ps-sm-4">
@@ -116,36 +148,36 @@ const CartItems = (products) => {
                                                     {product.name}
                                                 </a>
                                             </span>
-                                            <div>
+                                            <div className="mb-2">
                                                 <span className="small"><small>{product.category}</small></span>,
-                                                <span className="small">Size: <span className="text-dark fw-medium">{product.size}</span></span>
+                                                <span className="small"> Size: <span className="text-dark fw-medium">{product.size}</span></span>
                                             </div>
                                         </div>
                                         <div className="text-end ms-auto">
                                             <div className="fs-6 fw-medium mb-2">{formatter.format(product.price * product.qty)}</div>
                                         </div>
                                     </div>
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <div className="input-group" style={{ maxWidth: 150 }}>
-                                            <button className="btn btn-outline-dark fs-xl px-3" type="button" data-decrement=""
+                                    <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-2">
+                                        <div className="input-group input-group-sm mb-2" style={{ maxWidth: '150px' }}>
+                                            <button className="btn btn-outline-dark px-2 me-2 rounded-circle" type="button" data-decrement=""
                                                 onClick={() => dispatch(decrementQuantity(product.pId))}>
                                                 <i className="bi bi-dash-lg"></i>
                                             </button>
-                                            <input className="form-control shadow-none disabled border-dark text-center" type="number" value={product.qty} readOnly />
-                                            <button className="btn btn-outline-dark px-3" type="button" data-increment=""
+                                            <input className="form-control shadow-none disabled border-dark text-center rounded-pill" type="number" value={product.qty} readOnly />
+                                            <button className="btn btn-outline-dark px-2 ms-2 rounded-circle" type="button" data-increment=""
                                                 onClick={() => dispatch(incrementQuantity(product.pId))}>
                                                 <i className="bi bi-plus-lg"></i>
                                             </button>
                                         </div>
-                                        <div className="nav justify-content-end mt-n5 mt-sm-n3 gap-2">
+                                        <div className="nav justify-content-between align-items-center mt-n5 mt-sm-n3 gap-2">
                                             <button className="btn btn-outline-dark">
-                                                <i className="bi bi-cart"></i>
-                                                <span className="d-none d-md-inline ms-1">Add to wishlist</span>
+                                                <i className="bi bi-heart"></i>
+                                                <span className="ms-1 ms-sm-2 fw-normal">Add to wishlist</span>
                                             </button>
                                             <button className="btn btn-outline-danger"
                                                 onClick={() => dispatch(removeCartItem(product.pId))}>
                                                 <i className="bi bi-trash"></i>
-                                                <span className="d-none d-md-inline ms-1">Remove</span>
+                                                <span className="ms-1 ms-sm-2">Remove</span>
                                             </button>
                                         </div>
                                     </div>
@@ -184,12 +216,12 @@ const CartItems = (products) => {
                         <>
                             <p class="d-flex align-items-center bg-success-subtle text-success rounded-2 small mt-3 py-2 px-2">
                                 <span className="me-auto">
-                                    Coupon <b>{coupon.couponName}</b> applied successfully.<br/>
+                                    Coupon <b>{coupon.couponName}</b> applied successfully.<br />
                                     Got total {formatter.format(discountAmount)} discount.
                                 </span>
                                 <button type="button" class="btn-close"
                                     onClick={() => {
-                                        setCoupon({couponName: ""});
+                                        setCoupon({ couponName: "" });
                                         setDiscountAmount(0);
                                         setCouponApplied(false);
                                     }}

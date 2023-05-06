@@ -29,8 +29,15 @@ import {
     removeWishlistItem,
     getWishlistItems,
 } from "../../../../../app/wishlistSlice";
+
+import {
+    userVerifyAsync,
+    selectUser,
+} from "../../../../../app/userSlice";
+
 import Meta from "../../Meta";
 import Breadcrumb from "../../Breadcrumb/Breadcrumb";
+import { toast } from "react-toastify";
 
 
 
@@ -45,7 +52,7 @@ const CategoryItems = () => {
     const [products, setProducts] = useState([]);
     const [errorMessage, setErrorMessage] = useState("");
     const [loading, setLoading] = useState(true);
-
+    const user = useSelector(selectUser);
     const getProductStatus = useSelector(getStatus);
     const getProductsError = useSelector(getError);
     let maxPage = useSelector(getPages);
@@ -117,8 +124,23 @@ const CategoryItems = () => {
     }, [dispatch, category, pageNumber]);
 
     const handleAddCart = (id, name) => {
-        dispatch(addCartAsync({ pId: id, qty: 1 }));
+        if (user && user.token) {
+            dispatch(userVerifyAsync());
+            dispatch(addCartAsync({ pId: id, qty: 1 }));
+        } else {
+            navigate('/login');
+        }
     }
+    const handleNotifyProduct = (id, name) => {
+        if (user && user.token) {
+            dispatch(userVerifyAsync());
+            toast.success(`Product ${name} saved.`);
+        } else {
+            navigate('/login');
+        }
+        // dispatch(addProductNotify({ pId: id, user: user.id }));
+    }
+
 
     const handleLoadPrevPage = () => {
         setPage((prevState) => prevState - 1);
@@ -248,14 +270,23 @@ const CategoryItems = () => {
                                                             <i class="bi bi-heart"></i>
                                                         </li>
                                                     }
-                                                    {cartItems.find((item) => item.pId === product._id) ?
-                                                        <li class="icon active mx-3" onClick={() => handleAddCart(product._id, product.name)}>
-                                                            <i class="bi bi-cart-fill"></i>
+                                                    {product.countInStock < 1 ?
+                                                        <li class="icon mx-3" onClick={() => handleNotifyProduct(product._id, product.name)}>
+                                                            <i class="bi bi-bell"></i>
                                                         </li>
                                                         :
-                                                        <li class="icon mx-3" onClick={() => handleAddCart(product._id, product.name)}>
-                                                            <i class="bi bi-cart"></i>
-                                                        </li>
+                                                        <>
+                                                            {
+                                                                cartItems.find((item) => item.pId === product._id) ?
+                                                                    <li class="icon active mx-3" onClick={() => handleAddCart(product._id, product.name)}>
+                                                                        <i class="bi bi-cart-fill"></i>
+                                                                    </li>
+                                                                    :
+                                                                    <li class="icon mx-3" onClick={() => handleAddCart(product._id, product.name)}>
+                                                                        <i class="bi bi-cart"></i>
+                                                                    </li>
+                                                            }
+                                                        </>
                                                     }
                                                     {/* <li class="icon mx-3" onClick={() => handleAddCart(product._id, product.name)}>
                                                         <i class="bi bi-cart"></i>
@@ -400,28 +431,28 @@ const CategoryItems = () => {
                         {maxPage > 1 && (
                             <>
                                 <div className="input-group input-group-sm justify-content-end">
-                                    <button className={currPage <= 1 ? "btn btn-danger px-4 px-md-4 disabled" : "btn btn-outline-danger px-4 px-md-4"}
+                                    <button className={currPage <= 1 ? "btn btn-dark px-3 px-md-4 disabled" : "btn btn-outline-dark px-3 px-md-4"}
                                         onClick={() => handleLoadPrevPage()}
                                     >
-                                        <i className="bi bi-caret-left m-0 p-0"></i>
-                                        Prev
+                                        <i className="bi bi-arrow-left m-0 p-0"></i>
+                                        {/* Prev */}
                                     </button>
                                     {(() => {
                                         const rows = [];
                                         for (let index = 1; index <= maxPage; index++) {
                                             rows.push(
-                                                <button className={currPage === index ? "btn btn-danger px-4 px-md-4 disabled" : "btn btn-outline-danger px-4 px-md-4"}
+                                                <button className={currPage === index ? "btn btn-dark px-3 px-md-4 disabled" : "btn btn-outline-dark px-3 px-md-4"}
                                                     onClick={() => handleLoadCustomPage(index)}
                                                 > {index} </button>
                                             );
                                         }
                                         return rows;
                                     })()}
-                                    <button className={currPage >= maxPage ? 'btn btn-danger px-4 px-md-4 disabled' : 'btn btn-outline-danger px-4 px-md-4'}
+                                    <button className={currPage >= maxPage ? 'btn btn-dark px-3 px-md-4 disabled' : 'btn btn-outline-dark px-3 px-md-4'}
                                         onClick={() => handleLoadNextPage()}
                                     >
-                                        Next
-                                        <i className="bi bi-caret-right m-0 p-0"></i>
+                                        {/* Next */}
+                                        <i className="bi bi-arrow-right m-0 p-0"></i>
                                     </button>
                                 </div>
                             </>

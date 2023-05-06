@@ -14,6 +14,7 @@ if (loggedUser) {
 
 const USER_LOGIN = 'user/userLogin';
 const USER_REGISTER = 'user/userRegister';
+const USER_VERIFY = 'user/userVerify';
 const UPDATE_PROFILE = 'user/userProfileUpdate';
 
 export const loginAsync = createAsyncThunk(
@@ -23,7 +24,7 @@ export const loginAsync = createAsyncThunk(
             const config = { headers: { 'Content-Type': 'application/json', }, };
             const response = await axios.post('/api/users/login', { email, password }, config,);
             if (checked) {
-                localStorage.setItem('user', JSON.stringify(response.data));   
+                localStorage.setItem('user', JSON.stringify(response.data));
             }
             return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
         } catch (error) {
@@ -35,6 +36,32 @@ export const loginAsync = createAsyncThunk(
         }
     }
 );
+
+export const userVerifyAsync = createAsyncThunk(
+    USER_VERIFY,
+    async (arg, thunkAPI) => {
+        try {
+            const token = JSON.parse(loggedUser).token;
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            };
+            const response = await axios.get(`api/users/validateToken`, config);
+            localStorage.setItem('user', JSON.stringify(response.data));
+            return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
+        } catch (error) {
+            if (error.code === "ERROR_BAD_RESPONSE") {
+                console.log(error);
+                return thunkAPI.rejectWithValue({ error: "Couldn't connect to server at this moment. Please try again after some time." });
+            } else {
+                return thunkAPI.rejectWithValue(error.response.data.message);
+            }
+        }
+    }
+);
+
 export const registerAsync = createAsyncThunk(
     USER_REGISTER,
     async ({ fname, mname, lname, name, email, phone, gender, password }, thunkAPI) => {
@@ -118,6 +145,19 @@ export const userSlice = createSlice({
             .addCase(registerAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
                 state.errorMessage = action.payload.error;
+            })
+
+            .addCase(userVerifyAsync.pending, (state) => {
+                state.status = 'LOADING';
+                state.errorMessage = '';
+            })
+            .addCase(userVerifyAsync.fulfilled, (state, action) => {
+                state.status = 'LOADED';
+                state.user = JSON.parse(action.payload);
+            })
+            .addCase(userVerifyAsync.rejected, (state, action) => {
+                state.status = 'ERROR';
+                state.errorMessage = action.payload;
             })
 
             .addCase(updateProfileAsync.pending, (state) => {
