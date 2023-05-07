@@ -10,7 +10,10 @@ import './Products.css'
 const AddProduct = () => {
 
   // const navigate = useNavigate()
-  const getCategoryURL = "http://localhost:5010/api/category/";
+  
+
+  const serverURL = process.env.REACT_APP_SERVER_URL;
+  const getCategoryURL = `${serverURL}/api/category/`;
 
   const navigate = useNavigate();
 
@@ -56,8 +59,8 @@ const AddProduct = () => {
       })
   }
 
-  const addNewProductURL = 'http://localhost:5010/api/products';
-  const imageUploadURL = 'http://localhost:5010/api/upload';
+  const addNewProductURL = `${serverURL}/api/products`;
+  const imageUploadURL = `${serverURL}/api/upload`;
   let file = null;
   // let temp_file = null;
   let files = null;
@@ -347,12 +350,12 @@ const AddProduct = () => {
               </div>
             </div>
             <div className="col-4 mb-3">
-              {imageInputShow && <img src={`http://localhost:5010${product.image}`} alt="product" style={{ width: '100px', height: '100px' }} />}
+              {imageInputShow && <img src={`${serverURL}${product.image}`} alt="product" style={{ width: '100px', height: '100px' }} />}
             </div>
             <div className="col-8 mb-3">
               {multiImageInputShow &&
                 images.map((image) => (
-                  <img key={image} src={`http://localhost:5010${image}`} className="mx-2 mb-3" alt="product" style={{ width: '100px', height: '100px' }} />
+                  <img key={image} src={`${serverURL}${image}`} className="mx-2 mb-3" alt="product" style={{ width: '100px', height: '100px' }} />
                 ))
               }
             </div>

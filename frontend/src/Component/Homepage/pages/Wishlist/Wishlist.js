@@ -63,7 +63,7 @@ const Wishlist = () => {
                             <h5 className="pb-2 pt-md-2 my-4 mt-lg-5 fs-6">My Wishlist<span className="fs-base fw-normal text-muted"> ({count} items)</span></h5>
                             <div className="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1 g-sm-2 g-md-3 g-lg-4">
                                 {wishlistItems.map((product) => (
-                                    <div key={product.pId} className="col">
+                                    <div key={product.wId} className="col">
                                         <div className="card product_card p-0 p-md-0 m-0 shadow-sm rounded-0">
                                             <img src={product.image} className="card-img-top rounded-0" alt="card 1" />
                                             <div className="card-body p-2">
@@ -71,7 +71,7 @@ const Wishlist = () => {
                                                 <p className="card-title lh-md-1 my-0 my-md-1"><b>{product.name}</b></p>
                                                 <p className="fw-bold lh-1 my-2">₹{product.price}</p>
                                                 <button type="button" className="btn bg-warning w-100"
-                                                    onClick={() => navigate(`/products/${product._id}`)}>
+                                                    onClick={() => navigate(`/products/${product.wId}`)}>
                                                     View details
                                                 </button>
                                                 <button type="button" className="btn btn-outline-danger w-100 mt-2 small"
