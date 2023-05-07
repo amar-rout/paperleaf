@@ -61,7 +61,7 @@ const Login = () => {
         if (loginStatus === "LOADED") {
             dispatch(clearState());
             setLoading(false);
-            navigate(-1);
+            navigate('/');
         }
         if (loginStatus === "ERROR") {
             setErrorMessage(loginErrorMessage);

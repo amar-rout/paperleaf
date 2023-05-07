@@ -21,7 +21,7 @@ router
   // .get(protect, isAdmin, getAllOrders);
 
 router.route('/newOrder').post(createNewOrder);
-router.route('/:id/success').post(successOrder);
+router.route('/:id/success').post(protect, successOrder);
 // router.route('/newOrder').get(protect, createNewOrder);
 
 router.route('/myorders').get(protect, getOrderUserOrders);

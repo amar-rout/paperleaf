@@ -49,11 +49,12 @@ export const userVerifyAsync = createAsyncThunk(
                 },
             };
             const response = await axios.get(`api/users/validateToken`, config);
+            console.log(response.data);
             localStorage.setItem('user', JSON.stringify(response.data));
             return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
         } catch (error) {
             if (error.code === "ERROR_BAD_RESPONSE") {
-                console.log(error);
+                // console.log(error);
                 return thunkAPI.rejectWithValue({ error: "Couldn't connect to server at this moment. Please try again after some time." });
             } else {
                 return thunkAPI.rejectWithValue(error.response.data.message);
@@ -72,11 +73,11 @@ export const registerAsync = createAsyncThunk(
             return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
         } catch (error) {
             if (error.code === "ERROR_BAD_RESPONSE") {
-                console.log("Response : " + error);
+                // console.log("Response : " + error);
                 return thunkAPI.rejectWithValue({ error: "Couldn't connect to server at this moment. Please try again after some time." });
             } else {
-                console.log("Request : ");
-                console.log(error);
+                // console.log("Request : ");
+                // console.log(error);
                 return thunkAPI.rejectWithValue({ error: error.response.data.message });
             }
         }
@@ -144,6 +145,7 @@ export const userSlice = createSlice({
             })
             .addCase(registerAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
+                state.user = JSON.parse("");
                 state.errorMessage = action.payload.error;
             })
 

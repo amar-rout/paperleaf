@@ -14,7 +14,7 @@ import { addCartAsync } from "../../../../app/cartSlice";
 import { ToastContainer } from 'react-toastify';
 
 import './Products.css';
-import RecentlyViewedProducts from '../Home/RecentlyViewedProducts/RecentlyViewedProducts';
+// import RecentlyViewedProducts from '../Home/RecentlyViewedProducts/RecentlyViewedProducts';
 
 const Products = () => {
 
@@ -30,9 +30,9 @@ const Products = () => {
     const [modalImgInfo, setModalImgInfo] = useState("");
 
     const [nav1, setNav1] = useState(null);
-    const [nav2, setNav2] = useState(null);
+    // const [nav2, setNav2] = useState(null);
     let slider1 = '';
-    let slider2 = '';
+    // let slider2 = '';
 
     const responsiveSetting = [{
         breakpoint: 480,
@@ -65,8 +65,8 @@ const Products = () => {
         window.scrollTo(0, 0);
         setProductID(id);
         setNav1(slider1);
-        setNav2(slider2);
-    }, [id, slider1, slider2]);
+        // setNav2(slider2);
+    }, [id, slider1]);
 
     useEffect(() => {
         setProduct(getProduct);
@@ -188,7 +188,7 @@ const Products = () => {
                                     </div> */}
                                     <div className='px-1'>
                                         <Slider
-                                            asNavFor={nav2}
+                                            asNavFor={nav1}
                                             ref={slider => (slider1 = slider)}
                                             speed={500}
                                             slidesToShow={2}

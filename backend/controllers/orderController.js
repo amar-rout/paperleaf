@@ -3,6 +3,7 @@ import asyncHandler from 'express-async-handler';
 import OrderModel from '../models/orderModel.js';
 import PaymentModel from '../models/paymentModel.js';
 import ProductModel from '../models/productModel.js';
+import UserModel from '../models/userModel.js';
 import sanitize from '../utils/sanitize.js';
 import Mongoose from 'mongoose';
 import axios from 'axios';
@@ -14,7 +15,7 @@ import crypto from 'crypto';
 // @route POST /api/orders
 // @access Private
 export const createNewOrder = asyncHandler(async (req, res) => {
-  const {grandTotal} = req.body;
+  const { grandTotal } = req.body;
   let amount = grandTotal * 100;
   console.log(amount);
   try {
@@ -44,39 +45,127 @@ export const createNewOrder = asyncHandler(async (req, res) => {
 // @access Private
 export const successOrder = asyncHandler(async (req, res) => {
   // const { id } = req.params.id;
+  // type ObjectId = Schema.Types.ObjectId;
+
+  const user = req.user;
   try {
     const {
+      orderId,
+      items,
+      address,
+      discountAmount,
+      grandTotal,
+      shippingCost,
+      totalAmount,
+      paymentMethod,
       orderCreationId,
       razorpayPaymentId,
       razorpayOrderId,
       razorpaySignature,
     } = req.body;
-    // Creating our own digest
-    // The format should be like this:
-    // digest = hmac_sha256(orderCreationId + "|" + razorpayPaymentId, secret);
-    const shasum = crypto.createHmac("sha256", "XvY6c8ukwbGyyqA0Xc5cu49q");
-    shasum.update(`${orderCreationId}|${razorpayPaymentId}`);
-    const digest = shasum.digest("hex");
 
-    // comaparing our digest with the actual signature
-    if (digest !== razorpaySignature) {
-      return res.status(400).json({ msg: "Transaction is not legit!" });
+    let paymStatus = "";
+    let itemArray = [];
+    let payId = "";
+    let isPaid = false;
+
+    if (paymentMethod === 'online') {
+      // Creating our own digest
+      // The format should be like this:
+      // digest = hmac_sha256(orderCreationId + "|" + razorpayPaymentId, secret);
+      const shasum = crypto.createHmac("sha256", "XvY6c8ukwbGyyqA0Xc5cu49q");
+      shasum.update(`${orderCreationId}|${razorpayPaymentId}`);
+      const digest = shasum.digest("hex");
+
+      // comaparing our digest with the actual signature
+      if (digest !== razorpaySignature) {
+        // return res.status(400).json({ msg: "Transaction is not legit!" });
+        paymStatus = 'fail';
+      } else {
+        
+        // THE PAYMENT IS LEGIT & VERIFIED
+        // YOU CAN SAVE THE DETAILS IN YOUR DATABASE IF YOU WANT
+        const payment = new PaymentModel({
+          orderCreationId: orderCreationId,
+          razorpayPaymentId: razorpayPaymentId,
+          razorpayOrderId: razorpayOrderId,
+          razorpaySignature: razorpaySignature,
+        });
+
+        const createdPayment = await payment.save();
+        if (createdPayment) {
+          paymStatus = 'success';
+          payId = createdPayment._id;
+          isPaid = true;
+        }
+      }
+    } else {
+      paymStatus = 'pending';
     }
 
-    // THE PAYMENT IS LEGIT & VERIFIED
-    // YOU CAN SAVE THE DETAILS IN YOUR DATABASE IF YOU WANT
+    if (items && items.length === 0) {
+      res.status(400);
+      throw new Error('No items in this order');
+    } else {
+      for (const item in items) {
+        await ProductModel.findById(sanitize(items[item].pId))
+          .then((res) => {
+            itemArray.push({
+              id: res._id,
+              name: res.name,
+              image: res.image,
+              size: items[item].size,
+              category: res.category,
+              quantity: items[item].qty,
+              price: res.price,
+            });
+          })
+          .catch((err) => {
+            res.status(404);
+            throw new Error('Item in order not found, try again later');
+          });
+      }
+    }
 
-    const payment = new PaymentModel({
-      orderCreationId: orderCreationId,
-      razorpayPaymentId: razorpayPaymentId,
-      razorpayOrderId: razorpayOrderId,
-      razorpaySignature: razorpaySignature,
-    });
+    const addr = {
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      altphone: address.altphone.toString(),
+      address1: address.address1.toString(),
+      address2: address.address2.toString(),
+      landmark: address.landmark.toString(),
+      city: address.city.toString(),
+      state: address.state.toString(),
+      pincode: address.pincode.toString(),
+      country: 'IN'
+    };
 
-    console.log(payment);
+    // console.log("Addr" + addr);
+    // Generate data for OrderModel
 
-    const createdPayment = await payment.save();
+    const order = new OrderModel({
+      // _id: Mongoose.Types.ObjectId("230507000115"),
+      user: user._id,
+      orderId: orderId,
+      orderItems: itemArray,
+      address: addr,
+      shippingCost: shippingCost,
+      totalCost: totalAmount,
+      discountCost: discountAmount,
+      grandTotal: grandTotal,
+      paymentMethod: paymentMethod,
+      paymentStatus: paymStatus,
+      paymentId: payId,
+      isPaid: isPaid,
+      paidAt: new Date(),
+    })
 
+    const createdOrder = await order.save();
+
+    // console.log("Order: " + createdOrder);
+
+    res.status(201).json({ msg: 'success', createdOrder });
     // res.json({
     //   msg: "success",
     //   orderId: razorpayOrderId,
@@ -87,8 +176,9 @@ export const successOrder = asyncHandler(async (req, res) => {
     //   orderId: razorpayOrderId,
     //   paymentId: razorpayPaymentId,
     // });
-    res.status(201).json({msg: 'success', createdPayment});
+
   } catch (error) {
+    console.log(error);
     res.status(500).send(error);
   }
 });

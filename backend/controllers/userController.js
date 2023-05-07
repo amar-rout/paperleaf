@@ -38,8 +38,9 @@ export const validateToken = asyncHandler(async (req, res) => {
   if (req.user && req.user !== 'undefined') {
     console.log(req.user);
     const user = await UserModel.findById(req.user.id);
+    // console.log(user);
     if (user) {
-      res.json({
+      res.status(201).json({
         _id: user._id,
         name: user.name,
         email: user.email,

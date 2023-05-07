@@ -131,8 +131,9 @@
 
 .btn-payment {
 	--bs-btn-active-color: goldenrod !important;
-  	--bs-btn-active-bg: black !important;
-  	--bs-btn-active-border-color: black !important;
+	--bs-btn-active-bg: #FFFF00 !important;
+  	/* --bs-btn-active-bg: hsla(216, 35%, 31.4%, 1) !important; */
+  	--bs-btn-active-border-color: #FFFF00 !important;
 }
 
 @media (min-width: 992px) {

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from "react-toastify";
 const initialState = {
     wishlistItems: [],
     wishlistCount: 0,
@@ -20,6 +21,16 @@ export const WishlistSlice = createSlice({
             state.wishlistItems.push(action.payload);
             state.wishlistCount += 1;
             localStorage.setItem('wishlistItems', JSON.stringify(state.wishlistItems));
+            toast.success(`${action.payload.name} saved in wishlist.`, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         },
         removeWishlistItem: (state, action) => {
             const removeItem = state.wishlistItems.filter((item) => item.wId !== action.payload);

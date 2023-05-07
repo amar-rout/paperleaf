@@ -9,21 +9,19 @@ import { Link, useNavigate } from 'react-router-dom';
 // import { Alert } from 'bootstrap';
 
 function CheckoutNew() {
+    const initialAddress = {
+        altphone: "",
+        address1: "",
+        landmark: "",
+        address2: "",
+        city: "",
+        state: "",
+        pincode: "",
+    };
+    const [address, setAddress] = useState(initialAddress);
 
     const navigate = useNavigate();
     // const [messageData, setMessageData] = useState("");
-    const next = () => {
-        const nextTabLinkEl = $('.nav-fill .active').closest('li').next('li').find('a')[0];
-        const nextTab = new bootstrap.Tab(nextTabLinkEl);
-        nextTab.show();
-    }
-
-    const prev = () => {
-        const prevTabLinkEl = $('.nav-fill .active').closest('li').prev('li').find('a')[0];
-        const prevTab = new bootstrap.Tab(prevTabLinkEl);
-        prevTab.show();
-    }
-
     // $('.btnNext').click(function () {
     // });
     // $('.btnPrevious').click(function () {
@@ -49,6 +47,27 @@ function CheckoutNew() {
             setUser(loginUser);
         }
     }, []);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setAddress({
+            ...address,
+            [name]: [value]
+        });
+        // console.log(address);
+    }
+
+    const next = () => {
+        const nextTabLinkEl = $('.nav-fill .active').closest('li').next('li').find('a')[0];
+        const nextTab = new bootstrap.Tab(nextTabLinkEl);
+        nextTab.show();
+    }
+
+    const prev = () => {
+        const prevTabLinkEl = $('.nav-fill .active').closest('li').prev('li').find('a')[0];
+        const prevTab = new bootstrap.Tab(prevTabLinkEl);
+        prevTab.show();
+    }
 
     // useEffect(() => {
     //     if (messageData === 'Success') {
@@ -80,7 +99,7 @@ function CheckoutNew() {
 
     const processOrder = () => {
         if (paymentMethod === 'cod') {
-            alert('Order Success');
+            placeOrder();
         } else if (paymentMethod === 'online') {
             displayRazorpay();
         }
@@ -139,28 +158,43 @@ function CheckoutNew() {
             amount: amount.toString(),
             currency: currency,
             name: "Paperleaf",
-            description: "Test Transaction",
+            description: "",
             // image: { logo },
             order_id: order_id,
             // callback_url: 'https://localhost:3000/checkout/success',
             // redirect: true,
             handler: async function (response) {
                 const data = {
+                    orderId: Date.now(),
+                    items: checkoutItems,
+                    address: address,
+                    discountAmount: checkoutAmount.discountAmount,
+                    grandTotal: checkoutAmount.grandTotal,
+                    shippingCost: checkoutAmount.shippingCost,
+                    totalAmount: checkoutAmount.totalAmount,
+                    paymentMethod: 'online',
                     orderCreationId: order_id,
                     razorpayPaymentId: response.razorpay_payment_id,
                     razorpayOrderId: response.razorpay_order_id,
                     razorpaySignature: response.razorpay_signature,
                 };
 
-                console.log(data);
-                const config = { headers: { 'Content-Type': 'application/json', }, };
+                const config = {
+                    'headers':
+                    {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${user.token}`,
+                    },
+                };
                 const result = await axios.post(`/api/orders/${order_id}/success`, data, config);
                 alert(result.data);
-                if(result.data) {
-                    console.log(result.data.msg);
+                if (result.data) {
+                    localStorage.removeItem('cartItems');
+                    localStorage.removeItem('checkout_items');
+                    localStorage.removeItem('checkout_details');
                     navigate('/checkout/success');
                 }
-                
+
                 // if (result.data.msg === 'Success') {
                 //     global.location.href(`http://localhost:3000/checkout/${order_id}/success`);
                 // } else {
@@ -169,12 +203,12 @@ function CheckoutNew() {
                 // setMessageData(result.data.msg);
             },
             prefill: {
-                name: "Amarendra Rout",
-                email: "amarendrarout34@gmail.com",
-                contact: "7043096106",
+                name: user.name,
+                email: user.email,
+                contact: user.phone,
             },
             notes: {
-                address: "Paperleaf Corporate Office",
+                address: address,
             },
             theme: {
                 // color: "#61dafb",
@@ -194,6 +228,35 @@ function CheckoutNew() {
         });
     }
 
+    const placeOrder = async () => {
+        const data = {
+            orderId: Date.now(),
+            items: checkoutItems,
+            address: address,
+            discountAmount: checkoutAmount.discountAmount,
+            grandTotal: checkoutAmount.grandTotal,
+            shippingCost: checkoutAmount.shippingCost,
+            totalAmount: checkoutAmount.totalAmount,
+            paymentMethod: 'cod',
+        };
+
+        const config = {
+            'headers':
+            {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`,
+            },
+        };
+        const result = await axios.post(`/api/orders/${data.orderid}/success`, data, config);
+        alert(result.data);
+        if (result.data) {
+            localStorage.removeItem('cartItems');
+            localStorage.removeItem('checkout_items');
+            localStorage.removeItem('checkout_details');
+            navigate('/checkout/success');
+        }
+    }
+
     return (
         <div className='bg-light py-5'>
             <div className='container py-3 px-md-4'>
@@ -207,95 +270,99 @@ function CheckoutNew() {
                                         <span className="step-number">01</span>
                                         <span className="step-title d-block">Billing Info</span>
                                     </a>
-                                    <hr class="flex-fill track-line border border-2 border-success flex-shrink flex-fill" />
+                                    {/* <hr class="flex-fill track-line border border-2 border-success flex-shrink flex-fill" /> */}
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <a className="nav-link check_nav-link text-center" data-bs-toggle="tab" href="#menu1">
                                         <span className="step-number">02</span>
                                         <span className="step-title d-block">Shipping Info</span>
                                     </a>
                                     <hr class="flex-fill track-line border border-2 border-success flex-shrink flex-fill" />
-                                </li>
+                                </li> */}
                                 <li className="nav-item">
                                     <a className="nav-link check_nav-link text-center" data-bs-toggle="tab" href="#menu2">
-                                        <span className="step-number">03</span>
+                                        <span className="step-number">02</span>
                                         <span className="step-title d-block">Payment Info</span>
                                     </a>
-                                    <hr class="flex-fill track-line border border-2 border-success flex-shrink flex-fill" />
+                                    {/* <hr class="flex-fill track-line border border-2 border-success flex-shrink flex-fill" /> */}
                                 </li>
                             </ul>
                             <div className="tab-content mt-2 mt-md-4">
                                 <div className="tab-pane container active" id="home">
-                                    <div className="row g-2">
-                                        <div className="col-12 col-md-4 px-2">
-                                            <label className="form-label small ms-2" for="c-fn">Name</label>
-                                            <input className="form-control shadow-none border-1 border-secondary" name='name' type="text" placeholder="Enter full name" required="" id="name" />
+                                    <div className="row">
+                                        <div className="col-12 text-center">
+                                            <h5 className='border-2 border-bottom pb-3'>Billing Address</h5>
                                         </div>
+                                        {/* <div className="col-12 col-md-4 px-2">
+                                            <label className="form-label small ms-2" for="name">Name</label>
+                                            <input className="form-control shadow-none border-1 border-secondary" name='name' type="text" placeholder="Enter full name" id="name" onChange={handleChange} required />
+                                        </div> */}
                                         {/* <div className="col-12 col-md-6">
                                             <label className="form-label small" for="c-ln">Last name</label>
                                             <input className="form-control shadow-none border-1 border-secondary" type="text" placeholder="Your last name" required="" id="c-ln" />
                                         </div> */}
-                                        <div className="col-12 col-md-4 px-2">
-                                            <label className="form-label small" for="c-email">Email</label>
-                                            <input className="form-control shadow-none border-1 border-secondary" type="email" placeholder="Email address" required="" id="c-email" />
-                                        </div>
-                                        <div className="col-12 col-md-4 px-2">
-                                            <label className="form-label small" for="c-phone">Phone</label>
+                                        {/* <div className="col-12 col-md-4 px-2">
+                                            <label className="form-label small" for="email">Email</label>
+                                            <input className="form-control shadow-none border-1 border-secondary" type="email" placeholder="Email address" required id="email" name='email' onChange={handleChange} />
+                                        </div> */}
+                                        <div className="col-12 col-md-6 px-3 mb-2 mb-md-3 ">
+                                            <label className="form-label small" for="altphone">Phone</label>
                                             <div className='input-group'>
-                                                <span className="input-group-text border-1 border-secondary">+91</span>
-                                                <input className="form-control shadow-none border-1 border-secondary" type="tel" placeholder="Enter phone number" required="" id="phone" />
+                                                <span className="input-group-text border-1 border-secondary border-end-0 py-3">+91</span>
+                                                <input className="form-control shadow-none border-1 border-start-0 border-secondary py-3" type="tel" placeholder="Enter phone number" required id="altphone" name='altphone' onChange={handleChange} />
                                             </div>
                                         </div>
-                                        <div className="col-12 col-md-6 px-2">
-                                            <label className="form-label small" for="c-address">Address line 1</label>
-                                            <input className="form-control shadow-none border-1 border-secondary" type="text" name='address1' required="" id="address1" placeholder='Flat/Building/Plot No' />
+                                        <div className="col-12 col-md-6 px-3 mb-2 mb-md-3">
+                                            <label className="form-label small" for="landmark">Landmark</label>
+                                            <input className="form-control shadow-none border-1 border-secondary py-3" type="text" name='landmark' required id="landmark" placeholder='Landmark or Near by location' onChange={handleChange} />
                                         </div>
-                                        <div className="col-12 col-md-6 px-2">
-                                            <label className="form-label small" for="c-address">Landmark</label>
-                                            <input className="form-control shadow-none border-1 border-secondary" type="text" name='address1' required="" id="address1" placeholder='Landmark or Near by location' />
+                                        <div className="col-12 col-md-6 px-3 mb-2 mb-md-3">
+                                            <label className="form-label small" for="address1">Address line 1</label>
+                                            <input className="form-control shadow-none border-1 border-secondary py-3" type="text" name='address1' required id="address1" placeholder='Flat/Building/Plot No' onChange={handleChange} />
                                         </div>
-                                        <div className="col-12">
-                                            <label className="form-label small" for="c-address">Address line 2</label>
-                                            <input className="form-control shadow-none border-1 border-secondary" type="text" name='address2' required="" id="address2" placeholder='Enter your address here' />
+                                        <div className="col-12 col-md-6 px-3 mb-2 mb-md-3">
+                                            <label className="form-label small" for="address2">Address line 2</label>
+                                            <input className="form-control shadow-none border-1 border-secondary py-3" type="text" name='address2' required id="address2" placeholder='Enter your address here' onChange={handleChange} />
                                         </div>
-                                        {/* <div className="col-12 col-md-4 px-2">
+                                        {/* <div className="col-12 col-md-4  mb-2 mb-md-3">
                                             <label className="form-label small" for="c-country">Country</label>
                                             <select className="form-select" required="" name='country' id="country">
                                                 <option value="" selected="" disabled="">Select a country</option>
                                                 <option value="Australia">India</option>
                                             </select>
                                         </div> */}
-                                        <div className="col-12 col-md-4 px-2">
-                                            <label className="form-label small" for="c-city">City</label>
-                                            <input type='text' className="form-control shadow-none border-1 border-secondary" required="" name='city' id="city" placeholder='Enter your city' />
+                                        <div className="col-12 col-md-4 px-3 mb-2 mb-md-3">
+                                            <label className="form-label small" for="city">City</label>
+                                            <input type='text' className="form-control shadow-none border-1 border-secondary py-3" required name='city' id="city" onChange={handleChange} placeholder='Enter your city' />
                                         </div>
-                                        <div className="col-12 col-md-4 px-2">
-                                            <label className="form-label small" for="c-zip">State</label>
-                                            <input className="form-control shadow-none border-1 border-secondary" type="text" name="state" placeholder="Enter state" required="" id="state" />
+                                        <div className="col-12 col-md-4 px-3 mb-2 mb-md-3">
+                                            <label className="form-label small" for="state">State</label>
+                                            <input className="form-control shadow-none border-1 border-secondary py-3" type="text" name="state" placeholder="Enter state" required id="state" onChange={handleChange} />
                                         </div>
-                                        <div className="col-12 col-md-4 px-2">
-                                            <label className="form-label small" for="c-zip">PIN Code</label>
-                                            <input className="form-control shadow-none border-1 border-secondary" type="text" name="pincode" placeholder="Enter pincode" required="" id="pincode" />
+                                        <div className="col-12 col-md-4 px-3 mb-2 mb-md-3">
+                                            <label className="form-label small" for="pincode">PIN Code</label>
+                                            <input className="form-control shadow-none border-1 border-secondary py-3" type="text" name="pincode" placeholder="Enter pincode" required id="pincode" onChange={handleChange} />
                                         </div>
 
                                         {/* <div className="col-12">
                                     <label className="form-label fs-base" for="c-notes">Order notes <span className="text-muted">(optional)</span></label>
                                     <textarea className="form-control shadow-none border-1 border-secondary form-control shadow-none border-1 border-secondary-lg" rows="3" id="c-notes"></textarea>
                                 </div> */}
-                                        <div className="col-12">
+                                        {/* <div className="col-12">
                                             <div className="form-check my-3 ms-2">
                                                 <input className="form-control shadow-none border-1 border-secondary form-check-input shadow-none p-1" type="checkbox" id="same-address" />
                                                 <label className="form-check-label fw-normal small mx-2" for="same-address">Billing address same as delivery</label>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className='mt-4 mb-2 d-flex flex-0 justify-content-between align-items-center'>
                                         {/* <a className="btn btn-outline-dark px-3 py-2 disabled" onClick={prev}>Back</a> */}
                                         <span></span>
-                                        <Link className="btn btn-primary px-3 py-2" onClick={next}>Next</Link>
+                                        {/* <Link className="btn btn-primary px-4 py-2 fw-normal" onClick={next}>Next</Link> */}
+                                        <Link className="btn btn-outline-dark btn-lg px-3 py-2 fs-6 fw-normal" onClick={next}>Next</Link>
                                     </div>
                                 </div>
-                                <div className="tab-pane container fade" id="menu1">
+                                {/* <div className="tab-pane container fade" id="menu1">
                                     <div>
                                         <div className="card-title fs-6 fw-400">Shipping information</div>
                                         <p className="card-title-desc">It will be as simple as occidental in fact</p>
@@ -326,12 +393,15 @@ function CheckoutNew() {
                                         <Link className="btn btn-outline-dark px-3 py-2" onClick={prev}>Back</Link>
                                         <Link className="btn btn-primary" onClick={next}>Next</Link>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="tab-pane container fade" id="menu2">
-                                    <div className="card-title fw-normal">Payment information</div>
-                                    <p className="card-title-desc">It will be as simple as occidental in fact</p>
-                                    <div>
-                                        <p className="small">Payment method :</p>
+                                    {/* <div className="card-title fs-6 mb-3">Payment information</div> */}
+                                    <div className='row'>
+                                        <div className="col-12 text-center">
+                                            <h5 className='border-2 border-bottom pb-3'>Payment Method</h5>
+                                        </div>
+                                    </div>
+                                    <div className='my-3'>
                                         {/* <div className="row"> */}
                                         {/* <div className="col-sm-6 col-lg-4">
                                                 <div><label className="form-label card-radio-label mb-3"><input name="pay-method"
@@ -362,11 +432,12 @@ function CheckoutNew() {
                                             </div> */}
                                         <div className="btn-group payment-method" role="group" aria-label="Basic radio toggle button group">
                                             <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autocomplete="off" />
-                                            <label className="py-2 px-4 me-2 w-25 btn btn-outline-dark btn-payment rounded-2 text-start" for="btnradio1"
+                                            <label className="py-2 me-2 w-50 btn btn-outline-dark btn-payment rounded-2 text-start" for="btnradio1"
                                                 onClick={() => setPaymentMethod('online')}
                                             >
-                                                <i className="bi bi-credit-card-2-front me-1 me-md-3" style={{ fontSize: '24px' }}></i>
-                                                <span className='fw-normal'>Razorpay</span>
+                                                {/* <i className="bi bi-credit-card-2-front me-1 me-md-3" style={{ fontSize: '24px' }}></i> */}
+                                                <img src='/assets/images/razorpay.png' height={36} alt='razorpay' />
+                                                {/* <span className='fw-normal'>Razorpay</span> */}
                                             </label>
 
                                             {/* <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked />
@@ -376,11 +447,18 @@ function CheckoutNew() {
                                             </label> */}
 
                                             <input type="radio" className="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
-                                            <label className="py-2 px-2 px-md-4 w-25 btn btn-outline-dark btn-payment rounded-2 text-start" for="btnradio3"
+                                            <label className="ps-5 px-md-4 w-50 btn btn-outline-dark btn-payment rounded-2 text-start" for="btnradio3"
                                                 onClick={() => setPaymentMethod('cod')}
                                             >
-                                                <i className="bi bi-cash me-1 me-md-3" style={{ fontSize: '24px' }}></i>
-                                                <span className='fw-normal '>Cash on Delivery</span>
+                                                <i className="bi bi-cash me-1 me-md-3 text-dark" style={{ fontSize: '24px' }}></i>
+                                                <span className='fw-semibold text-dark mx-2' style={{ fontSize: '18px' }}>COD</span>
+                                                {/* <div className='d-flex flex-row justify-content-between align-items-center'>
+                                                    <span className='fw-normal p-0 text-dark' style={{ fontSize: '40px' }}>₹</span>
+                                                    <span className='fw-semibold text-dark mx-3' style={{ fontSize: '14px' }}>CASH ON DELIVERY</span>
+                                                </div> */}
+                                                {/* <span className='fw-normal text-dark' style={{ fontSize: '18px' }}>₹ COD</span> */}
+                                                {/* <span className='fw-semibold text-dark mx-3' style={{ fontSize: '14px' }}>CASH ON DELIVERY</span> */}
+                                                {/* <img src='/assets/images/cod.png' height={40} alt='razorpay' /> */}
                                             </label>
                                         </div>
                                         {/* </div> */}
@@ -424,8 +502,8 @@ function CheckoutNew() {
                                         </div> */}
                                     </div>
                                     <div className='mt-4 d-flex flex-0 justify-content-between align-items-center'>
-                                        <Link className="btn btn-outline-dark px-3 py-2" onClick={prev}>Back</Link>
-                                        <Link className="btn btn-warning btn-md px-4" onClick={processOrder}>Pay now</Link>
+                                        <Link className="btn btn-outline-dark btn-lg px-3 py-2 fs-6 fw-normal" onClick={prev}>Back</Link>
+                                        <Link className="btn btn-warning btn-lg px-3 py-2 fs-6 fw-normal border-secondary" onClick={processOrder}>Pay now</Link>
                                     </div>
                                 </div>
                             </div>

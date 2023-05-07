@@ -8,17 +8,14 @@ import { toast } from "react-toastify";
 
 import {
     userVerifyAsync,
-    selectUser,
-    selectStatus,
-    selectErrorMessage,
 } from "../../../../app/userSlice";
 
 const CartItems = (products) => {
     const cartCount = useSelector(getCartCount);
     const dispatch = useDispatch();
     const [user, setUser] = useState();
-    const loginUserState = useSelector(selectStatus);
-    const loginErrorMessage = useSelector(selectErrorMessage);
+    // const loginUserState = useSelector(selectStatus);
+    // const loginErrorMessage = useSelector(selectErrorMessage);
     // const [errorMessage, setErrorMessage ] = useState("");
     // const serverURL = process.env.REACT_APP_SERVER_URL;
     const [cartItems, setCartItems] = useState([]);
