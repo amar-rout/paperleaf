@@ -92,6 +92,7 @@ const CategoryItems = () => {
 
     useEffect(() => {
         setCategory(id);
+        setPage(1);
         window.scrollTo(0, 0);
         // dispatch(clearState());
     }, [dispatch, id]);
@@ -109,7 +110,7 @@ const CategoryItems = () => {
     useEffect(() => {
         if (getProductStatus === "LOADING") {
             setLoading(true);
-            // dispatch(clearState());
+            dispatch(clearState());
         }
         if (getProductStatus === "LOADED") {
             setProducts(listCatProduct);
@@ -152,7 +153,8 @@ const CategoryItems = () => {
         let prevPage = page - 1;
         dispatch(listCategoryProductsAsync({ category, prevPage }));
         dispatch(clearState());
-        navigate(`/category/${category}?page=${page - 1}`);
+        // navigate(`/category/${category}?page=${page - 1}`);
+        navigate(`/category/${category}?page=${prevPage}`);
     }
 
     const handleLoadNextPage = () => {
@@ -160,11 +162,13 @@ const CategoryItems = () => {
         let nextPage = page + 1;
         dispatch(listCategoryProductsAsync({ category, nextPage }));
         dispatch(clearState());
-        navigate(`/category/${category}?page=${page + 1}`);
+        // navigate(`/category/${category}?page=${page + 1}`);
+        navigate(`/category/${category}?page=${nextPage}`);
     }
 
     const handleLoadCustomPage = (customPage) => {
-        setPage((prevState) => customPage);
+        // setPage((prevState) => customPage);
+        setPage(customPage);
         dispatch(listCategoryProductsAsync({ category, customPage }));
         dispatch(clearState());
         navigate(`/category/${category}?page=${customPage}`);
@@ -445,28 +449,30 @@ const CategoryItems = () => {
                         {maxPage > 1 && (
                             <>
                                 <div className="input-group input-group-sm justify-content-end">
-                                    <button className={currPage <= 1 ? "btn btn-dark px-3 px-md-4 disabled" : "btn btn-outline-dark px-3 px-md-4"}
+                                    <button className={currPage <= 1 ? "btn btn-dark me-2 pagination_btn rounded-circle disabled" : "btn btn-outline-dark me-2 pagination_btn rounded-circle"}
                                         onClick={() => handleLoadPrevPage()}
                                     >
-                                        <i className="bi bi-arrow-left m-0 p-0"></i>
+                                        {/* <i className="bi bi-arrow-left m-0 p-0"></i> */}
+                                        <i class="bi bi-chevron-left m-0 p-0"></i>
                                         {/* Prev */}
                                     </button>
                                     {(() => {
                                         const rows = [];
                                         for (let index = 1; index <= maxPage; index++) {
                                             rows.push(
-                                                <button className={currPage === index ? "btn btn-dark px-3 px-md-4 disabled" : "btn btn-outline-dark px-3 px-md-4"}
+                                                <button className={currPage === index ? "btn btn-dark me-2 pagination_btn rounded-circle disabled" : "btn btn-outline-dark me-2 pagination_btn rounded-circle"}
                                                     onClick={() => handleLoadCustomPage(index)}
                                                 > {index} </button>
                                             );
                                         }
                                         return rows;
                                     })()}
-                                    <button className={currPage >= maxPage ? 'btn btn-dark px-3 px-md-4 disabled' : 'btn btn-outline-dark px-3 px-md-4'}
+                                    <button className={currPage >= maxPage ? 'btn btn-dark pagination_btn rounded-circle disabled' : 'btn btn-outline-dark pagination_btn rounded-circle'}
                                         onClick={() => handleLoadNextPage()}
                                     >
                                         {/* Next */}
-                                        <i className="bi bi-arrow-right m-0 p-0"></i>
+                                        {/* <i className="bi bi-arrow-right m-0 p-0"></i> */}
+                                        <i class="bi bi-chevron-right py-2"></i>
                                     </button>
                                 </div>
                             </>
