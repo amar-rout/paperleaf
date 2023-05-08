@@ -95,7 +95,7 @@ const Navbar = () => {
                                 </div>
                             </div>
                             <div className="d-flex justify-content-center align-items-center">
-                                <img src="/assets/images/logo/logo-1.png" alt="logo" className="nav-logo-img me-2" style={{ width: '140px', height: '28px' }} />
+                                <img src="/assets/images/logo/logo-1.png" alt="logo" className="nav-logo-img me-2" style={{ width: '210px', height: '42px' }} />
                                 {/* <img src="/assets/images/logo/logo-2.png" alt="logo" className="nav-logo-img d-md-none me-2 mt-1" style={{ width: '32px', height: '32px' }} /> */}
                             </div>
                             <div className="d-flex justify-content-end align-items-right">

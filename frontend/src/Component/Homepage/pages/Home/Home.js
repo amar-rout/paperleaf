@@ -149,11 +149,11 @@ const Home = () => {
                                     <div className="mb-2 ">
                                         <ul className="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li className="nav-item mx-2" role="presentation">
-                                                <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Top Products</button>
+                                                <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">New in Store</button>
                                             </li>
-                                            <li className="nav-item mx-2" role="presentation">
+                                            {/* <li className="nav-item mx-2" role="presentation">
                                                 <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Featured Products</button>
-                                            </li>
+                                            </li> */}
                                         </ul>
                                     </div>
                                     <div className="tab-content" id="pills-tabContent">
@@ -168,7 +168,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <Deals />
+                    {/* <Deals /> */}
                     <div className="bg-light py-5">
                         <div className="container">
                             <div className="row">
@@ -189,7 +189,7 @@ const Home = () => {
                                     </div>
                                 </div> */}
                                 {/* <div className="col-12 col-md-1"></div> */}
-                                <div className="col-12 col-md-12 mb-2">
+                                {/* <div className="col-12 col-md-12 mb-2">
                                     <div className="mb-2">
                                         <ul className="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li className="nav-item" role="presentation">
@@ -207,8 +207,8 @@ const Home = () => {
                                         <div className="tab-pane fade" id="pills-featured" role="tabpanel" aria-labelledby="pills-featured-tab" tabindex="0">
                                             <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
                                         </div>
-                                    </div>
-                                </div>
+                                    </div> */}
+                                {/* </div> */}
                             </div>
                         </div>
                     </div>

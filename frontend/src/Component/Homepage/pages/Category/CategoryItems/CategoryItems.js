@@ -218,7 +218,7 @@ const CategoryItems = () => {
                         // <div className="row">
                         //     <div className="col-12 col-md-4"></div>
                         //     <div className="col-12 col-md-8">
-                        <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 g-3 g-sm-3 g-md-4 g-lg-4">
+                        <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 g-3 g-sm-3 g-md-5 g-lg-5">
                             {products.map((product) => (
                                 <div key={product._id} className="col">
                                     {/* <div className="card product-card bg-light p-0 p-md-0 m-0 shadow-0 rounded-0 border border-0"> */}

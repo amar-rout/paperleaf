@@ -126,7 +126,7 @@ const OrderSuccess = () => {
                         </td>
                         <td>{item.name}, {item.size}</td>
                         <td>{item.quantity}</td>
-                        <td className='text-end'>{formatter.format(item.price)}</td>
+                        <td className='text-end'>{formatter.format(item.price * item.quantity)}</td>
                       </tr>
                     );
                   })
