@@ -20,6 +20,9 @@ code {
 /*********************************************/
 /*              GENERAL CSS                 "/
 /*********************************************/
+* {
+  font-size: 14px !important;
+}
 
 p {
   font-family: 'Noto Sans', sans-serif;
@@ -27,6 +30,7 @@ p {
   /* font-size: 14px !important; */
   /* text-align: justify; */
 }
+
 
 p b {
   font-weight: 600;

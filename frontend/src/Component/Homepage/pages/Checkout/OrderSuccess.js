@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
+import * as moment from 'moment';
 
 import './Checkout.css';
 
@@ -18,13 +19,16 @@ const OrderSuccess = () => {
     currency: 'INR',
     minimumFractionDigits: 2
   });
-  const setDeliveryDate = (createdAt) => {
-      let date = new Date(new Date(createdAt).toISOString());
-      date.setDate(date.getDate() + 7);
-      var dateFormated = date.toISOString().substring(0, 10);
-      // var dateFormated = date.substring(0, 10);
-      return dateFormated;
-  }
+  // const setDeliveryDate = (createdAt) => {
+  //     let date = new Date(new Date(createdAt).toISOString());
+  //     date.setDate(date.getDate() + 7);
+  //     var dateFormated = date.toISOString().substring(0, 10);
+  //     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  //     let deliveryDate = days[new Date(dateFormated).getDay()] + ", " +
+  //                         ;
+  //     return deliveryDate;
+  // }
   return (
     <div class="container my-3">
       <h4 class="text-center mb-2 mb-md-3 mt-2 mt-md-5">
@@ -77,17 +81,20 @@ const OrderSuccess = () => {
                 <div class="col-6 col-md-4 mx-auto mb-1 mb-md-4">
                   <strong>Phone</strong><br /><p className='fs-6 small text-muted'>+91 {order.address.phone}</p>
                 </div>
-                <div class="col-6 col-md-4 mx-auto mb-1 mb-md-4">
+                {/* <div class="col-6 col-md-4 mx-auto mb-1 mb-md-4">
                   <strong>Alt. Phone</strong><br /><p className='fs-6 small text-muted'>+91 {order.address.altphone}</p>
-                </div>
+                </div> */}
                 <div class="col-6 col-md-4 mx-auto mb-1 mb-md-4">
                   <strong>Expected Delivery</strong><br />
                   <p className='fs-6 small text-muted'>
-                    {setDeliveryDate(order.createdAt)}
+                    {/* {setDeliveryDate(order.createdAt)} */}
+
+                    { moment(order.createdAt).add(7, 'days').format("dddd, Do MMM YYYY") }
                   </p>
                   {/* {order.createdAt} */}
                   {/* {new Date(order.createdAt).toLocaleString()} */}
                 </div>
+                <div class="col-6 col-md-4 mx-auto mb-1 mb-md-4"></div>
                 <div class="col-6 col-md-4 mx-auto mb-1 mb-md-4"></div>
               </>
             }
@@ -146,7 +153,7 @@ const OrderSuccess = () => {
             </table>
           </div>
           <div class="text-center">
-            <Link to="/" class="btn btn-primary">Back to Home</Link>
+            <Link to="/" class="btn btn-default btn-primary px-3 py-2 fw-normal">Back to Home</Link>
           </div>
         </div>
       </div>

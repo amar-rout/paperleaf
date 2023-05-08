@@ -98,6 +98,7 @@ const CategoryItems = () => {
     }, [dispatch, id]);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         setProducts(listCatProduct);
         dispatch(clearState());
     }, [dispatch, listCatProduct]);
