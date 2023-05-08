@@ -187,12 +187,12 @@ function CheckoutNew() {
                     },
                 };
                 const result = await axios.post(`/api/orders/${order_id}/success`, data, config);
-                alert(result.data);
+                // alert(result.data);
                 if (result.data) {
                     localStorage.removeItem('cartItems');
                     localStorage.removeItem('checkout_items');
                     localStorage.removeItem('checkout_details');
-                    navigate('/checkout/success');
+                    navigate('/checkout/success', {state: result.data});
                 }
 
                 // if (result.data.msg === 'Success') {
@@ -248,12 +248,12 @@ function CheckoutNew() {
             },
         };
         const result = await axios.post(`/api/orders/${data.orderid}/success`, data, config);
-        alert(result.data);
+        // alert(result.data);
         if (result.data) {
             localStorage.removeItem('cartItems');
             localStorage.removeItem('checkout_items');
             localStorage.removeItem('checkout_details');
-            navigate('/checkout/success');
+            navigate('/checkout/success', {state: result.data});
         }
     }
 
