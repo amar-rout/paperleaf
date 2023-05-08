@@ -86,8 +86,8 @@ const CartItems = (products) => {
         // const loggedUser = JSON.parse(localStorage.getItem("user"));
         // console.log(loggedUser);
         if (user && user.token) {
-            dispatch(userVerifyAsync()).unwrap()
-                .then(async (value) => {
+        //     dispatch(userVerifyAsync()).unwrap()
+        //         .then(async (value) => {
                     const config = { "headers": { "Content-Type": "application/json" } };
                     await axios.get(`/api/coupons/?name=${coupon.couponName}`, config)
                         .then(response => {
@@ -112,12 +112,12 @@ const CartItems = (products) => {
                                 toast.error(error.message)
                             }
                         })
-                })
-                .catch((err) => {
-                    if(err === 'Bad token')
-                        toast.error('Your session got expired. Please sign in again to continue.');
-                    navigate('/login');
-                })
+                // })
+                // .catch((err) => {
+                //     if(err === 'Bad token')
+                //         toast.error('Your session got expired. Please sign in again to continue.');
+                //     navigate('/login');
+                // })
         } else {
             toast.error('Please login to apply the coupons');
             navigate('/login');
