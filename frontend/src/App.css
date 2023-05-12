@@ -141,14 +141,14 @@
 
 .product-item .product {
   width: 100%;
-  height: 380px;
+  height: 240px;
   overflow: hidden;
   cursor: pointer;
 }
 
 .product-item .product img {
   width: 100%;
-  height: 380px;
+  height: 240px;
   object-fit: cover;
 }
 
