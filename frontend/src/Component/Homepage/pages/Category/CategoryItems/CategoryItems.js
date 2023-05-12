@@ -69,13 +69,22 @@ const CategoryItems = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { id } = useParams();
+
     let catName = '';
+    let className = '';
+
     if (id === 'newCollections') {
         catName = 'New Collections';
-    }
-    else if (id === 'DressMaterial') {
+    } else if (id === 'DressMaterial') {
         catName = 'Dress Material';
     }
+
+    if (category === 'Fabrics' || category === 'Jewellery') {
+        className = 'product-item-two';
+    } else {
+        className = 'product-item';
+    }
+
     const { search } = useLocation();
     const pageNumber = new URLSearchParams(search).get("page");
 
@@ -217,11 +226,11 @@ const CategoryItems = () => {
                         // <div className="row">
                         //     <div className="col-12 col-md-4"></div>
                         //     <div className="col-12 col-md-8">
-                        <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 g-3 g-sm-3 g-md-5 g-lg-5">
+                        <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 g-3 g-sm-3 g-md-4 g-lg-4">
                             {products.map((product) => (
                                 <div key={product._id} className="col">
                                     {/* <div className="card product-card bg-light p-0 p-md-0 m-0 shadow-0 rounded-0 border border-0"> */}
-                                    <div className="card product-item bg-light p-0 p-md-0 m-0 rounded-0 border border-0" style={{ boxShadow: 'none' }}>
+                                    <div className={`card ${className} bg-light p-0 p-md-0 m-0 rounded-0 border border-0`} style={{ boxShadow: 'none' }}>
                                         {/* <div className="position-relative"> */}
                                         {/* {wishlistItems.find((item) => item.wId === product._id) ?
                                                 <button type="button" className="btn btn-sm btn-default bg-light wishlist_button_active position-absolute top-0 end-0 p-1 mt-1 me-1 shadow opacity-75 rounded-circle"
@@ -270,8 +279,12 @@ const CategoryItems = () => {
                                         {/* <div class="product-image-container">
                                                 <img src={product.image} onClick={() => handleProductShow(product._id)} className="product-image rounded-4" alt="card 1" />
                                             </div> */}
-                                        <div className="product-item">
-                                            <div className="product">
+                                        <div className={`${className}`}>
+                                            <div className=
+                                                {
+                                                    className === 'product-item-two' ? 'product-two' : 'product'
+                                                }>
+
                                                 {/* <img src={product.image} onClick={() => handleProductShow(product._id)} className="" alt="card 1" /> */}
                                                 <img src={product.image}
                                                     srcset={`${product.image} 480w, ${product.image} 800w`}

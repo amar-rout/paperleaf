@@ -203,9 +203,11 @@ export const removeProductImageAdmin = asyncHandler(async (req, res) => {
 // @route PATCH /api/product/
 // @access Private
 export const removeProductImagesAdmin = asyncHandler(async (req, res) => {
+  const index = req.query.index;
   const object = await ProductModel.findById(sanitize(req.params.id));
   if (object) {
-    object.images = '';
+    let imageValue = object.images[index];
+    object.images = object.images.filter(image => image !== imageValue);
     const updatedObj = await object.save();
     res.status(201).json(updatedObj);
   } else {

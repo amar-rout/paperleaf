@@ -111,7 +111,7 @@ const Home = () => {
                 :
                 <>
                     {/* <HomeCarousel /> */}
-                    <div className="container">
+                    <div className="container mb-5">
                         <SliderView />
                     </div>
                     <HomeCategory />
@@ -223,181 +223,181 @@ const Home = () => {
     );
 }
 
-const Deals = () => {
+// const Deals = () => {
 
-    function getTimeRemaining(endtime) {
-        const total = Date.parse(endtime) - Date.parse(new Date());
-        const seconds = Math.floor((total / 1000) % 60);
-        const minutes = Math.floor((total / 1000 / 60) % 60);
-        const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
-        const days = Math.floor(total / (1000 * 60 * 60 * 24));
+//     function getTimeRemaining(endtime) {
+//         const total = Date.parse(endtime) - Date.parse(new Date());
+//         const seconds = Math.floor((total / 1000) % 60);
+//         const minutes = Math.floor((total / 1000 / 60) % 60);
+//         const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+//         const days = Math.floor(total / (1000 * 60 * 60 * 24));
 
-        return { total, days, hours, minutes, seconds };
-    }
+//         return { total, days, hours, minutes, seconds };
+//     }
 
-    function initializeClockFirst(id, endtime) {
-        const clock = document.getElementById(id);
-        const daysSpan = clock.querySelector('.days');
-        const hoursSpan = clock.querySelector('.hours');
-        const minutesSpan = clock.querySelector('.mins');
-        const secondsSpan = clock.querySelector('.secs');
+//     function initializeClockFirst(id, endtime) {
+//         const clock = document.getElementById(id);
+//         const daysSpan = clock.querySelector('.days');
+//         const hoursSpan = clock.querySelector('.hours');
+//         const minutesSpan = clock.querySelector('.mins');
+//         const secondsSpan = clock.querySelector('.secs');
 
-        function updateClock() {
-            const t = getTimeRemaining(endtime);
+//         function updateClock() {
+//             const t = getTimeRemaining(endtime);
 
-            daysSpan.innerHTML = t.days;
-            hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+//             daysSpan.innerHTML = t.days;
+//             hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+//             minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+//             secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
-            if (t.total <= 0) {
-                clearInterval(timeInterval);
-            }
-        }
+//             if (t.total <= 0) {
+//                 clearInterval(timeInterval);
+//             }
+//         }
 
-        updateClock();
+//         updateClock();
 
-        const timeInterval = setInterval(updateClock, 1000);
-    }
-    function initializeClockSecond(id, endtime) {
-        const clock = document.getElementById(id);
-        const daysSpan = clock.querySelector('.days');
-        const hoursSpan = clock.querySelector('.hours');
-        const minutesSpan = clock.querySelector('.mins');
-        const secondsSpan = clock.querySelector('.secs');
+//         const timeInterval = setInterval(updateClock, 1000);
+//     }
+//     function initializeClockSecond(id, endtime) {
+//         const clock = document.getElementById(id);
+//         const daysSpan = clock.querySelector('.days');
+//         const hoursSpan = clock.querySelector('.hours');
+//         const minutesSpan = clock.querySelector('.mins');
+//         const secondsSpan = clock.querySelector('.secs');
 
-        function updateClock() {
-            const t = getTimeRemaining(endtime);
+//         function updateClock() {
+//             const t = getTimeRemaining(endtime);
 
-            daysSpan.innerHTML = t.days;
-            hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+//             daysSpan.innerHTML = t.days;
+//             hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+//             minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+//             secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
-            if (t.total <= 0) {
-                clearInterval(timeInterval);
-            }
-        }
+//             if (t.total <= 0) {
+//                 clearInterval(timeInterval);
+//             }
+//         }
 
-        updateClock();
+//         updateClock();
 
-        const timeInterval = setInterval(updateClock, 1000);
-    }
+//         const timeInterval = setInterval(updateClock, 1000);
+//     }
 
-    useEffect(() => {
-        let id = 'countdown'
-        const deadline1 = new Date(Date.parse(new Date()) + 3 * 12 * 60 * 60 * 1000);
+//     useEffect(() => {
+//         let id = 'countdown'
+//         const deadline1 = new Date(Date.parse(new Date()) + 3 * 12 * 60 * 60 * 1000);
 
-        let id2 = 'countdown_1'
-        const deadline2 = new Date(Date.parse(new Date()) + 2 * 24 * 60 * 60 * 1000);
+//         let id2 = 'countdown_1'
+//         const deadline2 = new Date(Date.parse(new Date()) + 2 * 24 * 60 * 60 * 1000);
 
-        initializeClockFirst(id, deadline1);
-        initializeClockSecond(id2, deadline2);
-    });
+//         initializeClockFirst(id, deadline1);
+//         initializeClockSecond(id2, deadline2);
+//     });
 
-    // useEffect(() => {
-    //     let id2 = 'countdown_1'
-    //     const deadline2 = new Date(Date.parse(new Date()) + 2 * 24 * 60 * 60 * 1000);
-    //     initializeClock( id2, deadline2 );
-    // });
+//     // useEffect(() => {
+//     //     let id2 = 'countdown_1'
+//     //     const deadline2 = new Date(Date.parse(new Date()) + 2 * 24 * 60 * 60 * 1000);
+//     //     initializeClock( id2, deadline2 );
+//     // });
 
-    return (
-        <section className="bg-white">
-            <div className="container py-3">
-                <div className="row">
-                    <div className="col-12 col-md-6 p-2">
-                        <div className="bg-danger-subtle px-3 px-md-5 py-3"
-                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
-                            <div className="">
-                                <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
-                                <p className="fs-6 fw-semibold">Limited quantities.</p>
-                            </div>
-                            <div className="">
-                                <span className="h5">
-                                    <a className="text-decoration-none text-dark" href="/" style={{ fontFamily: 'Montez' }}>
-                                        Handcrafted New Morden Design Dupattas
-                                    </a>
-                                </span>
-                                <div className="my-3">
-                                    <span className="fw-bold fs-4 me-2" style={{ color: '/088178' }} >₹139.00</span>
-                                    <span className="fw-semibold fs-5 text-danger text-decoration-line-through ms-2">₹160.99</span>
-                                </div>
-                            </div>
-                            <div className="">
-                                <span>Hurry Up! Offer End In:</span>
-                                <div className="deals-countdown mb-2" id="countdown" data-countdown="2025/03/25 00:00:00">
-                                    <span className="countdown-section">
-                                        <span className="countdown-amount hover-up days"></span>
-                                        <span className="countdown-period"> days </span>
-                                    </span>
-                                    <span className="countdown-section">
-                                        <span className="countdown-amount hover-up hours"></span>
-                                        <span className="countdown-period"> hours </span>
-                                    </span>
-                                    <span className="countdown-section">
-                                        <span className="countdown-amount hover-up mins"></span>
-                                        <span className="countdown-period"> mins </span>
-                                    </span>
-                                    <span className="countdown-section">
-                                        <span className="countdown-amount hover-up secs"></span>
-                                        <span className="countdown-period"> sec </span>
-                                    </span>
-                                </div>
-                                <div className="pt-2">
-                                    <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6 p-2">
-                        <div className="bg-info-subtle px-3 px-md-5 py-3"
-                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
-                            <div className="">
-                                <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
-                                <p className="fs-6 fw-semibold">Limited quantities.</p>
-                            </div>
-                            <div className="">
-                                <span className="h5">
-                                    <a className="text-decoration-none text-dark" href="/" style={{ fontFamily: 'Montez' }}>
-                                        Handcrafted New Morden Design
-                                    </a>
-                                </span>
-                                <div className="my-3">
-                                    <span className="fw-bold fs-4 me-2" style={{ color: '/088178' }} >₹139.00</span>
-                                    <span className="fw-semibold fs-5 text-danger text-decoration-line-through ms-2">₹160.99</span>
-                                </div>
-                            </div>
-                            <div className="">
-                                <span>Hurry Up! Offer End In:</span>
-                                <div className="deals-countdown mb-2" id="countdown_1" data-countdown="2025/03/25 00:00:00">
-                                    <span className="countdown-section">
-                                        <span className="countdown-amount hover-up days"></span>
-                                        <span className="countdown-period"> days </span>
-                                    </span>
-                                    <span className="countdown-section">
-                                        <span className="countdown-amount hover-up hours"></span>
-                                        <span className="countdown-period"> hours </span>
-                                    </span>
-                                    <span className="countdown-section">
-                                        <span className="countdown-amount hover-up mins"></span>
-                                        <span className="countdown-period"> mins </span>
-                                    </span>
-                                    <span className="countdown-section">
-                                        <span className="countdown-amount hover-up secs"></span>
-                                        <span className="countdown-period"> sec </span>
-                                    </span>
-                                </div>
-                                <div className="pt-2">
-                                    <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-}
+//     return (
+//         <section className="bg-white">
+//             <div className="container py-3">
+//                 <div className="row">
+//                     <div className="col-12 col-md-6 p-2">
+//                         <div className="bg-danger-subtle px-3 px-md-5 py-3"
+//                             style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
+//                             <div className="">
+//                                 <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
+//                                 <p className="fs-6 fw-semibold">Limited quantities.</p>
+//                             </div>
+//                             <div className="">
+//                                 <span className="h5">
+//                                     <a className="text-decoration-none text-dark" href="/" style={{ fontFamily: 'Montez' }}>
+//                                         Handcrafted New Morden Design Dupattas
+//                                     </a>
+//                                 </span>
+//                                 <div className="my-3">
+//                                     <span className="fw-bold fs-4 me-2" style={{ color: '/088178' }} >₹139.00</span>
+//                                     <span className="fw-semibold fs-5 text-danger text-decoration-line-through ms-2">₹160.99</span>
+//                                 </div>
+//                             </div>
+//                             <div className="">
+//                                 <span>Hurry Up! Offer End In:</span>
+//                                 <div className="deals-countdown mb-2" id="countdown" data-countdown="2025/03/25 00:00:00">
+//                                     <span className="countdown-section">
+//                                         <span className="countdown-amount hover-up days"></span>
+//                                         <span className="countdown-period"> days </span>
+//                                     </span>
+//                                     <span className="countdown-section">
+//                                         <span className="countdown-amount hover-up hours"></span>
+//                                         <span className="countdown-period"> hours </span>
+//                                     </span>
+//                                     <span className="countdown-section">
+//                                         <span className="countdown-amount hover-up mins"></span>
+//                                         <span className="countdown-period"> mins </span>
+//                                     </span>
+//                                     <span className="countdown-section">
+//                                         <span className="countdown-amount hover-up secs"></span>
+//                                         <span className="countdown-period"> sec </span>
+//                                     </span>
+//                                 </div>
+//                                 <div className="pt-2">
+//                                     <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </div>
+//                     <div className="col-12 col-md-6 p-2">
+//                         <div className="bg-info-subtle px-3 px-md-5 py-3"
+//                             style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
+//                             <div className="">
+//                                 <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
+//                                 <p className="fs-6 fw-semibold">Limited quantities.</p>
+//                             </div>
+//                             <div className="">
+//                                 <span className="h5">
+//                                     <a className="text-decoration-none text-dark" href="/" style={{ fontFamily: 'Montez' }}>
+//                                         Handcrafted New Morden Design
+//                                     </a>
+//                                 </span>
+//                                 <div className="my-3">
+//                                     <span className="fw-bold fs-4 me-2" style={{ color: '/088178' }} >₹139.00</span>
+//                                     <span className="fw-semibold fs-5 text-danger text-decoration-line-through ms-2">₹160.99</span>
+//                                 </div>
+//                             </div>
+//                             <div className="">
+//                                 <span>Hurry Up! Offer End In:</span>
+//                                 <div className="deals-countdown mb-2" id="countdown_1" data-countdown="2025/03/25 00:00:00">
+//                                     <span className="countdown-section">
+//                                         <span className="countdown-amount hover-up days"></span>
+//                                         <span className="countdown-period"> days </span>
+//                                     </span>
+//                                     <span className="countdown-section">
+//                                         <span className="countdown-amount hover-up hours"></span>
+//                                         <span className="countdown-period"> hours </span>
+//                                     </span>
+//                                     <span className="countdown-section">
+//                                         <span className="countdown-amount hover-up mins"></span>
+//                                         <span className="countdown-period"> mins </span>
+//                                     </span>
+//                                     <span className="countdown-section">
+//                                         <span className="countdown-amount hover-up secs"></span>
+//                                         <span className="countdown-period"> sec </span>
+//                                     </span>
+//                                 </div>
+//                                 <div className="pt-2">
+//                                     <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         </section>
+//     );
+// }
 
 const NewSection = () => {
     return (

@@ -10,7 +10,7 @@ import './Products.css'
 const AddProduct = () => {
 
   // const navigate = useNavigate()
-  
+
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
   const getCategoryURL = `${serverURL}/api/category/`;
@@ -81,28 +81,28 @@ const AddProduct = () => {
   //   })
   // }
 
-  const handleImageChangeNew = e => {
-    if (e.target.files && e.target.files[0]) {
-      console.log('target: ' + e.target);
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        console.log('reader: ' + e.target);
-        $('.file-upload-image').attr('src', e.target.result);
-        $('.file-upload-content').show();
-      };
-      reader.readAsDataURL(e.target.files[0]);
-    } else {
-      removeUpload();
-    }
-  }
+  // const handleImageChangeNew = e => {
+  //   if (e.target.files && e.target.files[0]) {
+  //     console.log('target: ' + e.target);
+  //     var reader = new FileReader();
+  //     reader.onload = function (e) {
+  //       console.log('reader: ' + e.target);
+  //       $('.file-upload-image').attr('src', e.target.result);
+  //       $('.file-upload-content').show();
+  //     };
+  //     reader.readAsDataURL(e.target.files[0]);
+  //   } else {
+  //     removeUpload();
+  //   }
+  // }
 
-  const removeUpload = () => {
-    // $('.file-upload-input').replaceWith(
-    //   $('.file-upload-input').clone()
-    // );
-    $('.file-upload-input').val(null);
-    $('.file-upload-content').hide();
-  }
+  // const removeUpload = () => {
+  //   // $('.file-upload-input').replaceWith(
+  //   //   $('.file-upload-input').clone()
+  //   // );
+  //   $('.file-upload-input').val(null);
+  //   $('.file-upload-content').hide();
+  // }
 
   const handleImageChange = e => {
     file = e.target.files[0];
@@ -183,6 +183,41 @@ const AddProduct = () => {
         toast.error('');
       });
   }
+
+  const deleteImages = (index) => {
+    const imageVal = images[index];
+    const imageArr = imageVal.split("/");
+    const imageID = imageArr[2];
+    const deleteImageURL = `${imageUploadURL}/${imageID}`;
+    axios.delete(deleteImageURL)
+      .then((response) => {
+        setImages(images.filter((image => image !== imageVal)));
+        toast.success("Image deleted from folder");
+      }).catch((error) => {
+        setErrorMessage(error.response.data.message);
+        setSuccessMessage("");
+        toast.dismiss();
+        toast.error('');
+      });
+  }
+
+  // const removeProductImages = (imageID) => {
+  //   const deleteImageURL = `${imageUploadURL}/${imageID}`;
+  //   axios.delete(deleteImageURL)
+  //     .then((response) => {
+  //       setProduct({
+  //         ...product,
+  //         image: ''
+  //       });
+  //       setImageInputShow(false);
+  //     }).catch((error) => {
+  //       setImageInputShow(false);
+  //       setErrorMessage(error.response.data.message);
+  //       setSuccessMessage("");
+  //       toast.dismiss();
+  //       toast.error('');
+  //     });
+  // }
 
   const uploadMultipleImage = () => {
     let formDataMulti = new FormData();
@@ -354,12 +389,18 @@ const AddProduct = () => {
             </div>
             <div className="col-8 mb-3">
               {multiImageInputShow &&
-                images.map((image) => (
-                  <img key={image} src={`${serverURL}${image}`} className="mx-2 mb-3" alt="product" style={{ width: '100px', height: '100px' }} />
+                images.map((image, index) => (
+                  <div className="d-flex flex-columns justify-cotent-center align-items-center w-100">
+                    <img key={image} src={`${serverURL}${image}`} className="mx-2 mb-3" alt="product" style={{ width: '100px', height: '100px' }} />
+                    <button className="btn btn-default bg-danger text-white fw-normal d-block"
+                      onClick={() => deleteImages(index)}>
+                      <i class="bi bi-x-lg"></i>
+                    </button>
+                  </div>
                 ))
               }
             </div>
-            <div className="col-6 mb-3">
+            {/* <div className="col-6 mb-3">
               <input class="file-upload-input form-control" type='file' onChange={handleImageChangeNew} />
             </div>
             <div className="col-6 mb-3"></div>
@@ -368,7 +409,7 @@ const AddProduct = () => {
                 <img class="file-upload-image position-relative" src="#" alt="product" style={{ width: '100px', height: '100px' }} />
                 <button type="button" onClick={removeUpload} class="remove-image position-absolute start-100 top-0 align-middle">Remove</button>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="mt-2">
             <button className="btn btn-primary" type="button" onClick={createNewProduct}>Add Product</button>

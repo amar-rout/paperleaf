@@ -3,7 +3,7 @@
 }
 .card {
   margin: 0 0.6em;
-  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+  box-shadow: 4px 6px 8px 2px rgba(22, 22, 26, 0.18);
   border: none;
 }
 /* .carousel_control {
@@ -26,8 +26,11 @@
  float: right;
  transform: translateY(-110%);
 }
-.carousel_btn:hover .arrow_right {
+
+.carousel_btn:hover,  .carousel_btn:hover .arrow_right {
+  color: antiquewhite;
   padding-left: 4px;
+  transition-delay: padding 0.2s;
 }
 /* .carousel-control-prev-icon,
 .carousel-control-next-icon {

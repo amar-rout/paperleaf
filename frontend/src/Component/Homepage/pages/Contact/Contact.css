@@ -32,8 +32,18 @@
     padding: 60px 340px 90px 100px;
 }
 
+@media (max-width: 576px) {
+    .contact_form_inner {
+        padding: 10px;
+    }
+    .contact_field {
+        padding: 6px 34px 9px 10px;
+    }
+}
+
 .right_conatct_social_icon {
     height: 100%;
+    margin-right: 20px;
 }
 
 .contact_field h3 {

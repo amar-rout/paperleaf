@@ -12,6 +12,7 @@ import {
   getTopProducts,
   updateProductAdmin,
   removeProductImageAdmin,
+  removeProductImagesAdmin
 } from '../controllers/productController.js';
 import { isAdmin, protect } from '../middleware/authMiddleware.js';
 
@@ -30,6 +31,7 @@ router.route('/:id').get(getProductById)
                     .delete(deleteProductAdmin)
                     .patch(updateProductAdmin)
                     .put(removeProductImageAdmin);
+router.route('/:id/removeImages?').put(removeProductImagesAdmin);
 // .delete(protect, isAdmin, deleteProductAdmin)
 // .patch(protect, isAdmin, updateProductAdmin);
 

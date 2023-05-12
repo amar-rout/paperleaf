@@ -182,6 +182,40 @@ const EditProduct = () => {
       });
   }
 
+  const deleteImages = (imageID) => {
+    const deleteImageURL = `${imageUploadURL}/${imageID}`;
+    axios.delete(deleteImageURL)
+      .then((response) => {
+        toast.success("Image deleted from folder");
+      }).catch((error) => {
+        setErrorMessage(error.response.data.message);
+        setSuccessMessage("");
+        toast.dismiss();
+        toast.error('');
+      });
+  }
+
+  const removeProductImages = (index) => {
+    const deleteImageURL = `http://localhost:5010/api/products/${id}/removeImages?index=${index}`;
+    axios.put(deleteImageURL)
+      .then((response) => {
+        // setImages(images.filter(image => image !== images[index]));
+        const imageArr = images[index].split("/");
+        setImages(response.data.images);
+        setProduct({
+          ...product,
+          images: images
+        });
+        deleteImages(imageArr[2]);
+        toast.success("Image unlink from product");
+      }).catch((error) => {
+        setErrorMessage(error.response.data.message);
+        setSuccessMessage("");
+        toast.dismiss();
+        toast.error('');
+      });
+  }
+
   const uploadMultipleImage = () => {
     let formDataMulti = new FormData();
     for (const singleImage of multipleImages) {
@@ -354,7 +388,7 @@ const EditProduct = () => {
               <label htmlFor="description" className="d-block mb-2">Product description</label>
               {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="text" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Enter product description" required /> */}
               {/* <input className="form-control" type="text" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Enter product description" required /> */}
-              <textarea class="form-control" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Leave a comment here" style={{height: '100px'}} required></textarea>
+              <textarea class="form-control" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Leave a comment here" style={{ height: '100px' }} required></textarea>
             </div>
             <div className="d-inline col-4 mb-3">
               <label htmlFor="prodImage" className="mb-2">Product image</label>
@@ -375,12 +409,20 @@ const EditProduct = () => {
             </div>
 
             <div className="col-8 mb-3">
-              {images.map((image) => (
-                <img key={image} src={`http://localhost:5010${image}`} className="mx-2 mb-3" alt="product" style={{ width: '100px', height: '100px' }} />
+              {images.map((image, index) => (
+                <div className="row">
+                  <div className="col-4">
+                    <img key={image} src={`http://localhost:5010${image}`} className="" alt="product" style={{ width: '100px', height: '100px' }} />
+                    <button className="btn btn-default bg-danger text-white fw-normal d-block"
+                      onClick={() => removeProductImages(index)}>
+                      <i class="bi bi-x-lg"></i>
+                    </button>
+                  </div>
+                </div>
               ))}
             </div>
 
-            
+
 
 
             {/* <div className="text-end m-0 p-0 my-2">
@@ -404,7 +446,7 @@ const EditProduct = () => {
           </span> */}
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
