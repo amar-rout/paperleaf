@@ -45,14 +45,14 @@
   }
 }
 
-.btn {
+/* .btn {
   opacity: 0.8;
 }
 
 .btn:hover,
 .btn:focus {
   opacity: 1;
-}
+} */
 
 .card-img-top {
   width: 75%;
@@ -128,6 +128,11 @@
     /* height: 380px; */
     height: 360px;
   }
+}
+
+.nav-logo-img {
+  width: 180px;
+  height: 36px !important;
 }
 
 /* Product items */
@@ -209,7 +214,11 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
+  .nav-logo-img {
+    width: 400px;
+    height: auto;
+  }
   .product-item .product {
     height: 380px;
   }

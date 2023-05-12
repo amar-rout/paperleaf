@@ -50,9 +50,9 @@ const Navbar = () => {
                 </div>
             </header> */}
             <div className="sticky-top bg-dark">
-                <nav className="navbar navbar-expand-lg navbar-body border-bottom" aria-label="Offcanvas navbar large" style={{ backgroundColor: "" }}>
+                <nav className="navbar navbar-expand-lg navbar-body border-bottom" aria-label="Offcanvas navbar large">
                     <div className="container py-1">
-                        {/* <div className="d-grid" style={{ gridTemplateColumns: '1fr 1fr 8fr' }}> */}
+                        {/* <div className="d-grid align-items-center" style={{ gridTemplateColumns: '1fr 1fr 8fr' }}> */}
                         <div className="d-flex flex-0 justify-content-between align-items-center w-100">
                             <div className="d-flex justify-content-start align-items-center">
                                 <button className="navbar-toggler justify-content-center border-0 ps-1 align-items-center shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
@@ -62,9 +62,9 @@ const Navbar = () => {
                                     </svg>
                                 </button>
                                 <div className="offcanvas w-75 offcanvas-start bg-dark d-inline-block" tabIndex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
-                                    <div className="offcanvas-header">
-                                        <h5 className="offcanvas-title" id="offcanvasNavbar2Label" style={{ color: '#fff3cd !important' }}>Paperleaf</h5>
-                                        <button type="button" className="btn-close btn-close-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                    <div className="offcanvas-header text-center">
+                                        <h5 className="offcanvas-title text-light fw-normal fs-4" id="offcanvasNavbar2Label" style={{ color: '#fff3cd !important' }}>Paperleaf</h5>
+                                        {/* <button type="button" className="btn-close btn-close-light" data-bs-dismiss="offcanvas" aria-label="Close"></button> */}
                                     </div>
                                     <div className="offcanvas-body d-inline-block">
                                         <ul className="navbar-nav justify-content-start flex-grow-1 me-5">
@@ -87,15 +87,16 @@ const Navbar = () => {
                                     </div>
                                     <div className="d-md-none text-center">
                                         <button type="button" data-bs-dismiss="offcanvas" aria-label="Close"
-                                            className="btn btn-outline-light fw-semibold">
+                                            className="btn btn-default bg-light fw-semibold">
                                             <i className="bi bi-x-lg me-2 mt-0"></i>
                                             <span>Close</span>
                                         </button>
                                     </div>
                                 </div>
                             </div>
+                            {/* <img src="/assets/images/logo/logo-1.png" alt="logo" className="nav-logo-img" /> */}
                             <div className="d-flex justify-content-center align-items-center">
-                                <img src="/assets/images/logo/logo-1.png" alt="logo" className="nav-logo-img me-2" style={{ width: '210px', height: '42px' }} />
+                                <img src="/assets/images/logo/logo-1.png" alt="logo" className="nav-logo-img" />
                                 {/* <img src="/assets/images/logo/logo-2.png" alt="logo" className="nav-logo-img d-md-none me-2 mt-1" style={{ width: '32px', height: '32px' }} /> */}
                             </div>
                             <div className="d-flex justify-content-end align-items-right">

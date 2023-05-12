@@ -20,9 +20,16 @@ code {
 /*********************************************/
 /*              GENERAL CSS                 "/
 /*********************************************/
-* {
+/* * {
   font-size: 14px !important;
+} */
+
+*, *::after, *::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
+
 
 p {
   font-family: 'Noto Sans', sans-serif;

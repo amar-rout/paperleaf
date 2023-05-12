@@ -93,20 +93,19 @@ const CategoryItems = () => {
     useEffect(() => {
         setCategory(id);
         setPage(1);
-        window.scrollTo(0, 0);
         // dispatch(clearState());
     }, [dispatch, id]);
 
     useEffect(() => {
-        window.scrollTo(0, 0);
         setProducts(listCatProduct);
         dispatch(clearState());
+        window.scrollTo(0, 0);
     }, [dispatch, listCatProduct]);
 
-    useEffect(() => {
-        setProducts(listCatProduct);
-        dispatch(clearState());
-    }, [dispatch, listCatProduct]);
+    // useEffect(() => {
+    //     setProducts(listCatProduct);
+    //     dispatch(clearState());
+    // }, [dispatch, listCatProduct]);
 
     useEffect(() => {
         if (getProductStatus === "LOADING") {
