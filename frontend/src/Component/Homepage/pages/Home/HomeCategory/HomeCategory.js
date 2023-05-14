@@ -18,10 +18,10 @@ const HomeCategory = () => {
                         <img src="/assets/images/catImages/dupattas.png" className="category-img rounded-circle border mb-2 mb-md-3" alt="" />
                         <h6 className="category-txt fw-normal pt-2 category-text">Dupattas</h6>
                     </button>
-                    <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dress')}>
+                    {/* <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dress')}>
                         <img src="/assets/images/catImages/dress.png" className="category-img rounded-circle border mb-2 mb-md-3" alt="" />
                         <h6 className="category-txt fw-normal pt-2">Dress</h6>
-                    </button>
+                    </button> */}
                     <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Fabrics')}>
                         <img src="/assets/images/catImages/Fabrics.png" className="category-img rounded-circle border mb-2 mb-md-3" alt="" />
                         <h6 className="category-txt fw-normal pt-2">Fabrics</h6>
