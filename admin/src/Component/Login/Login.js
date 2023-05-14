@@ -63,16 +63,17 @@ const Login = ({ updateUser }) => {
     return (
         <div>
             <div className="container pt-5 pt-md-5">
-                <h4 className="mb-4 text-center">Login to Paperleaf</h4>
-                <div className="row my-5">
+                
+                <div className="row">
                     <div className="col-1 col-md-2 col-lg-4"></div>
-
-                    <div className="col-10 col-md-8 col-lg-4 px-4 px-md-5">
+                    
+                    <div className="col-10 col-md-8 col-lg-4 px-4 px-md-5 pt-5 shadow">
                         {/* <div className="text-start start-0 p-0 m-0">
                             Don't have an account yet?
                             <a href="/register" className="px-1 fw-normal fs-small text-dark link-warning" type="button">Register</a>
                         </div> */}
-                        <h4 class="h6 mt-3 mb-3 fw-normal">Please login to continue admin panel</h4>
+                        <h4 className="mb-4 text-center">Login to Paperleaf <hr className="border border-dark" /></h4>
+                        {/* <h4 class="h6 mb-3 fw-normal">Please login to continue admin panel</h4> */}
                         <div className="mt-4">
                             <label className="form-label">
                                 Username
@@ -117,7 +118,7 @@ const Login = ({ updateUser }) => {
                         </div>
                         <div className="d-flex justify-content-between align-items center mb-4">
                             <div className="form-check my-2 d-flex align-items-center">
-                                <input type="checkbox" className="form-check-input border-dark-subtle bg-dark-subtle form-check-input-checked-dark shadow-none me-2" id="remember"
+                                <input type="checkbox" className="form-check-input form-check-input-bg-dark shadow-none me-2" id="remember"
                                     onChange={handleRemCheck} style={{ width: "24px", height: "24px" }} />
                                 <label className="form-check-label" htmlFor="remember">
                                     Remember me
@@ -137,7 +138,8 @@ const Login = ({ updateUser }) => {
                                 </button>
                             }
                         </div> */}
-                        <button className="btn btn-lg btn-warning w-100" type="button" onClick={login}>Login</button>
+                        <button className="btn btn-lg btn-warning w-100 mb-5 fw-normal fs-6" type="button" onClick={login}>
+                        <i class="bi bi-box-arrow-in-right fs-6 fw-normal"></i> Login</button>
                     </div>
                     <div className="col-1 col-md-2 col-lg-4"></div>
                 </div>

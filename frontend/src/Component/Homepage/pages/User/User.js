@@ -34,13 +34,15 @@ const User = () => {
     let title = 'User';
     let userLink = '/user';
 
-    let { id } = useParams();
-    const idValue = urlParams[id];
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    let { uriId } = useParams();
+    const idValue = urlParams[uriId];
     // const titleValue = urlTitleParams[id];
 
     if (idValue !== undefined) {
         title = `User ${idValue}`;
-        userLink = `/user/${id}`;
+        userLink = `/user/${uriId}`;
     }
 
     const handleLogout = () => {
@@ -86,51 +88,58 @@ const User = () => {
                             <div className="card-header bg-body">
                                 <div className="text-center my-3">
                                     <div className="mb-3 position-relative">
-                                        <img className="rounded-circle border border-dark border-1 " src="/assets/images/user-thumbnail.jpg" alt="Profile" width="120" height="120" />
+                                        {
+                                            user.image ?
+                                                <img className="rounded-circle border border-dark border-1 " src={`${process.env.REACT_APP_SERVER_URL}${user.image}`} alt="Profile" width="120" height="120" />
+                                                :
+                                                <img className="rounded-circle border border-dark border-1 " src="" alt="Profile" width="120" height="120" />
+                                        }
                                     </div>
-                                    <span className="mb-1 h4">Amarendra Rout</span>
+                                    <span className="mb-1 h4">{user.name}</span>
                                     <h4 className="small text-secondary fw-semibold">
-                                        amarendrarout@gmail.com <i className='bx bxs-badge-check text-success' ></i>
+                                        {user.email}
+                                        {/* <i className='bx bxs-badge-check text-success' ></i> */}
                                     </h4>
                                     <h4 className="small text-secondary fw-semibold">
-                                        +91 70430 96106 <i className='bx bxs-badge-check text-success' ></i>
+                                        +91 {user.phone}
+                                        {/* <i className='bx bxs-badge-check text-success' ></i> */}
                                     </h4>
                                 </div>
                             </div>
                             <div className="card-body">
                                 <ul className="list-group list-group-flush text-start py-1">
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
-                                                 to="/user/profile">
+                                        to="/user/profile">
                                         <span className="p-0 pe-4"><i className="bi bi-person"></i></span>
                                         Profile
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
-                                                 to="/user/address">
+                                        to="/user/address">
                                         <span className="p-0 pe-4"><i className="bi bi-geo-alt"></i></span>
                                         Address
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
-                                                 to="/user/orders">
+                                        to="/user/orders">
                                         <span className="p-0 pe-4"><i className="bi bi-journal-text"></i></span>
                                         Orders
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
-                                                 to="/user/paymentMethods">
+                                        to="/user/paymentMethods">
                                         <span className="p-0 pe-4"><i className="bi bi-credit-card"></i></span>
                                         Payment Method
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
-                                                 to="/user/notifications">
+                                        to="/user/notifications">
                                         <span className="p-0 pe-4"><i className="bi bi-bell"></i></span>
                                         Notification
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
-                                                 to="/user/privacyAndSafety">
+                                        to="/user/privacyAndSafety">
                                         <span className="p-0 pe-4"><i className="bi bi-shield"></i></span>
                                         Privacy and Safety
                                     </AccountLink>
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
-                                                 to="/user/settings">
+                                        to="/user/settings">
                                         <span className="p-0 pe-4"><i className="bi bi-gear"></i></span>
                                         Settings
                                     </AccountLink>

@@ -16,6 +16,7 @@ export const authUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      image: user.image,
       phone: user.phone,
       gender: user.gender,
       isAdmin: user.isAdmin,
@@ -43,6 +44,7 @@ export const validateToken = asyncHandler(async (req, res) => {
       res.status(201).json({
         _id: user._id,
         name: user.name,
+        image: user.image,
         email: user.email,
         phone: user.phone,
         gender: user.gender,
@@ -97,7 +99,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 // @route POST /api/users
 // @access Public
 export const registerUser = asyncHandler(async (req, res) => {
-  const { fname, mname, lname, name, email, phone, gender, password } = req.body;
+  const { fname, mname, lname, name, image, email, phone, gender, password } = req.body;
 
   const userExists = await UserModel.findOne({ email: sanitize(email) });
   if (userExists) {
@@ -109,6 +111,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     mname: sanitize(mname),
     lname: sanitize(lname),
     name: sanitize(name),
+    image: sanitize(image),
     email: sanitize(email),
     phone: sanitize(phone),
     gender: sanitize(gender),
@@ -122,6 +125,7 @@ export const registerUser = asyncHandler(async (req, res) => {
       mname: user.mname,
       lname: user.lname,
       name: user.name,
+      image: user.image,
       email: user.email,
       phone: user.phone,
       gender: user.gender,

@@ -62,15 +62,18 @@ const UserProfile = () => {
                             <div>
                                 <div className="btn-group" role="group" aria-label="Select gender">
                                     <input type="radio" className="btn-check form-control" name="btnradio" id="male" autoComplete="off" />
-                                    <label className="btn btn-outline-dark px-4 py-3" htmlFor="male">Male</label>
+                                    <label className="btn btn-outline-dark px-4 py-3 me-2 rounded-2" htmlFor="male">Male</label>
                                     <input type="radio" className="btn-check form-control" name="btnradio" id="female" autoComplete="off" />
-                                    <label className="btn btn-outline-dark px-4 py-3" htmlFor="female">Female</label>
+                                    <label className="btn btn-outline-dark px-4 py-3 ms-2 rounded-2" htmlFor="female">Female</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="mb-3 mt-3 mt-md-0">
-                        <button className="btn px-5 py-3 bg-dark text-white" type="submit">
+                        <button className="btn btn-default btn-outline-dark px-5 py-3 me-2" type="submit">
+                            Edit Profile
+                        </button>
+                        <button className="btn px-5 py-3 bg-success text-white ms-2 disabled" type="submit">
                             Update Profile
                         </button>
                     </div>
@@ -87,11 +90,11 @@ const UserProfile = () => {
                             <input className="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-3 mb-3 text-decoration-none shadow-none" id="accountAvatar" type="file" placeholder="Select your avatar" />
                         </div>
                         <div className="">
-                            <button className="btn me-2 px-3 mb-3 px-md-5 py-3 bg-dark text-white" type="submit">
-                                Upload Profile Photo
-                            </button>
-                            <button className="btn px-3 mb-3 px-md-5 py-3 bg-danger text-white" type="submit">
+                        <button className="btn px-3 mb-3 px-md-5 py-3 bg-danger text-white me-2" type="submit">
                                 Remove Profile Photo
+                            </button>
+                            <button className="btn ms-2 px-3 mb-3 px-md-5 py-3 bg-success text-white" type="submit">
+                                Upload Profile Photo
                             </button>
                         </div>
                     </div>
@@ -110,7 +113,7 @@ const UserProfile = () => {
                             </div>
                         </div>
                         <div className="">
-                            <button className="btn me-2 px-3 mb-3 px-md-5 py-3 bg-dark text-white" type="submit">
+                            <button className="btn me-2 px-3 mb-3 px-md-5 py-3 bg-success text-white" type="submit">
                                 Update Email
                             </button>
                         </div>
@@ -145,7 +148,7 @@ const UserProfile = () => {
                         </div>
                     </div>
                     <div className="">
-                        <button className="btn px-5 py-3 mb-3 bg-dark text-white" type="submit">
+                        <button className="btn px-5 py-3 mb-3 bg-success text-white" type="submit">
                             Update Password
                         </button>
                     </div>
