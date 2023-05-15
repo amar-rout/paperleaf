@@ -12,7 +12,8 @@ import {
   getTopProducts,
   updateProductAdmin,
   removeProductImageAdmin,
-  removeProductImagesAdmin
+  removeProductImagesAdmin,
+  updateProductPublishedByCategory
 } from '../controllers/productController.js';
 import { isAdmin, protect } from '../middleware/authMiddleware.js';
 
@@ -35,10 +36,11 @@ router.route('/:id/removeImages?').put(removeProductImagesAdmin);
 // .delete(protect, isAdmin, deleteProductAdmin)
 // .patch(protect, isAdmin, updateProductAdmin);
 
-
 router.route('/category/name').get(getCategoryNames);
 
 router.route('/category/:category').get(getProductByCategory);
+
+router.route('/category/:category?').patch(protect, isAdmin, updateProductPublishedByCategory);
 
 router.route('/:id/reviews').post(protect, addReview);
 

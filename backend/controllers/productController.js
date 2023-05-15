@@ -17,6 +17,7 @@ export const getProducts = asyncHandler(async (req, res) => {
         $regex: req.query.keyword,
         $options: 'i',
       },
+      published: true,
     }
     : {};
 
@@ -33,10 +34,10 @@ export const getProducts = asyncHandler(async (req, res) => {
 export const getAllProducts = asyncHandler(async (req, res) => {
   const products = await ProductModel.find({});
   if (products) {
-      res.json(products);
+    res.json(products);
   } else {
-      res.status(404);
-      throw new Error('Product not found');
+    res.status(404);
+    throw new Error('Product not found');
   }
 });
 
@@ -82,10 +83,12 @@ export const getProductByCategory = asyncHandler(async (req, res) => {
   if (cat.includes("newCollections")) {
     const count = await ProductModel.countDocuments({
       newCollections: true,
+      published: true
     });
 
     const category = await ProductModel.find({
       newCollection: true,
+      published: true
     })
       .limit(pageSize)
       .skip(pageSize * (page - 1));
@@ -99,10 +102,12 @@ export const getProductByCategory = asyncHandler(async (req, res) => {
   } else {
     const count = await ProductModel.countDocuments({
       category: sanitize(req.params.category),
+      published: true
     });
 
     const category = await ProductModel.find({
       category: sanitize(req.params.category),
+      published: true
     })
       .limit(pageSize)
       .skip(pageSize * (page - 1));
@@ -114,8 +119,6 @@ export const getProductByCategory = asyncHandler(async (req, res) => {
       throw new Error('Category is empty');
     }
   }
-
-
 });
 
 // @desc Delete a product
@@ -141,12 +144,12 @@ export const createProductAdmin = asyncHandler(async (req, res) => {
     // user: req.body._id,
     name: sanitize(req.body.name),
     image: sanitize(req.body.image),
-    images:sanitize(req.body.images),
+    images: sanitize(req.body.images),
     price: sanitize(req.body.price),
     salePrice: sanitize(req.body.salePrice),
     category: sanitize(req.body.category),
     newCollection: true,
-    featured: sanitize(req.body.featured), 
+    featured: sanitize(req.body.featured),
     brand: sanitize(req.body.brand),
     description: sanitize(req.body.description),
     countInStock: sanitize(req.body.countInStock),
@@ -164,13 +167,12 @@ export const createProductAdmin = asyncHandler(async (req, res) => {
 export const updateProductAdmin = asyncHandler(async (req, res) => {
   const object = await ProductModel.findById(sanitize(req.params.id));
   if (object) {
-    // object.image = sanitize(req.body.image) || object.image;
     object.name = sanitize(req.body.name) || object.name;
     object.price = sanitize(req.body.price) || object.price;
     object.salePrice = sanitize(req.body.salePrice) || object.salePrice;
-    object.image = sanitize(req.body.image)  || object.image,
-    object.images = sanitize(req.body.images)  || object.images,
-    object.category = sanitize(req.body.category) || object.category;
+    object.image = sanitize(req.body.image) || object.image,
+      object.images = sanitize(req.body.images) || object.images,
+      object.category = sanitize(req.body.category) || object.category;
     object.brand = sanitize(req.body.brand) || object.brand;
     object.description = sanitize(req.body.description) || object.description;
     object.countInStock = sanitize(req.body.countInStock) || object.countInStock;
@@ -216,6 +218,28 @@ export const removeProductImagesAdmin = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc Update product data
+// @route PATCH /api/product/:category?
+// @access Private
+export const updateProductPublishedByCategory = asyncHandler(async (req, res) => {
+  const publish = req.query.publish;
+  console.log(publish);
+  const products = await ProductModel.find({ category: sanitize(req.params.category) });
+  if (products) {
+    const filter = { category: req.params.category };
+    const data = {
+      $set: {
+        published: publish,
+      }
+    }
+    const object = await ProductModel.updateMany(filter, data);
+    res.status(201).json(`Updated ${object.nModified} documents`);
+  } else {
+    res.status(404);
+    throw new Error(`No Products found for ${req.params.category} category`);
+  }
+});
+
 // @desc Creates a new reviews
 // @route POST /api/product/:id/reviews
 // @access Private
@@ -255,10 +279,17 @@ export const addReview = asyncHandler(async (req, res) => {
 // @route POST /api/product/top/:category
 // @access Public
 export const getTopProducts = asyncHandler(async (req, res) => {
-  const limitSize = Number(req.query.pageSize) || 10;
+  const limitSize = Number(req.query.pageSize) || 12;
   let queryParams = {};
   if (req.params.category) {
-    queryParams = { category: sanitize(req.params.category) };
+    queryParams = {
+        category: sanitize(req.params.category),
+        published: true,
+    };
+  } else {
+    queryParams = {
+        published: true,
+    };
   }
   const products = await ProductModel.find(queryParams)
     .sort({ rating: -1 })
@@ -271,9 +302,12 @@ export const getTopProducts = asyncHandler(async (req, res) => {
 // @access Public
 export const getFeaturedProducts = asyncHandler(async (req, res) => {
   const limitSize = Number(req.query.pageSize) || 3;
-  let queryParams = { featured: true };
+  let queryParams = {
+    featured: true,
+    published: true,
+  };
   if (req.params.category) {
-    queryParams = { category: sanitize(req.params.category), featured: true };
+    queryParams = { category: sanitize(req.params.category), featured: true, published: true, };
   }
   const products = await ProductModel.find(queryParams)
     .sort({ rating: -1 })

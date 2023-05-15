@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import UserModel from '../models/userModel.js';
 
 export const protect = asyncHandler(async (req, res, next) => {
+  // console.log(req);
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
@@ -13,7 +14,7 @@ export const protect = asyncHandler(async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_TOKEN);
       // Saves as "req.user"
       const id = decoded.id;
-      console.log(id);
+      // console.log(id);
       req.user = await UserModel.findById(id).select('-password');
       next();
     } catch (error) {

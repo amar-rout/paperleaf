@@ -2,11 +2,11 @@ import mongoose from 'mongoose';
 
 const reviewSchema = mongoose.Schema(
   {
-    // user: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   required: true,
-    //   ref: 'User',
-    // },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    },
     name: { type: String, required: true },
     title: { type: String, required: true },
     rating: { type: Number, required: true, default: 1 },
@@ -22,7 +22,7 @@ const productModel = mongoose.Schema(
     //   required: true,
     //   ref: 'User',
     // },
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     image: { type: String, required: true },
     // images:[
     //   {
@@ -49,6 +49,7 @@ const productModel = mongoose.Schema(
     salePrice: { type: Number, required:true, default:0 },
     countInStock: { type: Number, required: true, default: 0 },
     featured: { type: Boolean, required: true, default: false },
+    published: { type: Boolean, required: false, default: false},
     // bgColor: { type: String, required: true, default: 'f5f5f5' },
     // nameColor: { type: String, required: true, default: '000' },
     // btnColor: { type: String, required: true, default: 'fe696a' },
@@ -59,6 +60,6 @@ const productModel = mongoose.Schema(
   },
 );
 
-const User = mongoose.model('Product', productModel);
+const Product = mongoose.model('Product', productModel);
 
-export default User;
+export default Product;

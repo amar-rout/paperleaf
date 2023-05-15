@@ -14,10 +14,7 @@ function Category() {
   }
   const addCategoryURL = "http://localhost:5010/api/category/";
   const getCategoryURL = "http://localhost:5010/api/category/";
-
-  useEffect(() => {
-    getCategory();
-  });
+  const getProductURL = "http://localhost:5010/api/products/";
 
   const getCategory = () => {
     axios.get(getCategoryURL)
@@ -28,13 +25,18 @@ function Category() {
           toast.dismiss()
           toast.error(error.response.data.message)
         } else if (error.request) {
-          // Handle proper error messages
         } else {
           toast.dismiss()
           toast.error(error.message)
         }
       })
-  }
+  };
+
+  useEffect(() => {
+    getCategory();
+  });
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,6 +72,33 @@ function Category() {
         toast.dismiss();
         let message = !status ? "activated" : "deactivated";
         toast.success(`Category ${name} ${message}`);
+        handleProductPublish(name, !status);
+      }).catch(error => {
+        if (error.response) {
+          toast.dismiss();
+          toast.error(error.response.data.message);
+        } else if (error.request) {
+          toast.dismiss();
+          toast.error(error.request);
+        } else {
+          toast.dismiss();
+          toast.error(error.message);
+        }
+      })
+  }
+
+  const handleProductPublish = (name, status) => {
+    const user = JSON.parse(localStorage.getItem("admin_user"));
+    axios.patch(`${getProductURL}category/${name}?publish=${status}`, user, {
+      "headers" : {
+        "authorization": `Bearer ${user.token}`,
+      }
+    })
+      .then(response => {
+        toast.dismiss();
+        if (response.data) {
+          toast.success(response.data);
+        }
       }).catch(error => {
         if (error.response) {
           toast.dismiss();

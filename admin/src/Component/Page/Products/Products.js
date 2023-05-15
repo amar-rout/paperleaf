@@ -163,12 +163,13 @@ function Products() {
                       <th>Sale Price</th>
                       <th>New Collection</th>
                       <th>Featured</th>
+                      <th>Published</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {products.map((product, index) => {
-                      const { _id, name, image, category, price, salePrice, newCollection, featured } = product;
+                      const { _id, name, image, category, price, salePrice, newCollection, featured, published } = product;
                       return (
                         <tr key={_id}>
                           <td className='text-start'>{index}</td>
@@ -204,6 +205,20 @@ function Products() {
                                 onChange={() => handleFeatured(_id, name, featured, newCollection)}
                               />
                             </div>
+                          </td>
+                          <td className='text-end'>
+                            <div className="form-check form-switch d-flex justify-content-center align-items-center">
+                              <input
+                                className="form-check-input shadow-none me-1"
+                                type="checkbox"
+                                role="switch"
+                                id="publish"
+                                defaultChecked={published}
+                                // value={published}
+                                // onChange={() => handleFeatured(_id, name, featured, newCollection)}
+                              />
+                            </div>
+                            {/* {published ? "true" : "false"} */}
                           </td>
                           <td className=''>
                             <div className="d-flex justify-content-end align-item-center">
