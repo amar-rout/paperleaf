@@ -405,11 +405,10 @@ const CategoryItems = () => {
                                                     <span className="ms-2 text-decoration-line-through text-danger">₹{product.salePrice}</span>
                                                 }
                                             </p> */}
-                                                <p className="fw-normal text-uppercase p-0 m-0 mb-1" style={{ fontSize: "13px" }}>
+                                                <p className="fw-normal text-uppercase p-0 m-0 mb-1" style={{ fontSize: "14px" }}>
                                                     <small>{product.name}</small>
                                                 </p>
-                                                <p className="text-dark fw-semibold p-0 m-0 mb-1" style={{ fontSize: "13px" }}>
-                                                    {/* <span>₹{product.price}</span> */}
+                                                <p className="text-dark fw-semibold p-0 m-0 mb-1" style={{ fontSize: "15px" }}>
                                                     <span>{currINR.format(product.price)}</span>
                                                     {product.salePrice > 0 &&
                                                         <>
@@ -422,7 +421,7 @@ const CategoryItems = () => {
                                                 </p>
                                                 <span className="d-flex justify-content-start align-items-center">
                                                     <ReactStars {...{
-                                                        size: 10,
+                                                        size: 11,
                                                         count: 5,
                                                         activeColor: "#fdad01",
                                                         value: product.rating,

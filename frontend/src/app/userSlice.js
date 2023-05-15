@@ -113,7 +113,7 @@ export const userSlice = createSlice({
             state.errorMessage = '';
             state.status = 'IDLE';
             // localStorage.setItem('userInfo', JSON.stringify(state.user));
-            localStorage.clear();
+            localStorage.removeItem("user");
         },
         clearState: (state) => {
             state.status = 'IDLE';
