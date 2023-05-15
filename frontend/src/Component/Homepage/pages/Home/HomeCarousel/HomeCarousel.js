@@ -22,13 +22,13 @@ const HomeCarousel = () => {
                 <div className="carousel-inner">
                     <div className="carousel-item active">
                         {/* <div> */}
-                            <div className="image-wrapper">
-                                <img src="./assets/images/bannerImages/banner-1.jpeg" className="d-block carousel-item-image" alt="..." />
-                            </div>
-                            <div className="carousel-caption d-block d-md-block">
-                                <h5>1 slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                            </div>
+                        <div className="image-wrapper">
+                            <img src="./assets/images/bannerImages/banner-1.jpeg" className="d-block carousel-item-image" alt="..." />
+                        </div>
+                        <div className="carousel-caption d-block d-md-block">
+                            <h5>1 slide label</h5>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
                         {/* </div> */}
                         {/* <div>
                             <div className="image-wrapper">
@@ -122,17 +122,27 @@ const HomeCarousel = () => {
                         </div>
                     </div>
                 </div>
-                <button className="d-none d-sm-inline carousel-control-prev rounded-circle" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon rounded-circle" aria-hidden="true"></span>
+                <button className="d-none d-sm-inline carousel-control-prev " type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+                    <span className="carousel-control-prev-icon " aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>
                 </button>
-                <button className="d-none d-sm-inline carousel-control-next rounded-circle" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
-                    <span className="carousel-control-next-icon rounded-circle" aria-hidden="true"></span>
+                <button className="d-none d-sm-inline carousel-control-next " type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+                    <span className="carousel-control-next-icon " aria-hidden="true"></span>
                     <span className="visually-hidden">Next</span>
                 </button>
+
+
+                {/* <button className="d-none d-sm-inline carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+                    <i class="bi bi-arrow-left-square"></i>
+                    <span className="visually-hidden">Previous</span>
+                </button>
+                <button className="d-none d-sm-inline carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+                    <i class="bi bi-arrow-right-square"></i>
+                    <span className="visually-hidden">Next</span>
+                </button> */}
             </div>
         </section>
-        
+
     );
 }
 
