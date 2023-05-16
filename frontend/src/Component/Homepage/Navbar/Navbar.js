@@ -1,10 +1,9 @@
 import React from "react";
 import { Link, Outlet, useMatch, useNavigate, useResolvedPath } from "react-router-dom";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import {
-    logout,
     selectUser
 } from "../../../app/userSlice";
 
@@ -23,14 +22,8 @@ const Navbar = () => {
     const loginUser = useSelector(selectUser);
     const cartCount = useSelector(getCartCount);
     const wishlistCount = useSelector(getWishlistCount);
-    const dispatch = useDispatch();
 
     const navigate = useNavigate()
-
-    const logoutHandler = () => {
-        dispatch(logout());
-        navigate("/login");
-    }
 
     return (
         <>
@@ -198,15 +191,15 @@ const Navbar = () => {
                                                             Need Help
                                                         </Link>
                                                     </li>
-                                                    <li className="mx-2"><hr className="dropdown-divider text-muteed" /></li>
-                                                    <li>
+                                                    {/* <li className="mx-2"><hr className="dropdown-divider text-muteed" /></li> */}
+                                                    {/* <li>
                                                         <Link onClick={logoutHandler} className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
                                                             <span className="p-0 pe-2 pt-1">
                                                                 <i className='bx bx-log-out-circle' style={{ fontSize: "16px" }}></i>
                                                             </span>
                                                             Signout
                                                         </Link>
-                                                    </li>
+                                                    </li> */}
                                                 </ul>
                                             </div>
                                         </>

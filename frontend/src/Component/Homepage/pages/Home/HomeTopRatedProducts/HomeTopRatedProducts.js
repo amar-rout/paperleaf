@@ -163,42 +163,42 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                                     {/* <img src={product.image} onClick={() => handleProductShow(product._id)} className="" alt="card 1" /> */}
                                     <img src={product.image} className="" alt="card 1" />
                                     {/* onClick={() => navigate(`/products/${product._id}`)} */}
-                                    <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                                        {/* <li class="icon">
-                                            <i class="bi bi-arrows-move"></i>
+                                    <ul className="d-flex align-items-center justify-content-center list-unstyled icons">
+                                        {/* <li className="icon">
+                                            <i className="bi bi-arrows-move"></i>
                                         </li>
-                                        <li class="icon mx-3">
-                                            <i class="bi bi-heart"></i>
+                                        <li className="icon mx-3">
+                                            <i className="bi bi-heart"></i>
                                         </li>
-                                        <li class="icon">
-                                            <i class="bi bi-bag"></i>
+                                        <li className="icon">
+                                            <i className="bi bi-bag"></i>
                                         </li> */}
-                                        <li class="icon" onClick={() => handleProductShow(product._id)}>
-                                            <i class="bi bi-eye"></i>
+                                        <li className="icon" onClick={() => handleProductShow(product._id)}>
+                                            <i className="bi bi-eye"></i>
                                         </li>
                                         {wishlistItems.find((item) => item.wId === product._id) ?
-                                            <li class="icon active mx-3" onClick={() => handleRemoveWishlist(product._id)}>
-                                                <i class="bi bi-heart-fill"></i>
+                                            <li className="icon active mx-3" onClick={() => handleRemoveWishlist(product._id)}>
+                                                <i className="bi bi-heart-fill"></i>
                                             </li>
                                             :
-                                            <li class="icon mx-3" onClick={() => handleAddWishlist(product._id, product.name, product.category, product.price, product.image)}>
-                                                <i class="bi bi-heart"></i>
+                                            <li className="icon mx-3" onClick={() => handleAddWishlist(product._id, product.name, product.category, product.price, product.image)}>
+                                                <i className="bi bi-heart"></i>
                                             </li>
                                         }
                                         {product.countInStock < 1 ?
-                                            <li class="icon" onClick={() => handleNotifyProduct(product._id, product.name)}>
-                                                <i class="bi bi-bell"></i>
+                                            <li className="icon" onClick={() => handleNotifyProduct(product._id, product.name)}>
+                                                <i className="bi bi-bell"></i>
                                             </li>
                                             :
                                             <>
                                                 {
                                                     cartItems.find((item) => item.pId === product._id) ?
-                                                        <li class="icon active" onClick={() => handleAddCart(true, product._id, product.name)}>
-                                                            <i class="bi bi-cart-fill"></i>
+                                                        <li className="icon active" onClick={() => handleAddCart(true, product._id, product.name)}>
+                                                            <i className="bi bi-cart-fill"></i>
                                                         </li>
                                                         :
-                                                        <li class="icon" onClick={() => handleAddCart(false, product._id, product.name)}>
-                                                            <i class="bi bi-cart"></i>
+                                                        <li className="icon" onClick={() => handleAddCart(false, product._id, product.name)}>
+                                                            <i className="bi bi-cart"></i>
                                                         </li>
                                                 }
                                             </>

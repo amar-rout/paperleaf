@@ -167,10 +167,10 @@ const Home = () => {
                                         </ul>
                                     </div>
                                     <div className="tab-content" id="pills-tabContent">
-                                        <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                                        <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabIndex="0">
                                             <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
                                         </div>
-                                        <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                                        <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabIndex="0">
                                             <HomeFeaturedProducts title="Featured Products" topProducts={featuredProduct} />
                                         </div>
                                     </div>

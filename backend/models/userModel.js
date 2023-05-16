@@ -4,15 +4,15 @@ import bcrypt from 'bcryptjs';
 const userSchema = mongoose.Schema(
   {
     fname: { type: String, required: true },
-    mname: { type: String },
+    mname: { type: String, required: false },
     lname: { type: String, required: true },
     name: { type: String, required: true },
     image: {type: String, required: false},
     email: { type: String, required: true, unique: true },
     phone: { type: String, required: true, unique: true },
     gender: { type: String, required: true },
+    dob: {type: Date, required: false},
     password: { type: String, required: true },
-    
     isAdmin: { type: Boolean, required: true, default: false },
   },
   {

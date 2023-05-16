@@ -95,7 +95,7 @@ const User = () => {
                                                 <>
                                                     {/* <img className="rounded-circle border border-dark border-1 " src="" alt="Profile" width="120" height="120" /> */}
                                                     {/* <span> */}
-                                                        <i class="bi bi-person rounded-circle border border-dark border-1 px-2" style={{fontSize: "48px", width: "120px", height: "120px" }}></i>
+                                                        <i className="bi bi-person rounded-circle border border-dark border-1 px-2" style={{fontSize: "48px", width: "120px", height: "120px" }}></i>
                                                     {/* </span> */}
                                                 </>
                                         }

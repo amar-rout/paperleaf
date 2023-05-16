@@ -128,17 +128,17 @@ const Register = () => {
                                 />
                             </div>
                             <div className="col-12 col-md-12">
-                                <label className="form-label">Email</label>
+                                <label className="form-label">Email *</label>
                                 <input className="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-3 mb-3 text-decoration-none shadow-none"
-                                    type="text" name="email" value={user.email} onChange={handleChange} placeholder="Ener your Email or Phone"
+                                    type="text" name="email" value={user.email} onChange={handleChange} placeholder="Ener your Email or Phone" required
                                 />
                             </div>
                             <div className="col-12 col-md-6">
-                                <label className="form-label">Phone</label>
+                                <label className="form-label">Phone *</label>
                                 <div className="input-group input-group-merge border border-0">
                                     <button type="button" disabled className="btn border-1 border-secondary py-3 px-3 fs-6 rounded-0 rounded-start-3 mb-3 text-decoration-none shadow-none fw-normal">IN (+91)</button>
                                     <input className="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-end-3 mb-3 text-decoration-none shadow-none"
-                                        name="phone" type="tel" pattern="[0-9]{10}" minLength="10" maxLength="10"
+                                        name="phone" type="tel" pattern="[0-9]{10}" minLength="10" maxLength="10" required
                                         value={user.phone} onChange={handleChange} placeholder="Enter your phone" autoComplete="off" />
                                 </div>
                             </div>
