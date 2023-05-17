@@ -69,7 +69,7 @@ const Home = () => {
     return (
         <main>
             {/* <div className="py-3 bg-dark bg-pattern mb-4"></div> */}
-            <div className="container">
+            {/* <div className="container">
                 <div className="row bg-dark bg-pattern py-3">
                     <div className="col-12">
                         <div className="text-center text-white">
@@ -81,7 +81,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {/* <span className="fs-6 fw-semibold ls-2" style={{ color: "rgba(200, 160, 40)" }}> */}
             {/* rgb(234, 255, 150) */}

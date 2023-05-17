@@ -5,6 +5,9 @@ import {
   getUsersAdmin,
   registerUser,
   updateUserProfile,
+  updateUserPassword,
+  requestPasswordReset,
+  resetPassword
 } from '../controllers/userController.js';
 import { isAdmin, protect } from '../middleware/authMiddleware.js';
 
@@ -17,5 +20,8 @@ router.get('/validateToken', protect, validateToken);
 router.route('/:id?').post(registerUser).get(protect, isAdmin, getUsersAdmin);
 
 router.route('/profile').patch(protect, updateUserProfile);
+router.route('/profile/passwordChange').put(protect, updateUserPassword);
+router.route('/profile/requestPasswordReset').post(requestPasswordReset);
+router.route('/profile/resetPassword?').put(resetPassword);
 
 export default router;

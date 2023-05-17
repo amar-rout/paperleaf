@@ -3,16 +3,35 @@ import React, { useEffect, useState } from 'react';
 import Meta from '../../Meta';
 
 import {
+    selectStatus,
+    selectErrorMessage,
+    selectUser,
+    clearState,
     updateProfileAsync,
-    getStatus,
+    updatePasswordChangeAsync,
 } from '../../../../../app/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+// import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
-    const loginUser = JSON.parse(localStorage.getItem("user"));
+    // const loginUser = JSON.parse(localStorage.getItem("user"));
+
     const [editProfile, setEditProfile] = useState(false);
     const [editEmail, setEditEmail] = useState(false);
     const [editPhone, setEditPhone] = useState(false);
     const [editPassword, setEditPassword] = useState(false);
+
+    const [passwordInputErrorMessage, setPasswordInputErrorMessage] = useState("");
+
+
+    const loginUser = useSelector(selectUser);
+    const status = useSelector(selectStatus);
+    const errorMessage = useSelector(selectErrorMessage);
+
+    const dispatch = useDispatch();
+    // const navigate = useNavigate();
+
     const [userProfile, setUserProfile] = useState({
         firstName: "",
         middleName: "",
@@ -20,16 +39,19 @@ const UserProfile = () => {
         dob: "",
         gender: ""
     });
+
     const [userEmail, setUserEmail] = useState({
         email: ""
     });
+
     const [userPhone, setUserPhone] = useState({
         phone: ""
     });
+
     const [userPassword, setUserPassword] = useState({
         currPassword: "",
         newPassword: "",
-        confimrPassword: ""
+        confirmPassword: ""
     });
 
     const handleUserProfileChange = (e) => {
@@ -43,7 +65,7 @@ const UserProfile = () => {
     const handleUserEmailChange = (e) => {
         const { name, value } = e.target;
         setUserEmail({
-            ...userProfile,
+            ...userEmail,
             [name]: value
         });
     }
@@ -51,7 +73,7 @@ const UserProfile = () => {
     const handleUserPhoneChange = (e) => {
         const { name, value } = e.target;
         setUserPhone({
-            ...userProfile,
+            ...userPhone,
             [name]: value
         });
     }
@@ -59,7 +81,7 @@ const UserProfile = () => {
     const handleUserPasswordChange = (e) => {
         const { name, value } = e.target;
         setUserPassword({
-            ...userProfile,
+            ...userPassword,
             [name]: value
         });
     }
@@ -80,36 +102,79 @@ const UserProfile = () => {
                 phone: loginUser.phone
             });
         }
-    }, []);
+    }, [loginUser]);
+
+    useEffect(() => {
+        dispatch(clearState());
+    });
+
+    useEffect(() => {
+        if (status === "LOADING") {
+            dispatch(clearState());
+        }
+        if (status === "LOADED") {
+            dispatch(clearState());
+            setEditPassword(false);
+            setUserPassword({
+                currPassword: "",
+                newPassword: "",
+                confirmPassword: ""
+            });
+            toast.success(errorMessage);
+        }
+        if (status === "ERROR") {
+            dispatch(clearState());
+            setPasswordInputErrorMessage(errorMessage);
+        }
+    }, [status, dispatch, errorMessage])
 
     const handleEditProfile = () => {
         setEditProfile(true);
     }
     const handleCancelProfile = () => {
         setEditProfile(false);
+        // dispatch(updateProfileAsync(userProfile));
     }
     const handleSaveProfile = () => {
+        dispatch(updateProfileAsync(userProfile));
+        dispatch(clearState());
         setEditProfile(false);
     }
     const handleCancelEmail = () => {
         setEditEmail(false);
     }
     const handleUpdateEmail = () => {
+        dispatch(updateProfileAsync(userEmail));
+        dispatch(clearState());
         setEditEmail(false);
     }
     const handleCancelPhone = () => {
         setEditPhone(false);
     }
     const handleUpdatePhone = () => {
+        dispatch(updateProfileAsync(userPhone));
         setEditPhone(false);
     }
     const handleCancelPassword = () => {
+        setUserPassword({
+            currPassword: "",
+            newPassword: "",
+            confirmPassword: ""
+        });
         setEditPassword(false);
     }
     const handleUpdatePassword = () => {
-        setEditPassword(false);
+        const { currPassword, newPassword, confirmPassword } = userPassword;
+        if (currPassword !== "" && newPassword !== "" && confirmPassword !== "") {
+            if (newPassword !== confirmPassword) {
+                setPasswordInputErrorMessage('New Password and Confirm Password should be match.');
+            } else {
+                dispatch(updatePasswordChangeAsync(userPassword));
+            }
+        } else {
+            setPasswordInputErrorMessage('One or More input missing.');
+        }
     }
-
     return (
         <>
             <Meta title="User Profile" />
@@ -166,7 +231,7 @@ const UserProfile = () => {
                     </div> */}
                     <div className="col-12 col-lg-6">
                         <div className="form-group">
-                            <label className="form-label" >Date of birth</label>
+                            <label className="form-label">Date of birth</label>
                             <input className="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-3 mb-3 text-decoration-none shadow-none"
                                 disabled={!editProfile} onChange={handleUserProfileChange} value={userProfile.dob} name="dob" id="dob" type="date" placeholder="Date of birth" required />
                         </div>
@@ -211,7 +276,6 @@ const UserProfile = () => {
                     </div>
                 </div>
                 <div className="row mt-3 border border-1 rounded-4">
-
                     <div className="col-12 col-md-6">
                         <div className="d-flex justify-content-between align-items-center mt-3 mb-2">
                             <span className="mb-0 h5">Update profile photo</span>
@@ -222,17 +286,17 @@ const UserProfile = () => {
                             </label>
                             <input className="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-3 mb-3 text-decoration-none shadow-none" id="accountAvatar" type="file" placeholder="Select your avatar" />
                         </div>
-                        <div className="">
-                            <button className="btn px-3 mb-3 px-md-5 py-3 bg-danger text-white me-2" type="submit">
-                                Remove
-                            </button>
-                            <button className="btn ms-2 px-3 mb-3 px-md-5 py-3 bg-success text-white" type="submit">
-                                Upload Profile Photo
-                            </button>
-                        </div>
                     </div>
                     <div className="col-12 col-md-6 my-auto text-center">
                         <img src="/assets/images/user-thumbnail.jpg" alt="mdo" width="140" height="140" className="rounded-circle" />
+                    </div>
+                    <div className="">
+                        <button className="btn px-3 mb-3 px-md-5 py-3 bg-danger text-white me-2" type="submit">
+                            Remove
+                        </button>
+                        <button className="btn ms-2 px-3 mb-3 px-md-5 py-3 bg-success text-white" type="submit">
+                            Upload Profile Photo
+                        </button>
                     </div>
                 </div>
                 <div className="row mt-3 border border-1 rounded-4">
@@ -328,18 +392,32 @@ const UserProfile = () => {
                                 disabled={!editPassword} onChange={handleUserPasswordChange} name="confirmPassword" value={userPassword.confirmPassword} id="AccountConfirmPassword" type="password" placeholder="Confirm Password" required />
                         </div>
                     </div>
+                    <div className='col-12 mb-3'>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{passwordInputErrorMessage}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
                     <div className="d-flex justify-content-start align-items-center">
-                        <button className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" type="submit" onClick={handleCancelPassword}>
-                            Canel
-                        </button>
-                        <button className="btn px-5 py-3 mb-3 bg-success text-white" type="submit"  onClick={handleUpdatePassword}>
-                            Update Password
-                        </button>
+                        {
+                            !editPassword ?
+                                <button className="btn btn-dark me-2 px-3 mb-3 px-md-5 py-3" type="submit" onClick={() => setEditPassword(true)}>
+                                    Edit password
+                                </button>
+                                :
+                                <>
+                                    <button className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" type="submit" onClick={handleCancelPassword}>
+                                        Canel
+                                    </button>
+                                    <button className="btn px-5 py-3 mb-3 bg-success text-white" type="submit" onClick={handleUpdatePassword}>
+                                        Update Password
+                                    </button>
+                                </>
+                        }
                     </div>
                 </div>
             </div>
         </>
-
     )
 }
 

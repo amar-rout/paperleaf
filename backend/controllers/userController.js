@@ -1,7 +1,10 @@
 import asyncHandler from 'express-async-handler';
 import UserModel from '../models/userModel.js';
+import TokenModel from '../models/tokenModel.js';
 import generateToken from '../utils/generateToken.js';
 import sanitize from '../utils/sanitize.js';
+import bcrypt from 'bcryptjs';
+import nodemailer from 'nodemailer';
 
 // @desc Auth user and get token
 // @route POST /api/users/login
@@ -14,6 +17,9 @@ export const authUser = asyncHandler(async (req, res) => {
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
+      fname: user.fname,
+      mname: user.mname,
+      lname: user.lname,
       name: user.name,
       email: user.email,
       image: user.image,
@@ -29,6 +35,172 @@ export const authUser = asyncHandler(async (req, res) => {
 });
 
 
+export const updateUserPassword = asyncHandler(async (req, res) => {
+  const { currPassword, newPassword } = req.body;
+  if (req.user && req.user !== 'undefined') {
+    const user = await UserModel.findById(req.user.id);
+    const passwordCompare = await bcrypt.compare(currPassword, user.password);
+    if (passwordCompare) {
+      user.password = sanitize(newPassword);
+      const updateUser = await user.save();
+      const updatedUser = {
+        _id: updateUser._id,
+        fname: updateUser.fname,
+        mname: updateUser.mname,
+        lname: updateUser.lname,
+        name: updateUser.name,
+        email: updateUser.email,
+        image: updateUser.image,
+        phone: updateUser.phone,
+        gender: updateUser.gender,
+        isAdmin: updateUser.isAdmin,
+        token: generateToken(user.id),
+      };
+      res.status(201).json(updatedUser);
+    } else {
+      res.status(401);
+      throw new Error('Invalid password');
+    }
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+
+export const requestPasswordReset = asyncHandler(async (req, res) => {
+  // if (req.user && req.user !== 'undefined') {
+  let email = req.body.email;
+  const user = await UserModel.findOne({ email: email });
+  // const user = await UserModel.findById(req.user.id);
+  // console.log("User :" + user);
+  let token = await TokenModel.findOne({ userId: user._id });
+
+  if (token && token !== null) {
+    await token.remove();
+  }
+
+  let resetToken = await generateToken(user._id, "resetToken");
+
+  const createdToken = await TokenModel.create({
+    userId: user._id,
+    token: resetToken,
+    createdAt: Date.now()
+  });
+
+  // console.log("Created Token :" + createdToken);
+
+  const link = `http://192.168.29.28:3000/passwordReset?email=${user.email}&resetToken=${resetToken}`;
+  const link2 = `/passwordReset?email=${user.email}&resetToken=${resetToken}`;
+
+  const salutation = `Hi User,<br/><br/>`;
+  const linkText = `Please <a href="${link}">click here</a> to reset your password.<br/><br/>`;
+  const signature = `Best Regards,<br/><b>PaperLeaf<b/>`;
+
+  const mailBody = salutation + linkText + signature
+  // console.log("Mail: " + mailBody);
+  // console.log("Mail ID: " + process.env.EMAIL_ID);
+
+  // var transporter = nodemailer.createTransport({
+  //     service: 'gmail',
+  //     auth: {
+  //         type: 'OAuth2',
+  //         user: EMAIL_ID,
+  //         pass: EMAIL_PASSWORD,
+  //         clientId: CLIENT_ID,
+  //         clientSecret: CLIENT_SECRET,
+  //         refreshToken: REFRESH_TOKEN
+  //     }
+  // });
+
+  // const transporter = nodemailer.createTransport({
+  //     host: 'localhost',
+  //     port: 1025,
+  //     auth: {
+  //         user: 'project.1',
+  //         pass: 'secret.1'
+  //     }
+  // });
+
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.EMAIL_ID,
+      pass: process.env.APP_PASSWORD
+    }
+  });
+
+  var mailOptions = {
+    from: process.env.EMAIL_ID,
+    to: email,
+    subject: 'Paperleaf - Password reset link',
+    html: mailBody
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (!error) {
+      console.log('Email sent: ' + info.response)
+      return res.json({
+        message: "We have sent an email with link to reset the password",
+        status: 200,
+        link: link2
+      })
+    } else {
+      console.log(error);
+    }
+  });
+
+  // } else {
+  //   res.status(404);
+  //   throw new Error('User not found');
+  // }
+});
+
+export const resetPassword = asyncHandler(async (req, res) => {
+  const { email, resetToken } = req.query;
+  const { newPassword, confPassword } = req.body;
+
+  const user = await UserModel.findOne({ email: email });
+  let userToken = await TokenModel.findOne({ userId: user._id });
+
+  if (!user) {
+    const err = new Error();
+    err.name = "Authentication Error"
+    err.status = 401
+    err.message = "Invalid or expired password reset token"
+    throw err
+  }
+
+  const isValid = resetToken === userToken.token;
+  if (!isValid) {
+    const error = new Error();
+    error.name = "Authentication Error";
+    error.status = 401;
+    error.message = "Invalid or expired password reset token";
+    throw error;
+  }
+  if (newPassword && confPassword && newPassword === confPassword) {
+    user.password = sanitize(newPassword);
+  }
+  console.log(user);
+  const updateUser = await user.save();
+  console.log(updateUser);
+
+  // const updateUser = await UserModel.updateOne(
+  //   { _id: user._id },
+  //   { $set: { password: sanitize(newPassword) } },
+  //   { new: true }
+  // )
+  if (updateUser) {
+    await userToken.deleteOne();
+    res.status(201).json({
+      message: "Password reset successful.",
+    })
+  }
+});
+
 // @desc Auth user and get token
 // @route POST /api/users/login
 // @access Public
@@ -43,6 +215,9 @@ export const validateToken = asyncHandler(async (req, res) => {
     if (user) {
       res.status(201).json({
         _id: user._id,
+        fname: user.fname,
+        mname: user.mname,
+        lname: user.lname,
         name: user.name,
         image: user.image,
         email: user.email,
@@ -73,6 +248,8 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     user.email = sanitize(req.body.email) || user.email;
     user.phone = sanitize(req.body.phone) || user.phone;
     user.gender = sanitize(req.body.gender) || user.gender;
+    user.image = sanitize(req.body.image) || user.image;
+    user.dob = sanitize(req.body.dob) || user.dob;
     if (req.body.password) {
       user.password = sanitize(req.body.password);
     }
@@ -86,6 +263,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       email: updatedUser.email,
       phone: updatedUser.phone,
       gender: updatedUser.gender,
+      dob: updateUserProfile.dob,
       isAdmin: updatedUser.isAdmin,
       token: generateToken(updatedUser._id),
     });

@@ -16,6 +16,7 @@ const USER_LOGIN = 'user/userLogin';
 const USER_REGISTER = 'user/userRegister';
 const USER_VERIFY = 'user/userVerify';
 const UPDATE_PROFILE = 'user/userProfileUpdate';
+const UPDATE_PASSWORD = '/user/userPasswordChange';
 
 export const loginAsync = createAsyncThunk(
     USER_LOGIN,
@@ -89,7 +90,8 @@ export const updateProfileAsync = createAsyncThunk(
     async (user, thunkAPI) => {
         try {
             // let token = localStorage.getItem('user').token;
-            const token = (state) => state.user.user.token;
+            // const token = (state) => state.user.user.token;
+            const token = loggedUser.token;
             const config = {
                 headers: {
                     'Content-Type': 'application/json',
@@ -100,6 +102,25 @@ export const updateProfileAsync = createAsyncThunk(
             return thunkAPI.fulfillWithValue(JSON.parse(response.data));
         } catch (error) {
             return thunkAPI.rejectWithValue({ error: error.message });
+        }
+    }
+);
+
+export const updatePasswordChangeAsync = createAsyncThunk(
+    UPDATE_PASSWORD,
+    async (user, thunkAPI) => {
+        try {
+            const logUser = JSON.parse(localStorage.getItem('user'));
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${logUser.token}`,
+                },
+            };
+            const response = await axios.put('/api/users/profile/passwordChange', user, config);
+            return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data.message);
         }
     }
 );
@@ -142,11 +163,13 @@ export const userSlice = createSlice({
             .addCase(registerAsync.fulfilled, (state, action) => {
                 state.status = 'LOADED';
                 state.user = JSON.parse(action.payload);
+                state.errorMessage = '';
             })
             .addCase(registerAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
                 state.user = JSON.parse("");
-                state.errorMessage = action.payload.error;
+                console.log(action.payload);
+                state.errorMessage = action.payload.error.message;
             })
 
             .addCase(userVerifyAsync.pending, (state) => {
@@ -173,6 +196,20 @@ export const userSlice = createSlice({
             .addCase(updateProfileAsync.rejected, (state, action) => {
                 state.status = 'ERROR';
                 state.errorMessage = action.payload.error;
+            })
+
+            .addCase(updatePasswordChangeAsync.pending, (state) => {
+                state.status = 'LOADING';
+                state.errorMessage = '';
+            })
+            .addCase(updatePasswordChangeAsync.fulfilled, (state, action) => {
+                state.status = "LOADED";
+                state.user = JSON.parse(action.payload);
+                state.errorMessage = 'Password changed successfully';
+            })
+            .addCase(updatePasswordChangeAsync.rejected, (state, action) => {
+                state.status = 'ERROR';
+                state.errorMessage = action.payload;
             })
     },
 });
