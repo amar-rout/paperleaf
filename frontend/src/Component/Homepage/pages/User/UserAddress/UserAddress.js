@@ -164,12 +164,12 @@ const UserAddress = () => {
                         </div>
                     </div>
                 </div>
-                <div className="row my-4">
+                {/* <div className="row my-4">
                     <div className="col-12">
                         <span className="fw-semibold ">Change Billing and Shipping Address</span>
                     </div>
-                </div>
-                <div className="row mb-4">
+                </div> */}
+                {/* <div className="row mb-4">
                     <div className="col-12 col-md-6 col-lg-6 mb-3">
                         <div class="accordion bg-">
                             <div class="accordion-item">
@@ -206,7 +206,7 @@ const UserAddress = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </>
     )

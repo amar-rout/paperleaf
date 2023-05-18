@@ -14,7 +14,7 @@ const UserOrders = () => {
                     { name: 'Orders', link: '/user/orders', active: true }
                 ]}
             /> */}
-            <div className="container-fluid">
+            <div className="">
                 <div class="d-flex align-items-center mb-4">
                     <span class="mb-0 h4">Orders</span>
                     {/* <select class="form-select ms-auto shadow-none border-1 border-dark py-2" style={{ maxWidth: 200 }}>
@@ -32,17 +32,17 @@ const UserOrders = () => {
                                     <a class="accordion-button bg-light shadow-none d-flex fs-5 fw-normal text-decoration-none py-3 collapsed" href="#orderOne" data-bs-toggle="collapse" aria-expanded="false" aria-controls="orderOne">
                                         <div class="d-flex justify-content-between w-100" style={{ maxWidth: 440 }}>
                                             <div class="me-1 me-sm-4">
-                                                <div class="h6 small text-dark"><small>#78A6431D409</small></div>
+                                                <div class="fs-6 small text-dark"><small>#78A6431D409</small></div>
                                                 <div class="badge bg-info-subtle text-info small rounded-pill"><small>In progress</small></div>
                                             </div>
                                             <div class="me-1 me-sm-4">
-                                                <span class="d-none d-sm-block mb-2 h6 small text-muted"><small>Order date</small></span>
-                                                <div class="d-sm-none mb-2 h6 small text-muted"><small>Date</small></div>
-                                                <div class="h6 small text-dark"><small>Jan 27, 2022</small></div>
+                                                <span class="d-none d-sm-block mb-2 fs-6 small text-muted"><small>Order date</small></span>
+                                                <div class="d-sm-none mb-2 fs-6 small text-muted"><small>Date</small></div>
+                                                <div class="fs-6 small text-dark"><small>Jan 27, 2022</small></div>
                                             </div>
                                             <div class="me-1 me-sm-4">
-                                                <div class="h6 small text-muted mb-2"><small>Total</small></div>
-                                                <div class="h6 small fw-semibold text-dark"><small>₹16,000.00</small></div>
+                                                <div class="fs-6 small text-muted mb-2"><small>Total</small></div>
+                                                <div class="fs-6 small fw-semibold text-dark"><small>₹16,000.00</small></div>
                                             </div>
                                         </div>
                                         <div class="accordion-button-img d-none d-sm-flex align-items-center ms-auto">
@@ -63,7 +63,7 @@ const UserOrders = () => {
                                                                 <img src="/assets/images/productImages/product1.jpg" width="110" alt="Product" />
                                                             </a>
                                                             <div class="ps-3 ps-sm-4">
-                                                                <h4 class="h6 mb-2">
+                                                                <h4 class="fs-6 mb-2">
                                                                     <Link to="shop-single.html">Candle in concrete bowl</Link>
                                                                 </h4>
                                                                 <div class="text-muted small me-3">Color: <span class="text-dark fw-medium">Gray night</span></div>
@@ -71,16 +71,16 @@ const UserOrders = () => {
                                                         </div>
                                                     </td>
                                                     <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
-                                                        <div class="h6 small text-muted mb-2">Quantity</div>
+                                                        <div class="fs-6 small text-muted mb-2">Quantity</div>
                                                         <div class="small fw-semibold text-dark">1</div>
                                                     </td>
                                                     <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
-                                                        <div class="h6 small text-muted mb-2">Price</div>
-                                                        <div class="h6 small fw-semibold text-dark">₹16</div>
+                                                        <div class="fs-6 small text-muted mb-2">Price</div>
+                                                        <div class="fs-6 small fw-semibold text-dark">₹16</div>
                                                     </td>
                                                     <td class="border-0 text-end py-1 pe-0 ps-3 ps-sm-4">
-                                                        <div class="h6 small text-muted mb-2">Total</div>
-                                                        <div class="h6 small fw-semibold text-dark">₹16</div>
+                                                        <div class="fs-6 small text-muted mb-2">Total</div>
+                                                        <div class="fs-6 small fw-semibold text-dark">₹16</div>
                                                     </td>
                                                 </tr>
                                                 </tbody></table>
@@ -114,17 +114,17 @@ const UserOrders = () => {
                                     <a class="accordion-button shadow-none bg-light d-flex fs-5 fw-normal text-decoration-none py-3 collapsed" href="#orderTwo" data-bs-toggle="collapse" aria-expanded="false" aria-controls="orderTwo">
                                         <div class="d-flex justify-content-between w-100" style={{ maxWidth: 440 }}>
                                             <div class="me-1 me-sm-4">
-                                                <div class="h6 small text-dark"><small>#47H76G09F33</small></div>
+                                                <div class="fs-6 small text-dark"><small>#47H76G09F33</small></div>
                                                 <span class="badge bg-danger-subtle text-danger small rounded-pill"><small>Canceled</small></span>
                                             </div>
                                             <div class="me-1 me-sm-4">
-                                                <div class="d-none d-sm-block h6 small text-muted mb-2"><small>Order date</small></div>
-                                                <div class="d-sm-none h6 small text-muted mb-2"><small>Date</small></div>
+                                                <div class="d-none d-sm-block fs-6 small text-muted mb-2"><small>Order date</small></div>
+                                                <div class="d-sm-none fs-6 small text-muted mb-2"><small>Date</small></div>
                                                 <div class="small fw-medium text-dark"><small>Sep 14, 2022</small></div>
                                             </div>
                                             <div class="me-1 me-sm-4">
-                                                <div class="h6 small text-muted mb-2"><small>Total</small></div>
-                                                <div class="h6 small text-dark"><small>₹59.00</small></div>
+                                                <div class="fs-6 small text-muted mb-2"><small>Total</small></div>
+                                                <div class="fs-6 small text-dark"><small>₹59.00</small></div>
                                             </div>
                                         </div>
                                         <div class="accordion-button-img d-none d-sm-flex align-items-center ms-auto">
@@ -149,7 +149,7 @@ const UserOrders = () => {
                                                                 <img src="/assets/images/productImages/product1.jpg" width="110" alt="Product" />
                                                             </a>
                                                             <div class="ps-3 ps-sm-4">
-                                                                <h4 class="h6 mb-2"><a href="shop-single.html">Analogue wall clock</a></h4>
+                                                                <h4 class="fs-6 mb-2"><a href="shop-single.html">Analogue wall clock</a></h4>
                                                                 <div class="text-muted small me-3">Color: <span class="text-dark fw-medium">Turquoise</span></div>
                                                             </div>
                                                         </div>
@@ -174,7 +174,7 @@ const UserOrders = () => {
                                                                     <img src="/assets/images/productImages/product5.jpg" width="110" alt="Product" />
                                                                 </a>
                                                                 <div class="ps-3 ps-sm-4">
-                                                                    <h4 class="h6 mb-2"><a href="shop-single.html">Glossy round vase</a></h4>
+                                                                    <h4 class="fs-6 mb-2"><a href="shop-single.html">Glossy round vase</a></h4>
                                                                     <div class="text-muted small me-3">Color: <span class="text-dark fw-medium">White</span></div>
                                                                 </div>
                                                             </div>
@@ -199,7 +199,7 @@ const UserOrders = () => {
                                                                     <img src="/assets/images/productImages/product9.jpg" width="110" alt="Product" />
                                                                 </a>
                                                                 <div class="ps-3 ps-sm-4">
-                                                                    <h4 class="h6 mb-2"><a href="shop-single.html">Ceramic flower pot</a></h4>
+                                                                    <h4 class="fs-6 mb-2"><a href="shop-single.html">Ceramic flower pot</a></h4>
                                                                     <div class="text-muted small me-3">Color: <span class="text-dark fw-medium">Gray concrete</span></div>
                                                                 </div>
                                                             </div>
@@ -244,7 +244,7 @@ const UserOrders = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="d-sm-flex align-items-center pt-5">
+                        {/* <div class="d-sm-flex align-items-center pt-5"> */}
                             {/* <nav class="order-sm-2 ms-sm-auto mb-4 mb-sm-0" aria-label="Orders pagination">
                                 <ul class="pagination pagination-sm justify-content-center">
                                     <li class="page-item active" aria-current="page">
@@ -255,8 +255,8 @@ const UserOrders = () => {
                                     <li class="page-item"><a class="page-link" href="/">4</a></li>
                                 </ul>
                             </nav> */}
-                            <button class="btn bg-dark text-white px-4 py-3" type="button">Load more orders</button>
-                        </div>
+                            {/* <button class="btn bg-dark text-white px-4 py-3" type="button">Load more orders</button> */}
+                        {/* </div> */}
                     </div>
                 </div>
             </div>

@@ -138,6 +138,7 @@ export const userSlice = createSlice({
         },
         clearState: (state) => {
             state.status = 'IDLE';
+            // state.user = localStorage.getItem('user');
             return state;
         },
     },

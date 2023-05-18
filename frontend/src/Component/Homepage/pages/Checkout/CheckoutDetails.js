@@ -1,19 +1,19 @@
 import React from 'react';
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js';
-import $ from "jquery";
+// import $ from "jquery";
 
 import './Checkout.css';
 
 function CheckoutDetails() {
 
     const next = () => {
-        const nextTabLinkEl = $('.nav-tabs .active').closest('li').next('li').find('a')[0];
+        const nextTabLinkEl = document.querySelector('.nav-tabs .active').closest('li').next('li').find('a')[0];
         const nextTab = new bootstrap.Tab(nextTabLinkEl);
         nextTab.show();
     }
 
     const prev = () => {
-        const prevTabLinkEl = $('.nav-tabs .active').closest('li').prev('li').find('a')[0];
+        const prevTabLinkEl = document.querySelector('.nav-tabs .active').closest('li').prev('li').find('a')[0];
         const prevTab = new bootstrap.Tab(prevTabLinkEl);
         prevTab.show();
     }

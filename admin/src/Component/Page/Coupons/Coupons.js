@@ -212,7 +212,7 @@ function Coupon() {
       minPurchaseAmount: couponData.minPurchaseAmount,
       published: couponData.published,
       status:couponData.status 
-    }; 
+    };
 
     axios.patch(`http://localhost:5010/api/coupons/coupon/${couponId}`, couponDetails, config)
       .then(response => {

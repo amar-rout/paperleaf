@@ -6,9 +6,9 @@ import Meta from '../../Meta';
 import {
     selectStatus,
     selectErrorMessage,
-    selectUser,
+    // selectUser,
     clearState,
-    updateProfileAsync,
+    // updateProfileAsync,
     // updatePasswordChangeAsync,
 } from '../../../../../app/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,7 +16,7 @@ import { toast } from 'react-toastify';
 // import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
-    // const loginUser = JSON.parse(localStorage.getItem("user"));
+    let [loginUser, setLoginUser] = useState(JSON.parse(localStorage.getItem("user")));
 
     const [editProfile, setEditProfile] = useState(false);
     const [loadProfile, setLoadProfile] = useState(false);
@@ -33,12 +33,17 @@ const UserProfile = () => {
     const [passwordInputErrorMessage, setPasswordInputErrorMessage] = useState("");
 
 
-    const loginUser = useSelector(selectUser);
+    // const loginUser = useSelector(selectUser);
     const status = useSelector(selectStatus);
     const errorMessage = useSelector(selectErrorMessage);
 
     const dispatch = useDispatch();
     // const navigate = useNavigate();
+
+    useEffect(() => {
+        dispatch(clearState());
+        // loginUser = JSON.parse(localStorage.getItem("user"));
+    });
 
     const [userProfile, setUserProfile] = useState({
         firstName: "",
@@ -101,7 +106,7 @@ const UserProfile = () => {
                 middleName: loginUser.mname,
                 lastName: loginUser.lname,
                 gender: loginUser.gender,
-                dob: loginUser.dob
+                dob: loginUser.dob.split('T')[0]
             });
             setUserEmail({
                 email: loginUser.email
@@ -116,25 +121,25 @@ const UserProfile = () => {
         dispatch(clearState());
     });
 
-    useEffect(() => {
-        if (status === "LOADING") {
-            dispatch(clearState());
-        }
-        if (status === "LOADED") {
-            dispatch(clearState());
-            setEditPassword(false);
-            setUserPassword({
-                currPassword: "",
-                newPassword: "",
-                confirmPassword: ""
-            });
-            toast.success(errorMessage);
-        }
-        if (status === "ERROR") {
-            dispatch(clearState());
-            setPasswordInputErrorMessage(errorMessage);
-        }
-    }, [status, dispatch, errorMessage])
+    // useEffect(() => {
+    //     if (status === "LOADING") {
+    //         dispatch(clearState());
+    //     }
+    //     if (status === "LOADED") {
+    //         dispatch(clearState());
+    //         setEditPassword(false);
+    //         setUserPassword({
+    //             currPassword: "",
+    //             newPassword: "",
+    //             confirmPassword: ""
+    //         });
+    //         toast.success(errorMessage);
+    //     }
+    //     if (status === "ERROR") {
+    //         dispatch(clearState());
+    //         setPasswordInputErrorMessage(errorMessage);
+    //     }
+    // }, [status, dispatch, errorMessage])
 
     const handleEditProfile = () => {
         setEditProfile(true);
@@ -144,17 +149,89 @@ const UserProfile = () => {
         // dispatch(updateProfileAsync(userProfile));
     }
     const handleSaveProfile = () => {
-        dispatch(updateProfileAsync(userProfile));
-        dispatch(clearState());
-        setEditProfile(false);
+        setLoadProfile(true);
+        if (userProfile) {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${loginUser.token}`,
+                },
+            };
+            let profile = {
+                fname: userProfile.firstName || loginUser.fname,
+                mname: userProfile.middleName || loginUser.mname,
+                lname: userProfile.lastName || loginUser.lname,
+                dob: userProfile.dob || loginUser.dob,
+                gender: userProfile.gender || loginUser.gender
+            };
+            console.log(profile);
+            axios.patch('/api/users/profile/', profile, config)
+                .then(response => {
+                    toast.success("Profile changed successfully.");
+                    setLoadProfile(false);
+                    setUserProfile({
+                        firstName: response.data.fname,
+                        middleName: response.data.mname,
+                        lastName: response.data.lname,
+                        dob: response.data.dob.split('T')[0],
+                        gender: response.data.gender
+                    });
+                    setEditProfile(false);
+                    localStorage.setItem('user', JSON.stringify(response.data));
+                }).catch(error => {
+                    setLoadProfile(false);
+                    if (error.response) {
+                        toast.dismiss();
+                        toast.error(error.response.data.message);
+                    } else if (error.request) {
+                        toast.dismiss();
+                        toast.error(error.request);
+                    } else {
+                        toast.dismiss();
+                        toast.error(error.message);
+                    }
+                })
+        } else {
+            setProfileInputErrorMessage("Please provide valid mobile number");
+        }
     }
     const handleCancelEmail = () => {
         setEditEmail(false);
     }
     const handleUpdateEmail = () => {
-        dispatch(updateProfileAsync(userEmail));
-        dispatch(clearState());
-        setEditEmail(false);
+        setLoadEmail(true);
+        if (userEmail.email !== '') {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${loginUser.token}`,
+                },
+            };
+            axios.patch('/api/users/profile/', userEmail, config)
+                .then(response => {
+                    toast.success("Email changed successfully.");
+                    setLoadEmail(false);
+                    setUserEmail({
+                        email: response.data.email
+                    });
+                    setEditEmail(false);
+                    localStorage.setItem('user', JSON.stringify(response.data));
+                }).catch(error => {
+                    setLoadEmail(false);
+                    if (error.response) {
+                        toast.dismiss();
+                        toast.error(error.response.data.message);
+                    } else if (error.request) {
+                        toast.dismiss();
+                        toast.error(error.request);
+                    } else {
+                        toast.dismiss();
+                        toast.error(error.message);
+                    }
+                })
+        } else {
+            setEmailInputErrorMessage("Please provide valid mobile number");
+        }
     }
     const handleCancelPhone = () => {
         setEditPhone(false);
@@ -323,23 +400,47 @@ const UserProfile = () => {
                             </div>
                         </div>
                     </div>
+                    {
+                        profileInputErrorMessage &&
+                        <div className="col-12 mt-3">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{emailInputErrorMessage}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    }
                     <div className="col-12 mt-3">
                         <div className="d-flex justify-content-start align-items-center gap-3 mb-3 mt-3 mt-md-0">
                             {
-                                editProfile ?
-                                    <>
-                                        <button className="btn btn-danger px-4 px-md-5 py-3" type="submit" onClick={handleCancelProfile}>
-                                            Cancel
-                                        </button>
-                                        <button className="btn btn-success px-4 px-md-5 py-3" type="submit" onClick={handleSaveProfile}>
-                                            Save Changes
-                                        </button>
-                                    </>
-                                    :
+                                !editProfile ?
                                     <>
                                         <button className="btn btn-dark px-4 px-md-5 py-3" type="submit" onClick={handleEditProfile}>
                                             Edit Profile
                                         </button>
+                                    </>
+                                    :
+                                    <>
+                                        {
+                                            !loadProfile ?
+                                                <>
+                                                    <button disabled={loadProfile} className="btn btn-danger px-4 px-md-5 py-3" type="submit" onClick={handleCancelProfile}>
+                                                        Cancel
+                                                    </button>
+                                                    <button disabled={loadProfile} className="btn btn-success px-4 px-md-5 py-3" type="submit" onClick={handleSaveProfile}>
+                                                        Save Changes
+                                                    </button>
+                                                </>
+                                                :
+                                                <>
+                                                    <button disabled={loadProfile} className="btn btn-danger px-4 px-md-5 py-3" type="submit" onClick={handleCancelProfile}>
+                                                        Cancel
+                                                    </button>
+                                                    <button disabled={loadProfile} className="btn btn-success px-4 px-md-5 py-3" type="submit" onClick={handleSaveProfile}>
+                                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                        Save Changes
+                                                    </button>
+                                                </>
+                                        }
                                     </>
                             }
                         </div>
@@ -357,9 +458,12 @@ const UserProfile = () => {
                             <input className="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-3 mb-3 text-decoration-none shadow-none" id="accountAvatar" type="file" placeholder="Select your avatar" />
                         </div>
                     </div>
-                    <div className="col-12 col-md-6 my-auto text-center">
-                        <img src="/assets/images/user-thumbnail.jpg" alt="mdo" width="140" height="140" className="rounded-circle" />
-                    </div>
+                    {
+                        loginUser.image &&
+                        <div className="col-12 col-md-6 my-auto text-center">
+                            <img src={'http://${server_URL}${loginUser.image}'} alt="mdo" width="140" height="140" className="rounded-circle" />
+                        </div>
+                    }
                     <div className="">
                         <button className="btn px-3 mb-3 px-md-5 py-3 bg-danger text-white me-2" type="submit">
                             Remove
@@ -381,6 +485,13 @@ const UserProfile = () => {
                                     onChange={handleUserEmailChange} disabled={!editEmail} name="email" value={userEmail.email} autoComplete='off' />
                             </div>
                         </div>
+                        {
+                            emailInputErrorMessage &&
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{emailInputErrorMessage}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        }
                         <div className="">
                             {
                                 !editEmail ?
@@ -389,12 +500,27 @@ const UserProfile = () => {
                                     </button>
                                     :
                                     <>
-                                        <button className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" type="submit" onClick={handleCancelEmail}>
-                                            Canel
-                                        </button>
-                                        <button className="btn btn-success me-2 px-3 mb-3 px-md-5 py-3 bg-success text-white" type="submit" onClick={handleUpdateEmail}>
-                                            Update Email
-                                        </button>
+                                        {
+                                            !loadEmail ?
+                                                <>
+                                                    <button disabled={loadEmail} className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" type="submit" onClick={handleCancelEmail}>
+                                                        Canel
+                                                    </button>
+                                                    <button disabled={loadEmail} className="btn btn-success me-2 px-3 mb-3 px-md-5 py-3 bg-success text-white" type="submit" onClick={handleUpdateEmail}>
+                                                        Update Email
+                                                    </button>
+                                                </>
+                                                :
+                                                <>
+                                                    <button disabled={loadEmail} className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" type="submit">
+                                                        Canel
+                                                    </button>
+                                                    <button disabled={loadEmail} className="btn btn-success me-2 px-3 mb-3 px-md-5 py-3 bg-success text-white" type="submit">
+                                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                        Update Email
+                                                    </button>
+                                                </>
+                                        }
                                     </>
                             }
                         </div>
@@ -403,7 +529,7 @@ const UserProfile = () => {
                     <div className='col-12 col-md-6'>
                         <label className="form-label">Phone *</label>
                         <div className="input-group input-group-merge border border-0">
-                            <button type="button" disabled className="btn border-1 border-secondary border-end-0 fs-6 py-3 px-3 rounded-0 rounded-start-3 mb-3 text-decoration-none shadow-none fw-normal">IN (+91)</button>
+                            <button type="button" disabled="true" className="btn btn-sencodary-subtle border-1 border-secondary border-end-0 fs-6 py-3 px-3 rounded-0 rounded-start-3 mb-3 text-decoration-none shadow-none fw-normal">IN (+91)</button>
                             <input className="form-control form-control-lg py-3 px-4 fs-6 border-1 border-secondary rounded-end-3 mb-3 text-decoration-none shadow-none"
                                 name="phone" type="tel" pattern="[0-9]{10}" minLength="10" maxLength="10" required
                                 onChange={handleUserPhoneChange} disabled={!editPhone} value={userPhone.phone} placeholder="Enter your phone" autoComplete="off" />
@@ -435,10 +561,10 @@ const UserProfile = () => {
                                                 </>
                                                 :
                                                 <>
-                                                    <button className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" disabled={loadPhone} type="submit" onClick={handleCancelPhone}>
+                                                    <button className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" disabled={loadPhone} type="submit">
                                                         Canel
                                                     </button>
-                                                    <button className="btn btn-success me-2 px-3 mb-3 px-md-5 py-3" disabled={loadPhone} type="submit" onClick={handleUpdatePhone}>
+                                                    <button className="btn btn-success me-2 px-3 mb-3 px-md-5 py-3" disabled={loadPhone} type="submit">
                                                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                                         Update Phone
                                                     </button>

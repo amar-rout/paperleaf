@@ -95,7 +95,7 @@ const User = () => {
                                                 <>
                                                     {/* <img className="rounded-circle border border-dark border-1 " src="" alt="Profile" width="120" height="120" /> */}
                                                     {/* <span> */}
-                                                        <i className="bi bi-person rounded-circle border border-dark border-1 px-2" style={{fontSize: "48px", width: "120px", height: "120px" }}></i>
+                                                    <i className="bi bi-person rounded-circle border border-dark border-1 px-2" style={{ fontSize: "48px", width: "120px", height: "120px" }}></i>
                                                     {/* </span> */}
                                                 </>
                                         }
@@ -128,16 +128,16 @@ const User = () => {
                                         <span className="p-0 pe-4"><i className="bi bi-journal-text"></i></span>
                                         Orders
                                     </AccountLink>
-                                    <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
+                                    {/* <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
                                         to="/user/paymentMethods">
                                         <span className="p-0 pe-4"><i className="bi bi-credit-card"></i></span>
                                         Payment Method
-                                    </AccountLink>
-                                    <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
+                                    </AccountLink> */}
+                                    {/* <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
                                         to="/user/notifications">
                                         <span className="p-0 pe-4"><i className="bi bi-bell"></i></span>
                                         Notification
-                                    </AccountLink>
+                                    </AccountLink> */}
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
                                         to="/user/privacyAndSafety">
                                         <span className="p-0 pe-4"><i className="bi bi-shield"></i></span>
@@ -146,7 +146,7 @@ const User = () => {
                                     <AccountLink className="list-group-item my-1 py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
                                         to="/user/settings">
                                         <span className="p-0 pe-4"><i className="bi bi-gear"></i></span>
-                                        Settings
+                                        Account Settings
                                     </AccountLink>
                                     {/* <AccountLink className="list-group-item py-2 border-0 text-dark link-warning d-flex flex-0 justify-content-start align-items-center"
                                                  to="/user/userOrderHelp">

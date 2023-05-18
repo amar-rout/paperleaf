@@ -266,7 +266,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     user.phone = sanitize(req.body.phone) || user.phone;
     user.gender = sanitize(req.body.gender) || user.gender;
     user.image = sanitize(req.body.image) || user.image;
-    user.dob = sanitize(req.body.dob) || user.dob;
+    user.dob = sanitize( new Date(req.body.dob)) || user.dob;
     if (req.body.password) {
       user.password = sanitize(req.body.password);
     }
@@ -280,7 +280,8 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       email: updatedUser.email,
       phone: updatedUser.phone,
       gender: updatedUser.gender,
-      dob: updateUserProfile.dob,
+      dob: updatedUser.dob,
+      image: updatedUser.image,
       isAdmin: updatedUser.isAdmin,
       token: generateToken(updatedUser._id),
     });

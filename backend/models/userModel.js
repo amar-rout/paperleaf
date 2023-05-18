@@ -13,6 +13,11 @@ const userSchema = mongoose.Schema(
     gender: { type: String, required: true },
     dob: {type: Date, required: false},
     password: { type: String, required: true },
+    status: {
+      type: String,
+      required: false,
+      enum: ["active", "deactive"]
+    },
     isAdmin: { type: Boolean, required: true, default: false },
   },
   {

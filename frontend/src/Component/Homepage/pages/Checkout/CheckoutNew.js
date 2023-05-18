@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js';
-import $ from "jquery";
+// import $ from "jquery";
 
 
 import './Checkout.css';
@@ -58,13 +58,13 @@ function CheckoutNew() {
     }
 
     const next = () => {
-        const nextTabLinkEl = $('.nav-fill .active').closest('li').next('li').find('a')[0];
+        const nextTabLinkEl = document.querySelector('.nav-fill .active').closest('li').next('li').find('a')[0];
         const nextTab = new bootstrap.Tab(nextTabLinkEl);
         nextTab.show();
     }
 
     const prev = () => {
-        const prevTabLinkEl = $('.nav-fill .active').closest('li').prev('li').find('a')[0];
+        const prevTabLinkEl = document.querySelector('.nav-fill .active').closest('li').prev('li').find('a')[0];
         const prevTab = new bootstrap.Tab(prevTabLinkEl);
         prevTab.show();
     }
