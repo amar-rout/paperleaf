@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 body {
   margin: 0;
@@ -7,14 +8,16 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif !important; */
   /* font-family: 'Nunito Sans', sans-serif; */
-  font-family: 'Noto Sans', sans-serif;
+  /* font-family: 'Noto Sans', sans-serif; */
+  font-family: 'Gothic A1', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  /* font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace; */
+    font-family: 'Gothic A1', sans-serif;
 }
 
 /*********************************************/
@@ -32,7 +35,8 @@ code {
 
 
 p {
-  font-family: 'Noto Sans', sans-serif;
+  /* font-family: 'Noto Sans', sans-serif; */
+  font-family: 'Gothic A1', sans-serif;
   font-weight: 400;
   /* font-size: 14px !important; */
   /* text-align: justify; */
@@ -44,13 +48,15 @@ p b {
 }
 
 .btn {
-  font-family: 'Noto Sans', sans-serif;
+  /* font-family: 'Noto Sans', sans-serif; */
+  font-family: 'Gothic A1', sans-serif;
   font-weight: 600;
   font-size: 12px;
 }
 
 a {
-  font-family: 'Noto Sans', sans-serif;
+  /* font-family: 'Noto Sans', sans-serif; */
+  font-family: 'Gothic A1', sans-serif;
   font-weight: 400;
   font-size: small;
   text-align: justify;
