@@ -90,7 +90,7 @@ export const requestPasswordReset = asyncHandler(async (req, res) => {
 
   // console.log("Created Token :" + createdToken);
 
-  const link = `http://192.168.29.28:3000/passwordReset?email=${user.email}&resetToken=${resetToken}`;
+  const link = `${process.env.CLIENT_URL}/passwordReset?email=${user.email}&resetToken=${resetToken}`;
   const link2 = `/passwordReset?email=${user.email}&resetToken=${resetToken}`;
 
   const salutation = `Hi User,<br/><br/>`;
@@ -239,7 +239,24 @@ export const validateToken = asyncHandler(async (req, res) => {
 // @route PATCH /api/users/profile
 // @access Private
 export const updateUserProfile = asyncHandler(async (req, res) => {
-  const user = await UserModel.findById(sanitize(req.body._id));
+  const user = await UserModel.findById(sanitize(req.user.id));
+  let error = false;
+  if (req.body.phone !== "") {
+    let userByPhone = await UserModel.findOne({ phone: sanitize(req.body.phone) });
+    // console.log("User By phone: " + userByPhone);
+    if (userByPhone) {
+      res.status(409);
+      throw new Error('Provided phone already in use.');
+    }
+  }
+  if (req.body.email !== "") {
+    let userByEmail = await UserModel.findOne({ email: sanitize(req.body.email) });
+    // console.log(userByEmail);
+    if (userByEmail) {
+      res.status(409);
+      throw new Error('Provided email already in use.');
+    }
+  }
   if (user) {
     user.fname = sanitize(req.body.fname) || user.fname;
     user.mname = sanitize(req.body.mname) || user.mname;

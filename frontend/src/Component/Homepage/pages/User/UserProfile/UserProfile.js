@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import Breadcrumb from '../../Breadcrumb/Breadcrumb';
+import axios from 'axios';
 import Meta from '../../Meta';
 
 import {
@@ -8,7 +9,7 @@ import {
     selectUser,
     clearState,
     updateProfileAsync,
-    updatePasswordChangeAsync,
+    // updatePasswordChangeAsync,
 } from '../../../../../app/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -18,10 +19,17 @@ const UserProfile = () => {
     // const loginUser = JSON.parse(localStorage.getItem("user"));
 
     const [editProfile, setEditProfile] = useState(false);
+    const [loadProfile, setLoadProfile] = useState(false);
     const [editEmail, setEditEmail] = useState(false);
+    const [loadEmail, setLoadEmail] = useState(false);
     const [editPhone, setEditPhone] = useState(false);
+    const [loadPhone, setLoadPhone] = useState(false);
     const [editPassword, setEditPassword] = useState(false);
+    const [loadPassword, setLoadPassword] = useState(false);
 
+    const [profileInputErrorMessage, setProfileInputErrorMessage] = useState("");
+    const [emailInputErrorMessage, setEmailInputErrorMessage] = useState("");
+    const [phoneInputErrorMessage, setPhoneInputErrorMessage] = useState("");
     const [passwordInputErrorMessage, setPasswordInputErrorMessage] = useState("");
 
 
@@ -152,8 +160,39 @@ const UserProfile = () => {
         setEditPhone(false);
     }
     const handleUpdatePhone = () => {
-        dispatch(updateProfileAsync(userPhone));
-        setEditPhone(false);
+        setLoadPhone(true);
+        if (userPhone.phone !== '' && userPhone.phone.length === 10) {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${loginUser.token}`,
+                },
+            };
+            axios.patch('/api/users/profile/', userPhone, config)
+                .then(response => {
+                    toast.success("Phone number changed successfully.");
+                    console.log(response.data);
+                    setLoadPhone(false);
+                    setUserPhone({
+                        phone: response.data.phone
+                    });
+                    setEditPhone(false);
+                }).catch(error => {
+                    setLoadPhone(false);
+                    if (error.response) {
+                        toast.dismiss();
+                        toast.error(error.response.data.message);
+                    } else if (error.request) {
+                        toast.dismiss();
+                        toast.error(error.request);
+                    } else {
+                        toast.dismiss();
+                        toast.error(error.message);
+                    }
+                })
+        } else {
+            setPhoneInputErrorMessage("Please provide valid mobile number");
+        }
     }
     const handleCancelPassword = () => {
         setUserPassword({
@@ -164,12 +203,43 @@ const UserProfile = () => {
         setEditPassword(false);
     }
     const handleUpdatePassword = () => {
+        setLoadPassword(true);
         const { currPassword, newPassword, confirmPassword } = userPassword;
         if (currPassword !== "" && newPassword !== "" && confirmPassword !== "") {
-            if (newPassword !== confirmPassword) {
-                setPasswordInputErrorMessage('New Password and Confirm Password should be match.');
+            if (newPassword === confirmPassword) {
+                // dispatch(updatePasswordChangeAsync(userPassword));
+                // const logUser = JSON.parse(localStorage.getItem('user'));
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${loginUser.token}`,
+                    },
+                };
+                axios.put('/api/users/profile/passwordChange', userPassword, config)
+                    .then(response => {
+                        toast.success("Password changed successfully.");
+                        setLoadPassword(false);
+                        setUserPassword({
+                            currPassword: "",
+                            newPassword: "",
+                            confirmPassword: ""
+                        });
+                        setEditPassword(false);
+                    }).catch(error => {
+                        setLoadPassword(false);
+                        if (error.response) {
+                            toast.dismiss();
+                            toast.error(error.response.data.message);
+                        } else if (error.request) {
+                            toast.dismiss();
+                            toast.error(error.request);
+                        } else {
+                            toast.dismiss();
+                            toast.error(error.message);
+                        }
+                    })
             } else {
-                dispatch(updatePasswordChangeAsync(userPassword));
+                setPasswordInputErrorMessage('New Password and Confirm Password should be match.');
             }
         } else {
             setPasswordInputErrorMessage('One or More input missing.');
@@ -331,7 +401,6 @@ const UserProfile = () => {
                     </div>
                     {/* <div className="col-12 col-md-6"></div> */}
                     <div className='col-12 col-md-6'>
-                        {/* <div className="col-12 col-md-6"> */}
                         <label className="form-label">Phone *</label>
                         <div className="input-group input-group-merge border border-0">
                             <button type="button" disabled className="btn border-1 border-secondary border-end-0 fs-6 py-3 px-3 rounded-0 rounded-start-3 mb-3 text-decoration-none shadow-none fw-normal">IN (+91)</button>
@@ -339,7 +408,13 @@ const UserProfile = () => {
                                 name="phone" type="tel" pattern="[0-9]{10}" minLength="10" maxLength="10" required
                                 onChange={handleUserPhoneChange} disabled={!editPhone} value={userPhone.phone} placeholder="Enter your phone" autoComplete="off" />
                         </div>
-                        {/* </div> */}
+                        {
+                            phoneInputErrorMessage &&
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{phoneInputErrorMessage}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        }
                         <div className="">
                             {
                                 !editPhone ?
@@ -348,12 +423,27 @@ const UserProfile = () => {
                                     </button>
                                     :
                                     <>
-                                        <button className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" type="submit" onClick={handleCancelPhone}>
-                                            Canel
-                                        </button>
-                                        <button className="btn btn-success me-2 px-3 mb-3 px-md-5 py-3" type="submit" onClick={handleUpdatePhone}>
-                                            Update Phone
-                                        </button>
+                                        {
+                                            !loadPhone ?
+                                                <>
+                                                    <button className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" disabled={loadPhone} type="submit" onClick={handleCancelPhone}>
+                                                        Canel
+                                                    </button>
+                                                    <button className="btn btn-success me-2 px-3 mb-3 px-md-5 py-3" disabled={loadPhone} type="submit" onClick={handleUpdatePhone}>
+                                                        Update Phone
+                                                    </button>
+                                                </>
+                                                :
+                                                <>
+                                                    <button className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" disabled={loadPhone} type="submit" onClick={handleCancelPhone}>
+                                                        Canel
+                                                    </button>
+                                                    <button className="btn btn-success me-2 px-3 mb-3 px-md-5 py-3" disabled={loadPhone} type="submit" onClick={handleUpdatePhone}>
+                                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                        Update Phone
+                                                    </button>
+                                                </>
+                                        }
                                     </>
                             }
                         </div>
@@ -393,10 +483,13 @@ const UserProfile = () => {
                         </div>
                     </div>
                     <div className='col-12 mb-3'>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>{passwordInputErrorMessage}</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                        {
+                            passwordInputErrorMessage &&
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{passwordInputErrorMessage}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        }
                     </div>
                     <div className="d-flex justify-content-start align-items-center">
                         {
@@ -406,12 +499,28 @@ const UserProfile = () => {
                                 </button>
                                 :
                                 <>
-                                    <button className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" type="submit" onClick={handleCancelPassword}>
-                                        Canel
-                                    </button>
-                                    <button className="btn px-5 py-3 mb-3 bg-success text-white" type="submit" onClick={handleUpdatePassword}>
-                                        Update Password
-                                    </button>
+                                    {
+                                        !loadPassword ?
+                                            <>
+                                                <button className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" disabled={loadPassword} type="submit" onClick={handleCancelPassword}>
+                                                    Canel
+                                                </button>
+                                                <button className="btn px-5 py-3 mb-3 bg-success text-white" disabled={loadPassword} type="submit" onClick={handleUpdatePassword}>
+                                                    Update Password
+                                                </button>
+                                            </>
+                                            :
+                                            <>
+                                                <button className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" disabled={loadPassword} type="submit" onClick={handleCancelPassword}>
+                                                    Canel
+                                                </button>
+                                                <button className="btn px-5 py-3 mb-3 bg-success text-white" disabled={loadPassword} type="submit" onClick={handleUpdatePassword}>
+                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                    Update Password
+                                                </button>
+                                            </>
+                                    }
+
                                 </>
                         }
                     </div>
