@@ -20,6 +20,8 @@ const UserProfile = () => {
 
     const [editProfile, setEditProfile] = useState(false);
     const [loadProfile, setLoadProfile] = useState(false);
+    const [editImage, setEditImage] = useState(false);
+    const [loadImage, setLoadImage] = useState(false);
     const [editEmail, setEditEmail] = useState(false);
     const [loadEmail, setLoadEmail] = useState(false);
     const [editPhone, setEditPhone] = useState(false);
@@ -28,17 +30,22 @@ const UserProfile = () => {
     const [loadPassword, setLoadPassword] = useState(false);
 
     const [profileInputErrorMessage, setProfileInputErrorMessage] = useState("");
+    const [imageInputErrorMessage, setImageInputErrorMessage] = useState("");
     const [emailInputErrorMessage, setEmailInputErrorMessage] = useState("");
     const [phoneInputErrorMessage, setPhoneInputErrorMessage] = useState("");
     const [passwordInputErrorMessage, setPasswordInputErrorMessage] = useState("");
 
 
     // const loginUser = useSelector(selectUser);
-    const status = useSelector(selectStatus);
-    const errorMessage = useSelector(selectErrorMessage);
+    // const status = useSelector(selectStatus);
+    // const errorMessage = useSelector(selectErrorMessage);
 
     const dispatch = useDispatch();
     // const navigate = useNavigate();
+    const serverURL = 'http://localhost:5010';
+    const imageUploadURL = `/api/upload`;
+
+    let file = null;
 
     useEffect(() => {
         dispatch(clearState());
@@ -51,6 +58,10 @@ const UserProfile = () => {
         lastName: "",
         dob: "",
         gender: ""
+    });
+
+    const [userImage, setUserImage] = useState({
+        image: ""
     });
 
     const [userEmail, setUserEmail] = useState({
@@ -73,6 +84,75 @@ const UserProfile = () => {
             ...userProfile,
             [name]: value
         });
+    }
+
+    const handleImageChange = (e) => {
+        setLoadImage(true);
+        file = e.target.files[0];
+        if (file) {
+            if (userImage.image !== "") {
+                const imageArr = userImage.image.split("/");
+                deleteImage(imageArr[2]);
+            }
+            uploadImage();
+            setLoadImage(false);
+        } else {
+            if (userImage.image !== "") {
+                const imageArr = userImage.image.split("/");
+                deleteImage(imageArr[2]);
+                setLoadImage(false);
+            } else {
+                toast.dismiss();
+                toast.warning("Please select one image.");
+            }
+        }
+    }
+
+    const uploadImage = () => {
+        let formData = new FormData();
+        formData.append("image", file);
+        toast.dismiss();
+        toast.info('Uploading image....');
+        axios.post(imageUploadURL, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        })
+            .then((response) => {
+                setUserImage({
+                    ...userImage,
+                    image: response.data
+                });
+                handleUpdateUserImage();
+                toast.dismiss();
+                toast.success('User image uploaded successfully.');
+            }).catch((error) => {
+                // setImageInputShow(false);
+                setImageInputErrorMessage(error.response.data.message);
+                // setSuccessMessage("");
+                toast.dismiss();
+                toast.error('User image not uploaded');
+            });
+    }
+
+    const deleteImage = (imageID) => {
+        // const imageArr = imageID.split("/"); 
+        const deleteImageURL = `${imageUploadURL}/${imageID}`;
+        axios.delete(deleteImageURL)
+            .then((response) => {
+                setUserImage({
+                    ...userImage,
+                    image: ''
+                });
+                handleUpdateUserImage();
+                // setImageInputShow(false);
+            }).catch((error) => {
+                // setImageInputShow(false);
+                setImageInputErrorMessage(error.response.data);
+                // setSuccessMessage("");
+                toast.dismiss();
+                toast.error('');
+            });
     }
 
     const handleUserEmailChange = (e) => {
@@ -195,9 +275,49 @@ const UserProfile = () => {
             setProfileInputErrorMessage("Please provide valid mobile number");
         }
     }
+
+    const handleCancelImage = () => {
+        setEditImage(false);
+    }
+
+    const handleUpdateUserImage = () => {
+        if (userImage.image !== '') {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${loginUser.token}`,
+                },
+            };
+            axios.patch('/api/users/profile/', userImage, config)
+                .then(response => {
+                    toast.success("Image updated successfully.");
+                    setUserImage({
+                        email: response.data.image
+                    });
+                    localStorage.removeItem('user');
+                    localStorage.setItem('user', JSON.stringify(response.data));
+                }).catch(error => {
+                    // setLoadEmail(false);
+                    if (error.response) {
+                        toast.dismiss();
+                        toast.error(error.response.data.message);
+                    } else if (error.request) {
+                        toast.dismiss();
+                        toast.error(error.request);
+                    } else {
+                        toast.dismiss();
+                        toast.error(error.message);
+                    }
+                })
+        } else {
+            setEmailInputErrorMessage("Please provide valid mobile number");
+        }
+    }
+
     const handleCancelEmail = () => {
         setEditEmail(false);
     }
+
     const handleUpdateEmail = () => {
         setLoadEmail(true);
         if (userEmail.email !== '') {
@@ -233,6 +353,7 @@ const UserProfile = () => {
             setEmailInputErrorMessage("Please provide valid mobile number");
         }
     }
+
     const handleCancelPhone = () => {
         setEditPhone(false);
     }
@@ -455,22 +576,63 @@ const UserProfile = () => {
                             <label className="form-label" htmlFor="accountAvatar">
                                 Upload your profile photo *
                             </label>
-                            <input className="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-3 mb-3 text-decoration-none shadow-none" id="accountAvatar" type="file" placeholder="Select your avatar" />
+                            <input className="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-3 mb-3 text-decoration-none shadow-none" id="accountAvatar"
+                                name="image" onChange={handleImageChange} type="file"
+                                placeholder="Select your avatar" required disabled={!editImage} />
                         </div>
                     </div>
+                    <div className='col-12 col-md-6'>
+                        {
+                            imageInputErrorMessage &&
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>{imageInputErrorMessage}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        }
+                    </div>
                     {
-                        loginUser.image &&
+                        loginUser.image !== "" &&
                         <div className="col-12 col-md-6 my-auto text-center">
-                            <img src={'http://${server_URL}${loginUser.image}'} alt="mdo" width="140" height="140" className="rounded-circle" />
+                            <img src={`${serverURL}${loginUser.image}`} alt="user" width="140" height="140" className="rounded-circle" />
                         </div>
                     }
                     <div className="">
-                        <button className="btn px-3 mb-3 px-md-5 py-3 bg-danger text-white me-2" type="submit">
-                            Remove
-                        </button>
-                        <button className="btn ms-2 px-3 mb-3 px-md-5 py-3 bg-success text-white" type="submit">
-                            Upload Profile Photo
-                        </button>
+                        {
+                            !editImage ?
+                                <button className="btn btn-dark me-2 px-3 mb-3 px-md-5 py-3" type="submit" onClick={() => setEditImage(true)}>
+                                    Edit Image
+                                </button>
+                                :
+                                <>
+                                    {/* {
+                                        !loadImage ?
+                                            <>
+                                                <button disabled={loadImage} className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" type="submit" onClick={handleCancelImage}>
+                                                    Canel
+                                                </button>
+                                                <button disabled={loadImage} className="btn btn-success me-2 px-3 mb-3 px-md-5 py-3 bg-success text-white" type="submit">
+                                                    Upload Image
+                                                </button>
+                                            </>
+                                            :
+                                            <>
+                                                <button disabled={loadEmail} className="btn btn-danger me-2 px-3 mb-3 px-md-5 py-3" type="submit">
+                                                    Canel
+                                                </button>
+                                                <button disabled={loadEmail} className="btn btn-success me-2 px-3 mb-3 px-md-5 py-3 bg-success text-white" type="submit">
+                                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                    Update Email
+                                                </button>
+                                            </>
+                                    } */}
+                                    <button onClick={handleCancelImage} className="btn px-3 mb-3 px-md-5 py-3 bg-danger text-white me-2" type="submit">
+                                        Cancel
+                                    </button>
+                                    <button onClick={handleUpdateUserImage} className="btn ms-2 px-3 mb-3 px-md-5 py-3 bg-success text-white" type="submit">
+                                        Upload Profile Photo
+                                    </button>
+                                </>
+                        }
                     </div>
                 </div>
                 <div className="row mt-3 border border-1 rounded-4">

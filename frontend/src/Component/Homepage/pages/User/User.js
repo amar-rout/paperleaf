@@ -87,16 +87,16 @@ const User = () => {
                         <div className="card text-center">
                             <div className="card-header bg-body">
                                 <div className="text-center my-3">
-                                    <div className="mb-3 position-relative">
+                                    <div className="mb-3 d-flex justify-content-center align-items-center">
                                         {
                                             user.image ?
-                                                <img className="rounded-circle border border-dark border-1 " src={`${process.env.REACT_APP_SERVER_URL}${user.image}`} alt="Profile" width="120" height="120" />
+                                                <img className="rounded-circle border border-dark border-1 " src={`http://localhost:5010${user.image}`} alt="Profile" width="120" height="120" />
                                                 :
                                                 <>
                                                     {/* <img className="rounded-circle border border-dark border-1 " src="" alt="Profile" width="120" height="120" /> */}
-                                                    {/* <span> */}
-                                                    <i className="bi bi-person rounded-circle border border-dark border-1 px-2" style={{ fontSize: "48px", width: "120px", height: "120px" }}></i>
-                                                    {/* </span> */}
+                                                    <div className="" style={{ width: '100px', height: '100px', paddingTop: '12px', border: '1px solid black', borderRadius: '50%' }}>
+                                                        <i className="bi bi-person p-0 m-0" style={{ fontSize: "48px" }}></i>
+                                                    </div>
                                                 </>
                                         }
                                     </div>

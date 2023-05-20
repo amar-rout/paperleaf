@@ -97,18 +97,18 @@ const Products = () => {
     }, [dispatch, id, productID]);
 
     useEffect(() => {
-            $('.modal').on('shown.bs.modal', function () {
-                window.location.hash = "modal";
-            });
-            $('.close-icon').on('click', function () {
-                $(this).closest('.card').fadeOut();
-            });
-            $(window).on('hashchange', function (event) {
-                if (window.location.hash !== "#modal") {
-                    window.location.hash = "";
-                    $('.close').click();
-                }
-            });
+        $('.modal').on('shown.bs.modal', function () {
+            window.location.hash = "modal";
+        });
+        $('.close-icon').on('click', function () {
+            $(this).closest('.card').fadeOut();
+        });
+        $(window).on('hashchange', function (event) {
+            if (window.location.hash !== "#modal") {
+                window.location.hash = "";
+                $('.close').click();
+            }
+        });
     }, []);
 
     const handleAddCart = (id, quantity) => {
@@ -369,7 +369,7 @@ const Products = () => {
                                 {/* Modal Start */}
                                 {/* <div> */}
                                 {/* data-bs-backdrop="static" */}
-                                <div class="modal fade" id="sizeChart"  data-bs-keyboard="false" tabindex="-1" aria-labelledby="sizeChartLabel" aria-hidden="true">
+                                <div class="modal fade" id="sizeChart" data-bs-keyboard="false" tabindex="-1" aria-labelledby="sizeChartLabel" aria-hidden="true">
                                     <div class="modal-dialog modal modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -663,7 +663,7 @@ const Products = () => {
                                 </div> */}
                                 {/* Slick Slider End */}
 
-                                <div className="col-12">
+                                <div className="col-12 px-0">
                                     <div class="card w-100 p-0 m-0 mt-5">
                                         <div class="card-header">
                                             <ul class="nav nav-pills" role="tablist">
@@ -696,7 +696,7 @@ const Products = () => {
                                                 </div>
                                                 <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                                                     <div class="row">
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-6">
                                                             <div class="mb-5">
                                                                 {/* <div class="display-6">4</div>
                                                                 <div class="d-flex gap-2 my-3">
@@ -707,8 +707,75 @@ const Products = () => {
                                                                     <i class="bi bi-star-fill icon-lg text-muted"></i>
                                                                     <span>(3)</span>
                                                                 </div> */}
-                                                                <span className="display-6">{product.rating} </span>
-                                                                <span className="d-flex justify-content-start align-items-center">
+                                                                <p>User rating for {product.name}</p>
+                                                                <div className='d-flex justify-content-start align-items-center'>
+                                                                    <div className='border border-success text-center p-0 m-0 px-2 py-1'>
+                                                                        <h2 className="display-6 p-0 m-0">{product.rating}</h2>
+                                                                        <p className='p-0 m-0 text-muted fw-semibold fs-6'>out of 5</p>
+                                                                    </div>
+                                                                    {/* <span className="ms-2 ms-md-4 d-flex flex-column justify-content-start align-items-start"> */}
+                                                                    <span className='ps-2'>
+                                                                        <ReactStars {...{
+                                                                            size: 16,
+                                                                            count: 5,
+                                                                            activeColor: "#fdad01",
+                                                                            value: product.rating,
+                                                                            a11y: true,
+                                                                            isHalf: true,
+                                                                            emptyIcon: <i className="bi bi-star" />,
+                                                                            halfIcon: <i className="bi bi-star-half" />,
+                                                                            filledIcon: <i className="bi bi-star-fill" />,
+                                                                            edit: false,
+                                                                        }} />
+                                                                        <p className="p-0 m-0 pt-2 text-muted fw-semibold fs-6">
+                                                                            {product.numReviews} Ratings . {product.numReviews} Reviews
+                                                                        </p>
+                                                                    </span>
+                                                                </div>
+                                                                <hr className=' text-center border-muted' />
+                                                                <div className='py-3 lh-1'>
+                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
+                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>5</p>
+                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
+                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{height: '1.3rem'}}>
+                                                                            <div class="progress-bar text-bg-warning " style={{width: '50%'}}>50%</div>
+                                                                        </div>
+                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
+                                                                    </div>
+                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
+                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>4</p>
+                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
+                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{height: '1.3rem'}}>
+                                                                            <div class="progress-bar text-bg-warning " style={{width: '50%'}}>50%</div>
+                                                                        </div>
+                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
+                                                                    </div>
+                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
+                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>3</p>
+                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
+                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{height: '1.3rem'}}>
+                                                                            <div class="progress-bar text-bg-warning " style={{width: '50%'}}>50%</div>
+                                                                        </div>
+                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
+                                                                    </div>
+                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
+                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>2</p>
+                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
+                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{height: '1.3rem'}}>
+                                                                            <div class="progress-bar text-bg-warning " style={{width: '50%'}}>50%</div>
+                                                                        </div>
+                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
+                                                                    </div>
+                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
+                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1</p>
+                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
+                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{height: '1.3rem'}}>
+                                                                            <div class="progress-bar text-bg-warning " style={{width: '50%'}}>50%</div>
+                                                                        </div>
+                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
+                                                                    </div>
+                                                                </div>
+                                                                {/* <span className="d-flex justify-content-start align-items-center">
                                                                     <ReactStars {...{
                                                                         size: 14,
                                                                         count: 5,
@@ -722,15 +789,15 @@ const Products = () => {
                                                                         edit: false,
                                                                     }} />
                                                                     <span className="fw-normal text-muted ms-1">
-                                                                        {/* style={{ fontSize: "12px" }} */}
+                                                                        // style={{ fontSize: "12px" }}
                                                                         ({product.numReviews})
                                                                     </span>
-                                                                </span>
+                                                                </span> */}
                                                             </div>
                                                             <div class="list-group list-group-flush mb-4">
                                                                 <div class="list-group-item d-flex px-0">
                                                                     <div class="avatar flex-shrink-0 me-3">
-                                                                        <span class="bg-dark text-warning rounded-circle px-2 py-1">{'Rhea'.charAt(0)}</span>
+                                                                        <span class="bg-dark text-warning" style={{width: '36px', height: '36px', padding: '16px 16px', borderRadius: '50%'}}>{'Rhea'.charAt(0)}</span>
                                                                     </div>
                                                                     <div>
                                                                         <div className='d-flex justify-content-between align-items-center mb-3'>

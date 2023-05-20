@@ -23,6 +23,7 @@ export const authUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       image: user.image,
+      dob: user.dob,
       phone: user.phone,
       gender: user.gender,
       isAdmin: user.isAdmin,
@@ -52,6 +53,7 @@ export const updateUserPassword = asyncHandler(async (req, res) => {
         email: updateUser.email,
         image: updateUser.image,
         phone: updateUser.phone,
+        dob: updateUser.dob,
         gender: updateUser.gender,
         isAdmin: updateUser.isAdmin,
         token: generateToken(user.id),
@@ -221,6 +223,7 @@ export const validateToken = asyncHandler(async (req, res) => {
         name: user.name,
         image: user.image,
         email: user.email,
+        dob: user.dob,
         phone: user.phone,
         gender: user.gender,
         isAdmin: user.isAdmin,
@@ -239,7 +242,9 @@ export const validateToken = asyncHandler(async (req, res) => {
 // @route PATCH /api/users/profile
 // @access Private
 export const updateUserProfile = asyncHandler(async (req, res) => {
+  console.log(req.body);
   const user = await UserModel.findById(sanitize(req.user.id));
+  console.log(user);
   let error = false;
   if (req.body.phone !== "") {
     let userByPhone = await UserModel.findOne({ phone: sanitize(req.body.phone) });
@@ -266,11 +271,12 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     user.phone = sanitize(req.body.phone) || user.phone;
     user.gender = sanitize(req.body.gender) || user.gender;
     user.image = sanitize(req.body.image) || user.image;
-    user.dob = sanitize( new Date(req.body.dob)) || user.dob;
+    user.dob = req.body.dob ? sanitize( new Date(req.body.dob)) : new Date(user.dob);
     if (req.body.password) {
       user.password = sanitize(req.body.password);
     }
     const updatedUser = await user.save();
+    console.log(updatedUser);
     res.json({
       _id: updatedUser._id,
       fname: updatedUser.fname,
@@ -295,7 +301,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 // @route POST /api/users
 // @access Public
 export const registerUser = asyncHandler(async (req, res) => {
-  const { fname, mname, lname, name, image, email, phone, gender, password } = req.body;
+  const { fname, mname, lname, name, image, dob, email, phone, gender, password } = req.body;
 
   const userExists = await UserModel.findOne({ email: sanitize(email) });
   if (userExists) {
@@ -310,6 +316,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     image: sanitize(image),
     email: sanitize(email),
     phone: sanitize(phone),
+    dob: sanitize(new Date(dob)),
     gender: sanitize(gender),
     password: sanitize(password),
   });
@@ -323,6 +330,7 @@ export const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       image: user.image,
       email: user.email,
+      dob: user.dob,
       phone: user.phone,
       gender: user.gender,
       token: generateToken(user.id),

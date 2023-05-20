@@ -67,30 +67,31 @@
     font-weight: 600;
 }
 .nav-logo-img {
-    height:66px;
+    height: 36px;
+}
     /* width: 340px;
     /* opacity: 1; */
     /* padding-right: 20px;
     padding-left: 20px;
     border-radius: 20px;; */
     /* background-image: url("http://localhost:3003/assets/images/logo-background.jpg"); */
-  }
+  /* } */
   
-  @media (min-width: 768px) {
+ @media (min-width: 576px) {
     .nav-logo-img {
-        height:90px;
+        height: 64px;
+    }
         /* width: 340px;
     height:66px; */
-      }
   }
 
-  /* @media (min-width: 768px) {
+  @media (min-width: 768px) {
     .nav-logo-img {
-        width: 100%;
-        height:90px;
+        /* width: 100%; */
+        height:92px;
       }
   }
-  
+  /*
   @media (min-width: 992px) {
     .card-img-top {
         height: 240px;
