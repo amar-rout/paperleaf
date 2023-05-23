@@ -186,7 +186,7 @@ const UserProfile = () => {
                 middleName: loginUser.mname,
                 lastName: loginUser.lname,
                 gender: loginUser.gender,
-                dob: loginUser.dob !== "" ? loginUser.dob.split('T')[0] : "",
+                dob: loginUser.dob ? loginUser.dob.split('T')[0] : "",
             });
             setUserEmail({
                 email: loginUser.email
