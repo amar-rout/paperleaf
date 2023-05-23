@@ -194,6 +194,9 @@ const UserProfile = () => {
             setUserPhone({
                 phone: loginUser.phone
             });
+            setUserImage({
+                image: loginUser.image ? loginUser.image : "",
+            });
         }
     }, [loginUser]);
 
@@ -591,7 +594,7 @@ const UserProfile = () => {
                         }
                     </div>
                     {
-                        loginUser.image !== "" &&
+                        loginUser.image &&
                         <div className="col-12 col-md-6 my-auto text-center">
                             <img src={`${serverURL}${loginUser.image}`} alt="user" width="140" height="140" className="rounded-circle" />
                         </div>
