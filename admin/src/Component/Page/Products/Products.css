@@ -30,3 +30,16 @@
     border-radius: 4px;
     font-size: 13px;
 }
+.dataTable_header {
+    background-color: rgb(242, 236, 148);
+}
+.dataTables_filter {
+    float: right;
+}
+.dataTables_paginate {
+    float: right;
+}
+.dataTables_length {
+    display: inline-block;
+    width: 100%;
+}

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import DataTable from 'datatables.net-bs5';
+// import 'datatables.net-responsive-dt';
 
 // import { createPopperLite as createPopper, preventOverflow, flip, } from '@popperjs/core';
 
@@ -18,6 +20,18 @@ function Products() {
     id: '',
     name: ''
   });
+  let table = new DataTable('#productTable');
+  // let table = new DataTable('#productTable', {
+  //   responsive: true,
+  //   searching: false,
+  //   paging: false,
+  //   dom: 'Bfrtip',
+  //   buttons: [
+  //     'colvis',
+  //     'excel',
+  //     'print'
+  //   ]
+  // });
 
   const navigate = useNavigate();
 
@@ -151,10 +165,11 @@ function Products() {
               </div>
             </div>
             <div className="card-body">
-              <div className="table-responsive">
-                <table className="table align-middle align-items-center text-center table-striped table-hover table-borderless">
-                  <thead className="table-dark">
-                    <tr>
+              <div className="table-responsive w-100">
+                {/* <table id='productTable' className="table align-middle align-items-center text-center table-striped table-hover table-borderless"> */}
+                <table id='productTable' className="table table-striped w-100">
+                  <thead className="dataTable_header">
+                    <tr className='text-center'>
                       <th>#</th>
                       <th>Image</th>
                       <th>Name</th>
@@ -172,7 +187,7 @@ function Products() {
                       const { _id, name, image, category, price, salePrice, newCollection, featured, published } = product;
                       return (
                         <tr key={_id}>
-                          <td className='text-start'>{index}</td>
+                          <td className='text-start'>{index + 1}</td>
                           <td>
                             <img src={`${image}`} alt="product" style={{ width: '32px', height: '32px' }} />
                           </td>
@@ -214,8 +229,8 @@ function Products() {
                                 role="switch"
                                 id="publish"
                                 defaultChecked={published}
-                                // value={published}
-                                // onChange={() => handleFeatured(_id, name, featured, newCollection)}
+                              // value={published}
+                              // onChange={() => handleFeatured(_id, name, featured, newCollection)}
                               />
                             </div>
                             {/* {published ? "true" : "false"} */}

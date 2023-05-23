@@ -13,6 +13,8 @@
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.4",
     "cra-template-redux": "2.0.0",
+    "datatables.net-bs5": "^1.13.4",
+    "datatables.net-dt": "^1.13.4",
     "jquery": "^3.6.4",
     "popper.js": "^1.16.1",
     "react": "^18.2.0",

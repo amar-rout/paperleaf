@@ -737,40 +737,40 @@ const Products = () => {
                                                                     <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
                                                                         <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>5</p>
                                                                         <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
-                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{height: '1.3rem'}}>
-                                                                            <div class="progress-bar text-bg-warning " style={{width: '50%'}}>50%</div>
+                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
+                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
                                                                         </div>
                                                                         <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
                                                                     </div>
                                                                     <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
                                                                         <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>4</p>
                                                                         <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
-                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{height: '1.3rem'}}>
-                                                                            <div class="progress-bar text-bg-warning " style={{width: '50%'}}>50%</div>
+                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
+                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
                                                                         </div>
                                                                         <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
                                                                     </div>
                                                                     <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
                                                                         <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>3</p>
                                                                         <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
-                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{height: '1.3rem'}}>
-                                                                            <div class="progress-bar text-bg-warning " style={{width: '50%'}}>50%</div>
+                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
+                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
                                                                         </div>
                                                                         <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
                                                                     </div>
                                                                     <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
                                                                         <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>2</p>
                                                                         <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
-                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{height: '1.3rem'}}>
-                                                                            <div class="progress-bar text-bg-warning " style={{width: '50%'}}>50%</div>
+                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
+                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
                                                                         </div>
                                                                         <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
                                                                     </div>
                                                                     <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
                                                                         <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1</p>
                                                                         <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
-                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{height: '1.3rem'}}>
-                                                                            <div class="progress-bar text-bg-warning " style={{width: '50%'}}>50%</div>
+                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
+                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
                                                                         </div>
                                                                         <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
                                                                     </div>
@@ -797,11 +797,17 @@ const Products = () => {
                                                             <div class="list-group list-group-flush mb-4">
                                                                 <div class="list-group-item d-flex px-0">
                                                                     <div class="avatar flex-shrink-0 me-3">
-                                                                        <span class="bg-dark text-warning" style={{width: '36px', height: '36px', padding: '16px 16px', borderRadius: '50%'}}>{'Rhea'.charAt(0)}</span>
+                                                                        <div class="bg-dark text-warning text-center position-relative" style={{ width: '48px', height: '48px', borderRadius: '50%' }}>
+                                                                            <h6 className='pt-3'>{'Rhea'.charAt(0)}</h6>
+                                                                        </div>
                                                                     </div>
                                                                     <div>
-                                                                        <div className='d-flex justify-content-between align-items-center mb-3'>
-                                                                            <p class="mb-0 fw-600 fs-6">Rhea</p>
+                                                                        <div className='d-flex justify-content-between align-items-center mb-1 pt-1'>
+                                                                            <div>
+                                                                                <p class="mb-0 fw-semibold fs-6">
+                                                                                    Rhea
+                                                                                </p>
+                                                                            </div>
                                                                             <ReactStars {...{
                                                                                 size: 14,
                                                                                 count: 5,
@@ -815,6 +821,9 @@ const Products = () => {
                                                                                 edit: false,
                                                                             }} />
                                                                         </div>
+                                                                        <p class="mb-0 fw-normal fs-6 small">
+                                                                            <small>21/05/2023</small>
+                                                                        </p>
                                                                         <p>I love your products. I would recommend it to everyone.</p>
                                                                         {/* </div> */}
                                                                     </div>
