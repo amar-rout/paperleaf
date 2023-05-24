@@ -24,9 +24,9 @@ export const loginAsync = createAsyncThunk(
         try {
             const config = { headers: { 'Content-Type': 'application/json', }, };
             const response = await axios.post('/api/users/login', { email, password }, config,);
-            if (checked) {
+            // if (checked) {
                 localStorage.setItem('user', JSON.stringify(response.data));
-            }
+            // }
             return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
         } catch (error) {
             if (error.code === "ERROR_BAD_RESPONSE") {
