@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 // import Breadcrumb from '../../Breadcrumb/Breadcrumb';
 import Meta from '../../Meta';
 import { useDispatch, useSelector } from "react-redux";
@@ -23,6 +24,11 @@ const UserOrders = () => {
     const orderStatus = useSelector(getStatus);
     const orderError = useSelector(getError);
 
+    let INR = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+    });
+
     useEffect(() => {
         dispatch(clearState());
     });
@@ -36,19 +42,19 @@ const UserOrders = () => {
     useEffect(() => {
         if (orderStatus === 'LOADING') {
             setLoading(true);
-            // dispatch(clearState());
+            dispatch(clearState());
         }
         else if (orderStatus === 'LOADED') {
             setLoading(false);
             setOrders(allOrders);
             console.log(orders);
-            // dispatch(clearState());
+            dispatch(clearState());
         }
         else if (orderStatus === 'ERROR') {
             setLoading(false);
-            // dispatch(clearState());
+            dispatch(clearState());
         }
-    }, []);
+    }, [orderStatus]);
 
     return (
         <>
@@ -64,8 +70,8 @@ const UserOrders = () => {
                 loading && "loading"
             }
             <div className="">
-                <div class="d-flex align-items-center mb-4">
-                    <span class="mb-0 h4">Orders</span>
+                <div class="d-flex align-items-center my-3">
+                    <span class="mb-0 h4">My Orders</span>
                     {/* <select class="form-select ms-auto shadow-none border-1 border-dark py-2" style={{ maxWidth: 200 }}>
                         <option value="All tme">For all time</option>
                         <option value="Last month">Last month</option>
@@ -73,9 +79,9 @@ const UserOrders = () => {
                         <option value="Last month">2022</option>
                     </select> */}
                 </div>
-                <div class="card border-0">
-                    <div class="card-body p-0">
-                        <div class="accordion accordion-alt accordion-orders" id="orders">
+                <div class="card border-0 m-0">
+                    <div class="card-body p-0 m-0">
+                        <div class="accordion accordion-alt accordion-orders p-0 m-0" id="orders">
                             {
                                 orders.map((order) => {
                                     return (
@@ -91,9 +97,9 @@ const UserOrders = () => {
                                                                         <>
                                                                             {
                                                                                 order.isOrderCancelByUser ?
-                                                                                <div class="badge bg-danger-subtle text-danger small rounded-pill"><small>Cancelled</small></div>
-                                                                                :
-                                                                                <div class="badge bg-warning text-dark small rounded-pill"><small>In Progress</small></div>        
+                                                                                    <div class="badge bg-danger-subtle text-danger small rounded-pill"><small>Cancelled</small></div>
+                                                                                    :
+                                                                                    <div class="badge bg-warning text-dark small rounded-pill"><small>In Progress</small></div>
                                                                             }
                                                                         </>
                                                                         :
@@ -103,17 +109,23 @@ const UserOrders = () => {
                                                             <div class="me-1 me-sm-4">
                                                                 <span class="d-none d-sm-block mb-2 fs-6 small text-muted"><small>Order date</small></span>
                                                                 <div class="d-sm-none mb-2 fs-6 small text-muted"><small>Date</small></div>
-                                                                <div class="fs-6 small text-dark"><small>Jan 27, 2022</small></div>
+                                                                <div class="fs-6 small text-dark"><small> {moment(new Date(order.createdAt.split('T')[0])).format('MMM DD, YYYY')}</small></div>
                                                             </div>
                                                             <div class="me-1 me-sm-4">
                                                                 <div class="fs-6 small text-muted mb-2"><small>Total</small></div>
-                                                                <div class="fs-6 small fw-semibold text-dark"><small>₹16,000.00</small></div>
+                                                                <div class="fs-6 small fw-semibold text-dark"><small>{INR.format(order.grandTotal)}</small></div>
                                                             </div>
                                                         </div>
                                                         <div class="accordion-button-img d-none d-sm-flex align-items-center ms-auto">
-                                                            <div class="mx-1">
-                                                                <img src="/assets/images/productImages/product1.jpg" width="48" alt="Product" />
-                                                            </div>
+                                                            {
+                                                                order.orderItems.map((orderItem) => {
+                                                                    return (
+                                                                        <div class="mx-1">
+                                                                            <img src={`${orderItem.image}`} width="48" alt="Product" />
+                                                                        </div>
+                                                                    )
+                                                                })
+                                                            }
                                                         </div>
                                                     </a>
                                                 </div>
@@ -153,16 +165,20 @@ const UserOrders = () => {
                                                         <div class="bg-light-subtle rounded-1 p-4 my-2">
                                                             <div class="row">
                                                                 <div class="col-sm-5 col-md-3 col-lg-4 mb-3 mb-md-0">
-                                                                    <div class="fs-5 small fw-semibold text-dark mb-1">Payment:</div>
-                                                                    <div class="small fs-6 fw-normal">Upon the delivery</div>
+                                                                    <div class="fs-6  fw-semibold text-dark mb-1">Payment:</div>
+                                                                    <div class="small fs-6 fw-normal">
+                                                                        {
+                                                                            order.paymentMethod === "online" && order.paymentStatus === "success" ? <p className='text-success'>Payment Success</p> : ""
+                                                                        }
+                                                                    </div>
                                                                     <a class="btn btn-link text-muted link-info text-decoration-none py-1 px-0 mt-2" href="/">
                                                                         <i class="bi bi-clock me-2"></i>
                                                                         Order history
                                                                     </a>
                                                                 </div>
                                                                 <div class="col-sm-7 col-md-5 mb-4 mb-md-0">
-                                                                    <div class="fs-5 small fw-semibold text-dark mb-1">Delivery address:</div>
-                                                                    <div class="small">1520, Snow House, CDA-6<br />Cuttack, Odisha 753006</div>
+                                                                    <div class="fs-6 fw-semibold text-dark mb-1">Delivery address:</div>
+                                                                    <div class="small">{order.address.address1}<br/>{order.address.address2}</div>
                                                                 </div>
                                                                 <div class="col-md-4 col-lg-3 text-md-end">
                                                                     <button class="btn btn-outline-dark w-100 w-md-auto py-3 d-flex justify-content-center align-items-center" type="button">

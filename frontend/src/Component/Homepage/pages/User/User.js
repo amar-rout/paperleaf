@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, Outlet, useMatch, useNavigate, useParams, useResolvedPath } from "react-router-dom";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import Meta from "../Meta";
@@ -6,6 +6,8 @@ import Meta from "../Meta";
 import {
     logout
 } from "../../../../app/userSlice";
+
+import { getOrdersAsync } from "../../../../app/orderSlice";
 
 import "./User.css"
 import { useDispatch } from "react-redux";
@@ -35,6 +37,10 @@ const User = () => {
     let userLink = '/user';
 
     const user = JSON.parse(localStorage.getItem("user"));
+
+    useEffect(() => {
+        dispatch(getOrdersAsync(user.token));
+    }, []);
 
     let { uriId } = useParams();
     const idValue = urlParams[uriId];
