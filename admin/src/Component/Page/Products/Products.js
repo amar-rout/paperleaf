@@ -178,7 +178,8 @@ function Products() {
             <div className="card-body">
               <div className="table-responsive">
                 {/* <table id='productTable' className="table align-middle align-items-center text-center table-striped table-hover table-borderless"> */}
-                <table id='productTable' className="dataTable display cell-border hover order-column row-border stripe">
+                {/* <table id='productTable' className="dataTable display compact cell-border hover order-column row-border stripe"> */}
+                <table id="productTable" class="dataTable display cell-border compact hover order-column row-border stripe" style={{width: '100%'}} aria-describedby="example_info">
                   <thead className="dataTable_header">
                     <tr className='text-center'>
                       <th>#</th>

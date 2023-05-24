@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link, Outlet, useMatch, useResolvedPath } from 'react-router-dom';
-import Footer from '../Footer/Footer';
+// import Footer from '../Footer/Footer';
 
 const NavbarMain = () => {
     return (
         <>
-            <nav class="navbar bg-body-tertiary fixed-top shadow">
+            <nav class="navbar bg-body fixed-top shadow">
                 <div class="container justify-content-between align-items-center">
-                    <div>
-                        <button class="btn btn-default border-1 navbar-toggler shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <div class="d-flex justify-content-between align-items-center" >
+                        <button class="btn btn-default border-0 navbar-toggler shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                             {/* <span class="navbar-toggler-icon"></span> */}
                             <i class="bi bi-list display-6"></i>
                         </button>
@@ -226,14 +226,13 @@ const NavbarMain = () => {
                                 </li> */}
                                 <li className="border-top my-3"></li>
                             </ul>
-                            <div className='text-center'>
+                            <div className='text-center mb-5'>
                                 <button type="button" class="btn btn-default border-1 border-danger link-danger" data-bs-dismiss="offcanvas" aria-label="Close"> Close</button>
                             </div>
-                            <div class="position-absolute text-center lh-1 bottom-0">
-                                <p className='lh-1'>
+                            <div class="text-center mt-5">
+                                <p className='lh-2'>
                                     Copyright &copy; {new Date().getFullYear()} All rights reserved
-                                </p>
-                                <p className='lh-1'>
+                                    <br/>
                                     This site is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="http://techrestoreservice.com" target="_blank">TechRestore Services</a>
                                 </p>
                             </div>
