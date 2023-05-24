@@ -132,35 +132,46 @@ const UserOrders = () => {
                                                 <div class="accordion-collapse collapse" id="orderOne" data-bs-parent="#orders" style={{}}>
                                                     <div class="accordion-body">
                                                         <div class="table-responsive pt-1">
-                                                            <table class="table align-middle w-100" style={{ minWidth: 450 }}>
-                                                                <tbody><tr>
-                                                                    <td class="border-0 py-1 px-0">
-                                                                        <div class="d-flex align-items-center">
-                                                                            <a class="d-inline-block flex-shrink-0 bg-light-subtle rounded-1 p-md-2 p-lg-3" href="shop-single.html">
-                                                                                <img src="/assets/images/productImages/product1.jpg" width="110" alt="Product" />
-                                                                            </a>
-                                                                            <div class="ps-3 ps-sm-4">
-                                                                                <h4 class="fs-6 mb-2">
-                                                                                    <Link to="shop-single.html">Candle in concrete bowl</Link>
-                                                                                </h4>
-                                                                                <div class="text-muted small me-3">Color: <span class="text-dark fw-medium">Gray night</span></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
-                                                                        <div class="fs-6 small text-muted mb-2">Quantity</div>
-                                                                        <div class="small fw-semibold text-dark">1</div>
-                                                                    </td>
-                                                                    <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
-                                                                        <div class="fs-6 small text-muted mb-2">Price</div>
-                                                                        <div class="fs-6 small fw-semibold text-dark">₹16</div>
-                                                                    </td>
-                                                                    <td class="border-0 text-end py-1 pe-0 ps-3 ps-sm-4">
-                                                                        <div class="fs-6 small text-muted mb-2">Total</div>
-                                                                        <div class="fs-6 small fw-semibold text-dark">₹16</div>
-                                                                    </td>
-                                                                </tr>
-                                                                </tbody></table>
+                                                            {/* <table class="table align-middle w-100" style={{ minWidth: 450 }}> */}
+                                                            <table class="table">
+                                                                <tbody>
+                                                                    {
+                                                                        order.orderItems.map((orderItem) => {
+                                                                            return (
+                                                                                <tr>
+                                                                                    <td class="border-0 py-1 px-0">
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <a class="d-inline-block flex-shrink-0 bg-light-subtle rounded-1 p-0" href="shop-single.html">
+                                                                                                <img src={`${orderItem.image}`} width={64} height={64} alt="Product" />
+                                                                                            </a>
+                                                                                            <div class="ps-3 ps-sm-4">
+                                                                                                <h4 class="fs-6 mb-2">
+                                                                                                    <Link className='link-dark text-decoration-none' to={`/products/${orderItem.id}`}>{orderItem.name}</Link>
+                                                                                                </h4>
+                                                                                                <p class="small text-muted mb-2"><small>Qty {orderItem.quantity}</small></p>
+                                                                                                {/* <div class="small fw-semibold text-dark"></div> */}
+                                                                                                {/* <div class="text-muted small me-3">Color: <span class="text-dark fw-medium">Gray night</span></div> */}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    {/* <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
+                                                                                        <div class="fs-6 small text-muted mb-2">Quantity</div>
+                                                                                        <div class="small fw-semibold text-dark">{orderItem.quantity}</div>
+                                                                                    </td> */}
+                                                                                    <td class="border-0 py-1 pe-0 ps-3 ps-sm-4">
+                                                                                        <p class="fs-6 small text-muted mb-2"><small>Price</small></p>
+                                                                                        <p class="fs-6 small fw-semibold text-dark">{INR.format(orderItem.price * orderItem.quantity)}</p>
+                                                                                    </td>
+                                                                                    {/* <td class="border-0 text-end py-1 pe-0 ps-3 ps-sm-4">
+                                                                                        <div class="fs-6 small text-muted mb-2">Total</div>
+                                                                                        <div class="fs-6 small fw-semibold text-dark">₹16</div>
+                                                                                    </td> */}
+                                                                                </tr>
+                                                                            )
+                                                                        })
+                                                                    }
+                                                                </tbody>
+                                                            </table>
                                                         </div>
                                                         <div class="bg-light-subtle rounded-1 p-4 my-2">
                                                             <div class="row">
@@ -168,7 +179,17 @@ const UserOrders = () => {
                                                                     <div class="fs-6  fw-semibold text-dark mb-1">Payment:</div>
                                                                     <div class="small fs-6 fw-normal">
                                                                         {
-                                                                            order.paymentMethod === "online" && order.paymentStatus === "success" ? <p className='text-success'>Payment Success</p> : ""
+                                                                            order.paymentMethod === "online" && order.paymentStatus === "success" ?
+                                                                                <p className='text-success'>Payment Success</p>
+                                                                                :
+                                                                                <>
+                                                                                    {
+                                                                                        order.paymentMethod === "cod" && order.paymentStatus === "pending" ?
+                                                                                            <p className='text-dark'>Cash on delivery</p>
+                                                                                            :
+                                                                                            <p className='text-warning'>Pending</p>
+                                                                                    }
+                                                                                </>
                                                                         }
                                                                     </div>
                                                                     <a class="btn btn-link text-muted link-info text-decoration-none py-1 px-0 mt-2" href="/">
@@ -178,18 +199,33 @@ const UserOrders = () => {
                                                                 </div>
                                                                 <div class="col-sm-7 col-md-5 mb-4 mb-md-0">
                                                                     <div class="fs-6 fw-semibold text-dark mb-1">Delivery address:</div>
-                                                                    <div class="small">{order.address.address1}<br/>{order.address.address2}</div>
+                                                                    <div class="small">
+                                                                        {order.address.address1},<br />
+                                                                        {order.address.address2},<br />
+                                                                        {order.address.landmark}, <br />
+                                                                        {order.address.city}, {order.address.state}, {order.address.country}<br />
+                                                                        Pin code - {order.address.pincode}
+                                                                    </div>
+                                                                    <div class="small">
+                                                                        Phone : {order.address.phone}<br />
+                                                                        Alt Phone: {order.address.altphone}
+                                                                    </div>
                                                                 </div>
                                                                 <div class="col-md-4 col-lg-3 text-md-end">
-                                                                    <button class="btn btn-outline-dark w-100 w-md-auto py-3 d-flex justify-content-center align-items-center" type="button">
-                                                                        <i class="bi bi-star p-0 m-0 me-2" /> Leave a review
-                                                                    </button>
+                                                                    <div className='d-flex flex-sm-column gap-3 justify-content-between align-items-center'>
+                                                                        <button class="btn btn-outline-danger w-md-auto py-2 d-flex justify-content-center align-items-center" type="button">
+                                                                            Cancel order
+                                                                        </button>
+                                                                        <button class="btn btn-outline-dark w-md-auto py-2 d-flex justify-content-center align-items-center" type="button">
+                                                                            <i class="bi bi-star p-0 m-0" /> Leave a review
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div >
                                         </>
                                     )
                                 })
@@ -428,7 +464,7 @@ const UserOrders = () => {
                         {/* </div> */}
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
