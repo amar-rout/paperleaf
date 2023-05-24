@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from 'react';
-// import Breadcrumb from '../../Breadcrumb/Breadcrumb';
 import axios from 'axios';
 import Meta from '../../Meta';
 
-import {
-    selectStatus,
-    selectErrorMessage,
-    // selectUser,
-    clearState,
-    // updateProfileAsync,
-    // updatePasswordChangeAsync,
-} from '../../../../../app/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-// import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
+    // let [loginUser, setLoginUser] = useState({});
     let [loginUser, setLoginUser] = useState(JSON.parse(localStorage.getItem("user")));
 
     const [editProfile, setEditProfile] = useState(false);
@@ -35,22 +25,9 @@ const UserProfile = () => {
     const [phoneInputErrorMessage, setPhoneInputErrorMessage] = useState("");
     const [passwordInputErrorMessage, setPasswordInputErrorMessage] = useState("");
 
-
-    // const loginUser = useSelector(selectUser);
-    // const status = useSelector(selectStatus);
-    // const errorMessage = useSelector(selectErrorMessage);
-
-    const dispatch = useDispatch();
-    // const navigate = useNavigate();
     const serverURL = 'http://localhost:5010';
     const imageUploadURL = `/api/upload`;
-
     let file = null;
-
-    useEffect(() => {
-        dispatch(clearState());
-        // loginUser = JSON.parse(localStorage.getItem("user"));
-    });
 
     const [userProfile, setUserProfile] = useState({
         firstName: "",
@@ -123,20 +100,16 @@ const UserProfile = () => {
                     ...userImage,
                     image: response.data
                 });
-                handleUpdateUserImage();
                 toast.dismiss();
                 toast.success('User image uploaded successfully.');
             }).catch((error) => {
-                // setImageInputShow(false);
                 setImageInputErrorMessage(error.response.data.message);
-                // setSuccessMessage("");
                 toast.dismiss();
                 toast.error('User image not uploaded');
             });
     }
 
-    const deleteImage = (imageID) => {
-        // const imageArr = imageID.split("/"); 
+    const deleteImage = (imageID) => { 
         const deleteImageURL = `${imageUploadURL}/${imageID}`;
         axios.delete(deleteImageURL)
             .then((response) => {
@@ -145,11 +118,8 @@ const UserProfile = () => {
                     image: ''
                 });
                 handleUpdateUserImage();
-                // setImageInputShow(false);
             }).catch((error) => {
-                // setImageInputShow(false);
                 setImageInputErrorMessage(error.response.data);
-                // setSuccessMessage("");
                 toast.dismiss();
                 toast.error('');
             });
@@ -194,42 +164,17 @@ const UserProfile = () => {
             setUserPhone({
                 phone: loginUser.phone
             });
-            setUserImage({
-                image: loginUser.image ? loginUser.image : "",
-            });
+            // setUserImage({
+            //     image: loginUser.image ? loginUser.image : "",
+            // });
         }
     }, [loginUser]);
-
-    useEffect(() => {
-        dispatch(clearState());
-    });
-
-    // useEffect(() => {
-    //     if (status === "LOADING") {
-    //         dispatch(clearState());
-    //     }
-    //     if (status === "LOADED") {
-    //         dispatch(clearState());
-    //         setEditPassword(false);
-    //         setUserPassword({
-    //             currPassword: "",
-    //             newPassword: "",
-    //             confirmPassword: ""
-    //         });
-    //         toast.success(errorMessage);
-    //     }
-    //     if (status === "ERROR") {
-    //         dispatch(clearState());
-    //         setPasswordInputErrorMessage(errorMessage);
-    //     }
-    // }, [status, dispatch, errorMessage])
 
     const handleEditProfile = () => {
         setEditProfile(true);
     }
     const handleCancelProfile = () => {
         setEditProfile(false);
-        // dispatch(updateProfileAsync(userProfile));
     }
     const handleSaveProfile = () => {
         setLoadProfile(true);
@@ -247,7 +192,6 @@ const UserProfile = () => {
                 dob: userProfile.dob || loginUser.dob,
                 gender: userProfile.gender || loginUser.gender
             };
-            console.log(profile);
             axios.patch('/api/users/profile/', profile, config)
                 .then(response => {
                     toast.success("Profile changed successfully.");
@@ -291,16 +235,16 @@ const UserProfile = () => {
                     Authorization: `Bearer ${loginUser.token}`,
                 },
             };
+            console.log(userImage);
             axios.patch('/api/users/profile/', userImage, config)
                 .then(response => {
                     toast.success("Image updated successfully.");
                     setUserImage({
-                        email: response.data.image
+                        image: response.data.image
                     });
                     localStorage.removeItem('user');
                     localStorage.setItem('user', JSON.stringify(response.data));
                 }).catch(error => {
-                    // setLoadEmail(false);
                     if (error.response) {
                         toast.dismiss();
                         toast.error(error.response.data.message);

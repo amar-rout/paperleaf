@@ -7,6 +7,7 @@ import Navbar from "./Navbar/Navbar";
 
 import "./Homepage.css"
 import Login from "./Login/Login";
+import NavbarMain from "./Navbar/NavbarMain";
 
 const Homepage = ({ updateUser, loginUser }) => {
 
@@ -39,7 +40,7 @@ const Homepage = ({ updateUser, loginUser }) => {
                 })
         // }
         // }, [loggedInUser.token, navigate, updateUser, userValidateURL])
-    }, [])
+    }, []);
 
     return (
         <div className="homepage">
@@ -52,7 +53,7 @@ const Homepage = ({ updateUser, loginUser }) => {
                 </div>
                 :
                 <>
-                    {isValidUser ? <Navbar /> : <Login />}
+                    {isValidUser ? <NavbarMain /> : <Login />}
                 </>
             }
             {/* <Footer /> */}

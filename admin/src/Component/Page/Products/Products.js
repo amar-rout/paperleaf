@@ -155,7 +155,10 @@ function Products() {
   }
 
   return (
-    <div className='container p-5'>
+    <div className='container'>
+      <div id="content" class="pt-5 mt-5">
+        <h2 class="mb-4">Products overview</h2> 
+      </div>
       {
         loading ?
           <div className="d-flex flex-column justify-content-center align-items-center mt-5 pt-5">
@@ -166,10 +169,10 @@ function Products() {
           </div>
           :
           <div className="card my-5 mx-auto" >
-            <div className="card-header w-100 py-2 px-5">
+            <div className="card-header w-100 py-2">
               <div className='d-flex justify-content-between align-items-center'>
-                <h4 className="fw-bold">All products</h4>
-                <button className='btn btn-primary btn-md' onClick={() => navigate("/addProduct")}>Add Product</button>
+                <h4 className="fw-bold fs-6 pt-2">All products</h4>
+                <button className='btn btn-primary' onClick={() => navigate("/addProduct")}>Add New Product</button>
               </div>
             </div>
             <div className="card-body">

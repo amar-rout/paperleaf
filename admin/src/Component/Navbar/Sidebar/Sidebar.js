@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './Sidebar.css';
 import { Link, Outlet, useMatch, useNavigate, useResolvedPath } from "react-router-dom";
 import Footer from "../../Footer/Footer";
@@ -11,6 +11,9 @@ const Sidebar = () => {
     const user = JSON.parse(localStorage.getItem('admin_user'));
     const navigate = useNavigate();
 
+    const [isOpen, setIsOpen] = useState(false);
+    const toggle = () => setIsOpen(!isOpen);
+
     const signout = () => {
         localStorage.setItem('admin_user', JSON.stringify(""));
         navigate('/login', { replace: 0 });
@@ -18,11 +21,15 @@ const Sidebar = () => {
 
     return (
         <>
-            <div className="flex-shrink-0 p-3 bg-light" style={{ width: '280px', "overflowY": 'auto' }}>
-                <a href="/" className="d-flex align-items-center pb-3 link-dark text-decoration-none border-bottom bg-light">
-                    {/* <svg className="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg> */}
-                    <span className="fs-5 fw-semibold">Paperleaf</span>
-                </a>
+            <div className="flex-shrink-0 p-3 bg-light" style={{ width: isOpen ? '280px' : '50px', "overflowY": 'auto' }}>
+                {/* <div> */}
+                <i class="bi bi-list" onClick={toggle}></i>
+                    <a href="/" className="d-flex align-items-center pb-3 link-dark text-decoration-none border-bottom bg-light">
+                        {/* <svg className="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg> */}
+                        <span className="fs-5 fw-semibold">Paperleaf</span>
+                    </a>
+                    
+                {/* </div> */}
                 <ul className="list-unstyled ps-0 mb-5">
                     <li className="mb-1">
                         {/* <Navbarlink to="/" className="btn d-inline-flex align-items-center rounded border-0 mx-3">
@@ -187,10 +194,10 @@ const Sidebar = () => {
             </div>
             <div className="b-example-divider b-example-vr"></div>
             <div className="bg-light w-100" style={{ overflowY: 'scroll' }}>
-                <div className="" style={{minHeight: '94vh'}}>
+                <div className="" style={{ minHeight: '94vh' }}>
                     <Outlet />
                 </div>
-                <div className="bg-white p-2" style={{minHeight: '6vh'}}>
+                <div className="bg-white p-2" style={{ minHeight: '6vh' }}>
                     <Footer />
                 </div>
             </div>
