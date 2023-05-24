@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import DataTable from 'datatables.net-bs5';
-// import 'datatables.net-responsive-dt';
+import 'datatables.net-responsive-dt';
 
 // import { createPopperLite as createPopper, preventOverflow, flip, } from '@popperjs/core';
 
@@ -32,6 +32,14 @@ function Products() {
   //     'print'
   //   ]
   // });
+  // table.dtOptions = {
+  //   pagingType: 'full_numbers',
+  //   pageLength: 10,
+  //   scrollX: true,
+  //   processing: true,
+  //   deferRender: true,
+  //   destroy:true
+  // };
 
   const navigate = useNavigate();
 
@@ -165,9 +173,9 @@ function Products() {
               </div>
             </div>
             <div className="card-body">
-              <div className="table-responsive w-100">
+              <div className="table-responsive">
                 {/* <table id='productTable' className="table align-middle align-items-center text-center table-striped table-hover table-borderless"> */}
-                <table id='productTable' className="table table-striped w-100">
+                <table id='productTable' className="dataTable display cell-border hover order-column row-border stripe">
                   <thead className="dataTable_header">
                     <tr className='text-center'>
                       <th>#</th>
