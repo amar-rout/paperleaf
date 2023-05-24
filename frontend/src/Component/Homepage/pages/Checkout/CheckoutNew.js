@@ -294,64 +294,64 @@ function CheckoutNew() {
                                             <h5 className='border-2 border-bottom pb-3'>Billing Address</h5>
                                         </div>
                                         {/* <div className="col-12 col-md-4 px-2">
-                                            <label className="form-label small ms-2" for="name">Name</label>
+                                            <label className="form-label small ms-2" htmlFor="name">Name</label>
                                             <input className="form-control shadow-none border-1 border-secondary" name='name' type="text" placeholder="Enter full name" id="name" onChange={handleChange} required />
                                         </div> */}
                                         {/* <div className="col-12 col-md-6">
-                                            <label className="form-label small" for="c-ln">Last name</label>
+                                            <label className="form-label small" htmlFor="c-ln">Last name</label>
                                             <input className="form-control shadow-none border-1 border-secondary" type="text" placeholder="Your last name" required="" id="c-ln" />
                                         </div> */}
                                         {/* <div className="col-12 col-md-4 px-2">
-                                            <label className="form-label small" for="email">Email</label>
+                                            <label className="form-label small" htmlFor="email">Email</label>
                                             <input className="form-control shadow-none border-1 border-secondary" type="email" placeholder="Email address" required id="email" name='email' onChange={handleChange} />
                                         </div> */}
                                         <div className="col-12 col-md-6 px-3 mb-2 mb-md-3 ">
-                                            <label className="form-label small" for="altphone">Phone</label>
+                                            <label className="form-label small" htmlFor="altphone">Phone</label>
                                             <div className='input-group'>
                                                 <span className="input-group-text border-1 border-secondary border-end-0 py-3">+91</span>
                                                 <input className="form-control shadow-none border-1 border-start-0 border-secondary py-3" type="tel" placeholder="Enter phone number" required id="altphone" name='altphone' onChange={handleChange} />
                                             </div>
                                         </div>
                                         <div className="col-12 col-md-6 px-3 mb-2 mb-md-3">
-                                            <label className="form-label small" for="landmark">Landmark</label>
+                                            <label className="form-label small" htmlFor="landmark">Landmark</label>
                                             <input className="form-control shadow-none border-1 border-secondary py-3" type="text" name='landmark' required id="landmark" placeholder='Landmark or Near by location' onChange={handleChange} />
                                         </div>
                                         <div className="col-12 col-md-6 px-3 mb-2 mb-md-3">
-                                            <label className="form-label small" for="address1">Address line 1</label>
+                                            <label className="form-label small" htmlFor="address1">Address line 1</label>
                                             <input className="form-control shadow-none border-1 border-secondary py-3" type="text" name='address1' required id="address1" placeholder='Flat/Building/Plot No' onChange={handleChange} />
                                         </div>
                                         <div className="col-12 col-md-6 px-3 mb-2 mb-md-3">
-                                            <label className="form-label small" for="address2">Address line 2</label>
+                                            <label className="form-label small" htmlFor="address2">Address line 2</label>
                                             <input className="form-control shadow-none border-1 border-secondary py-3" type="text" name='address2' required id="address2" placeholder='Enter your address here' onChange={handleChange} />
                                         </div>
                                         {/* <div className="col-12 col-md-4  mb-2 mb-md-3">
-                                            <label className="form-label small" for="c-country">Country</label>
+                                            <label className="form-label small" htmlFor="c-country">Country</label>
                                             <select className="form-select" required="" name='country' id="country">
                                                 <option value="" selected="" disabled="">Select a country</option>
                                                 <option value="Australia">India</option>
                                             </select>
                                         </div> */}
                                         <div className="col-12 col-md-4 px-3 mb-2 mb-md-3">
-                                            <label className="form-label small" for="city">City</label>
+                                            <label className="form-label small" htmlFor="city">City</label>
                                             <input type='text' className="form-control shadow-none border-1 border-secondary py-3" required name='city' id="city" onChange={handleChange} placeholder='Enter your city' />
                                         </div>
                                         <div className="col-12 col-md-4 px-3 mb-2 mb-md-3">
-                                            <label className="form-label small" for="state">State</label>
+                                            <label className="form-label small" htmlFor="state">State</label>
                                             <input className="form-control shadow-none border-1 border-secondary py-3" type="text" name="state" placeholder="Enter state" required id="state" onChange={handleChange} />
                                         </div>
                                         <div className="col-12 col-md-4 px-3 mb-2 mb-md-3">
-                                            <label className="form-label small" for="pincode">PIN Code</label>
+                                            <label className="form-label small" htmlFor="pincode">PIN Code</label>
                                             <input className="form-control shadow-none border-1 border-secondary py-3" type="text" name="pincode" placeholder="Enter pincode" required id="pincode" onChange={handleChange} />
                                         </div>
 
                                         {/* <div className="col-12">
-                                    <label className="form-label fs-base" for="c-notes">Order notes <span className="text-muted">(optional)</span></label>
+                                    <label className="form-label fs-base" htmlFor="c-notes">Order notes <span className="text-muted">(optional)</span></label>
                                     <textarea className="form-control shadow-none border-1 border-secondary form-control shadow-none border-1 border-secondary-lg" rows="3" id="c-notes"></textarea>
                                 </div> */}
                                         {/* <div className="col-12">
                                             <div className="form-check my-3 ms-2">
                                                 <input className="form-control shadow-none border-1 border-secondary form-check-input shadow-none p-1" type="checkbox" id="same-address" />
-                                                <label className="form-check-label fw-normal small mx-2" for="same-address">Billing address same as delivery</label>
+                                                <label className="form-check-label fw-normal small mx-2" htmlFor="same-address">Billing address same as delivery</label>
                                             </div>
                                         </div> */}
                                     </div>
@@ -431,8 +431,8 @@ function CheckoutNew() {
                                                 </label></div>
                                             </div> */}
                                         <div className="btn-group payment-method" role="group" aria-label="Basic radio toggle button group">
-                                            <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autocomplete="off" />
-                                            <label className="py-2 me-2 w-50 btn btn-outline-dark btn-payment rounded-2 text-start" for="btnradio1"
+                                            <input type="radio" className="btn-check" name="btnradio" id="btnradio1" auoComplete="off" />
+                                            <label className="py-2 me-2 w-50 btn btn-outline-dark btn-payment rounded-2 text-start" htmlFor="btnradio1"
                                                 onClick={() => setPaymentMethod('online')}
                                             >
                                                 {/* <i className="bi bi-credit-card-2-front me-1 me-md-3" style={{ fontSize: '24px' }}></i> */}
@@ -440,14 +440,14 @@ function CheckoutNew() {
                                                 {/* <span className='fw-normal'>Razorpay</span> */}
                                             </label>
 
-                                            {/* <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked />
-                                            <label className="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" for="btnradio2">
+                                            {/* <input type="radio" className="btn-check" name="btnradio" id="btnradio2" auoComplete="off" checked />
+                                            <label className="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" htmlFor="btnradio2">
                                                 <i className="bi bi-wallet me-3" style={{ fontSize: '24px' }}></i>
                                                 <span className='fw-normal d-block d-md-inline'>Wallet</span>
                                             </label> */}
 
-                                            <input type="radio" className="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
-                                            <label className="ps-5 px-md-4 w-50 btn btn-outline-dark btn-payment rounded-2 text-start" for="btnradio3"
+                                            <input type="radio" className="btn-check" name="btnradio" id="btnradio3" auoComplete={'off'} />
+                                            <label className="ps-5 px-md-4 w-50 btn btn-outline-dark btn-payment rounded-2 text-start" htmlFor="btnradio3"
                                                 onClick={() => setPaymentMethod('cod')}
                                             >
                                                 <i className="bi bi-cash me-1 me-md-3 text-dark" style={{ fontSize: '24px' }}></i>
@@ -466,7 +466,7 @@ function CheckoutNew() {
                                         <div className="p-4 border">
                                             <form>
                                                 <div className="mb-3">
-                                                    <label for="cardnameInput" className="form-label small">
+                                                    <label htmlFor="cardnameInput" className="form-label small">
                                                         Name on card
                                                     </label>
                                                     <input id="cardnameInput" placeholder="Name on Card" type="text" className="form-control shadow-none border-1 border-secondary form-control shadow-none border-1 border-secondary" />
@@ -474,14 +474,14 @@ function CheckoutNew() {
                                                 <div className="row">
                                                     <div className="col-sm-6 col-lg-4">
                                                         <div className="mb-3 mb-lg-0">
-                                                            <label for="cardnumberInput" className="form-label small">
+                                                            <label htmlFor="cardnumberInput" className="form-label small">
                                                                 Card Number
                                                             </label>
                                                             <input id="cardnumberInput" placeholder="0000 0000 0000 0000" type="text" className="form-control shadow-none border-1 border-secondary form-control shadow-none border-1 border-secondary" /></div>
                                                     </div>
                                                     <div className="col-sm-6 col-lg-4">
                                                         <div className="mb-3 mb-lg-0">
-                                                            <label for="expirydateInput" className="form-label small">
+                                                            <label htmlFor="expirydateInput" className="form-label small">
                                                                 Expiry date
                                                             </label>
                                                             <input id="expirydateInput" placeholder="MM/YY" type="text"
@@ -490,7 +490,7 @@ function CheckoutNew() {
                                                     </div>
                                                     <div className="col-sm-6 col-lg-4">
                                                         <div className="mb-3 mb-lg-0">
-                                                            <label for="cvvcodeInput" className="form-label small">CVV Code</label>
+                                                            <label htmlFor="cvvcodeInput" className="form-label small">CVV Code</label>
                                                             <input id="cvvcodeInput" placeholder="Enter CVV Code" type="text" className="form-control shadow-none border-1 border-secondary form-control shadow-none border-1 border-secondary" />
                                                         </div>
                                                     </div>
