@@ -165,7 +165,7 @@ const Navbar = () => {
                                         <>
                                             <div className="dropdown position-relative ms-2 me-2">
                                                 <a href="/" className="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <img src={`${loginUser.image}`} alt={`${loginUser.image}`} width="36" height="36" className="rounded-circle border border-1 border-secondary" />
+                                                    <img src={`${loginUser.image}`} alt={`${loginUser.image}`} width="36" height="36" className="rounded-circle border border-1 border-secondary" style={{maxWidth: '36px'}} />
                                                 </a>
                                                 <ul className="dropdown-menu dropdown-menu-end my-3 text-small shadow text-overflow-hidden">
                                                     <li>

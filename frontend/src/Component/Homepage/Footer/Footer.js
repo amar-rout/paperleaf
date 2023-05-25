@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <footer className="main border-top">
+        <footer className="main" style={{boxShadow: '0px -0.25rem 8px 2px rgba(0, 0, 0, 0.2)'}}>
             {/* <section className="py-2 text-white footerStart"
                      style={{ visibility: 'visible', backgroundColor: 'rgba(230, 200, 130, 0.8)' }}>
                 <div className="container">
