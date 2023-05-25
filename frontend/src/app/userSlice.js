@@ -130,15 +130,15 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         logout: (state) => {
+            state.status = 'IDLE';
             state.user = '';
             state.errorMessage = '';
-            state.status = 'IDLE';
             // localStorage.setItem('userInfo', JSON.stringify(state.user));
             localStorage.removeItem("user");
         },
         clearState: (state) => {
             state.status = 'IDLE';
-            // state.user = localStorage.getItem('user');
+            state.user = JSON.parse(localStorage.getItem('user'));
             return state;
         },
     },

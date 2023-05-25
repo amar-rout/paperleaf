@@ -5,7 +5,7 @@ import Footer from "./Footer/Footer";
 
 import "./Homepage.css"
 
-const Homepage = () => {
+const Homepage = (user) => {
     return (
         <div className="homepage">
             <Navbar />

@@ -43,14 +43,19 @@ const Footer = () => {
                                     <Link to="/"><img height="70" width="70" src="/assets/images/logo/logo2.png" alt="logo" /></Link>
                                 </div>
                                 <h6 className="my-2 fw-400 text-muted text-decoration-underline" style={{ visibility: 'visible' }}>Contact us</h6>
-                                <p className="d-flex justify-content-start align-items-start" style={{ visibility: 'visible' }}>
-                                    <span className="me-2 fw-semibold">Address: </span>
-                                    <span className="">Plot No. 1710/2978, Kanchana Palace, Pandra, Cuttack - Puri Bypass Rd, Laxmisagar, Bhubaneswar, Odisha 751006</span>
+                                {/* <p className="d-flex justify-content-start align-items-start" style={{ visibility: 'visible' }}> */}
+                                <p className="fw-semibold">
+                                    Address:<br />
+                                    <span className="fw-normal small">Plot No. 1710/2978, Kanchana Palace, Pandra, Cuttack - Puri Bypass Rd, Laxmisagar, Bhubaneswar, Odisha 751006</span>
                                 </p>
-                                <p className="d-flex justify-content-start align-items-start" style={{ visibility: 'visible' }}>
-                                    <span className="me-2 fw-semibold">Phone: </span>
-                                    <span className="">+91 9692852485</span>
+                                {/* </p> */}
+                                {/* <p className="d-flex justify-content-start align-items-start" style={{ visibility: 'visible' }}> */}
+                                <p className="me-2 fw-semibold">
+                                    Phone:<br />
+                                    <span className="fw-normal small">+91 9692852485</span>
                                 </p>
+
+                                {/* </p> */}
                                 {/* <p className="row" style={{ visibility: 'visible' }}>
                                     <span className="col-lg-4 col-md-4 col-4 m-0">
                                         <strong><small>Contact Hours : </small></strong>
@@ -63,7 +68,7 @@ const Footer = () => {
                                         </small>
                                     </span>
                                 </p> */}
-                                <p className="d-flex justify-content-start align-items-start" style={{ visibility: 'visible' }}>
+                                {/* <p className="d-flex justify-content-start align-items-start" style={{ visibility: 'visible' }}>
                                     <span className="me-2 fw-semibold">
                                         Contact Hours :
                                     </span>
@@ -72,7 +77,33 @@ const Footer = () => {
                                         Sat ( 9.00AM - 2.00PM ),<br />
                                         Sun ( Holiday )
                                     </span>
-                                </p>
+                                </p> */}
+                                <div>
+                                    <p className="fw-semibold">Contact Hours:<br />
+                                        <ul class="ps-0 fw-normal small me-5 pe-5">
+                                            <li class="d-flex flex-row align-items-start justify-content-between">
+                                                <div>Monday:</div>
+                                                <div class="ml-auto">8:00am - 9:00pm</div>
+                                            </li>
+                                            <li class="d-flex flex-row align-items-start justify-content-between">
+                                                <div>Thuesday:</div>
+                                                <div class="ml-auto">8:00am - 9:00pm</div>
+                                            </li>
+                                            <li class="d-flex flex-row align-items-start justify-content-between">
+                                                <div>Wednesday:</div>
+                                                <div class="ml-auto">8:00am - 9:00pm</div>
+                                            </li>
+                                            <li class="d-flex flex-row align-items-start justify-content-between">
+                                                <div>Thursday:</div>
+                                                <div class="ml-auto">8:00am - 9:00pm</div>
+                                            </li>
+                                            <li class="d-flex flex-row align-items-start justify-content-between">
+                                                <div>Friday:</div>
+                                                <div class="ml-auto">8:00am - 7:00pm</div>
+                                            </li>
+                                        </ul>
+                                    </p>
+                                </div>
                                 <h6 className="text-muted"><small>Follow us on :</small></h6>
                                 {/* <div className="mobile-social-icon wow fadeIn animated mb-sm-5 mb-md-0 animated animated" style="visibility: visible;">
                                     <a href="/"><img src="assets/imgs/theme/icons/icon-facebook.svg" alt=""/></a>
