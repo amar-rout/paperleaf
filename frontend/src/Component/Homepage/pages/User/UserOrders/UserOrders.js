@@ -181,6 +181,24 @@ const UserOrders = () => {
                                                                     })
                                                                 }
                                                             </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <td colSpan={3} >Sub Total</td>
+                                                                    <td className='text-right'>{INR.format(order.totalCost)}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colSpan={3} >Discount ()</td>
+                                                                    <td className='text-danger text-right'>-{INR.format(order.discountCost)}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colSpan={3} >Shipping Cost</td>
+                                                                    <td className='align-right'>{INR.format(order.shippingCost)}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th colSpan={3} >Grand Total</th>
+                                                                    <th className='text-right'>{INR.format(order.grandTotal)}</th>
+                                                                </tr>
+                                                            </tfoot>
                                                         </table>
                                                     </div>
                                                     <div className="bg-light-subtle rounded-1 p-4 my-2">
