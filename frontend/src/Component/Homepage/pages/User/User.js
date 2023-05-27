@@ -54,7 +54,7 @@ const User = () => {
     const handleLogout = () => {
         dispatch(logout());
         navigate("/");
-    }
+    };
 
     return (
         <>

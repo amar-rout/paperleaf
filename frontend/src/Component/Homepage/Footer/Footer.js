@@ -79,30 +79,30 @@ const Footer = () => {
                                     </span>
                                 </p> */}
                                 <div>
-                                    <p className="fw-semibold">Contact Hours:<br />
-                                        <ul class="ps-0 fw-normal small me-5 pe-5">
-                                            <li class="d-flex flex-row align-items-start justify-content-between">
-                                                <div>Monday:</div>
-                                                <div class="ml-auto">8:00am - 9:00pm</div>
+                                    <div className="fw-semibold">Contact Hours:<br />
+                                        <ul className="ps-0 fw-normal small me-5 pe-5">
+                                            <li className="d-flex flex-row align-items-start justify-content-between">
+                                                <span>Monday:</span>
+                                                <span className="ml-auto">8:00am - 9:00pm</span>
                                             </li>
-                                            <li class="d-flex flex-row align-items-start justify-content-between">
-                                                <div>Thuesday:</div>
-                                                <div class="ml-auto">8:00am - 9:00pm</div>
+                                            <li className="d-flex flex-row align-items-start justify-content-between">
+                                                <span>Thuesday:</span>
+                                                <span className="ml-auto">8:00am - 9:00pm</span>
                                             </li>
-                                            <li class="d-flex flex-row align-items-start justify-content-between">
-                                                <div>Wednesday:</div>
-                                                <div class="ml-auto">8:00am - 9:00pm</div>
+                                            <li className="d-flex flex-row align-items-start justify-content-between">
+                                                <span>Wednesday:</span>
+                                                <span className="ml-auto">8:00am - 9:00pm</span>
                                             </li>
-                                            <li class="d-flex flex-row align-items-start justify-content-between">
-                                                <div>Thursday:</div>
-                                                <div class="ml-auto">8:00am - 9:00pm</div>
+                                            <li className="d-flex flex-row align-items-start justify-content-between">
+                                                <span>Thursday:</span>
+                                                <span className="ml-auto">8:00am - 9:00pm</span>
                                             </li>
-                                            <li class="d-flex flex-row align-items-start justify-content-between">
-                                                <div>Friday:</div>
-                                                <div class="ml-auto">8:00am - 7:00pm</div>
+                                            <li className="d-flex flex-row align-items-start justify-content-between">
+                                                <span>Friday:</span>
+                                                <span className="ml-auto">8:00am - 7:00pm</span>
                                             </li>
                                         </ul>
-                                    </p>
+                                    </div>
                                 </div>
                                 <h6 className="text-muted"><small>Follow us on :</small></h6>
                                 {/* <div className="mobile-social-icon wow fadeIn animated mb-sm-5 mb-md-0 animated animated" style="visibility: visible;">

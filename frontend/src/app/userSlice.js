@@ -18,6 +18,7 @@ const USER_VERIFY = 'user/userVerify';
 const UPDATE_PROFILE = 'user/userProfileUpdate';
 const UPDATE_PASSWORD = '/user/userPasswordChange';
 
+
 export const loginAsync = createAsyncThunk(
     USER_LOGIN,
     async ({ email, password, checked }, thunkAPI) => {
@@ -131,7 +132,7 @@ export const userSlice = createSlice({
     reducers: {
         logout: (state) => {
             state.status = 'IDLE';
-            state.user = '';
+            state.user = initialState.user;
             state.errorMessage = '';
             // localStorage.setItem('userInfo', JSON.stringify(state.user));
             localStorage.removeItem("user");
