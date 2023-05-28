@@ -1,13 +1,17 @@
 import React from 'react';
 import Meta from '../../Meta';
+import { useLocation } from 'react-router-dom';
 
 const EditAddress = () => {
+
+    const {state} = useLocation();
+
     return (
         <>
             <Meta title="Add new address" />
             <div className="container mt-2">
                 <div className="d-flex justify-content-between align-items-center gap-5 mb-4">
-                    <h4 className="mb-0">Update Address</h4>
+                    <h4 className="mb-0">Update Address {state.id}</h4>
                 </div>
                 <div class="row">
                     <div class="col-12">

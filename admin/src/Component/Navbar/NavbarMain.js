@@ -6,7 +6,7 @@ const NavbarMain = () => {
     return (
         <>
             <nav class="navbar bg-body fixed-top shadow">
-                <div class="container justify-content-between align-items-center">
+                <div class="container-fluid justify-content-between align-items-center">
                     <div class="d-flex justify-content-between align-items-center" >
                         <button class="btn btn-default border-0 navbar-toggler shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                             {/* <span class="navbar-toggler-icon"></span> */}

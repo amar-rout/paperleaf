@@ -8,8 +8,16 @@ const UserAddress = () => {
 
     const navigate = useNavigate();
 
-    const handleEditAddress = () => {
-        navigate("/user/editAddress");
+    const handleEditAddress = (name) => {
+        navigate(
+            "/user/editAddress",
+            {
+                state: {
+                    id: name
+                }
+            }
+        );
+
     }
 
     const handleDeleteAddress = () => {
@@ -49,14 +57,14 @@ const UserAddress = () => {
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="setDefaultModal">Set default address</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
                                             </div>
                                             <div class="modal-body">
                                                 Do you want to set this as default shipping and billing address?
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-info">Save</button>
+                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-info">Update</button>
                                             </div>
                                         </div>
                                     </div>
@@ -74,26 +82,26 @@ const UserAddress = () => {
                             </div>
                             <div className="card-footer bg-body border-0 top-0 d-flex justify-content-start align-items-center gap-2">
                                 <button className="btn btn-outline-dark"
-                                    onClick={handleEditAddress}>
+                                    onClick={handleEditAddress()}>
                                     <i class="bi bi-pencil" /> Edit
                                 </button>
-                                <button className="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                    onClick={handleDeleteAddress}>
-                                    <i class="bi bi-trash" /> Delete
+                                <button className="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                    <i class="bi bi-trash" />Delete
                                 </button>
-                                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                 {/* tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true"> */}
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="deleteModalLabel">Delete address</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
                                             </div>
                                             <div class="modal-body">
                                                 Do you want to delete this address permanently from your address book?
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-danger">Delete</button>
+                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-danger" onClick={handleDeleteAddress}>Delete</button>
                                             </div>
                                         </div>
                                     </div>
