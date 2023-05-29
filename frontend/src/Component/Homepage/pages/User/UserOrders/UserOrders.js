@@ -187,7 +187,27 @@ const UserOrders = () => {
                                                                     <td className='text-right'>{INR.format(order.totalCost)}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td colSpan={3} >Discount ()</td>
+                                                                    <td colSpan={3}>
+                                                                        Discount&nbsp;
+                                                                        {
+                                                                            order.coupon.discountAmount > 0 ?
+                                                                                <>
+                                                                                    {`(Coupon ${order.coupon.name} applied. Flat ${INR.format(order.coupon.discountAmount)} off)`}
+                                                                                </>
+                                                                                :
+                                                                                <>
+                                                                                    {
+                                                                                        order.coupon.discountPercentage > 0 ?
+                                                                                            <>
+                                                                                                {`(Coupon ${order.coupon.name} applied. Flat ${order.coupon.discountPercentage}% off)`}3
+                                                                                            </>
+                                                                                            :
+                                                                                            <>
+                                                                                            </>
+                                                                                    }
+                                                                                </>
+                                                                        }
+                                                                    </td>
                                                                     <td className='text-danger text-right'>-{INR.format(order.discountCost)}</td>
                                                                 </tr>
                                                                 <tr>
@@ -203,29 +223,56 @@ const UserOrders = () => {
                                                     </div>
                                                     <div className="bg-light-subtle rounded-1 p-4 my-2">
                                                         <div className="row">
-                                                            <div className="col-sm-5 col-md-3 col-lg-4 mb-3 mb-md-0">
-                                                                <div className="fs-6  fw-semibold text-dark mb-1">Payment:</div>
+                                                            <div className="col-sm-5 col-md-4 col-lg-4 mb-3 mb-md-0">
+                                                                <div className="fs-6 fw-semibold text-dark mb-1">Payment Method:</div>
+                                                                <div className="small fs-6 fw-normal">
+                                                                    {
+                                                                        order.paymentMethod === "online" ?
+                                                                            <p className=''>Online Payment</p>
+                                                                            :
+                                                                            <p className=''>Cash on delivery</p>
+                                                                    }
+                                                                </div>
+                                                                <div className="fs-6  fw-semibold text-dark mb-1">Payment Status:</div>
                                                                 <div className="small fs-6 fw-normal">
                                                                     {
                                                                         order.paymentMethod === "online" && order.paymentStatus === "success" ?
-                                                                            <p className='text-success'>Payment Success</p>
+                                                                            <p className='text-success'>Success</p>
                                                                             :
                                                                             <>
                                                                                 {
                                                                                     order.paymentMethod === "cod" && order.paymentStatus === "pending" ?
-                                                                                        <p className='text-dark'>Cash on delivery</p>
-                                                                                        :
                                                                                         <p className='text-warning'>Pending</p>
+                                                                                        :
+                                                                                        <p className='text-success'>Success</p>
                                                                                 }
                                                                             </>
                                                                     }
                                                                 </div>
-                                                                <a className="btn btn-link text-muted link-info text-decoration-none py-1 px-0 mt-2" href="/">
+                                                                <div className="fs-6  fw-semibold text-dark mb-1">Shipping Status:</div>
+                                                                <div className="small fs-6 fw-normal">
+                                                                    {
+                                                                        order.paymentMethod === "online" ?
+                                                                            <p className=''>Online Payment</p>
+                                                                            :
+                                                                            <p className=''>Cash on delivery</p>
+                                                                    }
+                                                                </div>
+                                                                <div className="fs-6  fw-semibold text-dark mb-1">Delivery Status:</div>
+                                                                <div className="small fs-6 fw-normal">
+                                                                    {
+                                                                        order.paymentMethod === "online" ?
+                                                                            <p className=''>Online Payment</p>
+                                                                            :
+                                                                            <p className=''>Cash on delivery</p>
+                                                                    }
+                                                                </div>
+                                                                {/* <a className="btn btn-link text-muted link-info text-decoration-none py-1 px-0 mt-2" href="/">
                                                                     <i className="bi bi-clock me-2"></i>
                                                                     Order history
-                                                                </a>
+                                                                </a> */}
                                                             </div>
-                                                            <div className="col-sm-7 col-md-5 mb-4 mb-md-0">
+                                                            <div className="col-sm-7 col-md-4 mb-4 mb-md-0">
                                                                 <div className="fs-6 fw-semibold text-dark mb-1">Delivery address:</div>
                                                                 <div className="small">
                                                                     {order.address.address1},<br />
