@@ -39,9 +39,9 @@ export const orderSlice = createSlice({
             return state;
         },
         getOrderByID: (state, action) => {
-            const order = state.orders.filter((item) => item._id !== action.payload);
+            const order = state.orders.filter((item) => item._id === action.payload);
             state.order = order;
-            return state;
+            // return state;
         },
     },
     extraReducers: (builder) => {
@@ -63,7 +63,7 @@ export const orderSlice = createSlice({
 export const { clearState, getOrderByID } = orderSlice.actions;
 
 export const getOrders = (state) => state.order.orders;
-// export const getOrder = (state) => state.order.order;
+export const getOrder = (state) => state.order.order;
 export const getStatus = (state) => state.order.status;
 export const getError = (state) => state.order.error;
 

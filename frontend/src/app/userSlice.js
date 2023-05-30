@@ -14,7 +14,7 @@ if (loggedUser) {
 
 const USER_LOGIN = 'user/userLogin';
 const USER_REGISTER = 'user/userRegister';
-const USER_VERIFY = 'user/userVerify';
+const USER_VERIFY = 'user/userTokenVerify';
 const UPDATE_PROFILE = 'user/userProfileUpdate';
 const UPDATE_PASSWORD = '/user/userPasswordChange';
 

@@ -29,6 +29,8 @@ const UserProfile = () => {
     const imageUploadURL = `/api/upload`;
     let file = null;
 
+    const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
     const [userProfile, setUserProfile] = useState({
         firstName: "",
         middleName: "",
@@ -238,12 +240,14 @@ const UserProfile = () => {
             console.log(userImage);
             axios.patch('/api/users/profile/', userImage, config)
                 .then(response => {
-                    toast.success("Image updated successfully.");
+                    
                     setUserImage({
                         image: response.data.image
                     });
                     localStorage.removeItem('user');
                     localStorage.setItem('user', JSON.stringify(response.data));
+                    delay(3000);
+                    toast.success("Image updated successfully.");
                 }).catch(error => {
                     if (error.response) {
                         toast.dismiss();
