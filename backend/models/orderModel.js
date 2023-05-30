@@ -18,8 +18,8 @@ const orderSchema = mongoose.Schema(
           required: true,
           ref: 'Product',
         },
-        name: {type: String, required: true},
-        image: {type: String, required: true},
+        name: { type: String, required: true },
+        image: { type: String, required: true },
         size: { type: String, required: false },
         category: { type: String, required: false },
         quantity: { type: Number, required: true },
@@ -39,12 +39,25 @@ const orderSchema = mongoose.Schema(
       pincode: { type: String, required: true },
       country: { type: String, required: true, default: 'IN' },
     },
+    coupon: {
+      name: { type: String, required: true, default: 'DEFAULT' },
+      discountAmount: {
+        type: Number,
+        required: true,
+        default: 0.0
+      },
+      discountPercentage: {
+        type: Number,
+        required: true,
+        default: 0
+      },
+    },
     taxPrice: { type: Number, required: false, default: 0.0 },
     shippingCost: { type: Number, required: true, default: 0.0 },
     totalCost: { type: Number, required: true, default: 0.0 },
     discountCost: { type: Number, required: true, default: 0.0 },
     grandTotal: { type: Number, required: true, default: 0.0 },
-    paymentMethod: { 
+    paymentMethod: {
       type: String,
       required: true,
       enum: ['cod', 'online'],

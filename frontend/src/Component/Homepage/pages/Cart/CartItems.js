@@ -21,7 +21,9 @@ const CartItems = (products) => {
     const [cartItems, setCartItems] = useState([]);
     const [isCouponApplied, setCouponApplied] = useState(false);
     const [coupon, setCoupon] = useState({
-        "couponName": ""
+        "name": "",
+        "discountAmount": 0.0,
+        "discountPercentage": 0
     });
 
     const navigate = useNavigate();
@@ -68,6 +70,7 @@ const CartItems = (products) => {
 
     const setCheckoutItems = () => {
         const checkoutDetails = {
+            coupon: coupon,
             totalAmount: totalAmount,
             discountAmount: discountAmount,
             shippingCost: shippingCost,
@@ -89,10 +92,16 @@ const CartItems = (products) => {
         //     dispatch(userVerifyAsync()).unwrap()
         //         .then(async (value) => {
                     const config = { "headers": { "Content-Type": "application/json" } };
-                    await axios.get(`/api/coupons/?name=${coupon.couponName}`, config)
+                    await axios.get(`/api/coupons/?name=${coupon.name}`, config)
                         .then(response => {
                             if (grandTotal >= response.data.minPurchaseAmount) {
                                 setCouponApplied(true);
+                                setCoupon({
+                                    ...coupon,
+                                    name: response.data.couponName,
+                                    discountAmount: response.data.discountAmount || 0.0,
+                                    discountPercentage: response.data.discountPercentage || 0
+                                });
                                 if (response.data.discountType === 'Amount') {
                                     setDiscountAmount(response.data.discountAmount);
                                 } else {
@@ -213,12 +222,12 @@ const CartItems = (products) => {
                         <>
                             <p class="d-flex align-items-center bg-success-subtle text-success rounded-2 small mt-3 py-2 px-2">
                                 <span className="me-auto">
-                                    Coupon <b>{coupon.couponName}</b> applied successfully.<br />
+                                    Coupon <b>{coupon.name}</b> applied successfully.<br />
                                     Got total {formatter.format(discountAmount)} discount.
                                 </span>
                                 <button type="button" class="btn-close"
                                     onClick={() => {
-                                        setCoupon({ couponName: "" });
+                                        setCoupon({ ...coupon, name: '' });
                                         setDiscountAmount(0);
                                         setCouponApplied(false);
                                     }}
@@ -228,7 +237,7 @@ const CartItems = (products) => {
                         :
                         <>
                             <div class="input-group border border-1 rounded-2 mt-3 py-1 p-2">
-                                <input type="text" name="couponName" value={coupon.couponName} onChange={handleCouponChange} class="form-control shadow-none border-0 py-2" placeholder="Coupon code" aria-label="Recipient's username" />
+                                <input type="text" name="name" value={coupon.name} onChange={handleCouponChange} class="form-control shadow-none border-0 py-2" placeholder="Coupon code" aria-label="Recipient's username" />
                                 <button class="btn btn-default bg-warning rounded-2 fw-normal fs-6 py-2 px-4" type="button"
                                     onClick={applyCoupon}>
                                     Apply

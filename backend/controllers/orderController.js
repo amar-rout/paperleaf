@@ -53,6 +53,7 @@ export const successOrder = asyncHandler(async (req, res) => {
       orderId,
       items,
       address,
+      coupon,
       discountAmount,
       grandTotal,
       shippingCost,
@@ -141,6 +142,12 @@ export const successOrder = asyncHandler(async (req, res) => {
       country: 'IN'
     };
 
+    const couponDetails = {
+      name: coupon.name || 'DEFAULT',
+      discountAmount: coupon.discountAmount || 0.0,
+      discountPercentage: coupon.discountPercentage || 0,
+    }
+
     // console.log("Addr" + addr);
     // Generate data for OrderModel
 
@@ -150,6 +157,7 @@ export const successOrder = asyncHandler(async (req, res) => {
       orderId: orderId,
       orderItems: itemArray,
       address: addr,
+      coupon: couponDetails,
       shippingCost: shippingCost,
       totalCost: totalAmount,
       discountCost: discountAmount,
