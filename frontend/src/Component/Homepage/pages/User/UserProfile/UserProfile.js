@@ -6,7 +6,11 @@ import { toast } from 'react-toastify';
 
 const UserProfile = () => {
     // let [loginUser, setLoginUser] = useState({});
-    let [loginUser, setLoginUser] = useState(JSON.parse(localStorage.getItem("user")));
+    const [loginUser, setLoginUser] = useState({});
+
+    useEffect(() => {
+        setLoginUser(JSON.parse(localStorage.getItem("user")));
+    }, [setLoginUser]);
 
     const [editProfile, setEditProfile] = useState(false);
     const [loadProfile, setLoadProfile] = useState(false);
@@ -405,7 +409,7 @@ const UserProfile = () => {
                     <div className="mt-3 mb-2">
                         <span className="mb-0 h5">Basic Information</span>
                     </div>
-                    <div className="col-12 col-md-6">
+                    <div className="col-12 col-md-4">
                         <div className="form-group">
                             <label className="form-label" htmlFor="firstName">First name *</label>
                             <input className="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-3 mb-3 text-decoration-none shadow-none"
@@ -419,7 +423,7 @@ const UserProfile = () => {
                                 disabled={!editProfile} onChange={handleUserProfileChange} value={userProfile.middleName} id="middleName" name="middleName" type="text" placeholder="Middle name" />
                         </div>
                     </div>
-                    <div className="col-12 col-md-6">
+                    <div className="col-12 col-md-4">
                         <div className="form-group">
                             <label className="form-label" htmlFor="lastName">Last name *</label>
                             <input className="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-3 mb-3 text-decoration-none shadow-none"
@@ -532,6 +536,12 @@ const UserProfile = () => {
                                 placeholder="Select your avatar" required disabled={!editImage} />
                         </div>
                     </div>
+                    {
+                        loginUser.image &&
+                        <div className="col-12 col-md-6 my-auto align-middle mt-md-4 text-center">
+                            <img src={`${serverURL}${loginUser.image}`} alt="user" width="140" height="140" className="rounded-circle" />
+                        </div>
+                    }
                     <div className='col-12 col-md-6'>
                         {
                             imageInputErrorMessage &&
@@ -541,12 +551,6 @@ const UserProfile = () => {
                             </div>
                         }
                     </div>
-                    {
-                        loginUser.image &&
-                        <div className="col-12 col-md-6 my-auto text-center">
-                            <img src={`${serverURL}${loginUser.image}`} alt="user" width="140" height="140" className="rounded-circle" />
-                        </div>
-                    }
                     <div className="">
                         {
                             !editImage ?

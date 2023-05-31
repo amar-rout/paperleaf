@@ -40,7 +40,7 @@ const User = () => {
 
     useEffect(() => {
         dispatch(getOrdersAsync(user.token));
-    }, []);
+    }, [dispatch, user]);
 
     let { uriId } = useParams();
     const idValue = urlParams[uriId];
@@ -91,7 +91,7 @@ const User = () => {
                 <div className="row my-2">
                     <div className="col-12 col-md-4 col-lg-3">
                         <div className="card text-center">
-                            <div className="card-header bg-body">
+                            <div className="card-header bg-body-teritary">
                                 <div className="text-center my-3">
                                     <div className="mb-3 d-flex justify-content-center align-items-center">
                                         {
@@ -106,12 +106,12 @@ const User = () => {
                                                 </>
                                         }
                                     </div>
-                                    <span className="mb-1 h4">{user.name}</span>
-                                    <h4 className="small text-secondary fw-semibold">
+                                    <span className="mb-1 h5">{user.name}</span>
+                                    <h4 className="small fs-6 text-secondary fw-normal">
                                         {user.email}
                                         {/* <i className='bx bxs-badge-check text-success' ></i> */}
                                     </h4>
-                                    <h4 className="small text-secondary fw-semibold">
+                                    <h4 className="small fs-6 text-secondary fw-normal">
                                         +91 {user.phone}
                                         {/* <i className='bx bxs-badge-check text-success' ></i> */}
                                     </h4>
@@ -162,9 +162,10 @@ const User = () => {
                                 </ul>
                             </div>
 
-                            <div className="card-footer bg-body text-center">
-                                <button onClick={handleLogout} className="btn btn-outline-dark px-4 py-2 rounded-3" type="button">
-                                    <i className='bx bx-log-out-circle'></i> Logout
+                            <div className="card-footer bg-body-teritary text-center">
+                                <button onClick={handleLogout} className="btn btn-outline-dark fs-sm-6 fw-normal px-3 py-3 py-md-2 rounded-3 d-flex justify-content-between align-items-center gap-2" type="button">
+                                    <i className='bx bx-log-out-circle p-0 m-0'></i>
+                                    <span className="p-0 m-0">Logout</span>
                                 </button>
                             </div>
                         </div>

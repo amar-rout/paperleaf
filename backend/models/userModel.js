@@ -7,12 +7,31 @@ const userSchema = mongoose.Schema(
     mname: { type: String, required: false },
     lname: { type: String, required: true },
     name: { type: String, required: true },
-    image: {type: String, required: false},
+    image: { type: String, required: false },
     email: { type: String, required: true, unique: true },
     phone: { type: String, required: true, unique: true },
     gender: { type: String, required: true },
-    dob: {type: Date, required: false},
+    dob: { type: Date, required: false },
     password: { type: String, required: true },
+    address: [
+      {
+        addrType: {
+          type: String,
+          required: true,
+          default: "Home",
+          enum: ["Home", "Office", "Other"]
+        },
+        addrName: { type: String, required: true },
+        addrLineOne: { type: String, required: true },
+        addrLineTwo: { type: String, required: true },
+        city: { type: String, required: true },
+        state: { type: String, required: true },
+        country: { type: String, required: true },
+        pincode: { type: String, required: true },
+        phone: { type: String, required: false },
+        isDeliveryAddr: { type: Boolean, required: true, default: false }
+      }
+    ],
     status: {
       type: String,
       required: false,

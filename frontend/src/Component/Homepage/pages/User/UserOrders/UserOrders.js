@@ -8,10 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     clearState,
     getOrdersAsync,
-    getOrderByID,
+    // getOrderByID,
     getOrders,
     getStatus,
-    getError
+    // getError
 } from '../../../../../app/orderSlice';
 
 const UserOrders = () => {
@@ -21,9 +21,9 @@ const UserOrders = () => {
     const dispatch = useDispatch();
 
     const allOrders = useSelector(getOrders);
-    const orderByID = useSelector(getOrderByID);
+    // const orderByID = useSelector(getOrderByID);
     const orderStatus = useSelector(getStatus);
-    const orderError = useSelector(getError);
+    // const orderError = useSelector(getError);
 
     let INR = new Intl.NumberFormat('en-IN', {
         style: 'currency',
@@ -38,7 +38,7 @@ const UserOrders = () => {
         const user = JSON.parse(localStorage.getItem('user'));
         dispatch(getOrdersAsync(user.token));
         setOrders(allOrders);
-    }, []);
+    }, [dispatch, setOrders, allOrders]);
 
     useEffect(() => {
         if (orderStatus === 'LOADING') {
@@ -48,14 +48,14 @@ const UserOrders = () => {
         else if (orderStatus === 'LOADED') {
             setLoading(false);
             setOrders(allOrders);
-            console.log(orders);
+            // console.log(orders);
             dispatch(clearState());
         }
         else if (orderStatus === 'ERROR') {
             setLoading(false);
             dispatch(clearState());
         }
-    }, [orderStatus]);
+    }, [dispatch, orders, orderStatus, allOrders]);
 
     return (
         <>
