@@ -88,9 +88,41 @@ const Navbar = () => {
                                             <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill" data-bs-dismiss="offcanvas">
                                                 <NavbarLink to="/about" className="nav-link nav_home_link" aria-current="page" style={{ color: '#fff3cd' }}>About</NavbarLink>
                                             </li>
+                                            {/* <NavbarLink to="/blog" className="nav-link" aria-current="page" style={{color: '#fff3cd'}}>Blog</NavbarLink> */}
                                             {/* <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill">
-                                                <NavbarLink to="/blog" className="nav-link" aria-current="page" style={{color: '#fff3cd'}}>Blog</NavbarLink>
+                                                <ul className="list-unstyled">
+                                                    <li className="">
+                                                        <button style={{color: '#fff3cd'}} className="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#coupons-collapse" aria-expanded="true">
+                                                            Collections
+                                                        </button>
+                                                        <div className="collapse show" id="coupons-collapse" style={{}}>
+                                                            <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                                                <li>
+                                                                    <NavbarLink to="/coupons" className="nav-link nav_home_link d-inline-flex text-decoration-none rounded">
+                                                                        List Collections
+                                                                    </NavbarLink>
+                                                                </li>
+                                                                <li>
+                                                                    <NavbarLink to="/addCoupons" className="link-dark d-inline-flex text-decoration-none rounded">
+                                                                        Add Collections
+                                                                    </NavbarLink>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                </ul>
                                             </li> */}
+                                            <li class="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill dropdown">
+                                                <a style={{ color: '#fff3cd' }} class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Products
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                    <li><hr class="dropdown-divider" /></li>
+                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                </ul>
+                                            </li>
                                             <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill" data-bs-dismiss="offcanvas">
                                                 <NavbarLink to="/privacy" className="nav-link nav_home_link" aria-current="page" style={{ color: '#fff3cd' }}>Privacy</NavbarLink>
                                             </li>

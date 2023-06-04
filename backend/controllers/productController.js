@@ -82,7 +82,7 @@ export const getProductByCategory = asyncHandler(async (req, res) => {
   const cat = sanitize(req.params.category);
   if (cat.includes("newCollections")) {
     const count = await ProductModel.countDocuments({
-      newCollections: true,
+      newCollection: true,
       published: true
     });
 
@@ -91,7 +91,8 @@ export const getProductByCategory = asyncHandler(async (req, res) => {
       published: true
     })
       .limit(pageSize)
-      .skip(pageSize * (page - 1));
+      .skip(pageSize * (page - 1))
+      .sort({"createdAt": -1});
 
     if (category.length > 0) {
       res.json({ page, pages: Math.ceil(count / pageSize), products: category });
@@ -110,7 +111,8 @@ export const getProductByCategory = asyncHandler(async (req, res) => {
       published: true
     })
       .limit(pageSize)
-      .skip(pageSize * (page - 1));
+      .skip(pageSize * (page - 1))
+      .sort({"createdAt": -1});
 
     if (category.length > 0) {
       res.json({ page, pages: Math.ceil(count / pageSize), products: category });
@@ -167,17 +169,19 @@ export const createProductAdmin = asyncHandler(async (req, res) => {
 export const updateProductAdmin = asyncHandler(async (req, res) => {
   const object = await ProductModel.findById(sanitize(req.params.id));
   if (object) {
+
     object.name = sanitize(req.body.name) || object.name;
     object.price = sanitize(req.body.price) || object.price;
     object.salePrice = sanitize(req.body.salePrice) || object.salePrice;
-    object.image = sanitize(req.body.image) || object.image,
-      object.images = sanitize(req.body.images) || object.images,
-      object.category = sanitize(req.body.category) || object.category;
+    object.image = sanitize(req.body.image) || object.image;
+    object.images = sanitize(req.body.images) || object.images;
+    object.category = sanitize(req.body.category) || object.category;
     object.brand = sanitize(req.body.brand) || object.brand;
     object.description = sanitize(req.body.description) || object.description;
     object.countInStock = sanitize(req.body.countInStock) || object.countInStock;
     object.newCollection = sanitize(req.body.newCollection);
     object.featured = sanitize(req.body.featured);
+    object.published = sanitize(req.body.published);
 
     const updatedObj = await object.save();
     res.status(201).json(updatedObj);
@@ -283,12 +287,12 @@ export const getTopProducts = asyncHandler(async (req, res) => {
   let queryParams = {};
   if (req.params.category) {
     queryParams = {
-        category: sanitize(req.params.category),
-        published: true,
+      category: sanitize(req.params.category),
+      published: true,
     };
   } else {
     queryParams = {
-        published: true,
+      published: true,
     };
   }
   const products = await ProductModel.find(queryParams)

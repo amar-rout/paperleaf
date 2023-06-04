@@ -146,19 +146,19 @@ const Footer = () => {
                             </div>
                         </div>
                         <div className="ps-2 pe-2 d-md-none"><hr /></div>
-                        <div className="col-lg-2 col-md-3 col-6">
+                        <div className="col-lg-2 col-md-3 col-6 my-md-5">
                             <h6 className="widget-title text-muted"><strong>About</strong></h6>
                             <ul className="footer-list mb-sm-5 mb-md-0">
                                 <li><a href="/about">About Us</a></li>
-                                <li><a href="/deliveryInfo">Delivery Information</a></li>
-                                <li><a href="/privacyPolicy">Privacy Policy</a></li>
+                                <li><a href="/shipping">Shipping & Delivery Policy</a></li>
+                                <li><a href="/privacy">Privacy Policy</a></li>
                                 <li><a href="/termsConditions">Terms &amp; Conditions</a></li>
                                 <li><a href="/contact">Contact Us</a></li>
-                                <li><a href="/supportCenter">Support Center</a></li>
-                                <li><a href="/faqs">FAQs</a></li>
+                                {/* <li><a href="/supportCenter">Support Center</a></li>
+                                <li><a href="/faqs">FAQs</a></li> */}
                             </ul>
                         </div>
-                        <div className="col-lg-2 col-md-3 col-6">
+                        <div className="col-lg-2 col-md-3 col-6 my-md-5">
                             <h6 className="widget-title text-muted"><strong>My Account</strong></h6>
                             <ul className="footer-list mb-sm-5 mb-md-0" style={{ listStyleType: 'none' }}>
                                 <li><a href="/login">Sign In</a></li>

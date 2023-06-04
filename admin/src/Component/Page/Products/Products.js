@@ -77,17 +77,15 @@ function Products() {
       })
   }
 
-  const handleNewCollection = (id, name, featured, status) => {
+  const handleNewCollection = (id, name, featured, published, status) => {
     let statusVal;
-    console.log("status: " + status);
     if (status && status === true) {
       statusVal = false;
     } else {
       statusVal = true;
     }
-    let statusData = { "newCollection": statusVal, "featured": featured };
-    console.log(statusData);
-    axios.patch(`/api/products/${id}`, statusData)
+    let statusData = { "newCollection": statusVal, "featured": featured, "published": published };
+      axios.patch(`/api/products/${id}`, statusData)
       .then(response => {
         toast.dismiss();
         // let message = statusVal === "Active" ? "activated" : "deactivated";
@@ -107,7 +105,7 @@ function Products() {
       })
   }
 
-  const handleFeatured = (id, name, featured, newCollection) => {
+  const handleFeatured = (id, name, featured, published, newCollection) => {
     let featuredVal;
     console.log("Published: " + featured);
     if (featured && featured === true) {
@@ -115,9 +113,37 @@ function Products() {
     } else {
       featuredVal = "true";
     }
-    let featuredData = { "featured": featuredVal, "newCollection": newCollection };
+    let featuredData = { "featured": featuredVal, "published": published,  "newCollection": newCollection };
     console.log(featuredData);
     axios.patch(`/api/products/${id}`, featuredData)
+      .then(response => {
+        toast.dismiss();
+        // let message = featuredVal === "true" ? "featured" : "";
+        toast.success(`Product ${name} changed successfully`);
+      }).catch(error => {
+        if (error.response) {
+          toast.dismiss();
+          toast.error(error.response.data.message);
+        } else if (error.request) {
+          toast.dismiss();
+          toast.error(error.request);
+        } else {
+          toast.dismiss();
+          toast.error(error.message);
+        }
+      })
+  }
+
+  const handlePublished = (id, name, published, featured, newCollection) => {
+    let publishedVal;
+    if (published && published === true) {
+      publishedVal = "false";
+    } else {
+      publishedVal = "true";
+    }
+    let publishedData = { "featured": featured, "published": publishedVal, "newCollection": newCollection };
+    console.log(publishedData);
+    axios.patch(`/api/products/${id}`, publishedData)
       .then(response => {
         toast.dismiss();
         // let message = featuredVal === "true" ? "featured" : "";
@@ -216,7 +242,7 @@ function Products() {
                                 id="status"
                                 defaultChecked={newCollection}
                                 // value={published}
-                                onChange={() => handleNewCollection(_id, name, featured, newCollection)}
+                                onChange={() => handleNewCollection(_id, name, featured, published, newCollection)}
                               />
                             </div>
                           </td>
@@ -228,8 +254,8 @@ function Products() {
                                 role="switch"
                                 id="status"
                                 defaultChecked={featured}
-                                // value={published}
-                                onChange={() => handleFeatured(_id, name, featured, newCollection)}
+                                // value={featured}
+                                onChange={() => handleFeatured(_id, name, featured, published, newCollection)}
                               />
                             </div>
                           </td>
@@ -242,7 +268,7 @@ function Products() {
                                 id="publish"
                                 defaultChecked={published}
                               // value={published}
-                              // onChange={() => handleFeatured(_id, name, featured, newCollection)}
+                              onChange={() => handlePublished(_id, name, published, featured, newCollection)}
                               />
                             </div>
                             {/* {published ? "true" : "false"} */}
