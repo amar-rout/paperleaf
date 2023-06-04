@@ -151,6 +151,7 @@ const Footer = () => {
                             <ul className="footer-list mb-sm-5 mb-md-0">
                                 <li><a href="/about">About Us</a></li>
                                 <li><a href="/shipping">Shipping & Delivery Policy</a></li>
+                                <li><a href="/returning">Return and Exchange Policy</a></li>
                                 <li><a href="/privacy">Privacy Policy</a></li>
                                 <li><a href="/termsConditions">Terms &amp; Conditions</a></li>
                                 <li><a href="/contact">Contact Us</a></li>

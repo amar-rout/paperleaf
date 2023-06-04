@@ -112,15 +112,23 @@ const Navbar = () => {
                                                     </li>
                                                 </ul>
                                             </li> */}
-                                            <li class="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill dropdown">
+                                            <li class="d-inline-block d-md-none  nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill dropdown">
                                                 <a style={{ color: '#fff3cd' }} class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Products
                                                 </a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                    <li><hr class="dropdown-divider" /></li>
-                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                <ul class="dropdown-menu bg-dark border-1">
+                                                    <li>
+                                                        <NavCatLink className="nav-link dropdown-item ps-0 pe-4" to="/category/Dupattas" style={{ color: '#fff3cd' }}>Dupattas</NavCatLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavCatLink className="nav-link dropdown-item ps-0 pe-4" to="/category/DressMaterial" style={{ color: '#fff3cd' }}>Dress Material</NavCatLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavCatLink className="nav-link dropdown-item ps-0 pe-4" to="/category/Fabrics" style={{ color: '#fff3cd' }}>Fabrics</NavCatLink>
+                                                    </li>
+                                                    <li>
+                                                        <NavCatLink className="nav-link dropdown-item ps-0 pe-4" to="/category/Jewellery" style={{ color: '#fff3cd' }}>Jewellery</NavCatLink>
+                                                    </li>
                                                 </ul>
                                             </li>
                                             <li className="nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill" data-bs-dismiss="offcanvas">

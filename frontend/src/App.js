@@ -33,7 +33,7 @@ import Blog from './Component/Homepage/pages/Blog/Blog';
 import Contact from './Component/Homepage/pages/Contact/Contact';
 import Privacy from './Component/Homepage/pages/Privacy/Privacy';
 import Shipping from './Component/Homepage/pages/Shipping/Shipping';
-
+import Returning from './Component/Homepage/pages/Returning/Returning';
 // import Category from './Component/Homepage/pages/Category/Category';
 import Search from './Component/Homepage/pages/Search/Search';
 import User from './Component/Homepage/pages/User/User';
@@ -81,6 +81,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/shipping" element={<Shipping/>} />
+            <Route path="/returning" element={<Returning />} />
             <Route path="/search" element={<Search />} />
             {/* <Route path="/category" element={<Category />} /> */}
             <Route exact path="/category/:id" element={<CategoryItems />} />
