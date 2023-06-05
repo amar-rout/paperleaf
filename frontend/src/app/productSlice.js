@@ -65,7 +65,7 @@ export const productsTopratedAsync = createAsyncThunk(
     async ({pId}, thunkAPI) => {
         try {
             const config = { headers: { 'Content-Type': 'application/json', }, };
-            const response = await axios.get('/api/products/top', config,);
+            const response = await axios.get('/api/products/top/', config,);
             // localStorage.setItem('topRated', JSON.stringify(response.data));
             return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
         } catch (error) {

@@ -293,10 +293,11 @@ export const getTopProducts = asyncHandler(async (req, res) => {
   } else {
     queryParams = {
       published: true,
+      newCollection: true
     };
   }
   const products = await ProductModel.find(queryParams)
-    .sort({ rating: -1 })
+    .sort({ "createdAt": -1 })
     .limit(limitSize);
   res.json(products);
 });

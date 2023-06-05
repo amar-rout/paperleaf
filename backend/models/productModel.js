@@ -50,10 +50,6 @@ const productModel = mongoose.Schema(
     countInStock: { type: Number, required: true, default: 0 },
     featured: { type: Boolean, required: true, default: false },
     published: { type: Boolean, required: false, default: false},
-    // bgColor: { type: String, required: true, default: 'f5f5f5' },
-    // nameColor: { type: String, required: true, default: '000' },
-    // btnColor: { type: String, required: true, default: 'fe696a' },
-    // btnColorHover: { type: String, required: true, default: 'fe3638' },
   },
   {
     timestamps: true,
