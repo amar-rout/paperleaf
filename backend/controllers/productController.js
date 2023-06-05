@@ -283,7 +283,7 @@ export const addReview = asyncHandler(async (req, res) => {
 // @route POST /api/product/top/:category
 // @access Public
 export const getTopProducts = asyncHandler(async (req, res) => {
-  const limitSize = Number(req.query.pageSize) || 12;
+  // const limitSize = Number(req.query.pageSize) || 12;
   let queryParams = {};
   if (req.params.category) {
     queryParams = {
@@ -297,8 +297,8 @@ export const getTopProducts = asyncHandler(async (req, res) => {
     };
   }
   const products = await ProductModel.find(queryParams)
-    .sort({ "createdAt": -1 })
-    .limit(limitSize);
+    .sort({ "createdAt": -1 });
+    // .limit(limitSize);
   res.json(products);
 });
 
