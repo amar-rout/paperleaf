@@ -17,19 +17,20 @@ const userSchema = mongoose.Schema(
       {
         addrType: {
           type: String,
-          required: true,
-          default: "Home",
+          required: false,
           enum: ["Home", "Office", "Other"]
         },
-        addrName: { type: String, required: true },
-        addrLineOne: { type: String, required: true },
-        addrLineTwo: { type: String, required: true },
-        city: { type: String, required: true },
-        state: { type: String, required: true },
-        country: { type: String, required: true },
-        pincode: { type: String, required: true },
-        phone: { type: String, required: false },
-        isDeliveryAddr: { type: Boolean, required: true, default: false }
+        addrName: { type: String, required: false },
+        personName: { type: String, required: false },
+        altPhone: { type: String, required: false },
+        addrLineOne: { type: String, required: false },
+        addrLineTwo: { type: String, required: false },
+        landmark: { type: String, required: false },
+        city: { type: String, required: false },
+        state: { type: String, required: false },
+        country: { type: String, required: false },
+        pincode: { type: String, required: false },
+        isDeliveryAddr: { type: Boolean, required: false, default: false }
       }
     ],
     status: {

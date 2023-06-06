@@ -26,6 +26,7 @@ export const authUser = asyncHandler(async (req, res) => {
       dob: user.dob,
       phone: user.phone,
       gender: user.gender,
+      address: user.address,
       isAdmin: user.isAdmin,
       token: generateToken(user.id),
     });
@@ -55,6 +56,7 @@ export const updateUserPassword = asyncHandler(async (req, res) => {
         phone: updateUser.phone,
         dob: updateUser.dob,
         gender: updateUser.gender,
+        address: updateUser.address,
         isAdmin: updateUser.isAdmin,
         token: generateToken(user.id),
       };
@@ -226,6 +228,7 @@ export const validateToken = asyncHandler(async (req, res) => {
         dob: user.dob,
         phone: user.phone,
         gender: user.gender,
+        address: user.address,
         isAdmin: user.isAdmin,
         token: generateToken(user.id),
       });
@@ -271,7 +274,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     user.phone = sanitize(req.body.phone) || user.phone;
     user.gender = sanitize(req.body.gender) || user.gender;
     user.image = sanitize(req.body.image) || user.image;
-    user.dob = req.body.dob ? sanitize( new Date(req.body.dob)) : new Date(user.dob);
+    user.dob = req.body.dob ? sanitize(new Date(req.body.dob)) : new Date(user.dob);
     if (req.body.password) {
       user.password = sanitize(req.body.password);
     }
@@ -288,6 +291,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       gender: updatedUser.gender,
       dob: updatedUser.dob,
       image: updatedUser.image,
+      address: updatedUser.address,
       isAdmin: updatedUser.isAdmin,
       token: generateToken(updatedUser._id),
     });
@@ -338,6 +342,72 @@ export const registerUser = asyncHandler(async (req, res) => {
   } else {
     res.status(400);
     throw new Error('Invalid user data');
+  }
+});
+
+export const addAddress = asyncHandler(async (req, res) => {
+  const { addrType, addrName, personName, altPhone, landmark, addrLineOne, addrLineTwo, city, state, country, pincode, isDeliveryAddr } = req.body;
+  const user = await UserModel.findById(sanitize(req.user.id));
+  if (user) {
+    const length = user.address.length;
+    if (isDeliveryAddr) {
+      // const deliveryIndex = user.address.findIndex((address) => { isDeliveryAddr === true });
+      const deliveryIndex = user.address.map((address) => address.isDeliveryAddr).indexOf(true);
+      console.log(deliveryIndex);
+
+      if (deliveryIndex >= 0) {
+        user.address[deliveryIndex] = {
+          addrType: user.address[deliveryIndex].addrType,
+          addrName: user.address[deliveryIndex].addrName,
+          personName: user.address[deliveryIndex].personName,
+          altPhone: user.address[deliveryIndex].altPhone,
+          landmark: user.address[deliveryIndex].landmark,
+          addrLineOne: user.address[deliveryIndex].addrLineOne,
+          addrLineTwo: user.address[deliveryIndex].addrLineTwo,
+          city: user.address[deliveryIndex].city,
+          state: user.address[deliveryIndex].state,
+          country: user.address[deliveryIndex].country,
+          pincode: user.address[deliveryIndex].pincode,
+          isDeliveryAddr: sanitize(false),
+        };
+      }
+    }
+    user.address[length] = {
+      addrType: sanitize(addrType),
+      addrName: sanitize(addrName),
+      personName: sanitize(personName),
+      altPhone: sanitize(altPhone),
+      landmark: sanitize(landmark),
+      addrLineOne: sanitize(addrLineOne),
+      addrLineTwo: sanitize(addrLineTwo),
+      city: sanitize(city),
+      state: sanitize(state),
+      country: sanitize(country),
+      pincode: sanitize(pincode),
+      isDeliveryAddr: sanitize(isDeliveryAddr),
+    };
+    // console.log(user);
+    const updatedUser = await user.save();
+    console.log(updatedUser);
+    res.json({
+      _id: updatedUser._id,
+      fname: updatedUser.fname,
+      mname: updatedUser.mname,
+      lname: updatedUser.lname,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      phone: updatedUser.phone,
+      gender: updatedUser.gender,
+      dob: updatedUser.dob,
+      image: updatedUser.image,
+      address: updatedUser.address,
+      isAdmin: updatedUser.isAdmin,
+      token: generateToken(updatedUser._id),
+    });
+  }
+  else {
+    res.status(404);
+    throw new Error('User not found');
   }
 });
 

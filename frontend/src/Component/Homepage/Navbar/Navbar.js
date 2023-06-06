@@ -112,11 +112,11 @@ const Navbar = () => {
                                                     </li>
                                                 </ul>
                                             </li> */}
-                                            <li class="d-inline-block d-md-none  nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill dropdown">
-                                                <a style={{ color: '#fff3cd' }} class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <li className="d-inline-block d-md-none  nav-item me-2 px-5 px-md-2 py-2 py-md-0 my-2 my-md-0 rounded-pill dropdown">
+                                                <a style={{ color: '#fff3cd' }} className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Products
                                                 </a>
-                                                <ul class="dropdown-menu bg-dark border-1">
+                                                <ul className="dropdown-menu bg-dark border-1">
                                                     <li>
                                                         <NavCatLink className="nav-link dropdown-item ps-0 pe-4" to="/category/Dupattas" style={{ color: '#fff3cd' }}>Dupattas</NavCatLink>
                                                     </li>

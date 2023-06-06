@@ -170,7 +170,7 @@ const Footer = () => {
                                 <li><a href="/help">Help</a></li>
                             </ul>
                         </div>
-                        <div className="col-lg-4">
+                        <div className="col-lg-4 my-md-5">
                             <h6 className="widget-title "><strong>Install App</strong></h6>
                             <div className="row">
                                 <div className="col-md-8 col-lg-12">
