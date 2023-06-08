@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Moment from 'react-moment';
+import 'moment/locale/fr';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import DataTable from 'datatables.net-bs5';
@@ -85,7 +87,7 @@ function Products() {
       statusVal = true;
     }
     let statusData = { "newCollection": statusVal, "featured": featured, "published": published };
-      axios.patch(`/api/products/${id}`, statusData)
+    axios.patch(`/api/products/${id}`, statusData)
       .then(response => {
         toast.dismiss();
         // let message = statusVal === "Active" ? "activated" : "deactivated";
@@ -113,7 +115,7 @@ function Products() {
     } else {
       featuredVal = "true";
     }
-    let featuredData = { "featured": featuredVal, "published": published,  "newCollection": newCollection };
+    let featuredData = { "featured": featuredVal, "published": published, "newCollection": newCollection };
     console.log(featuredData);
     axios.patch(`/api/products/${id}`, featuredData)
       .then(response => {
@@ -183,7 +185,7 @@ function Products() {
   return (
     <div className='container'>
       <div id="content" class="pt-5 mt-5">
-        <h2 class="mb-4">Products overview</h2> 
+        <h2 class="mb-4">Products overview</h2>
       </div>
       {
         loading ?
@@ -205,7 +207,7 @@ function Products() {
               <div className="table-responsive">
                 {/* <table id='productTable' className="table align-middle align-items-center text-center table-striped table-hover table-borderless"> */}
                 {/* <table id='productTable' className="dataTable display compact cell-border hover order-column row-border stripe"> */}
-                <table id="productTable" class="dataTable display cell-border compact hover order-column row-border stripe" style={{width: '100%'}} aria-describedby="example_info">
+                <table id="productTable" class="dataTable display cell-border compact hover order-column row-border stripe" style={{ width: '100%' }} aria-describedby="example_info">
                   <thead className="dataTable_header">
                     <tr className='text-center'>
                       <th>#</th>
@@ -217,12 +219,13 @@ function Products() {
                       <th>New Collection</th>
                       <th>Featured</th>
                       <th>Published</th>
+                      <th>Created On</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {products.map((product, index) => {
-                      const { _id, name, image, category, price, salePrice, newCollection, featured, published } = product;
+                      const { _id, name, image, category, price, salePrice, newCollection, featured, published, createdAt } = product;
                       return (
                         <tr key={_id}>
                           <td className='text-start'>{index + 1}</td>
@@ -267,12 +270,18 @@ function Products() {
                                 role="switch"
                                 id="publish"
                                 defaultChecked={published}
-                              // value={published}
-                              onChange={() => handlePublished(_id, name, published, featured, newCollection)}
+                                // value={published}
+                                onChange={() => handlePublished(_id, name, published, featured, newCollection)}
                               />
                             </div>
                             {/* {published ? "true" : "false"} */}
                           </td>
+                          <td>
+                            {/* <Moment fromNow ago>{createdAt}</Moment> */}
+                            <Moment format='D MMM YYYY HH:SS A'>{createdAt}</Moment>
+                            {/* <Moment locale='in'>{createdAt}</Moment> */}
+                          </td>
+                          {/* {createdAt} */}
                           <td className=''>
                             <div className="d-flex justify-content-end align-item-center">
                               <button type="button" id="editButton"

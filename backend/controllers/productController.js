@@ -32,7 +32,7 @@ export const getProducts = asyncHandler(async (req, res) => {
 // @route GET /api/product/all
 // @access Private
 export const getAllProducts = asyncHandler(async (req, res) => {
-  const products = await ProductModel.find({});
+  const products = await ProductModel.find({}).sort({"createdAt": -1});
   if (products) {
     res.json(products);
   } else {
