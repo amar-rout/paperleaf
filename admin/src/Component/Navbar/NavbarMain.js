@@ -90,7 +90,7 @@ const NavbarMain = () => {
                                     </button>
                                     <div className="collapse show" id="home-collapse" style={{}}>
                                         <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            <li>
+                                            <li data-bs-dismiss="offcanvas">
                                                 <Navbarlink to="/" className="link-dark d-inline-flex text-decoration-none rounded">
                                                     Dashboard Overview
                                                 </Navbarlink>
@@ -104,7 +104,7 @@ const NavbarMain = () => {
                                     </button>
                                     <div className="collapse show" id="coupons-collapse" style={{}}>
                                         <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            <li>
+                                            <li data-bs-dismiss="offcanvas">
                                                 <Navbarlink to="/coupons" className="link-dark d-inline-flex text-decoration-none rounded">
                                                     Coupons
                                                 </Navbarlink>
@@ -123,12 +123,12 @@ const NavbarMain = () => {
                                     </button>
                                     <div className="collapse show" id="coupons-collapse" style={{}}>
                                         <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            <li>
+                                            <li data-bs-dismiss="offcanvas">
                                                 <Navbarlink to="/coupons" className="link-dark d-inline-flex text-decoration-none rounded">
                                                     List Collections
                                                 </Navbarlink>
                                             </li>
-                                            <li>
+                                            <li data-bs-dismiss="offcanvas">
                                                 <Navbarlink to="/addCoupons" className="link-dark d-inline-flex text-decoration-none rounded">
                                                     Add Collections
                                                 </Navbarlink>
@@ -142,7 +142,7 @@ const NavbarMain = () => {
                                     </button>
                                     <div className="collapse show" id="category-collapse" style={{}}>
                                         <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            <li>
+                                            <li data-bs-dismiss="offcanvas">
                                                 <Navbarlink to="/category" className="link-dark d-inline-flex text-decoration-none rounded">
                                                     List Category
                                                 </Navbarlink>
@@ -161,12 +161,12 @@ const NavbarMain = () => {
                                     </button>
                                     <div className="collapse show" id="products-collapse" style={{}}>
                                         <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            <li>
+                                            <li data-bs-dismiss="offcanvas">
                                                 <Navbarlink to="/products" className="link-dark d-inline-flex text-decoration-none rounded">
                                                     List Products
                                                 </Navbarlink>
                                             </li>
-                                            <li>
+                                            <li data-bs-dismiss="offcanvas">
                                                 <Navbarlink to="/addProduct" className="link-dark d-inline-flex text-decoration-none rounded">
                                                     Add Product
                                                 </Navbarlink>
@@ -180,7 +180,7 @@ const NavbarMain = () => {
                                     </button>
                                     <div className="collapse show" id="orders-collapse" style={{}}>
                                         <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            <li>
+                                            <li data-bs-dismiss="offcanvas">
                                                 <Navbarlink to="/orders" className="link-dark d-inline-flex text-decoration-none rounded">
                                                     All Orders
                                                 </Navbarlink>
@@ -197,7 +197,7 @@ const NavbarMain = () => {
                                     </button>
                                     <div className="collapse show" id="users-collapse" style={{}}>
                                         <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            <li>
+                                            <li data-bs-dismiss="offcanvas">
                                                 <Navbarlink to="/users" className="link-dark d-inline-flex text-decoration-none rounded">
                                                     Users
                                                 </Navbarlink>

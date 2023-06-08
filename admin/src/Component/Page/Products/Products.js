@@ -22,25 +22,22 @@ function Products() {
     id: '',
     name: ''
   });
+  // let table = new DataTable('#productTable');
   let table = new DataTable('#productTable');
-  // let table = new DataTable('#productTable', {
-  //   responsive: true,
-  //   searching: false,
+  // table.dtOptions = {
+  //   pagingType: 'full_numbers',
   //   paging: false,
   //   dom: 'Bfrtip',
+  //   pageLength: 10,
+  //   scrollX: true,
   //   buttons: [
   //     'colvis',
   //     'excel',
   //     'print'
-  //   ]
-  // });
-  // table.dtOptions = {
-  //   pagingType: 'full_numbers',
-  //   pageLength: 10,
-  //   scrollX: true,
+  //   ],
   //   processing: true,
   //   deferRender: true,
-  //   destroy:true
+  //   destroy: true
   // };
 
   const navigate = useNavigate();
@@ -183,7 +180,7 @@ function Products() {
   }
 
   return (
-    <div className='container'>
+    <div className='container-fluid'>
       <div id="content" class="pt-5 mt-5">
         <h2 class="mb-4">Products overview</h2>
       </div>
@@ -197,30 +194,30 @@ function Products() {
           </div>
           :
           <div className="card my-5 mx-auto" >
-            <div className="card-header w-100 py-2">
+            <div className="card-header w-100">
               <div className='d-flex justify-content-between align-items-center'>
                 <h4 className="fw-bold fs-6 pt-2">All products</h4>
                 <button className='btn btn-primary' onClick={() => navigate("/addProduct")}>Add New Product</button>
               </div>
             </div>
             <div className="card-body">
-              <div className="table-responsive">
+              <div className="table-responsive p-1">
                 {/* <table id='productTable' className="table align-middle align-items-center text-center table-striped table-hover table-borderless"> */}
                 {/* <table id='productTable' className="dataTable display compact cell-border hover order-column row-border stripe"> */}
                 <table id="productTable" class="dataTable display cell-border compact hover order-column row-border stripe" style={{ width: '100%' }} aria-describedby="example_info">
                   <thead className="dataTable_header">
                     <tr className='text-center'>
-                      <th>#</th>
-                      <th>Image</th>
-                      <th>Name</th>
-                      <th>Category</th>
-                      <th>MRP</th>
-                      <th>Sale Price</th>
-                      <th>New Collection</th>
-                      <th>Featured</th>
-                      <th>Published</th>
-                      <th>Created On</th>
-                      <th>Action</th>
+                      <td className='p-0'><small>#</small></td>
+                      <td className='p-0'><small>Image</small></td>
+                      <td className='p-0'><small>Name</small></td>
+                      <td className='p-0'><small>Category</small></td>
+                      <td className='p-0'><small>MRP</small></td>
+                      <td className='p-0'><small>Price</small></td>
+                      <td className='p-0'><small>New<br />Collection</small></td>
+                      <td className='p-0'><small>Featured</small></td>
+                      <td className='p-0'><small>Published</small></td>
+                      <td className='p-0'><small>Created On</small></td>
+                      <td className='p-0'><small>Action</small></td>
                     </tr>
                   </thead>
                   <tbody>
@@ -228,15 +225,15 @@ function Products() {
                       const { _id, name, image, category, price, salePrice, newCollection, featured, published, createdAt } = product;
                       return (
                         <tr key={_id}>
-                          <td className='text-start'>{index + 1}</td>
+                          <td className='text-center small'>{index + 1}</td>
                           <td>
                             <img src={`${image}`} alt="product" style={{ width: '32px', height: '32px' }} />
                           </td>
-                          <td className='text-start'>{name}</td>
-                          <td className='text-start'>{category}</td>
-                          <td className='text-end'>{currINR.format(salePrice)}</td>
-                          <td className='text-end'>{currINR.format(price)}</td>
-                          <td className='text-end'>
+                          <td className='text-start small'>{name}</td>
+                          <td className='text-start small'>{category}</td>
+                          <td className='text-end small'>{currINR.format(salePrice)}</td>
+                          <td className='text-end small'>{currINR.format(price)}</td>
+                          <td className='text-end small'>
                             <div className="form-check form-switch d-flex justify-content-center align-items-center">
                               <input
                                 className="form-check-input shadow-none me-1"
@@ -249,7 +246,7 @@ function Products() {
                               />
                             </div>
                           </td>
-                          <td className='text-end'>
+                          <td className='text-end small'>
                             <div className="form-check form-switch d-flex justify-content-center align-items-center">
                               <input
                                 className="form-check-input shadow-none me-1"
@@ -262,7 +259,7 @@ function Products() {
                               />
                             </div>
                           </td>
-                          <td className='text-end'>
+                          <td className='text-end small'>
                             <div className="form-check form-switch d-flex justify-content-center align-items-center">
                               <input
                                 className="form-check-input shadow-none me-1"
@@ -278,14 +275,26 @@ function Products() {
                           </td>
                           <td>
                             {/* <Moment fromNow ago>{createdAt}</Moment> */}
-                            <Moment format='D MMM YYYY HH:SS A'>{createdAt}</Moment>
+                            <Moment className='small' format='DD MMM, YYYY HH:SS A' locale='en'>{createdAt}</Moment>
                             {/* <Moment locale='in'>{createdAt}</Moment> */}
                           </td>
                           {/* {createdAt} */}
-                          <td className=''>
+                          <td className='small'>
                             <div className="d-flex justify-content-end align-item-center">
-                              <button type="button" id="editButton"
+                              <button type="button" id="viewButton"
                                 className="btn btn-default p-0 m-0 px-2 py-1"
+                              // onClick={() => handleEdit(_id)}
+                              // onMouseOver={() => createTooltips }
+                              // disabled={ adminData.userType !== "super admin" && id <= 4}
+                              >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                </svg>
+                                {/* <span className='ms-1'>Edit</span> */}
+                              </button>
+                              <button type="button" id="editButton"
+                                className="btn btn-default p-0 m-0 px-2 py-1 ms-1"
                                 onClick={() => handleEdit(_id)}
                               // onMouseOver={() => createTooltips }
                               // disabled={ adminData.userType !== "super admin" && id <= 4}

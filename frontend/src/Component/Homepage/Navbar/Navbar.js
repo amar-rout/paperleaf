@@ -1,10 +1,11 @@
 import React from "react";
 import { Link, Outlet, useMatch, useNavigate, useResolvedPath } from "react-router-dom";
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
     selectUser,
+    logout
 } from "../../../app/userSlice";
 
 import {
@@ -18,8 +19,8 @@ import {
 import "./Navbar.css";
 
 const Navbar = () => {
-    // const dispatch = useDispatch();
-
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const loginUser = useSelector(selectUser);
     const cartCount = useSelector(getCartCount);
     const wishlistCount = useSelector(getWishlistCount);
@@ -39,12 +40,10 @@ const Navbar = () => {
     //     }
     // });
 
-    const navigate = useNavigate();
-
-    // const handleLogout = () => {
-    //     dispatch(logout());
-    //     navigate('/', true);
-    // };
+    const handleLogout = () => {
+        dispatch(logout());
+        navigate('/login');
+    };
 
     return (
         <>
@@ -253,15 +252,15 @@ const Navbar = () => {
                                                                 Need Help
                                                             </Link>
                                                         </li>
-                                                        {/* <li className="mx-2"><hr className="dropdown-divider text-muteed" /></li> */}
-                                                        {/* <li>
+                                                        <li className="mx-2"><hr className="dropdown-divider text-muteed" /></li>
+                                                        <li>
                                                             <Link onClick={handleLogout} className="dropdown-item header-dropdown-item d-flex justify-content-start align-items-center">
                                                                 <span className="p-0 pe-2 pt-1">
                                                                     <i className='bx bx-log-out-circle' style={{ fontSize: "16px" }}></i>
                                                                 </span>
                                                                 Signout
                                                             </Link>
-                                                        </li> */}
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </>

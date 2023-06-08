@@ -15,14 +15,17 @@
 } */
 
 
-#deleteButton {
-    background-color: brown;
-    color: white;
+
+
+
+
+#viewButton {
+    background-color: beige;
+    color: black;
     padding: 5px 10px;
     border-radius: 4px;
-    font-size: 13px;
+    font-size: 14px;
 }
-
 #editButton {
     background-color: bisque;
     color: black;
@@ -30,7 +33,22 @@
     border-radius: 4px;
     font-size: 14px;
 }
-
+#deleteButton {
+    background-color: brown;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+#viewButton:hover, #viewButton:focus {
+    background-color: rgb(245, 245, 155);
+}
+#editButton:hover, #editButton:focus  {
+    background-color: rgb(232, 188, 135);
+}
+#deleteButton:hover, #deleteButton:focus {
+    background-color: rgb(239, 8, 8);
+}
 /* .dataTable_header {
     background-color: rgb(242, 236, 148);
 }
