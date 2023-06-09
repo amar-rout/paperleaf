@@ -682,7 +682,7 @@ const Products = () => {
                                             <div class="tab-content">
                                                 <div class="tab-pane fade active show" id="description" role="tabpanel" aria-labelledby="description-tab">
                                                     {/* <p class="font-weight-bold">Where was he raised?</p> */}
-                                                    <p>{product.description}</p>
+                                                    <div>{product.description}</div>
                                                     {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores
                                                         dolorum
                                                         earum fugiat nostrum obcaecati, quis ratione rerum sapiente soluta!</p>

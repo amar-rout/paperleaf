@@ -3,7 +3,7 @@ import './Dashboard.css';
 
 function Dashboard() {
   return (
-    <div className="container px-5 mx-auto">
+    <div className="container px-5 mx-auto pt-5 mt-5">
       <h4 className="fw-bold text-muted my-4">Dashboard Overview</h4>
       <div className="row">
         <div className='col-12 col-md-4'>

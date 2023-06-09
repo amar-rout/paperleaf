@@ -133,7 +133,7 @@ function Category() {
   }
 
   return (
-    <div className='container p-5'>
+    <div className='container px-5 pt-5 mt-5'>
       {/* Add Category */}
       <div className="card  my-5 mx-auto" >
         <div className="card-header py-1 ">

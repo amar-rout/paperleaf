@@ -278,7 +278,7 @@ const EditProduct = () => {
   }
 
   return (
-    <div className="container-fluid my-5 px-5">
+    <div className="container-fluid my-5 px-5 pt-5 mt-5">
       <div className="card rounded shadow">
         <div className="card-header">
           <div className="d-flex justify-content-start align-items-center">
