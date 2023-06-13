@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
+import JoditEditor from 'jodit-react';
 import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import './Products.css'
+import { useRef } from "react";
 
 const EditProduct = () => {
+  const editor = useRef(null);
+  const [content, setContent] = useState('');
 
   // const navigate = useNavigate()
   const getProductURL = "/api/products/";
@@ -384,11 +388,20 @@ const EditProduct = () => {
                 </div>
               </div>
             </div>
-            <div className="d-inline col-8 mb-3">
+            <div className="d-inline col-12 mb-3">
               <label htmlFor="description" className="d-block mb-2">Product description</label>
               {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="text" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Enter product description" required /> */}
               {/* <input className="form-control" type="text" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Enter product description" required /> */}
-              <textarea class="form-control" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Leave a comment here" style={{ height: '100px' }} required></textarea>
+              {/* <textarea class="form-control" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Leave a comment here" style={{ height: '100px' }} required></textarea> */}
+              <JoditEditor
+                ref={editor}
+                value={product.description}
+                // config={config}
+                tabIndex={1} // tabIndex of textarea
+                onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+                onChange={newContent => {
+                  setProduct({ ...product, description: newContent });
+                }} />
             </div>
             <div className="d-inline col-4 mb-3">
               <label htmlFor="prodImage" className="mb-2">Product image</label>

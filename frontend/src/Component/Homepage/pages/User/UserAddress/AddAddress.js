@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Meta from '../../Meta';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AddAddress = () => {
 
@@ -23,6 +24,8 @@ const AddAddress = () => {
     const [loginUser, setLoginUser] = useState({});
     const [loadAddress, setLoadAddress] = useState(false);
     const [addressInputErrorMessage, setAddressInputErrorMessage] = useState("");
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         setLoginUser(JSON.parse(localStorage.getItem("user")));
@@ -99,6 +102,7 @@ const AddAddress = () => {
                     toast.success("Address added successfully.");
                     setLoadAddress(false);
                     localStorage.setItem('user', JSON.stringify(response.data));
+                    navigate('/user/address');
                 }).catch(error => {
                     setLoadAddress(false);
                     if (error.response) {

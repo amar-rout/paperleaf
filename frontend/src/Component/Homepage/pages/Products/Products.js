@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ReactStars from "react-rating-stars-component";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
+import { htmlToText }  from 'html-to-text';
 
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
@@ -682,7 +683,8 @@ const Products = () => {
                                             <div class="tab-content">
                                                 <div class="tab-pane fade active show" id="description" role="tabpanel" aria-labelledby="description-tab">
                                                     {/* <p class="font-weight-bold">Where was he raised?</p> */}
-                                                    <div>{product.description}</div>
+                                                    {/* {product.description} */}
+                                                    <div dangerouslySetInnerHTML={{ __html: product.description }} />
                                                     {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores
                                                         dolorum
                                                         earum fugiat nostrum obcaecati, quis ratione rerum sapiente soluta!</p>

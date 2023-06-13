@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import JoditEditor from 'jodit-react';
 // import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 // import $ from 'jquery';
@@ -10,6 +11,20 @@ import './Products.css'
 const AddProduct = () => {
 
   // const navigate = useNavigate()
+
+  const editor = useRef(null);
+  const [content, setContent] = useState('');
+
+  // const config = useMemo(
+  //   {
+  //     readonly: false, // all options from https://xdsoft.net/jodit/docs/,
+  //     placeholder: 'Start typings...'
+  //   }
+  // );
+  // const config = {
+  //     // all options from https://xdsoft.net/jodit/docs/,
+  //     placeholder: 'Start typings...'
+  //   };
 
 
   const serverURL = process.env.REACT_APP_SERVER_URL;
@@ -39,13 +54,11 @@ const AddProduct = () => {
   });
 
   useEffect(() => {
-    getCategory();
-  });
-
-  const getCategory = () => {
+    // getCategory();
     axios.get(getCategoryURL)
       .then(response => {
         setCategories(response.data);
+        console.log(categories);
       }).catch(error => {
         if (error.response) {
           toast.dismiss()
@@ -57,7 +70,25 @@ const AddProduct = () => {
           toast.error(error.message)
         }
       })
-  }
+  }, [setCategories]);
+
+  // const getCategory = () => {
+    // axios.get(getCategoryURL)
+    //   .then(response => {
+    //     setCategories(response.data);
+    //     console.log(categories);
+    //   }).catch(error => {
+    //     if (error.response) {
+    //       toast.dismiss()
+    //       toast.error(error.response.data.message)
+    //     } else if (error.request) {
+    //       // Handle proper error messages
+    //     } else {
+    //       toast.dismiss()
+    //       toast.error(error.message)
+    //     }
+    //   })
+  // }
 
   const addNewProductURL = `${serverURL}/api/products`;
   const imageUploadURL = `${serverURL}/api/upload`;
@@ -253,7 +284,12 @@ const AddProduct = () => {
 
   const createNewProduct = () => {
     if (product.name && product.price && product.category &&
-      product.brand && product.description && product.countInStock) {
+      product.brand && content && product.countInStock) {
+        if (content) {
+          setProduct({...product, description: content});
+        }
+        console.log("Content : " + content);
+        console.log("Description : " + product.description);
       axios.post(addNewProductURL, product)
         .then(response => {
           setSuccessMessage(`Product ${product.name} added Successfully`);
@@ -287,7 +323,7 @@ const AddProduct = () => {
   }
 
   return (
-    <div className="container-fluid my-5 px-5 pt-5 mt-5">
+    <div className="container-fluid my-5 pt-5 mt-5">
       <div className="card">
         <div className="card-header">
           <div className="d-flex justify-content-start align-items-center">
@@ -298,12 +334,12 @@ const AddProduct = () => {
         <div className="card-body">
           <div className="row">
 
-            <div className="d-inline col-4 mb-3">
+            <div className="d-inline col-12 col-md-4 mb-3">
               <label htmlFor="name" className="d-block mb-2">Product name</label>
               {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark d-block" type="text" name="name" id="name" value={product.name} onChange={handleChange} placeholder="Enter product name" required /> */}
-              <input className="form-control" type="text" name="name" id="name" value={product.name} onChange={handleChange} placeholder="Enter product name" required />
+              <input className="form-control py-3 py-md-2" type="text" name="name" id="name" value={product.name} onChange={handleChange} placeholder="Enter product name" required />
             </div>
-            <div className="d-inline col-4 mb-3">
+            <div className="d-inline col-12 col-md-4 mb-3">
               <label htmlFor="category" className="d-block mb-2">Product category</label>
               {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="text" name="category" id="category" value={product.category} onChange={handleChange} placeholder="Enter product category" required /> */}
               <select
@@ -317,31 +353,31 @@ const AddProduct = () => {
                 <option value="">-- Select Category --</option>
                 {categories && categories.map(cat => {
                   const { _id, name, status } = cat;
-                  return status === true ? (<option key={_id} value={name}>{name}</option>) : null;
+                  return status === true ? <option key={_id} value={name}>{name}</option> : null;
                 })}
               </select>
             </div>
-            <div className="d-inline col-4 mb-3">
+            <div className="d-inline col-12 col-md-4 mb-3">
               <label htmlFor="brand" className="d-block mb-2">Product brand</label>
               {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="text" name="brand" id="brand" value={product.brand} onChange={handleChange} placeholder="Enter product brand" disabled required /> */}
-              <input className="form-control" type="text" name="brand" id="brand" value={product.brand} onChange={handleChange} placeholder="Enter product brand" disabled required />
+              <input className="form-control py-3 py-md-2" type="text" name="brand" id="brand" value={product.brand} onChange={handleChange} placeholder="Enter product brand" disabled required />
             </div>
-            <div className="d-inline col-4 mb-3">
+            <div className="d-inline col-12 col-md-4 mb-3">
               <label htmlFor="salePrice" className="d-block mb-2">MRP (₹)</label>
               {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="number" name="salePrice" id="salePrice" min="0.00" step="0.01" presicion={2} value={product.salePrice} onChange={handleChange} placeholder="Enter MRP" required /> */}
-              <input className="form-control" type="number" name="salePrice" id="salePrice" min="0.00" step="0.01" presicion={2} value={product.salePrice} onChange={handleChange} placeholder="Enter MRP" required />
+              <input className="form-control py-3 py-md-2" type="number" name="salePrice" id="salePrice" min="0.00" step="0.01" presicion={2} value={product.salePrice} onChange={handleChange} placeholder="Enter MRP" required />
             </div>
-            <div className="d-inline col-4 mb-3">
+            <div className="d-inline col-12 col-md-4 mb-3">
               <label htmlFor="price" className="mb-2">Sale Price (₹)</label>
               {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="number" name="price" id="price" min="0.00" step="0.01" presicion={2} value={product.price} onChange={handleChange} placeholder="Enter product price" required /> */}
-              <input className="form-control" type="number" name="price" id="price" min="0.00" step="0.01" presicion={2} value={product.price} onChange={handleChange} placeholder="Enter product price" required />
+              <input className="form-control py-3 py-md-2" type="number" name="price" id="price" min="0.00" step="0.01" presicion={2} value={product.price} onChange={handleChange} placeholder="Enter product price" required />
             </div>
-            <div className="d-inline col-4 mb-3">
+            <div className="d-inline col-12 col-md-4 mb-3">
               <label htmlFor="countInStock" className="d-block mb-2">Product Stock</label>
               {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" min="0" max="100" type="number" name="countInStock" id="countInStock" value={product.countInStock} onChange={handleChange} placeholder="Numbers of stock" required /> */}
-              <input className="form-control" min="0" max="100" type="number" name="countInStock" id="countInStock" value={product.countInStock} onChange={handleChange} placeholder="Numbers of stock" required />
+              <input className="form-control py-3 py-md-2" min="0" max="100" type="number" name="countInStock" id="countInStock" value={product.countInStock} onChange={handleChange} placeholder="Numbers of stock" required />
             </div>
-            <div className="d-inline col-4 mb-3">
+            <div className="d-inline col-12 col-md-4 mb-3">
               <label className="d-block mb-2">Product Featured</label>
               <div className="form-check form-switch">
                 <input
@@ -355,7 +391,6 @@ const AddProduct = () => {
                       ...product,
                       "featured": !(product.featured)
                     });
-                    console.log(product);
                   }}
                 />
                 <label
@@ -366,28 +401,38 @@ const AddProduct = () => {
                 </label>
               </div>
             </div>
-            <div className="d-inline col-8 mb-3">
+            <div className="d-inline col-12 col-md-12 mb-3">
               <label htmlFor="description" className="d-block mb-2">Product description</label>
               {/* <input className="my-2 py-2 px-2 w-100 rounded border border-1 border-dark" type="text" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Enter product description" required /> */}
               {/* <input className="form-control" type="text" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Enter product description" required /> */}
-              <textarea class="form-control" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Leave a comment here" style={{ height: '100px' }} required></textarea>
+              {/* <textarea class="form-control" name="description" id="description" value={product.description} onChange={handleChange} placeholder="Leave a comment here" style={{ height: '100px' }} required></textarea> */}
+              <JoditEditor
+                ref={editor}
+                value={content}
+                // config={config}
+                tabIndex={1} // tabIndex of textarea
+                onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+                onChange={newContent => { 
+                  setProduct({...product, description: newContent});
+                }}
+              />
             </div>
-            <div className="d-inline col-4 mb-3">
+            <div className="d-inline col-12 col-md-4 mb-3">
               <label htmlFor="prodImage" className="mb-2">Product image</label>
               <div className="input-group-md">
                 <input className="form-control file-upload-input" type="file" name="prodImage" id="prodImage" onChange={handleImageChange} placeholder="Choose product image" required />
               </div>
             </div>
-            <div className="d-inline col-8 mb-3">
+            <div className="d-inline col-12 col-md-8 mb-3">
               <label htmlFor="prodImage" className="mb-2">Product multiple image</label>
               <div className="input-group-md">
                 <input className="form-control" type="file" name="prodImages" id="prodImages" onChange={handleImagesChange} placeholder="Choose product image" multiple />
               </div>
             </div>
-            <div className="col-4 mb-3">
+            <div className="col-12 col-md-4 mb-3">
               {imageInputShow && <img src={`${serverURL}${product.image}`} alt="product" style={{ width: '100px', height: '100px' }} />}
             </div>
-            <div className="col-8 mb-3">
+            <div className="col-12 col-md-8 mb-3">
               {multiImageInputShow &&
                 images.map((image, index) => (
                   <div className="d-flex flex-columns justify-cotent-center align-items-center w-100">

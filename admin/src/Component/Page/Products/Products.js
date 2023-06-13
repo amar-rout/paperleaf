@@ -196,8 +196,8 @@ function Products() {
           <div className="card my-5 mx-auto" >
             <div className="card-header w-100">
               <div className='d-flex justify-content-between align-items-center'>
-                <h4 className="fw-bold fs-6 pt-2">All products</h4>
-                <button className='btn btn-primary' onClick={() => navigate("/addProduct")}>Add New Product</button>
+                <h4 className="fw-bold fs-4 pt-2">All products</h4>
+                <button className='btn btn-primary btn-lg btn-md fs-6 small' onClick={() => navigate("/addProduct")}>Add New Product</button>
               </div>
             </div>
             <div className="card-body">
@@ -226,8 +226,8 @@ function Products() {
                       return (
                         <tr key={_id}>
                           <td className='text-center small'>{index + 1}</td>
-                          <td>
-                            <img src={`${image}`} alt="product" style={{ width: '32px', height: '32px' }} />
+                          <td className='text-center'>
+                            <img src={`${image}`} alt="product" style={{ width: '80px', height: '100px' }} />
                           </td>
                           <td className='text-start small'>{name}</td>
                           <td className='text-start small'>{category}</td>

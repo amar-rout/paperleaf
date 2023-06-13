@@ -152,7 +152,7 @@ export const requestPasswordReset = asyncHandler(async (req, res) => {
         link: link2
       })
     } else {
-      console.log(error);
+      // console.log(error);
     }
   });
 
@@ -188,9 +188,9 @@ export const resetPassword = asyncHandler(async (req, res) => {
   if (newPassword && confPassword && newPassword === confPassword) {
     user.password = sanitize(newPassword);
   }
-  console.log(user);
+  // console.log(user);
   const updateUser = await user.save();
-  console.log(updateUser);
+  // console.log(updateUser);
 
   // const updateUser = await UserModel.updateOne(
   //   { _id: user._id },
@@ -245,9 +245,9 @@ export const validateToken = asyncHandler(async (req, res) => {
 // @route PATCH /api/users/profile
 // @access Private
 export const updateUserProfile = asyncHandler(async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const user = await UserModel.findById(sanitize(req.user.id));
-  console.log(user);
+  // console.log(user);
   let error = false;
   if (req.body.phone !== "") {
     let userByPhone = await UserModel.findOne({ phone: sanitize(req.body.phone) });
@@ -279,7 +279,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       user.password = sanitize(req.body.password);
     }
     const updatedUser = await user.save();
-    console.log(updatedUser);
+    // console.log(updatedUser);
     res.json({
       _id: updatedUser._id,
       fname: updatedUser.fname,
@@ -305,7 +305,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 // @route POST /api/users
 // @access Public
 export const registerUser = asyncHandler(async (req, res) => {
-  const { fname, mname, lname, name, image, dob, email, phone, gender, password } = req.body;
+  const { fname, mname, lname, name, image, email, phone, gender, password } = req.body;
 
   const userExists = await UserModel.findOne({ email: sanitize(email) });
   if (userExists) {
@@ -320,7 +320,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     image: sanitize(image),
     email: sanitize(email),
     phone: sanitize(phone),
-    dob: sanitize(new Date(dob)),
+    // dob: sanitize(new Date(dob)),
     gender: sanitize(gender),
     password: sanitize(password),
   });
@@ -353,7 +353,7 @@ export const addAddress = asyncHandler(async (req, res) => {
     if (isDeliveryAddr) {
       // const deliveryIndex = user.address.findIndex((address) => { isDeliveryAddr === true });
       const deliveryIndex = user.address.map((address) => address.isDeliveryAddr).indexOf(true);
-      console.log(deliveryIndex);
+      // console.log(deliveryIndex);
 
       if (deliveryIndex >= 0) {
         user.address[deliveryIndex] = {
@@ -388,7 +388,7 @@ export const addAddress = asyncHandler(async (req, res) => {
     };
     // console.log(user);
     const updatedUser = await user.save();
-    console.log(updatedUser);
+    // console.log(updatedUser);
     res.json({
       _id: updatedUser._id,
       fname: updatedUser.fname,
@@ -404,6 +404,131 @@ export const addAddress = asyncHandler(async (req, res) => {
       isAdmin: updatedUser.isAdmin,
       token: generateToken(updatedUser._id),
     });
+  }
+  else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+export const deleteAddressById = asyncHandler(async (req, res) => {
+  const user = await UserModel.findById(sanitize(req.user.id));
+  const addressId = req.params.id ? req.params.id : null;
+  if (user) {
+    var myquery = { _id: user._id };
+    // const deleteAddress = await UserModel.findOneAndUpdate(myquery, { $pull: { address: addressId } }, (err, data) => {
+    //   if (error) {
+    //     res.status(500).json("Error in deleting records");
+    //   } else {
+    //     res.json({
+    //       _id: deleteAddress._id,
+    //       fname: deleteAddress.fname,
+    //       mname: deleteAddress.mname,
+    //       lname: deleteAddress.lname,
+    //       name: deleteAddress.name,
+    //       email: deleteAddress.email,
+    //       phone: deleteAddress.phone,
+    //       gender: deleteAddress.gender,
+    //       dob: deleteAddress.dob,
+    //       image: deleteAddress.image,
+    //       address: deleteAddress.address,
+    //       isAdmin: deleteAddress.isAdmin,
+    //       token: generateToken(deleteAddress._id),
+    //     });
+    //   }
+    // });
+    const deleteAddress = await UserModel.findByIdAndUpdate({ "_id" : user._id }, { $pull: { "address" : {"_id" : addressId} } }, { new: false });
+    // console.log("Delete addr : " + deleteAddress);
+    let addressDeleted = {
+      _id: deleteAddress._id,
+      fname: deleteAddress.fname,
+      mname: deleteAddress.mname,
+      lname: deleteAddress.lname,
+      name: deleteAddress.name,
+      email: deleteAddress.email,
+      phone: deleteAddress.phone,
+      gender: deleteAddress.gender,
+      dob: deleteAddress.dob,
+      image: deleteAddress.image,
+      address: deleteAddress.address,
+      isAdmin: deleteAddress.isAdmin,
+      token: generateToken(deleteAddress._id),
+    };
+    // console.log("address deleted : " + addressDeleted.address);
+    res.json(addressDeleted);
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+export const editAddress = asyncHandler(async (req, res) => {
+  const { addrType, addrName, personName, altPhone, landmark, addrLineOne, addrLineTwo, city, state, country, pincode, isDeliveryAddr } = req.body;
+  const user = await UserModel.findById(sanitize(req.user.id));
+  const addressId = req.params.id ? req.params.id : null;
+  if (user) {
+    // const length = user.address.length;
+    const currentAddressIndex = user.address.map((address) => address._id).indexOf(addressId);
+    if (currentAddressIndex >= 0) {
+      if (isDeliveryAddr) {
+        // const deliveryIndex = user.address.findIndex((address) => { isDeliveryAddr === true });
+        const deliveryIndex = user.address.map((address) => address.isDeliveryAddr).indexOf(true);
+        // console.log(deliveryIndex);
+
+        if (deliveryIndex >= 0) {
+          user.address[deliveryIndex] = {
+            addrType: user.address[deliveryIndex].addrType,
+            addrName: user.address[deliveryIndex].addrName,
+            personName: user.address[deliveryIndex].personName,
+            altPhone: user.address[deliveryIndex].altPhone,
+            landmark: user.address[deliveryIndex].landmark,
+            addrLineOne: user.address[deliveryIndex].addrLineOne,
+            addrLineTwo: user.address[deliveryIndex].addrLineTwo,
+            city: user.address[deliveryIndex].city,
+            state: user.address[deliveryIndex].state,
+            country: user.address[deliveryIndex].country,
+            pincode: user.address[deliveryIndex].pincode,
+            isDeliveryAddr: sanitize(false),
+          };
+        }
+      }
+      user.address[currentAddressIndex] = {
+        addrType: sanitize(addrType),
+        addrName: sanitize(addrName),
+        personName: sanitize(personName),
+        altPhone: sanitize(altPhone),
+        landmark: sanitize(landmark),
+        addrLineOne: sanitize(addrLineOne),
+        addrLineTwo: sanitize(addrLineTwo),
+        city: sanitize(city),
+        state: sanitize(state),
+        country: sanitize(country),
+        pincode: sanitize(pincode),
+        isDeliveryAddr: sanitize(isDeliveryAddr),
+      };
+
+      const updatedUser = await user.save();
+
+      res.json({
+        _id: updatedUser._id,
+        fname: updatedUser.fname,
+        mname: updatedUser.mname,
+        lname: updatedUser.lname,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        phone: updatedUser.phone,
+        gender: updatedUser.gender,
+        dob: updatedUser.dob,
+        image: updatedUser.image,
+        address: updatedUser.address,
+        isAdmin: updatedUser.isAdmin,
+        token: generateToken(updatedUser._id),
+      });
+    } else {
+      res.status(404);
+      throw new Error('User address not found');
+    }
+
   }
   else {
     res.status(404);

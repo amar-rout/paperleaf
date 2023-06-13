@@ -8,7 +8,9 @@ import {
   updateUserPassword,
   requestPasswordReset,
   resetPassword,
-  addAddress
+  addAddress,
+  editAddress,
+  deleteAddressById
 } from '../controllers/userController.js';
 import { isAdmin, protect } from '../middleware/authMiddleware.js';
 
@@ -20,6 +22,8 @@ router.get('/validateToken', protect, validateToken);
 
 router.route('/:id?').post(registerUser).get(protect, isAdmin, getUsersAdmin);
 router.route('/profile/addAddress').patch(protect, addAddress);
+router.route('/profile/editAddress/:id').patch(protect, editAddress);
+router.route('/profile/deleteAddress/:id').delete(protect, deleteAddressById);
 // router.route('/profile/getAddresses').post(protect, getAddresses);
 router.route('/profile').patch(protect, updateUserProfile);
 router.route('/profile/passwordChange').put(protect, updateUserPassword);
