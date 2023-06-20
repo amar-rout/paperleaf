@@ -1,18 +1,19 @@
 import React from 'react'
 import { Link, Outlet, useMatch, useResolvedPath } from 'react-router-dom';
 // import Footer from '../Footer/Footer';
+import './NavbarMain.css';
 
 const NavbarMain = () => {
     return (
         <>
-            <nav class="navbar bg-body fixed-top shadow">
-                <div class="container-fluid justify-content-between align-items-center">
-                    <div class="d-flex justify-content-between align-items-center" >
-                        <button class="btn btn-default border-0 navbar-toggler shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                            {/* <span class="navbar-toggler-icon"></span> */}
-                            <i class="bi bi-list display-6"></i>
+            <nav className="navbar bg-body fixed-top shadow">
+                <div className="container-fluid justify-content-between align-items-center">
+                    <div className="d-flex justify-content-between align-items-center" >
+                        <button className="btn btn-default border-0 navbar-toggler shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                            {/* <span className="navbar-toggler-icon"></span> */}
+                            <i className="bi bi-list display-6"></i>
                         </button>
-                        <a class="navbar-brand text-uppercase ms-2" href="/">Paperleaf</a>
+                        <a className="navbar-brand text-uppercase ms-2" href="/">Paperleaf</a>
                     </div>
                     {/* <div className=''>
                         <div className="dropdown">
@@ -29,8 +30,8 @@ const NavbarMain = () => {
                             </ul>
                         </div>
                     </div> */}
-                    {/* <div class="navbar-nav"> */}
-                    <div class="dropdown">
+                    {/* <div className="navbar-nav"> */}
+                    <div className="dropdown">
                         <a href="/" className="link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
                         </a>
@@ -45,40 +46,40 @@ const NavbarMain = () => {
                     </div>
                     {/* </div> */}
 
-                    {/* <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button class="btn btn-outline-dark" type="submit">Search</button>
+                    {/* <form className="d-flex mt-3" role="search">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button className="btn btn-outline-dark" type="submit">Search</button>
                     </form> */}
-                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title text-uppercase" id="offcanvasNavbarLabel">Paperleaf</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <div className="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                        <div className="offcanvas-header">
+                            <h5 className="offcanvas-title text-uppercase" id="offcanvasNavbarLabel">Paperleaf</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
-                        <div class="offcanvas-body">
-                            {/* <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <div className="offcanvas-body">
+                            {/* <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li className="nav-item">
+                                    <a className="nav-link active" aria-current="page" href="/">Home</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/">Link</a>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/">Link</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <li className="nav-item dropdown">
+                                    <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Dropdown
                                     </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/">Action</a></li>
-                                        <li><a class="dropdown-item" href="/">Another action</a></li>
+                                    <ul className="dropdown-menu">
+                                        <li><a className="dropdown-item" href="/">Action</a></li>
+                                        <li><a className="dropdown-item" href="/">Another action</a></li>
                                         <li>
-                                            <hr class="dropdown-divider" />
+                                            <hr className="dropdown-divider" />
                                         </li>
-                                        <li><a class="dropdown-item" href="/">Something else here</a></li>
+                                        <li><a className="dropdown-item" href="/">Something else here</a></li>
                                     </ul>
                                 </li>
                             </ul> */}
-                            {/* <form class="d-flex mt-3" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            {/* <form className="d-flex mt-3" role="search">
+                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                                <button className="btn btn-outline-success" type="submit">Search</button>
                             </form> */}
                             <ul className="list-unstyled ps-0 mb-5">
                                 <li className="mb-1">
@@ -124,15 +125,15 @@ const NavbarMain = () => {
                                     <div className="collapse show" id="coupons-collapse" style={{}}>
                                         <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                             <li data-bs-dismiss="offcanvas">
-                                                <Navbarlink to="/coupons" className="link-dark d-inline-flex text-decoration-none rounded">
+                                                <Navbarlink to="/collections" className="link-dark d-inline-flex text-decoration-none rounded">
                                                     List Collections
                                                 </Navbarlink>
                                             </li>
-                                            <li data-bs-dismiss="offcanvas">
+                                            {/* <li data-bs-dismiss="offcanvas">
                                                 <Navbarlink to="/addCoupons" className="link-dark d-inline-flex text-decoration-none rounded">
                                                     Add Collections
                                                 </Navbarlink>
-                                            </li>
+                                            </li> */}
                                         </ul>
                                     </div>
                                 </li>
@@ -227,13 +228,13 @@ const NavbarMain = () => {
                                 <li className="border-top my-3"></li>
                             </ul>
                             <div className='text-center mb-5'>
-                                <button type="button" class="btn btn-default border-1 border-danger link-danger" data-bs-dismiss="offcanvas" aria-label="Close"> Close</button>
+                                <button type="button" className="btn btn-default border-1 border-danger link-danger" data-bs-dismiss="offcanvas" aria-label="Close"> Close</button>
                             </div>
-                            <div class="text-center mt-5">
+                            <div className="text-center mt-5">
                                 <p className='lh-2'>
                                     Copyright &copy; {new Date().getFullYear()} All rights reserved
                                     <br/>
-                                    This site is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="http://techrestoreservice.com" target="_blank">TechRestore Services</a>
+                                    This site is made with <i className="icon-heart" aria-hidden="true"></i> by <a href="http://techrestoreservice.com" target="_blank">TechRestore Services</a>
                                 </p>
                             </div>
                         </div>

@@ -32,6 +32,10 @@ import UserDetails from './Component/Page/User/UserDetails';
 import Login from './Component/Login/Login';
 import Register from './Component/Register/Register';
 import { useState, useEffect } from 'react';
+import Collection from './Component/Page/Collections/Collection';
+import ViewCollection from './Component/Page/Collections/ViewCollection';
+import EditCollection from './Component/Page/Collections/EditCollection';
+import AddCollection from './Component/Page/Collections/AddCollection';
 
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
@@ -84,6 +88,10 @@ function App() {
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/products/:id/edit" element={<EditProduct />} />
           <Route path="/addProduct" element={<AddProduct />} />
+          <Route path="/collections" element={<Collection />} />
+          <Route path="/collections/:id" element={<ViewCollection />} />
+          <Route path="/collections/:id/edit" element={<EditCollection />} />
+          <Route path="/addCollection" element={<AddCollection />} />
           <Route path="/coupons" element={<Coupons />} />
           <Route path="/coupons/:id" element={<CouponsDetails />} />
           <Route path="/coupons/:id/edit" element={<EditCoupons />} />

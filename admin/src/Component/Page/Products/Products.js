@@ -281,7 +281,7 @@ function Products() {
                           {/* {createdAt} */}
                           <td className='small'>
                             <div className="d-flex justify-content-end align-item-center">
-                              <button type="button" id="viewButton"
+                              {/* <button type="button" id="viewButton"
                                 className="btn btn-default p-0 m-0 px-2 py-1"
                               // onClick={() => handleEdit(_id)}
                               // onMouseOver={() => createTooltips }
@@ -292,7 +292,7 @@ function Products() {
                                   <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
                                 </svg>
                                 {/* <span className='ms-1'>Edit</span> */}
-                              </button>
+                              {/* </button> */}
                               <button type="button" id="editButton"
                                 className="btn btn-default p-0 m-0 px-2 py-1 ms-1"
                                 onClick={() => handleEdit(_id)}

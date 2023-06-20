@@ -21,7 +21,7 @@ import "./Navbar.css";
 const Navbar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const loginUser = useSelector(selectUser);
+    const loginUser = JSON.parse(localStorage.getItem("user"));
     const cartCount = useSelector(getCartCount);
     const wishlistCount = useSelector(getWishlistCount);
 
@@ -42,7 +42,7 @@ const Navbar = () => {
 
     const handleLogout = () => {
         dispatch(logout());
-        navigate('/login');
+        navigate('/');
     };
 
     return (

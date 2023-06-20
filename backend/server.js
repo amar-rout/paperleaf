@@ -10,6 +10,7 @@ import homeRoutes from './routes/homeRoutes.js';
 import tokenRoutes from './routes/tokenRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
+import collectionRoutes from './routes/collectionRoutes.js';
 import couponRoutes from './routes/couponRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
@@ -51,15 +52,13 @@ app.use('/api/homepage', homeRoutes);
 app.use('/api/token', tokenRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/category', categoryRoutes);
+app.use('/api/collection', collectionRoutes);
 app.use('/api/coupons', couponRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
-app.use('/api/config/paypal', (req, res) =>
-  res.send(process.env.PAYPAL_CLIENT_ID),
-);
 
-const __dirname = path.resolve(); // Not avaliable because its using ESM
+const __dirname = path.resolve(); // Not available because its using ESM
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 if (process.env.NODE_ENV === 'production') {

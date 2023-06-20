@@ -3,10 +3,10 @@ import './Dashboard.css';
 
 function Dashboard() {
   return (
-    <div className="container px-5 mx-auto pt-5 mt-5">
+    <div className="container-fluid px-5 mx-auto pt-5 mt-5">
       <h4 className="fw-bold text-muted my-4">Dashboard Overview</h4>
       <div className="row">
-        <div className='col-12 col-md-4'>
+        <div className='col-12 col-md-4 mb-4'>
           <div className="rounded bg-primary d-flex justify-content-center align-items-center text-center">
             <div className="p-4 w-full p-6 rounded-lg text-white dark:text-green-100 bg-teal-500">
               <div className="text-center inline-block fs-4 text-white dark:text-green-100 bg-teal-500">
@@ -20,7 +20,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className='col-12 col-md-4'>
+        <div className='col-12 col-md-4 mb-4'>
           <div className="rounded bg-success d-flex justify-content-center align-items-center text-center">
             <div className="p-4 w-full p-6 rounded-lg text-white dark:text-green-100 bg-blue">
               <div className="text-center inline-block fs-4 text-white dark:text-green-100 bg-blue-500">
@@ -34,7 +34,7 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className='col-12 col-md-4'>
+        <div className='col-12 col-md-4 mb-4'>
           <div className="rounded d-flex justify-content-center align-items-center text-center" style={{ 'backgroundColor': '#0694a2' }}>
             <div className="p-4 w-full p-6 rounded-lg text-white dark:text-green-100 bg-green-500">
               <div className="text-center inline-block fs-4 text-white dark:text-green-100 bg-green-500">
@@ -49,7 +49,7 @@ function Dashboard() {
         </div>
       </div>
       {/* Details */}
-      <div className="row my-4">
+      <div className="row">
         <div className="col-md-3 mb-4 stretch-card transparent">
           <div className="card card-tale">
             <div className="card-body">
