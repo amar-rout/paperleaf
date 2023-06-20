@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import ColletionModel from '../models/categoryModel.js';
+import ColletionModel from '../models/collectionModel.js';
 import sanitize from '../utils/sanitize.js';
 import Mongoose from 'mongoose';
 
@@ -33,15 +33,16 @@ export const getCollectionById = asyncHandler(async (req, res) => {
 // @route PUT /api/Collection/
 // @access Private
 export const createCollection = asyncHandler(async (req, res) => {
-    const object = new ColletionModel({
-        name: sanitize(req.body.name),
-        products: sanitize(req.body.products),
-        coupon: sanitize(req.body.coupon),
-        status: sanitize(req.body.status),
-        published: sanitize(req.body.published)
+    const {name, products, coupon, status, published} = req.body;
+    const collection = new ColletionModel({
+        name: sanitize(name),
+        products: sanitize(products),
+        coupon: sanitize(coupon),
+        status: sanitize(status),
+        published: sanitize(published)
     });
     // console.log(object);
-    const createdObj = await object.save();
+    const createdObj = await collection.save();
     console.log(createdObj);
     res.json(createdObj);
 });

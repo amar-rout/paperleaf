@@ -1,11 +1,40 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Collection = () => {
     const [collections, setCollections] = useState([]);
     const [id, setId] = useState("");
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("admin_user"));
+        const config = {
+            "headers": {
+                "authorization": `Bearer ${user.token}`,
+            }
+        }
+        axios.get('api/collection/', config)
+            .then(response => {
+                toast.dismiss();
+                if (response.data) {
+                    setCollections(response.data);
+                }
+            }).catch(error => {
+                if (error.response) {
+                    toast.dismiss();
+                    toast.error(error.response.data.message);
+                } else if (error.request) {
+                    toast.dismiss();
+                    toast.error(error.request);
+                } else {
+                    toast.dismiss();
+                    toast.error(error.message);
+                }
+            })
+    }, []);
 
     const handleStatus = () => {
 
@@ -52,14 +81,15 @@ const Collection = () => {
                                             return (
                                                 <tr key={_id}>
                                                     {/* <th>{_id}</th> */}
-                                                    <td>{name}</td>
-                                                    <td>
+                                                    <td className='text-start'>{name}</td>
+                                                    <td className='text-start'>
                                                         {
-                                                            products.map((product) => {
+                                                            products.map((product, index) => {
                                                                 return (
-                                                                    <>
-                                                                        <span>{product.name}</span>,&nbsp
-                                                                    </>
+                                                                    <span key={product._id}>
+                                                                        <span key={product._id} className="badge text-dark fs-6 fw-normal">{index += 1}. {product.name}</span>
+                                                                        <br /> 
+                                                                    </span>
                                                                 )
                                                             })
                                                         }
@@ -75,12 +105,12 @@ const Collection = () => {
                                                                 defaultChecked={status}
                                                                 onChange={() => handleStatus(_id, name, status, published)}
                                                             />
-                                                            <label
+                                                            {/* <label
                                                                 className="form-check-label text-dark ms-1"
                                                                 htmlFor="status"
                                                             >
                                                                 {status ? <small>Activated</small> : <small>Dectivated</small>}
-                                                            </label>
+                                                            </label> */}
                                                         </div>
                                                     </td>
                                                     <td>
@@ -121,7 +151,7 @@ const Collection = () => {
                             </div>
 
                             :
-                            <div class="alert alert-danger" role="alert">
+                            <div className="alert alert-danger" role="alert">
                                 No collection found
                             </div>
                         }

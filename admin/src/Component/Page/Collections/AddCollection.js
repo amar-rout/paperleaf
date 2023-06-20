@@ -27,7 +27,39 @@ const AddCollection = () => {
     });
   }
 
-  const getProducts = () => {
+  // const getProducts = () => {
+  //   axios.get('/api/products/all')
+  //     .then(response => {
+  //       setProducts(response.data);
+  //     }).catch(error => {
+  //       if (error.response) {
+  //         console.error(error.response.data.message)
+  //       } else if (error.request) {
+  //       } else {
+  //         console.error(error.message)
+  //       }
+  //     });
+  // };
+
+  // const getCoupons = () => {
+  //   axios.get('/api/coupons/all')
+  //     .then(response => {
+  //       setCoupons(response.data);
+  //     })
+  //     .catch(error => {
+  //       if (error.response) {
+  //         console.error(error.response.data.message)
+  //       } else if (error.request) {
+  //       } else {
+  //         console.error(error.message)
+  //       }
+  //     })
+  // };
+
+
+  useEffect(() => {
+    // getProducts();
+    // getCoupons();
     axios.get('/api/products/all')
       .then(response => {
         setProducts(response.data);
@@ -39,10 +71,8 @@ const AddCollection = () => {
           console.error(error.message)
         }
       });
-  };
 
-  const getCoupons = () => {
-    axios.get('/api/coupons/all')
+      axios.get('/api/coupons/all')
       .then(response => {
         setCoupons(response.data);
       })
@@ -54,18 +84,11 @@ const AddCollection = () => {
           console.error(error.message)
         }
       })
-  };
-
-
-  useEffect(() => {
-    getProducts();
-    getCoupons();
-  }, [getProducts, getCoupons]);
+    }, []);
+  // }, [getProducts, getCoupons]);
 
   
   const handleAddCollection = () => {
-    console.log(selectedProducts);
-    console.log(selectedCoupon);
     const user = JSON.parse(localStorage.getItem("admin_user"));
     axios.post('api/collection/', collection, {
       "headers" : {
