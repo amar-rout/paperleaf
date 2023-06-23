@@ -52,15 +52,17 @@ export const createCollection = asyncHandler(async (req, res) => {
 // @access Private
 export const updateCollection = asyncHandler(async (req, res) => {
     const { name, products, coupon, status, published } = req.body;
+    console.log(status);
     const object = await ColletionModel.findById(sanitize(req.params.id));
     if (object) {
         object.name = sanitize(name) || object.name;
         object.products = sanitize(products) || object.products;
         object.coupon = sanitize(coupon) || object.coupon;
-        object.status = sanitize(status) || object.status;
-        object.published = sanitize(published) || object.published;
+        object.status = sanitize(status);
+        object.published = sanitize(published);
+        console.log(object);
         const updatedObj = await object.save();
-        res.status(201).json(updatedObj);
+        res.status(201).json("Updated succefully.");
     } else {
         res.status(404);
         throw new Error('Collection not found');

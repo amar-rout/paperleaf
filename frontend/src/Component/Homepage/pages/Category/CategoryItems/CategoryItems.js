@@ -458,8 +458,6 @@ const CategoryItems = () => {
                                 </div>
                             ))}
                         </div>
-                        //     </div>
-                        // </div >
                     }
 
                     <div className="mt-5">
@@ -469,9 +467,7 @@ const CategoryItems = () => {
                                     <button className={currPage <= 1 ? "btn btn-dark me-2 pagination_btn rounded-circle disabled" : "btn btn-outline-dark me-2 pagination_btn rounded-circle"}
                                         onClick={() => handleLoadPrevPage()}
                                     >
-                                        {/* <i className="bi bi-arrow-left m-0 p-0"></i> */}
                                         <i class="bi bi-chevron-left m-0 p-0"></i>
-                                        {/* Prev */}
                                     </button>
                                     {(() => {
                                         const rows = [];
@@ -484,11 +480,9 @@ const CategoryItems = () => {
                                         }
                                         return rows;
                                     })()}
-                                    <button className={currPage >= maxPage ? 'btn btn-dark pagination_btn rounded-circle disabled' : 'btn btn-outline-dark pagination_btn rounded-circle'}
+                                    <button className={currPage > maxPage || currPage === maxPage ? 'btn btn-dark pagination_btn rounded-circle disabled' : 'btn btn-outline-dark pagination_btn rounded-circle'}
                                         onClick={() => handleLoadNextPage()}
                                     >
-                                        {/* Next */}
-                                        {/* <i className="bi bi-arrow-right m-0 p-0"></i> */}
                                         <i class="bi bi-chevron-right py-2"></i>
                                     </button>
                                 </div>

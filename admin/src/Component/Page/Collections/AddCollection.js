@@ -13,8 +13,11 @@ const AddCollection = () => {
     status: true,
     published: true
   };
+
   const [collection, setColletion] = useState(initialCollection);
+  const [collections, setCollections] = useState([]);
   const [products, setProducts] = useState([]);
+  // const [finalProducts, setFinalProducts] = useState([]);
   const [coupons, setCoupons] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectedCoupon, setSelectedCoupon] = useState("");
@@ -25,21 +28,7 @@ const AddCollection = () => {
       ...collection,
       [name]: value
     });
-  }
-
-  // const getProducts = () => {
-  //   axios.get('/api/products/all')
-  //     .then(response => {
-  //       setProducts(response.data);
-  //     }).catch(error => {
-  //       if (error.response) {
-  //         console.error(error.response.data.message)
-  //       } else if (error.request) {
-  //       } else {
-  //         console.error(error.message)
-  //       }
-  //     });
-  // };
+  };
 
   // const getCoupons = () => {
   //   axios.get('/api/coupons/all')
@@ -56,10 +45,47 @@ const AddCollection = () => {
   //     })
   // };
 
-
   useEffect(() => {
+    // const getProducts = () => {
+    //   axios.get('/api/products/all')
+    //     .then(response => {
+    //       setProducts(response.data);
+    //     }).catch(error => {
+    //       if (error.response) {
+    //         console.error(error.response.data.message)
+    //       } else if (error.request) {
+    //       } else {
+    //         console.error(error.message)
+    //       }
+    //     });
+    // }
     // getProducts();
     // getCoupons();
+    const user = JSON.parse(localStorage.getItem("admin_user"));
+    const config = {
+      "headers": {
+        "authorization": `Bearer ${user.token}`,
+      }
+    }
+    axios.get('api/collection/', config)
+      .then(response => {
+        toast.dismiss();
+        if (response.data) {
+          setCollections(response.data);
+        }
+      }).catch(error => {
+        if (error.response) {
+          toast.dismiss();
+          toast.error(error.response.data.message);
+        } else if (error.request) {
+          toast.dismiss();
+          toast.error(error.request);
+        } else {
+          toast.dismiss();
+          toast.error(error.message);
+        }
+      })
+
     axios.get('/api/products/all')
       .then(response => {
         setProducts(response.data);
@@ -72,7 +98,7 @@ const AddCollection = () => {
         }
       });
 
-      axios.get('/api/coupons/all')
+    axios.get('/api/coupons/all')
       .then(response => {
         setCoupons(response.data);
       })
@@ -83,15 +109,73 @@ const AddCollection = () => {
         } else {
           console.error(error.message)
         }
-      })
-    }, []);
-  // }, [getProducts, getCoupons]);
+      });
 
-  
+    // const filterProducts = () => {
+    // products.forEach((product) => {
+    //   console.log("Product name : " + product.name);
+    //   for (let i = 0; i < collections.length; i++) {
+    //     console.log("Collection name : " + product.name);
+    //     const filtered = collections[i].products.filter((prod) => {
+    //       return prod.name !== product.name;
+    //     });
+    //     setFinalProducts([...products, filtered]);
+    //   }
+    // });
+    
+    // }
+    // console.log(products);
+    
+
+  }, [collections, products]);
+
+  useEffect(() => {
+    // let i = 0;
+    // collections.forEach(collection => {
+    //   collection.products.forEach(prod => {
+    //     products.forEach((product) => {
+    //       if (product.name === prod.name) {
+    //         products.splice(i, 1);
+    //         setFinalProducts(products);
+    //       }
+    //       i++;
+    //     });
+    //   });
+    // });
+    
+    products.sort((a, b) => {
+      let aname = a.name.toLowerCase();
+      let bname = b.name.toLowerCase();
+      if (aname < bname) {
+        return -1;        
+      }
+      else if(aname > bname) {
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    });
+    let temp_prod = products;
+    for (let i_c = 0; i_c < collections.length; i_c++) {
+      for (let i_pc = 0; i_pc < collections[i_c].products.length; i_pc++) {
+        const prod = collections[i_c].products[i_pc];
+        for (let index = 0; index < temp_prod.length; index++) {
+          const element = temp_prod[index];
+          if (element.name === prod.name) {
+            temp_prod.splice(index, 1);
+          }
+        }
+      }
+    }
+    // setFinalProducts(temp_prod);
+  })
+
+
   const handleAddCollection = () => {
     const user = JSON.parse(localStorage.getItem("admin_user"));
     axios.post('api/collection/', collection, {
-      "headers" : {
+      "headers": {
         "authorization": `Bearer ${user.token}`,
       }
     })
@@ -117,7 +201,7 @@ const AddCollection = () => {
 
   return (
     <div className='container-fluid pt-5 mt-5'>
-      <div className="card">
+      <div className="card shadow">
         <div className="card-header bg-info">
           <p className='p-0 m-0 fs-4'>Add Collection</p>
         </div>
@@ -130,7 +214,7 @@ const AddCollection = () => {
               <label htmlFor="name" className="form-label">Collection name<sup className='text-danger'>*</sup></label>
               <input
                 type="text" id='name'
-                className="form-control"
+                className="form-control py-2"
                 placeholder="Collection name"
                 name="name"
                 onChange={handleChange}
@@ -202,8 +286,16 @@ const AddCollection = () => {
               />
             </div>
           </div>
-
         </div>
+        {/* <div>
+          {
+            finalProducts.map((product, index) => {
+              return (
+                <p className='badge bg-dark text-light py-2 fw-normal fs-6 my-1 ms-2'>{index += 1}. {product.name} <br /></p>
+              );
+            })
+          }
+        </div> */}
         <div className="card-footer">
           <div className="d-flex justify-content-end align-items-end gap-2">
             <button className='btn btn-danger btn-lg btn-md fs-6 small' onClick={() => navigate("/collections")}>Cancel</button>
