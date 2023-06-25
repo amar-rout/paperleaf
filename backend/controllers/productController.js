@@ -255,7 +255,7 @@ export const addReview = asyncHandler(async (req, res) => {
     );
     if (alrRev) {
       res.status(400);
-      throw new Error('Already reviewed');
+      throw new Error('You have already reviewed this product.');
     }
 
     const objReview = {
@@ -263,14 +263,12 @@ export const addReview = asyncHandler(async (req, res) => {
       name: req.user.name,
       title: req.body.title,
       rating: req.body.rating,
+      images: req.body.images,
       comment: req.body.comment,
     };
     object.reviews.push(objReview);
     object.numReviews = object.reviews.length;
-    object.rating =
-      object.reviews.reduce((acc, item) => item.rating + acc, 0) /
-      object.reviews.length;
-
+    object.rating = object.reviews.reduce((acc, item) => item.rating + acc, 0) / object.reviews.length;
     const updatedObj = await object.save();
     res.status(201).json(updatedObj);
   } else {

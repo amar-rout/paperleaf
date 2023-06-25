@@ -222,7 +222,7 @@ function Products() {
                   </thead>
                   <tbody>
                     {products.map((product, index) => {
-                      const { _id, name, image, category, price, salePrice, newCollection, featured, published, createdAt } = product;
+                      const { _id, name, image, category, price, salePrice, newCollection, featured, published, createdAt, updatedAt } = product;
                       return (
                         <tr key={_id}>
                           <td className='text-center small'>{index + 1}</td>
@@ -275,7 +275,9 @@ function Products() {
                           </td>
                           <td>
                             {/* <Moment fromNow ago>{createdAt}</Moment> */}
-                            <Moment className='small' format='DD MMM, YYYY HH:SS A' locale='en'>{createdAt}</Moment>
+                            <Moment className='small' format='DD MMM, YYYY' locale='en'>{createdAt}</Moment>
+                            <br />
+                            <Moment className='small' format='DD MMM, YYYY' locale='en'>{updatedAt}</Moment>
                             {/* <Moment locale='in'>{createdAt}</Moment> */}
                           </td>
                           {/* {createdAt} */}

@@ -6,7 +6,9 @@ import "slick-carousel/slick/slick-theme.css";
 import ReactStars from "react-rating-stars-component";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { htmlToText }  from 'html-to-text';
+import { htmlToText } from 'html-to-text';
+import Moment from 'react-moment';
+import 'moment/locale/fr';
 
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
@@ -59,7 +61,9 @@ const Products = () => {
 
     const { id } = useParams();
     const dispatch = useDispatch();
-
+    // if (getProduct) {
+    //     setRating(getProduct.rating);   
+    // }
     const [prodQuantity, setProdQuantity] = useState(1);
 
     useEffect(() => {
@@ -71,6 +75,7 @@ const Products = () => {
 
     useEffect(() => {
         setProduct(getProduct);
+        console.log(getProduct);
         setProductName(product.name);
         dispatch(clearState());
     }, [dispatch, getProduct, product]);
@@ -81,6 +86,7 @@ const Products = () => {
         }
         if (getProductStatus === "LOADED") {
             setProduct(getProduct);
+            console.log(getProduct);
             setLoading(false);
             dispatch(clearState());
         }
@@ -116,6 +122,25 @@ const Products = () => {
         dispatch(addCartAsync({ pId: id, qty: quantity }));
     }
 
+    // const handleStarRate = () => {
+    //     if (product) {
+    //         return (
+    //             <ReactStars classNames=""  {...{
+    //                 size: 18,
+    //                 count: 5,
+    //                 color: "#feeecc",
+    //                 activeColor: "#fdad01",
+    //                 value: product.rating,
+    //                 a11y: true,
+    //                 edit: false,
+    //                 isHalf: true
+    //             }} />
+    //         );   
+    //     } else {
+    //         return null;
+    //     }
+    // }
+
     return (
         <>
             <Breadcrumb
@@ -134,11 +159,12 @@ const Products = () => {
                 :
                 <>
                     {errorMessage === '' && <>{errorMessage}</>}
-                    <section className="album py-3 px-3 bg-light-subtle">
-                        <div className="container bg-body p-md-5">
-                            <div className="row mb-50">
-                                {/* <div className="d-none col-md-1"> d-md-block */}
-                                {/* <Slider
+                    {product &&
+                        <section className="album py-3 px-3 bg-light-subtle">
+                            <div className="container bg-body p-md-5">
+                                <div className="row mb-50">
+                                    {/* <div className="d-none col-md-1"> d-md-block */}
+                                    {/* <Slider
                                         asNavFor={nav1}
                                         ref={slider => (slider2 = slider)}
                                         infinite={true}
@@ -164,18 +190,18 @@ const Products = () => {
                                             )
                                         })} */}
 
-                                {/* {product.images && product.images.map((image) => {
+                                    {/* {product.images && product.images.map((image) => {
                                                 return (
                                                     <div>
                                                         <img src={`http://localhost:5010${image}`} className='p-2' alt="product" style={{ width: "90px", height: "90px" }} />
                                                     </div>
                                                 )
                                             })} */}
-                                {/* </Slider> */}
-                                {/* </div> */}
-                                <div className="col-12 col-md-7 mb-4">
-                                    {/* <div className={`detail-gallery mx-md-5 px-2 px-md-5 ${stickyClass}`}> */}
-                                    {/* <div className="mx-md-5 px-2 px-md-5">
+                                    {/* </Slider> */}
+                                    {/* </div> */}
+                                    <div className="col-12 col-md-7 mb-4">
+                                        {/* <div className={`detail-gallery mx-md-5 px-2 px-md-5 ${stickyClass}`}> */}
+                                        {/* <div className="mx-md-5 px-2 px-md-5">
                                         <span className="zoom-icon"><i className="fi-rs-search"></i></span>
                                         <img src={product.image} alt="product" style={{ width: "100%", height: "400px" }} />
                                         <div className="d-flex flex-0 justify-content-start align-items-center py-2">
@@ -187,36 +213,36 @@ const Products = () => {
                                             <img className="p-1" src={product.image} alt="product" style={{ width: "64px", height: "64px" }} />
                                         </div>
                                     </div> */}
-                                    <div className='px-1'>
-                                        <Slider
-                                            asNavFor={nav1}
-                                            ref={slider => (slider2 = slider)}
-                                            speed={500}
-                                            slidesToShow={2}
-                                            slidesToScroll={2}
-                                            adaptiveHeight={true}
-                                            dots={true}
-                                            responsive={responsiveSetting}
-                                        >
-                                            <div>
-                                                <img className='px-1'
-                                                    src={`${serverURL}${product.image}`}
-                                                    onClick={() => setModalImgInfo(product.image)}
-                                                    data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                                    alt="product" style={{ width: "100%", height: "auto" }} />
-                                            </div>
-                                            {product.images && product.images.map((image) => {
-                                                return (
-                                                    <div>
-                                                        <img className='px-1'
-                                                            src={`${serverURL}${image}`}
-                                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                                            onClick={() => setModalImgInfo(image)}
-                                                            alt="product" style={{ width: "100%", height: "auto" }} />
-                                                    </div>
-                                                )
-                                            })}
-                                            {/* {product.images && product.images.map((image) => {
+                                        <div className='px-1'>
+                                            <Slider
+                                                asNavFor={nav1}
+                                                ref={slider => (slider2 = slider)}
+                                                speed={500}
+                                                slidesToShow={2}
+                                                slidesToScroll={2}
+                                                adaptiveHeight={true}
+                                                dots={true}
+                                                responsive={responsiveSetting}
+                                            >
+                                                <div>
+                                                    <img className='px-1'
+                                                        src={`${serverURL}${product.image}`}
+                                                        onClick={() => setModalImgInfo(product.image)}
+                                                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                                        alt="product" style={{ width: "100%", height: "auto" }} />
+                                                </div>
+                                                {product.images && product.images.map((image) => {
+                                                    return (
+                                                        <div>
+                                                            <img className='px-1'
+                                                                src={`${serverURL}${image}`}
+                                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                                                onClick={() => setModalImgInfo(image)}
+                                                                alt="product" style={{ width: "100%", height: "auto" }} />
+                                                        </div>
+                                                    )
+                                                })}
+                                                {/* {product.images && product.images.map((image) => {
                                                 return (
                                                     <div>
                                                         <img src={`http://localhost:5010${image}`} alt="product" style={{ width: "100%", height: "400px" }} />
@@ -224,288 +250,280 @@ const Products = () => {
                                                 )
                                             })} */}
 
-                                        </Slider>
+                                            </Slider>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="col-12 col-md-5">
-                                    <div className="detail-info mx-md-3 px-2 px-md-3 py-2 py-md-0">
-                                        <div className="d-flex justify-content-between align-items-center">
-                                            {product.countInStock > 0 ?
-                                                <>
-                                                    <span className="bg-success-subtle text-success rounded-pill px-2 small">In stock</span>
-                                                </>
-                                                :
-                                                <span className="bg-danger-subtle text-danger rounded-pill px-2">Out of Stocks</span>
-                                            }
-                                            <span className='d-flex justify-content-end align-items-center '>
-                                                <ReactStars classNames=""  {...{
-                                                    size: 18,
-                                                    count: 5,
-                                                    color: "#feeecc",
-                                                    activeColor: "#fdad01",
-                                                    value: product.rating,
-                                                    a11y: true,
-                                                    edit: false,
-                                                    isHalf: true
-                                                }} />
-                                                <span className="small ms-1 me-5 text-muted">
-                                                    <span className=''>{product.rating}</span>
-                                                    {/* style={{ color: '#fdad01' }} */}
-                                                    <span className='ms-1'>({product.numReviews} reviews)</span>
+                                    <div className="col-12 col-md-5">
+                                        <div className="detail-info mx-md-3 px-2 px-md-3 py-2 py-md-0">
+                                            <div className="d-flex justify-content-between align-items-center">
+                                                {product.countInStock > 0 ?
+                                                    <>
+                                                        <span className="badge bg-success-subtle text-success rounded-pill px-2">In stock</span>
+                                                    </>
+                                                    :
+                                                    <span className="badge badge-pill bg-danger-subtle text-danger rounded-pill p-1">Out of Stocks</span>
+                                                }
+                                                <span className='d-flex justify-content-end align-items-center '>
+                                                    <StarRate rating={product.rating} />
+                                                    {/* { handleStarRate } */}
+                                                    <span className="small ms-1 text-muted">
+                                                        <span className=''>{product.rating}</span>
+                                                        {/* style={{ color: '#fdad01' }} */}
+                                                        <span className='ms-1'>({product.numReviews} ratings)</span>
+                                                    </span>
                                                 </span>
-                                            </span>
-                                        </div>
-                                        <p className="my-4 fw-semibold text-muted"><small>PAPERLEAF</small></p>
-                                        <h6 className="my-4">
-                                            {/* style={{ fontFamily: 'Montserrat !important' }} */}
-                                            {product.name}
-                                        </h6>
-                                        <div>
-                                            {product.salePrice > 0 && <span className="fw-semibold fs-5 me-3 text-danger text-decoration-line-through">{currINR.format(product.salePrice)}</span>}
-                                            <span className="fw-semibold fs-5 text-muted">{currINR.format(product.price)}</span>
-                                            {/* <span className="ms-2 ms-md-4 fs-6 fw-bold text-muted">Flat 25% Off</span> */}
-                                        </div>
-                                        <div className="bt-1 border-color-1 mt-15 mb-15"></div>
-                                        {/* <div className="short-desc mb-30">
+                                            </div>
+                                            <p className="my-4 fw-semibold text-muted"><small>PAPERLEAF</small></p>
+                                            <h6 className="my-4">
+                                                {/* style={{ fontFamily: 'Montserrat !important' }} */}
+                                                {product.name}
+                                            </h6>
+                                            <div>
+                                                {product.salePrice > 0 && <span className="fw-semibold fs-5 me-3 text-danger text-decoration-line-through">{currINR.format(product.salePrice)}</span>}
+                                                <span className="fw-semibold fs-5 text-muted">{currINR.format(product.price)}</span>
+                                                {/* <span className="ms-2 ms-md-4 fs-6 fw-bold text-muted">Flat 25% Off</span> */}
+                                            </div>
+                                            <div className="bt-1 border-color-1 mt-15 mb-15"></div>
+                                            {/* <div className="short-desc mb-30">
                                             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam rem officia, corrupti reiciendis minima nisi modi, quasi, odio minus dolore impedit fuga eum eligendi? Officia doloremque facere quia. Voluptatum, accusantium!</p>
                                         </div> */}
-                                        {/* <div className="product_sort_info font-xs mb-30">
+                                            {/* <div className="product_sort_info font-xs mb-30">
                                             <ul className='text-decoration-none'>
                                                 <li className="mb-1"><i className="fi-rs-crown mr-5"></i> 1 Year AL Jazeera Brand Warranty</li>
                                                 <li className="mb-1"><i className="fi-rs-refresh mr-5"></i> 30 Day Return Policy</li>
                                                 <li><i className="bi bi-card mr-5"></i> Cash on Delivery available</li>
                                             </ul>
                                         </div> */}
-                                        {product.category === 'Dress' &&
-                                            <>
-                                                <div className="w-100 mt-2 mb-3 d-flex flex-0 justify-content-between align-items-center">
-                                                    <div>
-                                                        <span className="" style={{ fontSize: '14px' }}>Size </span>
+                                            {product.category === 'Dress' &&
+                                                <>
+                                                    <div className="w-100 mt-2 mb-3 d-flex flex-0 justify-content-between align-items-center">
+                                                        <div>
+                                                            <span className="" style={{ fontSize: '14px' }}>Size </span>
+                                                        </div>
+                                                        <button className="btn btn-default text-decoration-underline link-dark fw-normal" data-bs-toggle="modal" data-bs-target="#sizeChart" style={{ fontSize: '14px' }}>Size chart</button>
                                                     </div>
-                                                    <button className="btn btn-default text-decoration-underline link-dark fw-normal" data-bs-toggle="modal" data-bs-target="#sizeChart" style={{ fontSize: '14px' }}>Size chart</button>
-                                                </div>
-                                                <div className='mb-3'>
-                                                    <div class="" role="group" aria-label="Basic radio toggle button group">
+                                                    <div className='mb-3'>
+                                                        <div class="" role="group" aria-label="Basic radio toggle button group">
 
-                                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
-                                                        <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio2"><small>S</small></label>
+                                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" />
+                                                            <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio2"><small>S</small></label>
 
-                                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
-                                                        <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio3"><small>M</small></label>
+                                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" />
+                                                            <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio3"><small>M</small></label>
 
-                                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" />
-                                                        <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio4"><small>L</small></label>
+                                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" />
+                                                            <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio4"><small>L</small></label>
 
-                                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" />
-                                                        <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio5"><small>XL</small></label>
+                                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" />
+                                                            <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio5"><small>XL</small></label>
 
-                                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off" />
-                                                        <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio6"><small>XXL</small></label>
+                                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off" />
+                                                            <label class="btn btn-outline-dark me-2 p-0 m-0 pt-1" style={{ width: 28, height: 28, borderRadius: '50%' }} for="btnradio6"><small>XXL</small></label>
+                                                        </div>
                                                     </div>
+                                                </>
+                                            }
+
+                                            <div className="my-4 d-flex justify-content-start align-items-center">
+                                                <div>
+                                                    <span className="me-2" style={{ fontSize: '14px' }}>Quantity</span>
                                                 </div>
-                                            </>
-                                        }
-
-                                        <div className="my-4 d-flex justify-content-start align-items-center">
-                                            <div>
-                                                <span className="me-2" style={{ fontSize: '14px' }}>Quantity</span>
+                                                <div className="input-group input-group-sm" style={{ maxWidth: 150 }}>
+                                                    {prodQuantity > 1 ?
+                                                        <button className="btn btn-outline-dark fs-xl px-3 py-1" type="button" data-decrement=""
+                                                            onClick={() => setProdQuantity(prodQuantity - 1)}>
+                                                            <i className="bi bi-dash-lg"></i>
+                                                        </button>
+                                                        :
+                                                        <button className="btn btn-outline-dark fs-xl px-3 disabled" type="button" data-decrement="">
+                                                            <i className="bi bi-dash-lg"></i>
+                                                        </button>
+                                                    }
+                                                    <span className="form-control shadow-none disabled border-dark text-center">{prodQuantity}</span>
+                                                    {/* value={product.qty} /> */}
+                                                    {prodQuantity < 5 ?
+                                                        <button className="btn btn-outline-dark fs-xl px-3 py-1" type="button" data-decrement=""
+                                                            onClick={() => setProdQuantity(prodQuantity + 1)}>
+                                                            <i className="bi bi-plus-lg"></i>
+                                                        </button>
+                                                        :
+                                                        <button className="btn btn-outline-dark fs-xl px-3 disabled" type="button" data-decrement="">
+                                                            <i className="bi bi-dash-lg"></i>
+                                                        </button>
+                                                    }
+                                                </div>
                                             </div>
-                                            <div className="input-group input-group-sm" style={{ maxWidth: 150 }}>
-                                                {prodQuantity > 1 ?
-                                                    <button className="btn btn-outline-dark fs-xl px-3 py-1" type="button" data-decrement=""
-                                                        onClick={() => setProdQuantity(prodQuantity - 1)}>
-                                                        <i className="bi bi-dash-lg"></i>
-                                                    </button>
-                                                    :
-                                                    <button className="btn btn-outline-dark fs-xl px-3 disabled" type="button" data-decrement="">
-                                                        <i className="bi bi-dash-lg"></i>
-                                                    </button>
-                                                }
-                                                <span className="form-control shadow-none disabled border-dark text-center">{prodQuantity}</span>
-                                                {/* value={product.qty} /> */}
-                                                {prodQuantity < 5 ?
-                                                    <button className="btn btn-outline-dark fs-xl px-3 py-1" type="button" data-decrement=""
-                                                        onClick={() => setProdQuantity(prodQuantity + 1)}>
-                                                        <i className="bi bi-plus-lg"></i>
-                                                    </button>
-                                                    :
-                                                    <button className="btn btn-outline-dark fs-xl px-3 disabled" type="button" data-decrement="">
-                                                        <i className="bi bi-dash-lg"></i>
-                                                    </button>
-                                                }
-                                            </div>
-                                        </div>
 
-                                        {/* <p className="text-muted fw-normal small mb-4"><small>*Please contact our service helpdesk if you want to order more than 5 pieces in a single order</small></p> */}
-                                        <div className="my-4 d-flex flex-0 justify-content-start align-items-center">
-                                            {/* <div className="me-2">
+                                            {/* <p className="text-muted fw-normal small mb-4"><small>*Please contact our service helpdesk if you want to order more than 5 pieces in a single order</small></p> */}
+                                            <div className="my-4 d-flex flex-0 justify-content-start align-items-center">
+                                                {/* <div className="me-2">
                                                 <button type="submit" className="btn btn-warning px-3"><small>Add to cart</small></button>
                                             </div> */}
-                                            {/* <button type="button" className="btn btn-sm bg-warning w-100 d-flex justify-content-center align-items-center" */}
-                                            <button type="button" className="btn btn-warning px-4 py-2"
-                                                // onClick={() => dispatch(addCartAsync({ pId: product._id, qty: 1 }))}>
-                                                onClick={() => handleAddCart(product._id, prodQuantity)}>
-                                                {/* <i className="bi bi-cart d-none d-sm-inline"></i> */}
-                                                <span className="fw-normal">Add to cart</span>
-                                                <ToastContainer className="mb-sm-1 text-start fs-6 small" />
-                                            </button>
-                                            {/* <div className="ms-2">
+                                                {/* <button type="button" className="btn btn-sm bg-warning w-100 d-flex justify-content-center align-items-center" */}
+                                                <button type="button" className="btn btn-warning px-4 py-2"
+                                                    // onClick={() => dispatch(addCartAsync({ pId: product._id, qty: 1 }))}>
+                                                    onClick={() => handleAddCart(product._id, prodQuantity)}>
+                                                    {/* <i className="bi bi-cart d-none d-sm-inline"></i> */}
+                                                    <span className="fw-normal">Add to cart</span>
+                                                    <ToastContainer className="mb-sm-1 text-start fs-6 small" />
+                                                </button>
+                                                {/* <div className="ms-2">
                                                 <button type="submit" className="btn btn-outline-dark px-3"><small>Buy now</small></button>
                                             </div> */}
-                                        </div>
-                                        {/* <div className="detail-extralink">
+                                            </div>
+                                            {/* <div className="detail-extralink">
                                             <div className="product-extra-link2">
                                                 <button type="submit" className="button button-add-to-cart">Add to cart</button>
                                                 <a aria-label="Add To Wishlist" className="action-btn hover-up" href="shop-wishlist.html"><i className="fi-rs-heart"></i></a>
                                                 <a aria-label="Compare" className="action-btn hover-up" href="shop-compare.html"><i className="fi-rs-shuffle"></i></a>
                                             </div>
                                         </div> */}
-                                        {/* <ul className="product-meta font-xs color-grey mt-50">
+                                            {/* <ul className="product-meta font-xs color-grey mt-50">
                                             <li className="mb-5">SKU: <a href="/">FWM15VKT</a></li>
                                             <li className="mb-5">Tags: <a href="/" rel="tag">Cloth</a>, <a href="/" rel="tag">Women</a>, <a href="/" rel="tag">Dress</a> </li>
                                             <li>Availability:<span className="in-stock text-success ml-5">8 Items In Stock</span></li>
                                         </ul> */}
+                                        </div>
                                     </div>
-                                </div>
-                                {/* Modal Start */}
-                                {/* <div> */}
-                                {/* data-bs-backdrop="static" */}
-                                <div class="modal fade" id="sizeChart" data-bs-keyboard="false" tabindex="-1" aria-labelledby="sizeChartLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="sizeChartLabel">Size Chart</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <small>
-                                                    <p>You can customise the product by adding notes when you add the product to your cart.</p>
-                                                    <p>Please note : Sizes 5XL, 6XL and all customised products require mandatory prepayment and cannot be returned or exchanged.</p>
-                                                    <p>Below measurements are garment measurements in inches.</p>
-                                                </small>
-                                                <div className='table-responsive text-center'>
-                                                    <table className='table table-light table-striped'>
-                                                        <thead className='fw-normal fs-6'>
-                                                            <tr>
-                                                                <th>Size</th>
-                                                                <th>Bust</th>
-                                                                <th>Waist</th>
-                                                                <th>Hips</th>
-                                                                <th>Shoulder</th>
-                                                                <th>Length</th>
-                                                                {/* <th>Armhole</th> */}
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>S</td>
-                                                                <td>34</td>
-                                                                <td>32</td>
-                                                                <td>38</td>
-                                                                <td>14</td>
-                                                                <td>45</td>
-                                                                {/* <td>16</td> */}
-                                                            </tr>
-                                                            <tr>
-                                                                <td>M</td>
-                                                                <td>36</td>
-                                                                <td>34</td>
-                                                                <td>40</td>
-                                                                <td>14.5</td>
-                                                                <td>45</td>
-                                                                {/* <td>16</td> */}
-                                                            </tr>
-                                                            <tr>
-                                                                <td>L</td>
-                                                                <td>38</td>
-                                                                <td>36</td>
-                                                                <td>42</td>
-                                                                <td>15</td>
-                                                                <td>45</td>
-                                                                {/* <td>16</td> */}
-                                                            </tr>
-                                                            <tr>
-                                                                <td>XL</td>
-                                                                <td>40</td>
-                                                                <td>38</td>
-                                                                <td>44</td>
-                                                                <td>15.6</td>
-                                                                <td>45</td>
-                                                                {/* <td>16</td> */}
-                                                            </tr>
-                                                            <tr>
-                                                                <td>XXL</td>
-                                                                <td>42</td>
-                                                                <td>40</td>
-                                                                <td>46</td>
-                                                                <td>16</td>
-                                                                <td>45</td>
-                                                                {/* <td>16</td> */}
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+                                    {/* Modal Start */}
+                                    {/* <div> */}
+                                    {/* data-bs-backdrop="static" */}
+                                    <div class="modal fade" id="sizeChart" data-bs-keyboard="false" tabindex="-1" aria-labelledby="sizeChartLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="sizeChartLabel">Size Chart</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
-                                            </div>
+                                                <div class="modal-body">
+                                                    <small>
+                                                        <p>You can customise the product by adding notes when you add the product to your cart.</p>
+                                                        <p>Please note : Sizes 5XL, 6XL and all customised products require mandatory prepayment and cannot be returned or exchanged.</p>
+                                                        <p>Below measurements are garment measurements in inches.</p>
+                                                    </small>
+                                                    <div className='table-responsive text-center'>
+                                                        <table className='table table-light table-striped'>
+                                                            <thead className='fw-normal fs-6'>
+                                                                <tr>
+                                                                    <th>Size</th>
+                                                                    <th>Bust</th>
+                                                                    <th>Waist</th>
+                                                                    <th>Hips</th>
+                                                                    <th>Shoulder</th>
+                                                                    <th>Length</th>
+                                                                    {/* <th>Armhole</th> */}
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>S</td>
+                                                                    <td>34</td>
+                                                                    <td>32</td>
+                                                                    <td>38</td>
+                                                                    <td>14</td>
+                                                                    <td>45</td>
+                                                                    {/* <td>16</td> */}
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>M</td>
+                                                                    <td>36</td>
+                                                                    <td>34</td>
+                                                                    <td>40</td>
+                                                                    <td>14.5</td>
+                                                                    <td>45</td>
+                                                                    {/* <td>16</td> */}
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>L</td>
+                                                                    <td>38</td>
+                                                                    <td>36</td>
+                                                                    <td>42</td>
+                                                                    <td>15</td>
+                                                                    <td>45</td>
+                                                                    {/* <td>16</td> */}
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>XL</td>
+                                                                    <td>40</td>
+                                                                    <td>38</td>
+                                                                    <td>44</td>
+                                                                    <td>15.6</td>
+                                                                    <td>45</td>
+                                                                    {/* <td>16</td> */}
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>XXL</td>
+                                                                    <td>42</td>
+                                                                    <td>40</td>
+                                                                    <td>46</td>
+                                                                    <td>16</td>
+                                                                    <td>45</td>
+                                                                    {/* <td>16</td> */}
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
 
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                {/* <button type="button" class="btn btn-primary">Understood</button> */}
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    {/* <button type="button" class="btn btn-primary">Understood</button> */}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                {/* </div> */}
-                                {/* Modal End */}
-                                {/* Modal Start */}
-                                {/* <div> */}
-                                <div class="modal fade text-center" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            {/* data-bs-backdrop="static" data-bs-keyboard="false" */}
-                                            {/* <div class="modal-header bg-body" style={{ backgroundColor: 'transparent !important'}}> */}
-                                            {/* <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                    {/* </div> */}
+                                    {/* Modal End */}
+                                    {/* Modal Start */}
+                                    {/* <div> */}
+                                    <div class="modal fade text-center" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                {/* data-bs-backdrop="static" data-bs-keyboard="false" */}
+                                                {/* <div class="modal-header bg-body" style={{ backgroundColor: 'transparent !important'}}> */}
+                                                {/* <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                                         onClick={() => setModalImgInfo("")}></button> */}
-                                            {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                                 style={{ right: '10px' }}
                                                 onClick={() => setModalImgInfo("")}>
                                             </button> */}
-                                            {/* </div> */}
+                                                {/* </div> */}
 
 
 
-                                            {/* <div class="modal-body"> */}
-                                            {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                                {/* <div class="modal-body"> */}
+                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                                         onClick={() => setModalImgInfo("")}></button> */}
-                                            {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                                                     style={{ right: '10px' }}
                                                     onClick={() => setModalImgInfo("")}></button> */}
-                                            <div class="zoom_outer">
-                                                <div id="zoom">
-                                                    <img src={`${serverURL}${modalImgInfo}`} alt="zoom" style={{ width: '100%', height: 'auto' }} />
+                                                <div class="zoom_outer">
+                                                    <div id="zoom">
+                                                        <img src={`${serverURL}${modalImgInfo}`} alt="zoom" style={{ width: '100%', height: 'auto' }} />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {/* <button type="button" class="btn btn-light" style={{ position: 'absolute', bottom: '10px', right: '10px' }}
+                                                {/* <button type="button" class="btn btn-light" style={{ position: 'absolute', bottom: '10px', right: '10px' }}
                                                     onClick={() => setModalImgInfo("")}
                                                     data-bs-dismiss="modal">Close</button> */}
-                                            {/* </div> */}
-                                            {/* <div class="modal-footer">
+                                                {/* </div> */}
+                                                {/* <div class="modal-footer">
                                                      <button type="button" class="btn btn-secondary"
                                                         onClick={() => setModalImgInfo("")}
                                                         data-bs-dismiss="modal">Close</button> 
                                                 {/* <button type="button" class="btn btn-primary">Understood</button> */}
-                                            {/* </div> */}
-                                            {/* <button type="button" class="btn btn-light" style={{ bottom: '10px', right: '10px' }}
+                                                {/* </div> */}
+                                                {/* <button type="button" class="btn btn-light" style={{ bottom: '10px', right: '10px' }}
                                                     onClick={() => setModalImgInfo("")}
                                                     data-bs-dismiss="modal">Close</button> */}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                {/* </div> */}
-                                {/* Modal End */}
+                                    {/* </div> */}
+                                    {/* Modal End */}
 
-                                {/* ReactSlick slider Begin */}
-                                {/* <div class="row p-5">
+                                    {/* ReactSlick slider Begin */}
+                                    {/* <div class="row p-5">
                                     <div class="col-md-4">
                                         <div>
                                             <Slider ref={slider => (slider1 = slider)}>
@@ -556,11 +574,11 @@ const Products = () => {
                                         </div>
                                     </div>
                                 </div> */}
-                                {/* ReactSlick slider End */}
+                                    {/* ReactSlick slider End */}
 
-                                {/* Slick slider Begin */}
+                                    {/* Slick slider Begin */}
 
-                                {/* <div class="row">
+                                    {/* <div class="row">
                                     <div class="col-md-5">
                                         <div class="slick-wrapper">
                                             <div class="slider-for mb-3 slick-initialized slick-slider">
@@ -662,30 +680,30 @@ const Products = () => {
                                         </div>
                                     </div>
                                 </div> */}
-                                {/* Slick Slider End */}
+                                    {/* Slick Slider End */}
 
-                                <div className="col-12 px-0">
-                                    <div class="card w-100 p-0 m-0 mt-5">
-                                        <div class="card-header">
-                                            <ul class="nav nav-pills" role="tablist">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Descriptions</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews ({product.rating})</a>
-                                                </li>
-                                                {/* <li class="nav-item">
+                                    <div className="col-12 px-0">
+                                        <div class="card w-100 p-0 m-0 mt-5">
+                                            <div class="card-header">
+                                                <ul class="nav nav-pills" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" id="description-tab" data-bs-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Descriptions</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="reviews-tab" data-bs-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews ({product.rating})</a>
+                                                    </li>
+                                                    {/* <li class="nav-item">
                                                     <a class="nav-link" id="sss-tab" data-bs-toggle="tab" href="#sss" role="tab" aria-controls="sss" aria-selected="false">Specification</a>
                                                 </li> */}
-                                            </ul>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="tab-content">
-                                                <div class="tab-pane fade active show" id="description" role="tabpanel" aria-labelledby="description-tab">
-                                                    {/* <p class="font-weight-bold">Where was he raised?</p> */}
-                                                    {/* {product.description} */}
-                                                    <div dangerouslySetInnerHTML={{ __html: product.description }} />
-                                                    {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores
+                                                </ul>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="tab-content">
+                                                    <div class="tab-pane fade active show" id="description" role="tabpanel" aria-labelledby="description-tab">
+                                                        {/* <p class="font-weight-bold">Where was he raised?</p> */}
+                                                        {/* {product.description} */}
+                                                        <div dangerouslySetInnerHTML={{ __html: product.description }} />
+                                                        {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores
                                                         dolorum
                                                         earum fugiat nostrum obcaecati, quis ratione rerum sapiente soluta!</p>
                                                     <p class="font-weight-bold">Chemicals in</p>
@@ -695,12 +713,12 @@ const Products = () => {
                                                         corporis, dolorum fugiat fugit maxime nisi optio quo similique sit sunt tempora.
                                                         Commodi culpa debitis deleniti dolore maiores, maxime praesentium. Autem dicta
                                                         dolore ipsum molestiae quae, quasi soluta tempora.</p> */}
-                                                </div>
-                                                <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="mb-5">
-                                                                {/* <div class="display-6">4</div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="mb-5">
+                                                                    {/* <div class="display-6">4</div>
                                                                 <div class="d-flex gap-2 my-3">
                                                                     <i class="bi bi-star-fill icon-lg text-warning"></i>
                                                                     <i class="bi bi-star-fill icon-lg text-warning"></i>
@@ -709,75 +727,73 @@ const Products = () => {
                                                                     <i class="bi bi-star-fill icon-lg text-muted"></i>
                                                                     <span>(3)</span>
                                                                 </div> */}
-                                                                <p>User rating for {product.name}</p>
-                                                                <div className='d-flex justify-content-start align-items-center'>
-                                                                    <div className='border border-success text-center p-0 m-0 px-2 py-1'>
-                                                                        <h2 className="display-6 p-0 m-0">{product.rating}</h2>
-                                                                        <p className='p-0 m-0 text-muted fw-semibold fs-6'>out of 5</p>
-                                                                    </div>
-                                                                    {/* <span className="ms-2 ms-md-4 d-flex flex-column justify-content-start align-items-start"> */}
-                                                                    <span className='ps-2'>
-                                                                        <ReactStars {...{
-                                                                            size: 16,
-                                                                            count: 5,
-                                                                            activeColor: "#fdad01",
-                                                                            value: product.rating,
-                                                                            a11y: true,
-                                                                            isHalf: true,
-                                                                            emptyIcon: <i className="bi bi-star" />,
-                                                                            halfIcon: <i className="bi bi-star-half" />,
-                                                                            filledIcon: <i className="bi bi-star-fill" />,
-                                                                            edit: false,
-                                                                        }} />
-                                                                        <p className="p-0 m-0 pt-2 text-muted fw-semibold fs-6">
-                                                                            {product.numReviews} Ratings . {product.numReviews} Reviews
-                                                                        </p>
-                                                                    </span>
-                                                                </div>
-                                                                <hr className=' text-center border-muted' />
-                                                                <div className='py-3 lh-1'>
-                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
-                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>5</p>
-                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
-                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
-                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
+                                                                    <p>User rating for {product.name}</p>
+                                                                    <div className='row'>
+                                                                        <div className='col-12 col-md-6'>
+                                                                            <div className='d-flex justify-content-start align-items-center'>
+                                                                                <div className='border border-success text-center p-0 m-0 px-2 py-1'>
+                                                                                    <h2 className="display-6 p-0 m-0">{product.rating}</h2>
+                                                                                    <p className='p-0 m-0 text-muted fw-semibold fs-6'>out of 5</p>
+                                                                                </div>
+                                                                                <span className='ps-2'>
+                                                                                    <StarRate rating={product.rating} />
+                                                                                    <p className="p-0 m-0 pt-2 text-muted fw-semibold fs-6">
+                                                                                        {product.numReviews} Ratings
+                                                                                    </p>
+                                                                                </span>
+                                                                            </div>
                                                                         </div>
-                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
+                                                                        {/* <div className='col-12 col-md-6'>
+                                                                            {
+                                                                                product.reviews.length > 0 &&
+                                                                                <div className='py-3 lh-1'>
+                                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
+                                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>5</p>
+                                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
+                                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
+                                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
+                                                                                        </div>
+                                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
+                                                                                    </div>
+                                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
+                                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>4</p>
+                                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
+                                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
+                                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
+                                                                                        </div>
+                                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
+                                                                                    </div>
+                                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
+                                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>3</p>
+                                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
+                                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
+                                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
+                                                                                        </div>
+                                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
+                                                                                    </div>
+                                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
+                                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>2</p>
+                                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
+                                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
+                                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
+                                                                                        </div>
+                                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
+                                                                                    </div>
+                                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
+                                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1</p>
+                                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
+                                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
+                                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
+                                                                                        </div>
+                                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            }
+                                                                        </div> */}
                                                                     </div>
-                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
-                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>4</p>
-                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
-                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
-                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
-                                                                        </div>
-                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
-                                                                    </div>
-                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
-                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>3</p>
-                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
-                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
-                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
-                                                                        </div>
-                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
-                                                                    </div>
-                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
-                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>2</p>
-                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
-                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
-                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
-                                                                        </div>
-                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
-                                                                    </div>
-                                                                    <div className='d-flex justify-content-start align-items-center gap-2 mb-2'>
-                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1</p>
-                                                                        <p className='mb-0 fs-6'><i class="bi bi-star-fill text-secondary"></i></p>
-                                                                        <div class="progress w-100" role="progressbar" aria-label="5 Strar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ height: '0.75rem' }}>
-                                                                            <div class="progress-bar text-bg-warning " style={{ width: '50%' }}></div>
-                                                                        </div>
-                                                                        <p className='mb-0 fs-6 pt-1 fw-semibold text-muted'>1,198</p>
-                                                                    </div>
-                                                                </div>
-                                                                {/* <span className="d-flex justify-content-start align-items-center">
+                                                                    <hr className=' text-center border-muted' />
+
+                                                                    {/* <span className="d-flex justify-content-start align-items-center">
                                                                     <ReactStars {...{
                                                                         size: 14,
                                                                         count: 5,
@@ -795,83 +811,115 @@ const Products = () => {
                                                                         ({product.numReviews})
                                                                     </span>
                                                                 </span> */}
-                                                            </div>
-                                                            <div class="list-group list-group-flush mb-4">
-                                                                <div class="list-group-item d-flex px-0">
-                                                                    <div class="avatar flex-shrink-0 me-3">
-                                                                        <div class="bg-dark text-warning text-center position-relative" style={{ width: '48px', height: '48px', borderRadius: '50%' }}>
-                                                                            <h6 className='pt-3'>{'Rhea'.charAt(0)}</h6>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div>
-                                                                        <div className='d-flex justify-content-between align-items-center mb-1 pt-1'>
-                                                                            <div>
-                                                                                <p class="mb-0 fw-semibold fs-6">
-                                                                                    Rhea
-                                                                                </p>
-                                                                            </div>
-                                                                            <ReactStars {...{
-                                                                                size: 14,
-                                                                                count: 5,
-                                                                                activeColor: "#fdad01",
-                                                                                value: 3.5,
-                                                                                a11y: true,
-                                                                                isHalf: true,
-                                                                                emptyIcon: <i className="bi bi-star" />,
-                                                                                halfIcon: <i className="bi bi-star-half" />,
-                                                                                filledIcon: <i className="bi bi-star-fill" />,
-                                                                                edit: false,
-                                                                            }} />
-                                                                        </div>
-                                                                        <p class="mb-0 fw-normal fs-6 small">
-                                                                            <small>21/05/2023</small>
-                                                                        </p>
-                                                                        <p>I love your products. I would recommend it to everyone.</p>
-                                                                        {/* </div> */}
-                                                                    </div>
                                                                 </div>
+                                                                {
+                                                                    product.reviews &&
+                                                                    product.reviews.map((review, index) => {
+                                                                        return (
+                                                                            <span key={review._id}>
+                                                                                <div class="list-group list-group-flush mb-4">
+                                                                                    <div class="list-group-item d-flex px-0">
+                                                                                        <div class="avatar flex-shrink-0 me-3">
+                                                                                            <div class="bg-dark text-warning text-center position-relative" style={{ width: '48px', height: '48px', borderRadius: '50%' }}>
+                                                                                                <h6 className='pt-3'>{`${review.name}`.charAt(0)}</h6>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div>
+                                                                                            <div className='d-flex flex-row justify-content-between align-items-center mb-1'>
+                                                                                                <div>
+                                                                                                    <p class="mb-0 fw-semibold fs-6 text-truncate w-75" data-bs-toggle="tooltip" data-bs-placement="bottom" title={review.name}>
+                                                                                                        {review.name}
+                                                                                                    </p>
+                                                                                                    <span class="mb-0 fw-normal fs-6 small ">
+                                                                                                        <small>
+                                                                                                            <Moment fromNow ago locale='en'>{review.createdAt}</Moment> ago
+                                                                                                        </small>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                <div className='d-block'>
+                                                                                                    <StarRate rating={review.rating} />
+                                                                                                    <br />
+                                                                                                    <span className='small'>({review.rating} Ratings)</span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <p>{review.comment}</p>
+                                                                                </div>
+                                                                                <hr className=' text-center border-muted' />
+                                                                            </span>
+                                                                        );
+                                                                    })
+                                                                }
+                                                                {/* <small>
+                                                                <small>21/05/2023</small> 
+                                                                                        <Moment className='small' format='DD MMM, YYYY' locale='en'>2023-06-23</Moment>
+                                                                                    </small> */}
                                                                 {/* <div class="list-group-item d-flex px-0">
-                                                                <div class="avatar flex-shrink-0 me-3">
-                                                                    <span class="avatar-text bg-orange rounded-circle">C</span>
-                                                                </div>
-                                                                <div>
-                                                                    <h5 class="mb-1">Corly Hailston</h5>
-                                                                    <div class="d-flex gap-2 mb-3">
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                    </div>
-                                                                    <div>I love your products. It is very easy and fun to use this panel. I would
-                                                                        recommend it
-                                                                        to
-                                                                        everyone.
-                                                                    </div>
-                                                                </div>
-                                                            </div> */}
+                                                                                <div class="avatar flex-shrink-0 me-3">
+                                                                                    <span class="avatar-text bg-orange rounded-circle">C</span>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <h5 class="mb-1">Corly Hailston</h5>
+                                                                                    <div class="d-flex gap-2 mb-3">
+                                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                                    </div>
+                                                                                    <div>I love your products. It is very easy and fun to use this panel. I would
+                                                                                        recommend it
+                                                                                        to
+                                                                                        everyone.
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div> */}
                                                                 {/* <div class="list-group-item d-flex px-0">
-                                                                <div class="avatar flex-shrink-0 me-3">
-                                                                    <img src="../../assets/images/user/man_avatar2.jpg" class="rounded-circle" alt="" />
-                                                                </div>
-                                                                <div>
-                                                                    <h5 class="mb-1">Hurleigh Smallcomb</h5>
-                                                                    <div class="d-flex gap-2 mb-3">
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                        <i class="bi bi-star-fill text-warning"></i>
-                                                                    </div>
-                                                                    <div>I love your products. It is very easy and fun to use this panel. I would
-                                                                        recommend it
-                                                                        to
-                                                                        everyone.
-                                                                    </div>
-                                                                </div>
-                                                            </div> */}
-                                                            </div>
-                                                            <form>
+                                                                                <div class="avatar flex-shrink-0 me-3">
+                                                                                    <img src="../../assets/images/user/man_avatar2.jpg" class="rounded-circle" alt="" />
+                                                                                </div>
+                                                                                <div>
+                                                                                    <h5 class="mb-1">Hurleigh Smallcomb</h5>
+                                                                                    <div class="d-flex gap-2 mb-3">
+                                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                                                    </div>
+                                                                                    <div>I love your products. It is very easy and fun to use this panel. I would
+                                                                                        recommend it
+                                                                                        to
+                                                                                        everyone.
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div> */}
+                                                                {/* <ReactStars {...{
+                                                                                                size: 14,
+                                                                                                count: 5,
+                                                                                                activeColor: "#fdad01",
+                                                                                                value: product.rating,
+                                                                                                a11y: true,
+                                                                                                isHalf: true,
+                                                                                                emptyIcon: <i className="bi bi-star" />,
+                                                                                                halfIcon: <i className="bi bi-star-half" />,
+                                                                                                filledIcon: <i className="bi bi-star-fill" />,
+                                                                                                edit: false,
+                                                                                            }} /> */}
+                                                                {/* <ReactStars
+                                                                                                size={14}
+                                                                                                count={5}
+                                                                                                activeColor="#fdad01"
+                                                                                                value={rating}
+                                                                                                a11y={true}
+                                                                                                isHalf={true}
+                                                                                                emptyIcon={<i className="bi bi-star" />}
+                                                                                                halfIcon={<i className="bi bi-star-half" />}
+                                                                                                filledIcon={<i className="bi bi-star-fill" />}
+                                                                                                edit={false}
+                                                                                            /> */}
+                                                                {/* <form>
                                                                 <div class="mb-3">
                                                                     <div class="d-flex justify-content-start align-items-center">
                                                                         <span class="me-2">Rate:</span>
@@ -897,11 +945,11 @@ const Products = () => {
                                                                     <textarea rows="3" class="form-control" placeholder="Your opinion on the product"></textarea>
                                                                 </div>
                                                                 <button class="btn btn-warning fw-normal mt-3 px-4 py-2" type="button" id="button-addon2"> POST </button>
-                                                            </form>
+                                                            </form> */}
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                {/* <div class="tab-pane fade" id="sss" role="tabpanel" aria-labelledby="sss-tab">
+                                                    {/* <div class="tab-pane fade" id="sss" role="tabpanel" aria-labelledby="sss-tab">
                                                     <div class="accordion" id="accordionExample">
                                                         <div class="accordion-item">
                                                             <h2 class="accordion-header" id="headingOne">
@@ -953,52 +1001,78 @@ const Products = () => {
                                                         </div>
                                                     </div>
                                                 </div> */}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* <div className='col-12'>
+                                    <RecentlyViewedProducts />
+                                </div> */}
+                                    <div className='col-12'>
+                                        <h5 className='text-center my-4'>Categories</h5>
+                                        <div className="" style={{ overflowX: 'scroll' }}>
+                                            {/* row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 g-2 g-sm-2 g-md-3 g-lg-4 */}
+                                            <div className="text-center d-flex justify-content-start align-items-center">
+                                                <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dupattas')}>
+                                                    <img src="/assets/images/catImages/dupattas_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                    <h6 className="category-txt fw-normal pt-2 category-text">Dupattas</h6>
+                                                </button>
+                                                <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dress')}>
+                                                    <img src="/assets/images/catImages/dress_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                    <h6 className="category-txt fw-normal pt-2">Dress</h6>
+                                                </button>
+                                                <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Fabrics')}>
+                                                    <img src="/assets/images/catImages/fabrics_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                    <h6 className="category-txt fw-normal pt-2">Fabrics</h6>
+                                                </button>
+                                                <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/DressMaterial')}>
+                                                    <img src="/assets/images/catImages/dressmaterial_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                    <h6 className="category-txt fw-normal pt-2">Dress Material</h6>
+                                                </button>
+                                                <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Jewellery')}>
+                                                    <img src="/assets/images/catImages/jewellery_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                    <h6 className="category-txt fw-normal pt-2">Jewellery</h6>
+                                                </button>
+                                                <button className="category-btn col btn btn-default cat-btn opacity-1" onClick={() => navigate('/category/newCollections')}>
+                                                    <img src="/assets/images/catImages/newcollection_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
+                                                    <h6 className="category-txt fw-normal pt-2">New Collections</h6>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                {/* <div className='col-12'>
-                                    <RecentlyViewedProducts />
-                                </div> */}
-                                <div className='col-12'>
-                                    <h5 className='text-center my-4'>Categories</h5>
-                                    <div className="" style={{ overflowX: 'scroll' }}>
-                                        {/* row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 g-2 g-sm-2 g-md-3 g-lg-4 */}
-                                        <div className="text-center d-flex justify-content-start align-items-center">
-                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dupattas')}>
-                                                <img src="/assets/images/catImages/dupattas_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
-                                                <h6 className="category-txt fw-normal pt-2 category-text">Dupattas</h6>
-                                            </button>
-                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dress')}>
-                                                <img src="/assets/images/catImages/dress_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
-                                                <h6 className="category-txt fw-normal pt-2">Dress</h6>
-                                            </button>
-                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Fabrics')}>
-                                                <img src="/assets/images/catImages/fabrics_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
-                                                <h6 className="category-txt fw-normal pt-2">Fabrics</h6>
-                                            </button>
-                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/DressMaterial')}>
-                                                <img src="/assets/images/catImages/dressmaterial_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
-                                                <h6 className="category-txt fw-normal pt-2">Dress Material</h6>
-                                            </button>
-                                            <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Jewellery')}>
-                                                <img src="/assets/images/catImages/jewellery_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
-                                                <h6 className="category-txt fw-normal pt-2">Jewellery</h6>
-                                            </button>
-                                            <button className="category-btn col btn btn-default cat-btn opacity-1" onClick={() => navigate('/category/newCollections')}>
-                                                <img src="/assets/images/catImages/newcollection_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
-                                                <h6 className="category-txt fw-normal pt-2">New Collections</h6>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    }
                 </>
             }
         </>
     )
+}
+
+const StarRate = ({ rating }) => {
+    const ratingStar = Array.from({ length: 5 }, (elem, index) => {
+        let number = index + 0.5;
+
+        return (
+            <span key={index}>
+                {rating >= index + 1 ? (
+                    <i className="bi bi-star-fill" style={{ color: '#fdad01' }} />
+                ) : rating >= number ? (
+                    <i className="bi bi-star-half" style={{ color: '#fdad01' }} />
+                ) : (
+                    <i className="bi bi-star" style={{ color: '#fdad01' }} />
+                )
+                }
+            </span>
+        );
+    });
+
+    return (
+        <>
+            {ratingStar}
+        </>
+    );
 }
 
 export default Products;

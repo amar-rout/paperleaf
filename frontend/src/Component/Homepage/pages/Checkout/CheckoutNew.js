@@ -155,7 +155,7 @@ function CheckoutNew() {
         const { amount, id: order_id, currency } = result.data;
 
         const options = {
-            key: "rzp_test_5jd0R7gE1RSPoa", // Enter the Key ID generated from the Dashboard
+            key: process.env.REACT_APP_RAZORPAY_ID, // Enter the Key ID generated from the Dashboard
             amount: amount.toString(),
             currency: currency,
             name: "Paperleaf",
@@ -189,7 +189,7 @@ function CheckoutNew() {
                     },
                 };
                 const result = await axios.post(`/api/orders/${order_id}/success`, data, config);
-                // alert(result.data);
+                console.log(result);
                 if (result.data) {
                     localStorage.removeItem('cartItems');
                     localStorage.removeItem('checkout_items');

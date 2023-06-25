@@ -42,6 +42,6 @@ router.route('/category/:category').get(getProductByCategory);
 
 router.route('/category/:category?').patch(protect, isAdmin, updateProductPublishedByCategory);
 
-router.route('/:id/reviews').post(protect, addReview);
+router.route('/reviews/:id').post(protect, addReview);
 
 export default router;

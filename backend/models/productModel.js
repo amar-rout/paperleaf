@@ -8,9 +8,10 @@ const reviewSchema = mongoose.Schema(
       ref: 'User',
     },
     name: { type: String, required: true },
-    title: { type: String, required: true },
+    title: { type: String, required: false },
     rating: { type: Number, required: true, default: 1 },
-    comment: { type: String, required: true },
+    images: [],
+    comment: { type: String, required: false },
   },
   { timestamps: true },
 );

@@ -121,13 +121,12 @@ const UserAddress = () => {
                                                 <div className="card-body p-2">
                                                     <p className="mb-2 fw-semibold fs-6">{address.personName}</p>
                                                     <p className='fw-normal text-muted'>{address.landmark}</p>
-                                                    <p className="fw-normal fs-6">
-                                                        {address.addrLineOne},
-                                                        {address.addrLineTwo},
-                                                        {address.city}, {address.state},
-                                                        {address.country}, PIN - {address.pincode}
+                                                    <p className="fw-normal fs-6 text-muted">
+                                                        {address.addrLineOne}, {address.addrLineTwo}, {address.city}, {address.state}, {address.country},
+                                                        <br />
+                                                        PIN - {address.pincode}
                                                     </p>
-                                                    <p className="fw-normal text-muted "><span className='fw-semibold'>Phone</span> +91 {address.altPhone}</p>
+                                                    <p className="fw-normal text-muted"><span className='fw-semibold'>Phone</span> +91 {address.altPhone}</p>
                                                     <p className='fw-normal text-muted'><span className='fs-6 fw-semibold'>Availability</span> : 09.00 AM - 06.00 PM</p>
                                                 </div>
                                                 <div className="card-footer bg-body border-0 top-0 d-flex justify-content-start align-items-center gap-2">

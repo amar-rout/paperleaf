@@ -24,11 +24,26 @@ const AddAddress = () => {
     const [loginUser, setLoginUser] = useState({});
     const [loadAddress, setLoadAddress] = useState(false);
     const [addressInputErrorMessage, setAddressInputErrorMessage] = useState("");
+    const [homeExist, setHomeExist] = useState(false);
+    const [officeExist, setOfficeExist] = useState(false);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        setLoginUser(JSON.parse(localStorage.getItem("user")));
+        let user = JSON.parse(localStorage.getItem("user"))
+        setLoginUser(user);
+        if (user) {
+            for (let index = 0; index < user.address.length; index++) {
+                const address = user.address[index];
+                if (address.addrType === "Home") {
+                    setHomeExist(true);
+                }
+                if (address.addrType === "Office") {
+                    setOfficeExist(true);
+                }
+            }
+
+        }
     }, [setLoginUser]);
 
     const [address, setAddress] = useState(initialAddress);
@@ -42,7 +57,7 @@ const AddAddress = () => {
     };
 
     // useEffect(() => {
-        
+
     //     // console.log(address);
     // }, [address.addrType, address, setAddress]);
 
@@ -133,21 +148,37 @@ const AddAddress = () => {
                 <div className="row">
                     <div className="col-12 col-lg-6 mb-3">
                         <div className="form-group">
-                            <label className="form-label">Address Type</label>
+                            {!homeExist && !officeExist &&
+                                <>
+                                    <label className="form-label">Address Type</label>
+                                </>
+                            }
                             <div>
                                 <div className="btn-group w-100" role="group" aria-label="Select address">
-                                    <input type="radio" className="btn-check form-control" name="addrType" id="home" autoComplete="off" value="Home" onChange={handleChange} checked={address.addrType === "Home"} />
-                                    <label className="btn btn-outline-dark px-3 px-md-4 py-3 py-md-3 me-2 rounded-pill" htmlFor="home">
-                                        Home
-                                    </label>
-                                    <input type="radio" className="btn-check form-control" name="addrType" id="office" autoComplete="off" value="Office" onChange={handleChange} checked={address.addrType === "Office"} />
-                                    <label className="btn btn-outline-dark px-3 px-md-4 py-3 py-md-3 me-2 rounded-pill" htmlFor="office">
-                                        Office
-                                    </label>
-                                    <input type="radio" className="btn-check form-control" name="addrType" id="other" autoComplete="off" value="Other" onChange={handleChange} checked={address.addrType === "Other"} />
-                                    <label className="btn btn-outline-dark px-3 px-md-4 py-3 py-md-3 me-2 rounded-pill" htmlFor="other">
-                                        Other
-                                    </label>
+                                    {!homeExist &&
+                                        <>
+                                            <input type="radio" className="btn-check form-control" name="addrType" id="home" autoComplete="off" value="Home" onChange={handleChange} checked={address.addrType === "Home"} />
+                                            <label className="btn btn-outline-dark px-3 px-md-4 py-3 py-md-3 me-2 rounded-pill" htmlFor="home">
+                                                Home
+                                            </label>
+                                        </>
+                                    }
+                                    {!officeExist &&
+                                        <>
+                                            <input type="radio" className="btn-check form-control" name="addrType" id="office" autoComplete="off" value="Office" onChange={handleChange} checked={address.addrType === "Office"} />
+                                            <label className="btn btn-outline-dark px-3 px-md-4 py-3 py-md-3 me-2 rounded-pill" htmlFor="office">
+                                                Office
+                                            </label>
+                                        </>
+                                    }
+                                    {!homeExist && !officeExist &&
+                                        <>
+                                            <input type="radio" className="btn-check form-control" name="addrType" id="other" autoComplete="off" value="Other" onChange={handleChange} checked={address.addrType === "Other"} />
+                                            <label className="btn btn-outline-dark px-3 px-md-4 py-3 py-md-3 me-2 rounded-pill" htmlFor="other">
+                                                Other
+                                            </label>
+                                        </>
+                                    }
                                 </div>
                             </div>
                         </div>
