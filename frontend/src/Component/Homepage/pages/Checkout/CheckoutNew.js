@@ -57,13 +57,13 @@ function CheckoutNew() {
         // console.log(address);
     }
 
-    const next = () => {
+    const nextTab = () => {
         const nextTabLinkEl = document.querySelector('.nav-fill .active').closest('li').next('li').find('a')[0];
         const nextTab = new bootstrap.Tab(nextTabLinkEl);
         nextTab.show();
     }
 
-    const prev = () => {
+    const prevTab = () => {
         const prevTabLinkEl = document.querySelector('.nav-fill .active').closest('li').prev('li').find('a')[0];
         const prevTab = new bootstrap.Tab(prevTabLinkEl);
         prevTab.show();
@@ -194,7 +194,7 @@ function CheckoutNew() {
                     localStorage.removeItem('cartItems');
                     localStorage.removeItem('checkout_items');
                     localStorage.removeItem('checkout_details');
-                    navigate('/checkout/success', {state: result.data});
+                    navigate('/checkout/success', { state: result.data });
                 }
 
                 // if (result.data.msg === 'Success') {
@@ -256,7 +256,7 @@ function CheckoutNew() {
             localStorage.removeItem('cartItems');
             localStorage.removeItem('checkout_items');
             localStorage.removeItem('checkout_details');
-            navigate('/checkout/success', {state: result.data});
+            navigate('/checkout/success', { state: result.data });
         }
     }
 
@@ -267,29 +267,29 @@ function CheckoutNew() {
                 <div className='row'>
                     <div className='col-12 col-md-8'>
                         <div className='bg-white py-3'>
-                            <ul className="nav nav-fill check_nav w-100">
+                            {/* <ul className="nav nav-fill check_nav w-100">
                                 <li className="nav-item">
                                     <a className="nav-link check_nav-link active text-center" data-bs-toggle="tab" href="#home">
                                         <span className="step-number">01</span>
                                         <span className="step-title d-block">Billing Info</span>
                                     </a>
-                                    {/* <hr class="flex-fill track-line border border-2 border-success flex-shrink flex-fill" /> */}
                                 </li>
-                                {/* <li className="nav-item">
+                                <li className="nav-item">
+                                    <a className="nav-link check_nav-link text-center" data-bs-toggle="tab" href="#menu2">
+                                        <span className="step-number">02</span>
+                                        <span className="step-title d-block">Payment Info</span>
+                                    </a>
+                                </li>
+                            </ul> */}
+                            {/* <hr class="flex-fill track-line border border-2 border-success flex-shrink flex-fill" /> */}
+                            {/* <hr class="flex-fill track-line border border-2 border-success flex-shrink flex-fill" /> */}
+                            {/* <li className="nav-item">
                                     <a className="nav-link check_nav-link text-center" data-bs-toggle="tab" href="#menu1">
                                         <span className="step-number">02</span>
                                         <span className="step-title d-block">Shipping Info</span>
                                     </a>
                                     <hr class="flex-fill track-line border border-2 border-success flex-shrink flex-fill" />
                                 </li> */}
-                                <li className="nav-item">
-                                    <a className="nav-link check_nav-link text-center" data-bs-toggle="tab" href="#menu2">
-                                        <span className="step-number">02</span>
-                                        <span className="step-title d-block">Payment Info</span>
-                                    </a>
-                                    {/* <hr class="flex-fill track-line border border-2 border-success flex-shrink flex-fill" /> */}
-                                </li>
-                            </ul>
                             <div className="tab-content mt-2 mt-md-4">
                                 <div className="tab-pane container active" id="home">
                                     <div className="row">
@@ -308,6 +308,24 @@ function CheckoutNew() {
                                             <label className="form-label small" htmlFor="email">Email</label>
                                             <input className="form-control shadow-none border-1 border-secondary" type="email" placeholder="Email address" required id="email" name='email' onChange={handleChange} />
                                         </div> */}
+                                        {/* {
+                                            !user.address ?
+                                                <>
+                                                    <div>Choose from saved address</div>
+                                                    {
+                                                        user.address.map((address, index) => {
+                                                            return (
+                                                                <>
+                                                                <div>
+                                                                    {address.addrType}
+                                                                </div>
+                                                                </>
+                                                            );
+                                                        })
+                                                    }
+                                                </>
+                                                :
+                                                <> */}
                                         <div className="col-12 col-md-6 px-3 mb-2 mb-md-3 ">
                                             <label className="form-label small" htmlFor="altphone">Phone</label>
                                             <div className='input-group'>
@@ -328,12 +346,12 @@ function CheckoutNew() {
                                             <input className="form-control shadow-none border-1 border-secondary py-3" type="text" name='address2' required id="address2" placeholder='Enter your address here' onChange={handleChange} />
                                         </div>
                                         {/* <div className="col-12 col-md-4  mb-2 mb-md-3">
-                                            <label className="form-label small" htmlFor="c-country">Country</label>
-                                            <select className="form-select" required="" name='country' id="country">
-                                                <option value="" selected="" disabled="">Select a country</option>
-                                                <option value="Australia">India</option>
-                                            </select>
-                                        </div> */}
+                                                        <label className="form-label small" htmlFor="c-country">Country</label>
+                                                        <select className="form-select" required="" name='country' id="country">
+                                                            <option value="" selected="" disabled="">Select a country</option>
+                                                            <option value="Australia">India</option>
+                                                        </select>
+                                                    </div> */}
                                         <div className="col-12 col-md-4 px-3 mb-2 mb-md-3">
                                             <label className="form-label small" htmlFor="city">City</label>
                                             <input type='text' className="form-control shadow-none border-1 border-secondary py-3" required name='city' id="city" onChange={handleChange} placeholder='Enter your city' />
@@ -346,26 +364,55 @@ function CheckoutNew() {
                                             <label className="form-label small" htmlFor="pincode">PIN Code</label>
                                             <input className="form-control shadow-none border-1 border-secondary py-3" type="text" name="pincode" placeholder="Enter pincode" required id="pincode" onChange={handleChange} />
                                         </div>
+                                        <div className='row pt-3 mt-3'>
+                                            <div className="col-12 text-center">
+                                                <h5 className='border-2 border-bottom pb-3'>Payment Method</h5>
+                                            </div>
+                                            <div className='col-12 mt-3'>
+                                                <div className="btn-group payment-method" role="group" aria-label="Basic radio toggle button group">
+                                                    <input type="radio" className="btn-check" name="btnradio" id="btnradio1" auoComplete="off" />
+                                                    <label className="py-2 me-2 w-50 btn btn-outline-dark btn-payment rounded-2 text-start" htmlFor="btnradio1"
+                                                        onClick={() => setPaymentMethod('online')}
+                                                    >
+                                                        <img src='/assets/images/razorpay.png' height={36} alt='razorpay' />
+                                                    </label>
+                                                    <input type="radio" className="btn-check" name="btnradio" id="btnradio3" auoComplete={'off'} />
+                                                    <label className="ps-5 px-md-4 w-50 btn btn-outline-dark btn-payment rounded-2 text-start" htmlFor="btnradio3"
+                                                        onClick={() => setPaymentMethod('cod')}
+                                                    >
+                                                        <i className="bi bi-cash me-1 me-md-3 text-dark" style={{ fontSize: '24px' }}></i>
+                                                        <span className='fw-semibold text-dark mx-2' style={{ fontSize: '18px' }}>COD</span>
+                                                    </label>
+                                                </div>
+                                                <div className='mt-4 d-flex flex-0 justify-content-between align-items-center'>
+                                                    {/* <Link className="btn btn-outline-dark btn-lg px-3 py-2 fs-6 fw-normal" onClick={prevTab}>Back</Link> */}
+                                                    <Link className=" w-100 btn btn-warning btn-lg px-3 py-2 fs-6 fw-normal border-secondary" onClick={processOrder}>Pay now</Link>
+                                                </div>
+                                            </div>
+                                            {/* </div> */}
+                                            {/* </>
+                                        } */}
 
-                                        {/* <div className="col-12">
+
+                                            {/* <div className="col-12">
                                     <label className="form-label fs-base" htmlFor="c-notes">Order notes <span className="text-muted">(optional)</span></label>
                                     <textarea className="form-control shadow-none border-1 border-secondary form-control shadow-none border-1 border-secondary-lg" rows="3" id="c-notes"></textarea>
                                 </div> */}
-                                        {/* <div className="col-12">
+                                            {/* <div className="col-12">
                                             <div className="form-check my-3 ms-2">
                                                 <input className="form-control shadow-none border-1 border-secondary form-check-input shadow-none p-1" type="checkbox" id="same-address" />
                                                 <label className="form-check-label fw-normal small mx-2" htmlFor="same-address">Billing address same as delivery</label>
                                             </div>
                                         </div> */}
-                                    </div>
-                                    <div className='mt-4 mb-2 d-flex flex-0 justify-content-between align-items-center'>
-                                        {/* <a className="btn btn-outline-dark px-3 py-2 disabled" onClick={prev}>Back</a> */}
+                                        </div>
+                                        {/* <div className='mt-4 mb-2 d-flex flex-0 justify-content-between align-items-center'>
+                                         // comment <a className="btn btn-outline-dark px-3 py-2 disabled" onClick={prev}>Back</a>
                                         <span></span>
-                                        {/* <Link className="btn btn-primary px-4 py-2 fw-normal" onClick={next}>Next</Link> */}
-                                        <Link className="btn btn-outline-dark btn-lg px-3 py-2 fs-6 fw-normal" onClick={next}>Next</Link>
+                                        // comment <Link className="btn btn-primary px-4 py-2 fw-normal" onClick={next}>Next</Link>
+                                        <Link className="btn btn-outline-dark btn-lg px-3 py-2 fs-6 fw-normal" onClick={nextTab}>Next</Link>
+                                    </div> */}
                                     </div>
-                                </div>
-                                {/* <div className="tab-pane container fade" id="menu1">
+                                    {/* <div className="tab-pane container fade" id="menu1">
                                     <div>
                                         <div className="card-title fs-6 fw-400">Shipping information</div>
                                         <p className="card-title-desc">It will be as simple as occidental in fact</p>
@@ -397,16 +444,16 @@ function CheckoutNew() {
                                         <Link className="btn btn-primary" onClick={next}>Next</Link>
                                     </div>
                                 </div> */}
-                                <div className="tab-pane container fade" id="menu2">
+                                    {/* <div className="tab-pane container fade" id="menu2"> */}
                                     {/* <div className="card-title fs-6 mb-3">Payment information</div> */}
-                                    <div className='row'>
+                                    {/* <div className='row'>
                                         <div className="col-12 text-center">
                                             <h5 className='border-2 border-bottom pb-3'>Payment Method</h5>
                                         </div>
-                                    </div>
-                                    <div className='my-3'>
-                                        {/* <div className="row"> */}
-                                        {/* <div className="col-sm-6 col-lg-4">
+                                    </div> */}
+                                    {/* <div className='my-3'> */}
+                                    {/* <div className="row"> */}
+                                    {/* <div className="col-sm-6 col-lg-4">
                                                 <div><label className="form-label card-radio-label mb-3"><input name="pay-method"
                                                     id="pay-methodoption1" type="radio"
                                                     className="card-radio-input form-check-input" />
@@ -433,39 +480,40 @@ function CheckoutNew() {
                                                             on Delivery</span></div>
                                                 </label></div>
                                             </div> */}
-                                        <div className="btn-group payment-method" role="group" aria-label="Basic radio toggle button group">
+
+                                    {/* <div className="btn-group payment-method" role="group" aria-label="Basic radio toggle button group">
                                             <input type="radio" className="btn-check" name="btnradio" id="btnradio1" auoComplete="off" />
                                             <label className="py-2 me-2 w-50 btn btn-outline-dark btn-payment rounded-2 text-start" htmlFor="btnradio1"
                                                 onClick={() => setPaymentMethod('online')}
-                                            >
-                                                {/* <i className="bi bi-credit-card-2-front me-1 me-md-3" style={{ fontSize: '24px' }}></i> */}
-                                                <img src='/assets/images/razorpay.png' height={36} alt='razorpay' />
-                                                {/* <span className='fw-normal'>Razorpay</span> */}
-                                            </label>
+                                            > */}
+                                    {/* <i className="bi bi-credit-card-2-front me-1 me-md-3" style={{ fontSize: '24px' }}></i> */}
+                                    {/* <img src='/assets/images/razorpay.png' height={36} alt='razorpay' /> */}
+                                    {/* <span className='fw-normal'>Razorpay</span> */}
+                                    {/* </label> */}
 
-                                            {/* <input type="radio" className="btn-check" name="btnradio" id="btnradio2" auoComplete="off" checked />
+                                    {/* <input type="radio" className="btn-check" name="btnradio" id="btnradio2" auoComplete="off" checked />
                                             <label className="py-2 px-4 ms-2 me-2 w-25 btn btn-outline-dark rounded-2 text-start" htmlFor="btnradio2">
                                                 <i className="bi bi-wallet me-3" style={{ fontSize: '24px' }}></i>
                                                 <span className='fw-normal d-block d-md-inline'>Wallet</span>
                                             </label> */}
 
-                                            <input type="radio" className="btn-check" name="btnradio" id="btnradio3" auoComplete={'off'} />
+                                    {/* <input type="radio" className="btn-check" name="btnradio" id="btnradio3" auoComplete={'off'} />
                                             <label className="ps-5 px-md-4 w-50 btn btn-outline-dark btn-payment rounded-2 text-start" htmlFor="btnradio3"
                                                 onClick={() => setPaymentMethod('cod')}
                                             >
                                                 <i className="bi bi-cash me-1 me-md-3 text-dark" style={{ fontSize: '24px' }}></i>
-                                                <span className='fw-semibold text-dark mx-2' style={{ fontSize: '18px' }}>COD</span>
-                                                {/* <div className='d-flex flex-row justify-content-between align-items-center'>
+                                                <span className='fw-semibold text-dark mx-2' style={{ fontSize: '18px' }}>COD</span> */}
+                                    {/* <div className='d-flex flex-row justify-content-between align-items-center'>
                                                     <span className='fw-normal p-0 text-dark' style={{ fontSize: '40px' }}>₹</span>
                                                     <span className='fw-semibold text-dark mx-3' style={{ fontSize: '14px' }}>CASH ON DELIVERY</span>
                                                 </div> */}
-                                                {/* <span className='fw-normal text-dark' style={{ fontSize: '18px' }}>₹ COD</span> */}
-                                                {/* <span className='fw-semibold text-dark mx-3' style={{ fontSize: '14px' }}>CASH ON DELIVERY</span> */}
-                                                {/* <img src='/assets/images/cod.png' height={40} alt='razorpay' /> */}
-                                            </label>
-                                        </div>
-                                        {/* </div> */}
-                                        {/* <h5 className="my-3 font-size-14">For card Payment</h5>
+                                    {/* <span className='fw-normal text-dark' style={{ fontSize: '18px' }}>₹ COD</span> */}
+                                    {/* <span className='fw-semibold text-dark mx-3' style={{ fontSize: '14px' }}>CASH ON DELIVERY</span> */}
+                                    {/* <img src='/assets/images/cod.png' height={40} alt='razorpay' /> */}
+                                    {/* </label>
+                                        </div> */}
+                                    {/* </div> */}
+                                    {/* <h5 className="my-3 font-size-14">For card Payment</h5>
                                         <div className="p-4 border">
                                             <form>
                                                 <div className="mb-3">
@@ -500,14 +548,11 @@ function CheckoutNew() {
                                                 </div>
                                             </form>
                                         </div> */}
-                                        {/* <div className="mt-4 text-end">
+                                    {/* <div className="mt-4 text-end">
                                             <a className="btn btn-success fw-normal text-center px-3 py-2 my-3">Complete order</a>
                                         </div> */}
-                                    </div>
-                                    <div className='mt-4 d-flex flex-0 justify-content-between align-items-center'>
-                                        <Link className="btn btn-outline-dark btn-lg px-3 py-2 fs-6 fw-normal" onClick={prev}>Back</Link>
-                                        <Link className="btn btn-warning btn-lg px-3 py-2 fs-6 fw-normal border-secondary" onClick={processOrder}>Pay now</Link>
-                                    </div>
+                                    {/* </div> */}
+
                                 </div>
                             </div>
                         </div>

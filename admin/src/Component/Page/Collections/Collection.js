@@ -147,10 +147,20 @@ const Collection = () => {
     return (
         <div className='container-fluid pt-5'>
             <div>
-                <div className="card my-5 mx-auto" >
-                    <div className="card-header py-1 d-flex justify-content-between align-items-center">
+                <div className="card my-5 mx-auto shadow" >
+                    <div className="card-header bg-light py-2 d-flex justify-content-between align-items-center">
                         <h4 className="fw-bold">Collection overview</h4>
-                        <button className='btn btn-dark btn-lg btn-md fs-6 small' onClick={() => navigate("/addCollection")}>+ Add Collection</button>
+                        {/* <button className='btn btn-dark btn-lg btn-md fs-6 small' onClick={() => navigate("/addCollection")}>+ Add Collection</button> */}
+                        <button
+                            type="button"
+                            className="btn btn-dark p-2 d-flex justify-content-between align-items-center p-0 m-0"
+                            onClick={() => navigate("/addCollection")}
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-plus-lg text-white" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
+                            </svg>
+                            <span className='p-0 m-0 ms-2'>Add New</span>
+                        </button>
                     </div>
                     <div className="card-body">
                         {loading ?
@@ -164,8 +174,8 @@ const Collection = () => {
                                 {
                                     collections.length > 0 ?
                                         <div className="table-responsive">
-                                            <table className="table table-bordered align-items-center text-center">
-                                                <thead className="thead-light ">
+                                            <table className="table table-bordered border-dark table-hover align-items-center text-center align-middle">
+                                                <thead className="thead-light">
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Name</th>
@@ -183,18 +193,20 @@ const Collection = () => {
                                                         return (
                                                             <>
                                                                 <tr key={_id}>
-                                                                    <td>{index + 1}.</td>
-                                                                    <td className='text-start'>{name}</td>
-                                                                    <td onClick={() => setExpand(!expand)} className='d-flex justify-content-around align-items-center' data-bs-toggle="collapse" href={`#demo-${index}`} role="button" aria-expanded="false" aria-controls={`demo-${index}`} >
-                                                                        <span>{products.length} Products</span>
-                                                                        <span>
-                                                                            {
-                                                                                expand ? <i class="bi bi-chevron-down"></i> : <i class="bi bi-chevron-up"></i>
-                                                                            }
+                                                                    <th style={{ width: '48px' }}>{index + 1}.</th>
+                                                                    <th className='text-start'>{name}</th>
+                                                                    <td className='table-active'>
+                                                                        <span onClick={() => setExpand(!expand)} className='d-flex flex-row justify-content-between align-items-center' data-bs-toggle="collapse" href={`#demo-${index}`} aria-expanded="false" aria-controls={`demo-${index}`} >
+                                                                            <span className=''>{products.length} Products</span>
+                                                                            <span>
+                                                                                {
+                                                                                    expand ? <i class="bi bi-chevron-down"></i> : <i class="bi bi-chevron-up"></i>
+                                                                                }
+                                                                            </span>
                                                                         </span>
                                                                     </td>
-                                                                    <td> {coupon} </td>
-                                                                    <td>
+                                                                    <td className='ls-1' style={{ width: '96px' }}> {coupon} </td>
+                                                                    <td style={{ width: '64px' }}>
                                                                         <div className="form-check form-switch d-flex justify-content-center align-items-center">
                                                                             <input
                                                                                 className="form-check-input me-1 p-2 border-0 shadow-none"
@@ -208,11 +220,17 @@ const Collection = () => {
                                                                                 className="form-check-label text-dark ms-1"
                                                                                 htmlFor="status"
                                                                             >
-                                                                                {status ? <small>Activated</small> : <small>Dectivated</small>}
+                                                                                {status ? <small>Active</small> : <small>Deactive</small>}
                                                                             </label> */}
                                                                         </div>
+                                                                        <label
+                                                                            className="form-check-label text-dark"
+                                                                            htmlFor="status"
+                                                                        >
+                                                                            {status ? <small>Active</small> : <small>Deactive</small>}
+                                                                        </label>
                                                                     </td>
-                                                                    <td>
+                                                                    <td style={{ width: '64px' }}>
                                                                         <div className="form-check form-switch d-flex justify-content-center align-items-center">
                                                                             <input
                                                                                 className="form-check-input me-1 p-2 border-0 shadow-none"
@@ -222,20 +240,36 @@ const Collection = () => {
                                                                                 defaultChecked={published}
                                                                                 onChange={() => handlePublished(_id, status, published)}
                                                                             />
+                                                                            {/* <label
+                                                                                className="form-check-label text-dark ms-1"
+                                                                                htmlFor="status"
+                                                                            >
+                                                                                {published ? <small>Published</small> : <small>Unpublished</small>}
+                                                                            </label> */}
                                                                         </div>
+                                                                        <label
+                                                                            className="form-check-label text-dark"
+                                                                            htmlFor="status"
+                                                                        >
+                                                                            {published ? <small>Published</small> : <small>Unpublished</small>}
+                                                                        </label>
                                                                     </td>
-                                                                    <td>
-                                                                        <div className="d-flex justify-content-center gap-2">
+                                                                    <td style={{ width: '64px' }}>
+                                                                        <div className="d-flex justify-content-between align-items-center gap-2">
                                                                             <button
                                                                                 type="button"
-                                                                                className="btn btn-outline-dark ms-1"
+                                                                                className="btn btn-outline-dark p-2 d-flex justify-content-between align-items-center"
                                                                                 onClick={() => navigate(`/collections/${_id}/edit`)}
                                                                             >
-                                                                                Edit
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                                                </svg>
+                                                                                <span className='p-0 m-0 ms-2'>Edit</span>
                                                                             </button>
                                                                             <button
                                                                                 type="button"
-                                                                                className="btn btn-danger ms-1 px-2 d-flex justify-content-between align-items-center p-0 m-0 "
+                                                                                className="btn btn-danger ms-1 p-2 d-flex justify-content-between align-items-center"
                                                                                 data-bs-toggle="modal"
                                                                                 data-bs-target="#staticBackdrop"
                                                                                 onClick={() => {
@@ -258,7 +292,7 @@ const Collection = () => {
                                                                                 return (
                                                                                     <span key={product._id} className='ms-2'>
                                                                                         <span key={product._id} className="badge bg-dark text-white mb-2 fs-6 fw-normal">{index += 1}. {product.name}</span>
-                                                                                        <br />
+                                                                                        {/* <br /> */}
                                                                                     </span>
                                                                                 )
                                                                             })
