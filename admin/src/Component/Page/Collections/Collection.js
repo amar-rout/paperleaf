@@ -7,15 +7,26 @@ import './Collection.css';
 
 const Collection = () => {
     const [collections, setCollections] = useState([]);
+    const [collectionsTable, setCollectionsTable] = useState([]);
     const [loading, setLoading] = useState(true);
     const [id, setId] = useState("");
     const [expand, setExpand] = useState("false");
+
+    const [pageSize, setPageSize] = useState(5);
+    const [pages, setPages] = useState(0);
+    const [page, setPage] = useState(0);
+    const [lowerLimit, setLowerLimit] = useState(0);
+    const [upperLimit, setUpperLimit] = useState(pageSize);
 
     const navigate = useNavigate();
 
     useEffect(() => {
         getCollections();
     }, []);
+
+    // useEffect(() => {
+    //     setPages(Math.ceil(collections.length / pageSize));
+    // }, []);
 
     const getCollections = () => {
         setLoading(true);
@@ -30,6 +41,9 @@ const Collection = () => {
                 toast.dismiss();
                 if (response.data) {
                     setCollections(response.data);
+                    setPages(Math.ceil(response.data.length / pageSize));
+                    let coll = response.data;
+                    setCollectionsTable(coll.slice(lowerLimit, upperLimit));
                 }
                 setLoading(false);
             }).catch(error => {
@@ -178,11 +192,21 @@ const Collection = () => {
                                                     <span className="input-group-text p-0 m-0 border-0 bg-body text-dark me-2" id="basic-addon1">
                                                         Show
                                                     </span>
-                                                    <select className="border-secondary px-1 py-2 m-0 rounded" style={{ width: '20px !important' }} aria-label="Default select example">
-                                                        <option selected>10</option>
-                                                        <option value="1">25</option>
-                                                        <option value="2">50</option>
-                                                        <option value="3">100</option>
+                                                    <select className="border-secondary px-1 py-2 m-0 rounded" style={{ width: '20px !important' }} aria-label="Default select example"
+                                                        onChange={(event) => {
+                                                            setPageSize(event.target.value);
+                                                            setPages(Math.ceil(collections.length / event.target.value));
+                                                            // if (collection.length > event.target.value )
+                                                            setUpperLimit(collections.length > event.target.value ? event.target.value : collections.length);
+                                                            let col = collections;
+                                                            setCollectionsTable(col.slice(lowerLimit, collections.length > event.target.value ? event.target.value : collections.length));
+                                                        }}
+                                                    >
+                                                        <option selected value="5">05</option>
+                                                        <option value="10">10</option>
+                                                        <option value="20">20</option>
+                                                        <option value="50">50</option>
+                                                        <option value="100">100</option>
                                                     </select>
                                                     <span className="input-group-text p-0 m-0 border-0 bg-body text-dark ms-2" id="basic-addon1">
                                                         entries
@@ -210,7 +234,7 @@ const Collection = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody className="table-body">
-                                                    {collections.map((collection, index) => {
+                                                    {collectionsTable.map((collection, index) => {
                                                         const { _id, name, products, coupon, status, published } = collection;
 
                                                         return (
@@ -361,7 +385,7 @@ const Collection = () => {
                                         </div>
                                         <div className='row align-items-center'>
                                             <div className='col-12 col-md-3 mb-3 d-flex justify-content-center justify-content-md-start'>
-                                                Showing 1 to 5 out of 25 records
+                                                Showing {lowerLimit + 1} to {upperLimit} of {collections.length} records
                                             </div>
                                             <div className='col-12 col-md-3'></div>
                                             <div className='col-12 col-md-6'>
@@ -370,7 +394,7 @@ const Collection = () => {
                                                         <li className="page-item disabled">
                                                             <span class="page-link py-2 px-3">Previous</span>
                                                         </li>
-                                                        <li className="page-item">
+                                                        {/* <li className="page-item">
                                                             <a className="page-link py-2 px-3" href="#">1</a>
                                                         </li>
                                                         <li className="page-item">
@@ -378,7 +402,32 @@ const Collection = () => {
                                                         </li>
                                                         <li className="page-item">
                                                             <a className="page-link py-2 px-3" href="#">3</a>
-                                                        </li>
+                                                        </li> */}
+                                                        {
+                                                            Array.from({ length: pages }, (elem, index) => {
+                                                                return (
+                                                                    <li key={index} className="page-item">
+                                                                        <button className={`page-link py-2 px-3 ${page === index && 'active'}`}
+                                                                            onClick={() => {
+                                                                                setPage(index);
+                                                                                // setPageSize(event.target.value);
+                                                                                // setPages(Math.ceil(collections.length / event.target.value));
+                                                                                // // if (collection.length > event.target.value )
+                                                                                setLowerLimit((index * pageSize));
+                                                                                setUpperLimit(collections.length > (upperLimit + pageSize) ? (upperLimit + pageSize) : collections.length);
+                                                                                console.log(lowerLimit);
+                                                                                console.log(upperLimit);
+                                                                                let coll = collections;
+                                                                                setCollectionsTable(coll.slice((index * pageSize), upperLimit));
+                                                                                console.log(collectionsTable);
+                                                                            }}
+                                                                        >
+                                                                            {index + 1}
+                                                                        </button>
+                                                                    </li>
+                                                                )
+                                                            })
+                                                        }
                                                         <li className="page-item">
                                                             <a className="page-link py-2 px-3" href="#">Next</a>
                                                         </li>
