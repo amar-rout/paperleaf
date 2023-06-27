@@ -85,7 +85,11 @@ export const productsFeaturedAsync = createAsyncThunk(
             categoryName = '';
             pageSize = 8;
             const config = { headers: { 'Content-Type': 'application/json', }, };
-            const response = await axios.get(`/api/products/featured/${categoryName}?pageSize=${pageSize}`, config,);
+            // if (categoryName.endsWith('Collection')) {
+            //     const response = await axios.get(`/api/products/featured/${categoryName}?pageSize=${pageSize}`, config,);   
+            // } else {
+                const response = await axios.get(`/api/products/featured/${categoryName}?pageSize=${pageSize}`, config,);
+            // }
             // localStorage.setItem('featured', JSON.stringify(response.data));
             return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
         } catch (error) {
@@ -107,7 +111,12 @@ export const listCategoryProductsAsync = createAsyncThunk(
                 // console.log(`Category: ${category} and Page No: ${pageNumber}`);
             }
             const config = { headers: { 'Content-Type': 'application/json', }, };
-            const response = await axios.get(`/api/products/category/${category}?pageNumber=${pageNumber}`, config,);
+            // if (category.endsWith("Collection")) {
+            //     const response = await axios.get(`/api/products/category/${category}?pageNumber=${pageNumber}`, config,);    
+            // } else {
+                const response = await axios.get(`/api/products/category/${category}?pageNumber=${pageNumber}`, config,);
+            // }
+            
             // const response = await axios.get(`/api/products/category/Kurtas?pageNumber=1`, config,);
             // localStorage.setItem('featured', JSON.stringify(response.data));
             return thunkAPI.fulfillWithValue(response.data);

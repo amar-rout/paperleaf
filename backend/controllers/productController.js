@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import ProductModel from '../models/productModel.js';
+import CollectionModel from '../models/collectionModel.js';
 import sanitize from '../utils/sanitize.js';
 import Mongoose from 'mongoose';
 
@@ -32,7 +33,7 @@ export const getProducts = asyncHandler(async (req, res) => {
 // @route GET /api/product/all
 // @access Private
 export const getAllProducts = asyncHandler(async (req, res) => {
-  const products = await ProductModel.find({}).sort({"createdAt": -1});
+  const products = await ProductModel.find({}).sort({ "createdAt": -1 });
   if (products) {
     res.json(products);
   } else {
@@ -80,7 +81,46 @@ export const getProductByCategory = asyncHandler(async (req, res) => {
   const page = Number(req.query.pageNumber);
 
   const cat = sanitize(req.params.category);
-  if (cat.includes("newCollections")) {
+  if (cat.endsWith('Collection')) {
+    const collection = await CollectionModel.find({
+      name: cat,
+      published: true
+    });
+    // const count = await CollectionModel.aggregate([
+    //   { $match:{
+    //     "name": cat,
+    //     "published": true
+    //   }},
+    //   { $project: { name: 1, totalProducts: { $size: "$products" } } },
+    //   { $group: { name: "$name", count: { $sum: "$totalProducts" } } }
+    // ]);
+    let count = collection[0].products.length;
+
+    // const category = await CollectionModel.find({
+    //   name: cat,
+    //   published: true
+    // })
+    // .limit(pageSize)
+    // .skip(pageSize * (page - 1))
+    // .sort({ "createdAt": -1 });
+    let category = collection[0].products;
+
+    category.sort((a, b) => {
+      let da = new Date(a.createdAt),
+        db = new Date(b.createdAt);
+      return da - db;
+    });
+    let pages = Math.ceil(count / pageSize); 
+    category = category.slice(page - 1, pageSize);
+
+    if (category.length > 0) {
+      res.json({ page, pages: pages, products: category });
+    } else {
+      res.status(404);
+      throw new Error('Category is empty');
+    }
+  }
+  else if (cat.includes("newCollections")) {
     const count = await ProductModel.countDocuments({
       newCollection: true,
       published: true
@@ -92,7 +132,7 @@ export const getProductByCategory = asyncHandler(async (req, res) => {
     })
       .limit(pageSize)
       .skip(pageSize * (page - 1))
-      .sort({"createdAt": -1});
+      .sort({ "createdAt": -1 });
 
     if (category.length > 0) {
       res.json({ page, pages: Math.ceil(count / pageSize), products: category });
@@ -112,7 +152,7 @@ export const getProductByCategory = asyncHandler(async (req, res) => {
     })
       .limit(pageSize)
       .skip(pageSize * (page - 1))
-      .sort({"createdAt": -1});
+      .sort({ "createdAt": -1 });
 
     if (category.length > 0) {
       res.json({ page, pages: Math.ceil(count / pageSize), products: category });
@@ -296,7 +336,7 @@ export const getTopProducts = asyncHandler(async (req, res) => {
   }
   const products = await ProductModel.find(queryParams)
     .sort({ "createdAt": -1 });
-    // .limit(limitSize);
+  // .limit(limitSize);
   res.json(products);
 });
 

@@ -11,10 +11,10 @@ import { isAdmin, protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.route('/').get(protect, isAdmin, getAllCollection)
+router.route('/').get(getAllCollection)
                  .post(protect, isAdmin, createCollection);
 
-router.route('/:id').get(protect, isAdmin, getCollectionById)
+router.route('/:id').get(getCollectionById)
                     .patch(protect, isAdmin, updateCollection)
                     .delete(protect, isAdmin, deleteCollection);
 

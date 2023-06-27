@@ -79,7 +79,7 @@ const CategoryItems = () => {
         catName = 'Dress Material';
     }
 
-    if (category === 'Fabrics' || category === 'Jewellery') {
+    if (category === 'Fabrics') {
         className = 'product-item-two';
     } else {
         className = 'product-item';

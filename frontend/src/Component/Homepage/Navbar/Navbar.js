@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet, useMatch, useNavigate, useResolvedPath } from "react-router-dom";
 
 import { useDispatch, useSelector } from 'react-redux';
+import axios from "axios";
+import { toast } from 'react-toastify';
 
 import {
     selectUser,
@@ -25,6 +27,9 @@ const Navbar = () => {
     const cartCount = useSelector(getCartCount);
     const wishlistCount = useSelector(getWishlistCount);
 
+    const [categories, setCategories] = useState([]);
+    const [collections, setCollections] = useState([]);
+
     // const location = useLocation();
 
     // const [loginUser, setLoginUser] = useState({});
@@ -39,6 +44,36 @@ const Navbar = () => {
     //         setLoginUser(user);
     //     }
     // });
+
+    useEffect(() => {
+        axios.get('/api/category/')
+            .then(response => {
+                setCategories(response.data);
+            }).catch(error => {
+                if (error.response) {
+                    toast.dismiss()
+                    toast.error(error.response.data.message)
+                } else if (error.request) {
+                } else {
+                    toast.dismiss()
+                    toast.error(error.message)
+                }
+            });
+
+        axios.get('/api/collection/')
+            .then(response => {
+                setCollections(response.data);
+            }).catch(error => {
+                if (error.response) {
+                    toast.dismiss()
+                    toast.error(error.response.data.message)
+                } else if (error.request) {
+                } else {
+                    toast.dismiss()
+                    toast.error(error.message)
+                }
+            })
+    }, []);
 
     const handleLogout = () => {
         dispatch(logout());
@@ -278,6 +313,43 @@ const Navbar = () => {
                                 New Collections
                                 <span className="position-absolute badge text-danger fw-bold translate-middle top-25 start-75 fw-normal"><small>New</small></span>
                             </NavCatLink>
+                            {/* <span class="dropdown position-relative">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <ul class="dropdown-menu position-absolute w-25 end-0 top" style={{zIndex: '999'}}>
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </span> */}
+                            {/* <div className="dropdown ms-2 me-2">
+                                <a href="/" className="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src={`${loginUser.image}`} alt={`${loginUser.image}`} width="36" height="36" className="rounded-circle border border-1 border-secondary" style={{ maxWidth: '36px' }} />
+                                </a>
+                                <ul className="position-absolute dropdown-menu dropdown-menu-end my-3 text-small shadow text-overflow-hidden">
+                                    <li>
+                                        <h5 className="dropdown-header header-dropdown-item">
+                                            <span className="fs-6 fw-bold">{loginUser.name}</span><br />
+                                            <span className="fs-6 fw-normal"><small>{loginUser.email}</small></span>
+                                        </h5>
+                                    </li>
+                                </ul>
+                            </div> */}
+                            {collections && collections.length > 0 &&
+                                collections.map((collection, index) => {
+                                    return (
+                                        <>
+                                            {/* <NavCatLink className="nav-link ps-0 pe-4" to={`/category/${collection.name.replace(/\s/g, "")}`}> */}
+                                            <NavCatLink className="nav-link ps-0 pe-4" to={`/category/${collection.name}`}>
+                                                {collection.name}
+                                                <span className="position-absolute badge text-danger fw-bold translate-middle top-25 start-75 fw-normal"><small>New</small></span>
+                                            </NavCatLink>
+                                        </>
+                                    );
+                                })
+                            }
                             {/* <NavCatLink className="nav-link ps-0 pe-4" to="/category/kurtis">Kurti/Sets</NavCatLink> */}
                             <NavCatLink className="nav-link ps-0 pe-4" to="/category/Dupattas">Dupattas</NavCatLink>
                             {/* <NavCatLink className="nav-link ps-0 pe-4" to="/category/Dress">Dress</NavCatLink> */}
