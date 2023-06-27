@@ -1,0 +1,9 @@
+.tr-down {
+    cursor: pointer;
+}
+.table-active {
+    background-color: aliceblue !important;
+}
+.tr-down:hover {
+    background-color: lightblue;
+}
