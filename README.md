@@ -7,4 +7,4 @@ Single cmd
 second terminal
 
 1 cd frontend
-2 npm start
+2 npm start as
