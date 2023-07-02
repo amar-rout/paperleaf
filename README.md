@@ -8,3 +8,4 @@ second terminal
 
 1 cd frontend
 2 npm start as
+# git add . && git commit -m "m" && git push paperleaf
