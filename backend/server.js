@@ -58,8 +58,8 @@ app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 
-const __dirname = path.resolve(); // Not available because its using ESM
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+// const __dirname = path.resolve(); // Not available because its using ESM
+// app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 if (process.env.NODE_ENV === 'production') {
   // app.get('/admin', (req, res) =>
@@ -67,6 +67,9 @@ if (process.env.NODE_ENV === 'production') {
   //     path.resolve(__dirname, 'admin', 'build', 'index.html'),
   //   ),
   // );
+  const __dirname = path.resolve(); // Not available because its using ESM
+  app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
   app.use(express.static(path.join(__dirname, 'frontend/build')));
   app.get('*', (req, res) =>
     res.sendFile(
