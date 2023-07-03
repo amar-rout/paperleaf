@@ -62,12 +62,13 @@ const __dirname = path.resolve(); // Not available because its using ESM
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'frontend/build')));
+  app.use(express.static(path.join(__dirname, 'admin/build')));
   app.get('/admin', (req, res) =>
     res.sendFile(
       path.resolve(__dirname, 'admin', 'build', 'index.html'),
     ),
   );
+  app.use(express.static(path.join(__dirname, 'frontend/build')));
   app.get('*', (req, res) =>
     res.sendFile(
       path.resolve(__dirname, 'frontend', 'build', 'index.html'),
