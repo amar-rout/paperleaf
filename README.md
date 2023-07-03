@@ -6,6 +6,14 @@ Single cmd
 
 second terminal
 
-1 cd frontend as
-2 npm starts 
+1. cd frontend
+2. npm install
+3. npm start
+
+Third Terminal
+
+1. cd admin
+2. npm install
+3. npm start
+
 # git add . && git commit -m "m" && git push paperleaf
