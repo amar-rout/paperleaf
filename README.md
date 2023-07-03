@@ -7,5 +7,5 @@ Single cmd
 second terminal
 
 1 cd frontend
-2 npm start as
+2 npm start
 # git add . && git commit -m "m" && git push paperleaf
