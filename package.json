@@ -4,7 +4,7 @@
   "description": "Paperleaf",
   "main": "index.js",
   "scripts": {
-    "build": "cd backend && npm install  && cd ../frontend && npm install && npm run build",
+    "build": "cd backend && npm install  && cd ../frontend && npm install && npm run build && cd ../admin && npm install && npm run build",
     "start": "node backend/server.js",
     "server": "npm run build && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
