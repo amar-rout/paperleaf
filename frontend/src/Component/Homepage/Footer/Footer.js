@@ -202,10 +202,10 @@ const Footer = () => {
             </section>
             <section className="container pb-2 mb-2" style={{ visibility: 'visible' }}>
                 <hr />
-                <a className='whatsappChat' href='https://wa.me/919692852485' target='_blank' rel='noopener noreferrer'>
+                <Link className='whatsappChat' to='https://wa.me/919692852485' target='_blank' rel='noopener noreferrer'>
                     <img alt='Chat on WhatsApp' src="https://stkiwiwebdev.z23.web.core.windows.net/assets/svg/whatsapp-icon.svg" />
                     <span className="d-none text-white fw-bold whatsappChatText"><small>Open Chat</small></span>
-                </a>
+                </Link>
                 <div className="row">
                     <div className="col-12 mb-20">
                     </div>
