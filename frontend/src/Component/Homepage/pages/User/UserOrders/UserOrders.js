@@ -55,7 +55,7 @@ const UserOrders = () => {
     useEffect(() => {
         setLoading(true);
         const user = JSON.parse(localStorage.getItem('user'));
-        axios.get(`${process.env.REACT_APP_SERVER_URL}/api/orders/myorders`, {
+        axios.get(`/api/orders/myorders`, {
             "headers": {
                 "authorization": `Bearer ${user.token}`,
             }
@@ -100,7 +100,7 @@ const UserOrders = () => {
 
     const handleComment = () => {
         const user = JSON.parse(localStorage.getItem("user"));
-        axios.post(`${process.env.REACT_APP_SERVER_URL}/api/products/reviews/${prodReview.pId}`, comment, {
+        axios.post(`/api/products/reviews/${prodReview.pId}`, comment, {
             "headers": {
                 "authorization": `Bearer ${user.token}`,
             }
