@@ -370,12 +370,12 @@ function CheckoutNew() {
                                             </div>
                                             <div className='col-12 mt-3'>
                                                 <div className="btn-group payment-method" role="group" aria-label="Basic radio toggle button group">
-                                                    <input type="radio" className="btn-check" name="btnradio" id="btnradio1" auoComplete="off" />
+                                                    {/* <input type="radio" className="btn-check" name="btnradio" id="btnradio1" auoComplete="off" />
                                                     <label className="py-2 me-2 w-50 btn btn-outline-dark btn-payment rounded-2 text-start" htmlFor="btnradio1"
                                                         onClick={() => setPaymentMethod('online')}
                                                     >
                                                         <img src='/assets/images/razorpay.png' height={36} alt='razorpay' />
-                                                    </label>
+                                                    </label> */}
                                                     <input type="radio" className="btn-check" name="btnradio" id="btnradio3" auoComplete={'off'} />
                                                     <label className="ps-5 px-md-4 w-50 btn btn-outline-dark btn-payment rounded-2 text-start" htmlFor="btnradio3"
                                                         onClick={() => setPaymentMethod('cod')}

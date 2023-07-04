@@ -148,7 +148,7 @@ const UserOrders = () => {
                             </select> */}
                         </div>
                         {
-                            orders.length <= 0 ?
+                            orders && orders.length <= 0 ?
                                 <div className="text-center pt-5">
                                     <p>You haven't made any orders yet.</p>
                                 </div>
@@ -157,7 +157,7 @@ const UserOrders = () => {
                                 <div className="card border-0 m-0">
                                     <div className="card-body p-0 m-0">
                                         <div className="accordion accordion-alt accordion-orders p-0 m-0" id="orders">
-                                            {
+                                            { orders &&
                                                 orders.map((order, index) => {
                                                     return (
                                                         <div key={order._id} className="accordion-item border-top mb-0">
