@@ -23,7 +23,7 @@ import "./Navbar.css";
 const Navbar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const loginUser = JSON.parse(localStorage.getItem("user"));
+    const [loginUser, setLoginUser] = useState(JSON.parse(localStorage.getItem("user")));
     const cartCount = useSelector(getCartCount);
     const wishlistCount = useSelector(getWishlistCount);
 
