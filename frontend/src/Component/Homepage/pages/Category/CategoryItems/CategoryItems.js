@@ -287,9 +287,9 @@ const CategoryItems = () => {
                                                 }>
 
                                                 {/* <img src={product.image} onClick={() => handleProductShow(product._id)} className="" alt="card 1" /> */}
-                                                <img src={product.image}
-                                                    srcset={`${product.image} 480w, ${product.image} 800w`}
-                                                    sizes="(max-width: 480px) 100vw, (max-width: 1024px) 50vw, 800px" alt={`${product.image}`} />
+                                                <img src={`/assets${product.image}`}
+                                                    srcset={`/assets${product.image} 480w, /assets${product.image} 800w`}
+                                                    sizes="(max-width: 480px) 100vw, (max-width: 1024px) 50vw, 800px" alt={`/assets${product.image}`} />
                                                 <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
                                                     <li class="icon" onClick={() => handleProductShow(product._id)}>
                                                         <i class="bi bi-eye"></i>

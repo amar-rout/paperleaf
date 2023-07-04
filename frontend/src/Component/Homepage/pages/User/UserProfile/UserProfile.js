@@ -539,7 +539,7 @@ const UserProfile = () => {
                     {
                         loginUser.image &&
                         <div className="col-12 col-md-6 my-auto align-middle mt-md-4 text-center">
-                            <img src={`${serverURL}${loginUser.image}`} alt="user" width="140" height="140" className="rounded-circle" />
+                            <img src={`/assets${loginUser.image}`} alt="user" width="140" height="140" className="rounded-circle" />
                         </div>
                     }
                     <div className='col-12 col-md-6'>

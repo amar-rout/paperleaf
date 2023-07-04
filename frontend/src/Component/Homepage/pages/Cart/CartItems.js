@@ -143,7 +143,7 @@ const CartItems = (products) => {
                         {cartItems.map((product) =>
                             <div key={product.pId} className="d-flex align-items-center mb-2">
                                 <a className="d-inline-block flex-shrink-0 bg-light-subtle rounded-1 mb-sm-0" href={`/products/${product.pId}`}>
-                                    <img src={product.image} className="" width={120} height={140} alt="Product" />
+                                    <img src={`/assets${product.image}`} className="" width={120} height={140} alt="Product" />
                                     {/* <img src={`${serverURL}${product.image}`} width="75" alt="Product" /> */}
                                 </a>
                                 <div className="w-100 ps-3 ps-sm-4">

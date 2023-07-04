@@ -161,7 +161,7 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
                             <div className="product-item">
                                 <div className="product">
                                     {/* <img src={product.image} onClick={() => handleProductShow(product._id)} className="" alt="card 1" /> */}
-                                    <img src={product.image} className="" alt="card 1" />
+                                    <img src={`/assets${product.image}`} className="" alt="card 1" />
                                     {/* onClick={() => navigate(`/products/${product._id}`)} */}
                                     <ul className="d-flex align-items-center justify-content-center list-unstyled icons">
                                         {/* <li className="icon">

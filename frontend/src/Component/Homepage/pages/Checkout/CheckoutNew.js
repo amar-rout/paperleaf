@@ -568,7 +568,7 @@ function CheckoutNew() {
                                             <div className="row align-items-center">
                                                 <div className="col-4">
                                                     <a href="product.html">
-                                                        <img src={`http://localhost:5010${item.image}`} width="48" alt="..." className="img-fluid" />
+                                                        <img src={`/assets${item.image}`} width="48" alt="..." className="img-fluid" />
                                                     </a>
                                                 </div>
                                                 <div className="col">

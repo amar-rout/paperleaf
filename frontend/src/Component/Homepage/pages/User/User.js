@@ -96,7 +96,7 @@ const User = () => {
                                     <div className="mb-3 d-flex justify-content-center align-items-center">
                                         {
                                             user.image ?
-                                                <img className="rounded-circle border border-dark border-1 " src={`http://localhost:5010${user.image}`} alt="Profile" width="120" height="120" />
+                                                <img className="rounded-circle border border-dark border-1 " src={`/assets${user.image}`} alt="Profile" width="120" height="120" />
                                                 :
                                                 <>
                                                     {/* <img className="rounded-circle border border-dark border-1 " src="" alt="Profile" width="120" height="120" /> */}

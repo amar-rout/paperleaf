@@ -197,7 +197,7 @@ const UserOrders = () => {
                                                                             order.orderItems.map((orderItem) => {
                                                                                 return (
                                                                                     <div key={orderItem._id} className="mx-1">
-                                                                                        <img src={`${orderItem.image}`} width="48" alt="Product" />
+                                                                                        <img src={`/assets${orderItem.image}`} width="48" alt="Product" />
                                                                                     </div>
                                                                                 )
                                                                             })
@@ -256,7 +256,7 @@ const UserOrders = () => {
                                                                                                         <div className="d-flex justify-content-between align-items-center">
                                                                                                             <div className='d-flex justify-content-start align-items-center'>
                                                                                                                 <a className="d-inline-block flex-shrink-0 bg-light-subtle rounded-1 p-0" href="shop-single.html">
-                                                                                                                    <img src={`${orderItem.image}`} width={64} height={64} alt="Product" />
+                                                                                                                    <img src={`/assets${orderItem.image}`} width={64} height={64} alt="Product" />
                                                                                                                 </a>
                                                                                                                 <div className="ps-3 ps-sm-4">
                                                                                                                     <h4 className="fs-6 mb-2">

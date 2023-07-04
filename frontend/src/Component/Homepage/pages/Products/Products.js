@@ -48,7 +48,7 @@ const Products = () => {
     }];
 
     const navigate = useNavigate();
-    const serverURL = process.env.REACT_APP_SERVER_URL;
+    // const serverURL = process.env.REACT_APP_SERVER_URL;
     // const serverURL = "http://192.168.29.28:5010";
     // 192.168.29.28";
 
@@ -226,7 +226,7 @@ const Products = () => {
                                             >
                                                 <div>
                                                     <img className='px-1'
-                                                        src={`${serverURL}${product.image}`}
+                                                        src={`/assets${product.image}`}
                                                         onClick={() => setModalImgInfo(product.image)}
                                                         data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                                                         alt="product" style={{ width: "100%", height: "auto" }} />
@@ -235,7 +235,7 @@ const Products = () => {
                                                     return (
                                                         <div>
                                                             <img className='px-1'
-                                                                src={`${serverURL}${image}`}
+                                                                src={`/assets${image}`}
                                                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                                                                 onClick={() => setModalImgInfo(image)}
                                                                 alt="product" style={{ width: "100%", height: "auto" }} />
@@ -500,7 +500,7 @@ const Products = () => {
                                                     onClick={() => setModalImgInfo("")}></button> */}
                                                 <div class="zoom_outer">
                                                     <div id="zoom">
-                                                        <img src={`${serverURL}${modalImgInfo}`} alt="zoom" style={{ width: '100%', height: 'auto' }} />
+                                                        <img src={`/assets/${modalImgInfo}`} alt="zoom" style={{ width: '100%', height: 'auto' }} />
                                                     </div>
                                                 </div>
                                                 {/* <button type="button" class="btn btn-light" style={{ position: 'absolute', bottom: '10px', right: '10px' }}

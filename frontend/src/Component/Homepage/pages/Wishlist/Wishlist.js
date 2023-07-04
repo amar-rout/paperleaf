@@ -89,9 +89,9 @@ const Wishlist = () => {
                                         <div className="card product-item bg-light p-0 p-md-0 m-0 rounded-0 border border-0" style={{ boxShadow: 'none' }}>
                                             <div className="product-item">
                                                 <div className="product">
-                                                    <img src={product.image}
-                                                        srcset={`${product.image} 480w, ${product.image} 800w`}
-                                                        sizes="(max-width: 480px) 100vw, (max-width: 1024px) 50vw, 800px" alt={`${product.image}`} />
+                                                    <img src={`/assets${product.image}`}
+                                                        srcset={`/assets${product.image} 480w, /assets${product.image} 800w`}
+                                                        sizes="(max-width: 480px) 100vw, (max-width: 1024px) 50vw, 800px" alt={`/assets${product.image}`} />
                                                     <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
                                                         <li class="icon" onClick={() => navigate(`/products/${product.wId}`)}>
                                                             <i class="bi bi-eye"></i>
