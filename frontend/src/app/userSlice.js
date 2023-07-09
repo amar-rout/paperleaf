@@ -50,7 +50,7 @@ export const userVerifyAsync = createAsyncThunk(
                     'Authorization': `Bearer ${token}`,
                 },
             };
-            const response = await axios.get('api/users/validateToken', config);
+            const response = await axios.get('/api/users/validateToken', config);
             // console.log(response.data);
             localStorage.setItem('user', JSON.stringify(response.data));
             return thunkAPI.fulfillWithValue(JSON.stringify(response.data));

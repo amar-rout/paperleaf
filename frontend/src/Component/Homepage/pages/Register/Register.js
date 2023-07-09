@@ -63,7 +63,7 @@ const Register = () => {
     useEffect(() => {
         if (registerStatus === "LOADED") {
             dispatch(clearState());
-            navigate("/");
+            navigate("/home");
         }
         if (registerStatus === "ERROR") {
             setErrorMessage(registerErrorMessage);

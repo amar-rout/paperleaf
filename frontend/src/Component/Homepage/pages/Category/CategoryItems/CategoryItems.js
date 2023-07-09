@@ -140,7 +140,7 @@ const CategoryItems = () => {
 
     const handleAddCart = (id, name) => {
         if (user && user.token) {
-            dispatch(userVerifyAsync());
+            // dispatch(userVerifyAsync());
             dispatch(addCartAsync({ pId: id, qty: 1 }));
         } else {
             navigate('/login');
@@ -148,9 +148,10 @@ const CategoryItems = () => {
     }
     const handleNotifyProduct = (id, name) => {
         if (user && user.token) {
-            dispatch(userVerifyAsync());
+            // dispatch(userVerifyAsync());
             toast.success(`Product ${name} saved.`);
         } else {
+            toast.warning('Please login to save the items into cart');
             navigate('/login');
         }
         // dispatch(addProductNotify({ pId: id, user: user.id }));
