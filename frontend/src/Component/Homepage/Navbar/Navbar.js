@@ -40,8 +40,9 @@ const Navbar = () => {
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
-        if ( user ) {
+        if ( !user === undefined ) {
             setLoginUser(user);
+            console.log(user);
         }
     });
 
@@ -228,7 +229,7 @@ const Navbar = () => {
                                     </button>
 
                                     {
-                                        !loginUser ?
+                                        !loginUser || loginUser === undefined || loginUser === null ?
                                             <>
                                                 <a href="/login" className="d-block link-dark text-decoration-none ms-2 me-2 rounded-circle p-1">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
