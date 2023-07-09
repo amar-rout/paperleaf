@@ -42,9 +42,9 @@ const Navbar = () => {
         const user = JSON.parse(localStorage.getItem('user'));
         if ( !user === undefined ) {
             setLoginUser(user);
-            console.log(user);
+            console.log(loginUser);
         }
-    });
+    }, []);
 
     useEffect(() => {
         axios.get('/api/category/')
