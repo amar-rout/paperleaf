@@ -23,7 +23,7 @@ import "./Navbar.css";
 const Navbar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [loginUser, setLoginUser] = useState(JSON.parse(localStorage.getItem("user")));
+    const [loginUser, setLoginUser] = useState({});
     const cartCount = useSelector(getCartCount);
     const wishlistCount = useSelector(getWishlistCount);
 
@@ -38,12 +38,12 @@ const Navbar = () => {
     //     dispatch(clearState());
     // }, [dispatch]);
 
-    // useEffect(() => {
-    //     // const user = JSON.parse(localStorage.getItem('user'));
-    //     if ( user ) {
-    //         setLoginUser(user);
-    //     }
-    // });
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if ( user ) {
+            setLoginUser(user);
+        }
+    });
 
     useEffect(() => {
         axios.get('/api/category/')
@@ -77,7 +77,7 @@ const Navbar = () => {
 
     const handleLogout = () => {
         dispatch(logout());
-        navigate('/');
+        navigate('/home');
     };
 
     return (

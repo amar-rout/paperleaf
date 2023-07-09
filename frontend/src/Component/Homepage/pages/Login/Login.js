@@ -61,7 +61,13 @@ const Login = () => {
         if (loginStatus === "LOADED") {
             dispatch(clearState());
             setLoading(false);
-            navigate('/home');
+            // navigate('/home');
+            if (window.history.state && window.history.state.idx > 0) {
+                navigate(-1);
+            } else {
+                navigate('/home', { replace: true }); 
+                // the current entry in the history stack will be replaced with the new one with { replace: true }
+            }
         }
         if (loginStatus === "ERROR") {
             setErrorMessage(loginErrorMessage);
