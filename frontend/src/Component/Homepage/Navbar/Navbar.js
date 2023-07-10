@@ -100,7 +100,7 @@ const Navbar = () => {
             </header> */}
             <div className="sticky-top bg-dark">
                 <nav className="navbar navbar-expand-lg navbar-body border-bottom" aria-label="Offcanvas navbar large">
-                    <div className="container py-1">
+                    <div className="container-fluid py-1">
                         {/* <div className="d-grid align-items-center" style={{ gridTemplateColumns: '1fr 1fr 8fr' }}> */}
                         <div className="d-flex flex-0 justify-content-between align-items-center w-100">
                             <div className="d-flex justify-content-start align-items-center">

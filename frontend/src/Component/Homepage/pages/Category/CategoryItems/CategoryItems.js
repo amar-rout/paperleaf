@@ -206,7 +206,7 @@ const CategoryItems = () => {
                 ]}
             />
             <div className="bg-light">
-                <div className="container-fluid container-md py-3">
+                <div className="container py-3">
                     {/* <h5 className="text-center text-decoration-underline pb-3 heading">{catName ? catName : id}</h5> */}
                     <div className="my-5 text-center">
                         <span class="position-relative">
