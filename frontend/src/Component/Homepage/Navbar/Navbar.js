@@ -61,7 +61,7 @@ const Navbar = () => {
                 }
             });
 
-        axios.get('/api/collection/')
+        axios.get('/api/collection/all')
             .then(response => {
                 setCollections(response.data);
             }).catch(error => {

@@ -86,12 +86,12 @@ const Home = () => {
             {/* <span className="fs-6 fw-semibold ls-2" style={{ color: "rgba(200, 160, 40)" }}> */}
             {/* rgb(234, 255, 150) */}
             {/* ⚡️  */}
-            <div className="container">
-                <div className="col-12 col-md-6">
+            {/* <div className="container"> */}
+                {/* <div className="col-12 col-md-6">
                     <h6 className="my-3 my-md-5 h5">
                         <span className="text-dark">Welcome to <span style={{ color: "rgba(200, 160, 40)" }}>Paperleaf</span></span>
                     </h6>
-                </div>
+                </div> */}
                 {/* <div className="col-6">
                     <button className="carousel-control-prev" type="button" data-bs-target="/carouselExampleControls" data-bs-slide="prev">
                         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -102,7 +102,7 @@ const Home = () => {
                         <span className="visually-hidden">Next</span>
                     </button>
                 </div> */}
-            </div>
+            {/* </div> */}
 
             {loading ?
                 <div className="progress">
@@ -111,7 +111,7 @@ const Home = () => {
                 :
                 <>
                     {/* <HomeCarousel /> */}
-                    <div className="mb-5">
+                    <div className="mt-3 mb-5">
                         <SliderView />
                     </div>
                     <HomeCategory />

@@ -31,7 +31,6 @@ import {
 } from "../../../../../app/wishlistSlice";
 
 import {
-    userVerifyAsync,
     selectUser,
 } from "../../../../../app/userSlice";
 
