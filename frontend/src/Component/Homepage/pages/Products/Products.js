@@ -1017,10 +1017,10 @@ const Products = () => {
                                                     <img src="/assets/images/catImages/dupattas_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
                                                     <h6 className="category-txt fw-normal pt-2 category-text">Dupattas</h6>
                                                 </button>
-                                                <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dress')}>
+                                                {/* <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dress')}>
                                                     <img src="/assets/images/catImages/dress_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
                                                     <h6 className="category-txt fw-normal pt-2">Dress</h6>
-                                                </button>
+                                                </button> */}
                                                 <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Fabrics')}>
                                                     <img src="/assets/images/catImages/fabrics_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
                                                     <h6 className="category-txt fw-normal pt-2">Fabrics</h6>

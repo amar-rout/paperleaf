@@ -39,9 +39,9 @@ const Footer = () => {
                     <div className="row">
                         <div className="col-lg-4 col-md-6">
                             <div className="font-md mb-md-5 mb-lg-0">
-                                <div className="text-center" style={{ visibility: 'visible' }}>
+                                {/* <div className="text-center" style={{ visibility: 'visible' }}>
                                     <Link to="/"><img height="70" width="70" src="/assets/images/logo/logo2.png" alt="logo" /></Link>
-                                </div>
+                                </div> */}
                                 {/* <h6 className="my-2 fw-400 text-muted text-decoration-underline" style={{ visibility: 'visible' }}>Contact us</h6> */}
                                 {/* <p className="d-flex justify-content-start align-items-start" style={{ visibility: 'visible' }}> */}
                                 {/* <p className="fw-semibold">
