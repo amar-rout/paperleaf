@@ -111,7 +111,7 @@ const Home = () => {
                 :
                 <>
                     {/* <HomeCarousel /> */}
-                    <div className="container mb-5">
+                    <div className="mb-5">
                         <SliderView />
                     </div>
                     <HomeCategory />
