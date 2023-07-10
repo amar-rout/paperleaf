@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js';
 import $ from "jquery";
 
-import './SliderView.css';
+// import './SliderView.css';
 
 const SliderView = () => {
 
@@ -206,7 +206,7 @@ const SliderView = () => {
                 </div> */}
                 <div className='carousel-item active'>
                     <div>
-                        <img src='/assets/images/productImages/product1.png' alt='carousel images' style={{ width: '100%', height: 'auto' }} />
+                        <img src='/assets/images/productImages/background_1.jpg' alt='carousel images' style={{ width: '100%', height: 'auto' }} />
                     </div>
                 </div>
                 {/* <div className='carousel-item active'>
