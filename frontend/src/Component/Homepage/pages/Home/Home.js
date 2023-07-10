@@ -577,10 +577,10 @@ const SectionInfo = () => {
                             <i className="bi bi-arrow-repeat fs-2" style={{ color: '#e5c07b' }}></i>
                             <div className="ms-2 ms-md-4 " style={{ color: '#abb2bf' }}>
                                 <p className="mb-1 small fw-bold">
-                                    FREE RETURNS
+                                    EXCHANGE
                                 </p>
                                 <p className="mb-0 small">
-                                    Return money within 30 days
+                                    Easy exchange within 15 days
                                 </p>
                             </div>
                         </div>

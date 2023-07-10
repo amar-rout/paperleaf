@@ -169,8 +169,8 @@ const Footer = () => {
                                 <li><a href="/login">Sign In</a></li>
                                 <li><a href="/wishlists">My Wishlist</a></li>
                                 <li><a href="/carts">View Cart</a></li>
-                                <li><a href="/orders">My Previous Orders</a></li>
-                                <li><a href="/trackOrder">Track My Order</a></li>
+                                {/* <li><a href="/orders">My Previous Orders</a></li>
+                                <li><a href="/trackOrder">Track My Order</a></li> */}
                                 <li><a href="/help">Help</a></li>
                             </ul>
                         </div>
