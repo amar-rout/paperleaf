@@ -205,17 +205,13 @@ const SliderView = () => {
                 {/* </div>
                 </div> */}
                 <div className='carousel-item active'>
-                    <div>
-                        <img src='/assets/images/productImages/background_1.jpg' alt='carousel images'
-                             style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
-                    </div>
+                    <img src='/assets/images/productImages/background_1.jpg' alt='carousel images'
+                        style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
                 </div>
-                <div className='carousel-item'>
-                    <div>
-                        <img src='/assets/images/productImages/background_1.jpg' alt='carousel images'
-                             style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
-                    </div>
-                </div>
+                {/* <div className='carousel-item'>
+                    <img src='/assets/images/productImages/background_1.jpg' alt='carousel images'
+                        style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
+                </div> */}
                 {/* <div className='carousel-item active'>
                     <div className="card">
                         <div className="bg-warning-subtle px-3 px-md-5 py-3"
