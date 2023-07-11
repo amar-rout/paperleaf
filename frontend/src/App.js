@@ -5,10 +5,10 @@ import './App.css';
 
 // import Slider from "react-slick";
 // Bootstrap CSS
-import "bootstrap";
+// import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 // Bootstrap Bundle JS
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";
 // Bootstrap icons
 import "bootstrap-icons/font/bootstrap-icons.css";
 

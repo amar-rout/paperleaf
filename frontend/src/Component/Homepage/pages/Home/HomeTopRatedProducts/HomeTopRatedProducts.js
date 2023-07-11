@@ -122,10 +122,10 @@ const HomeTopRatedProducts = ({ title, topProducts }) => {
             {/* <h4 className="pb-5 text-center">
                     <span className="border-bottom border-2">{title}</span>
                 </h4> */}
-            <div className="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 g-sm-3 g-md-2 g-lg-5">
+            <div className="mx-1 row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 g-sm-3 g-md-2 g-lg-5">
                 {products.map((product) => (
-                    <div key={product._id} className="col">
-                        <div className="card bg-light product_card p-0 p-md-0 m-0 rounded-0" style={{ boxShadow: 'none' }}>
+                    <div key={product._id} className="col p-1 m-0">
+                        <div className="card bg-light product_card p-0 p-md-0 m-0 rounded-0 border-0" style={{ boxShadow: 'none' }}>
                             {/* onClick={() => navigate(`/products/${product._id}`)}> */}
                             {/* <div className="position-relative">
                                 {wishlistItems.find((item) => item.wId === product._id) ?

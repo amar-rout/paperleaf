@@ -237,11 +237,11 @@ const CategoryItems = () => {
                         //     <div className="col-12 col-md-4"></div>
                         //     <div className="col-12 col-md-8">
                         // <div className="row row-cols-2 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 g-3 g-sm-3 g-md-4 g-lg-4">
-                        <div className="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 g-sm-3 g-md-2 g-lg-5">
+                        <div className="mx-1 row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 g-sm-3 g-md-2 g-lg-5">
                             {products.map((product) => (
-                                <div key={product._id} className="col">
+                                <div key={product._id} className="col p-1 m-0">
                                     {/* <div className="card product-card bg-light p-0 p-md-0 m-0 shadow-0 rounded-0 border border-0"> */}
-                                    <div className={`card ${className} bg-light p-0 p-md-0 m-0 rounded-0 border border-0`} style={{ boxShadow: 'none' }}>
+                                    <div className={`card ${className} bg-light p-0 p-md-0 m-0 rounded-0 border border-0 border-0`} style={{ boxShadow: 'none' }}>
                                         {/* <div className="position-relative"> */}
                                         {/* {wishlistItems.find((item) => item.wId === product._id) ?
                                                 <button type="button" className="btn btn-sm btn-default bg-light wishlist_button_active position-absolute top-0 end-0 p-1 mt-1 me-1 shadow opacity-75 rounded-circle"
