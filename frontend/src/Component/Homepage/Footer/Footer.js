@@ -4,6 +4,9 @@ import './Footer.css';
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+
+    const loginUser = JSON.parse(localStorage.getItem('user'));
+
     return (
         <footer className="main" style={{ boxShadow: '0px -0.25rem 8px 2px rgba(0, 0, 0, 0.2)' }}>
             {/* <section className="py-2 text-white footerStart"
@@ -166,7 +169,9 @@ const Footer = () => {
                         <div className="col-6 col-md-4 my-md-5">
                             <h6 className="widget-title text-muted"><strong>My Account</strong></h6>
                             <ul className="footer-list mb-sm-5 mb-md-0" style={{ listStyleType: 'none' }}>
-                                <li><a href="/login">Sign In</a></li>
+                                {!loginUser && loginUser === undefined &&
+                                    <li><a href="/login">Sign In</a></li>
+                                }
                                 <li><a href="/wishlists">My Wishlist</a></li>
                                 <li><a href="/carts">View Cart</a></li>
                                 {/* <li><a href="/orders">My Previous Orders</a></li>
