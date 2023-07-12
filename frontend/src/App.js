@@ -24,7 +24,8 @@ import ComingSoon from './Component/Homepage/pages/ComingSoon/ComingSoon';
 import Home from './Component/Homepage/pages/Home/Home';
 import Cart from './Component/Homepage/pages/Cart/Cart';
 import Login from './Component/Homepage/pages/Login/Login';
-import Register from './Component/Homepage/pages/Register/Register';
+// import Register from './Component/Homepage/pages/Register/Register';
+import RegisterM from './Component/Homepage/pages/Register/RegisterM';
 import ForgotPassword from './Component/Homepage/pages/ForgotPassword/ForgotPassword';
 import ResetPassword from './Component/Homepage/pages/ResetPassword/ResetPassword';
 import Wishlist from './Component/Homepage/pages/Wishlist/Wishlist';
@@ -105,7 +106,8 @@ function App() {
             <Route path="/checkout/success" element={<OrderSuccess />} />
             <Route path="/wishlists" element={<Wishlist />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            {/* <Route path="/register" element={<Register />} /> */}
+            <Route path="/register" element={<RegisterM />} />
             <Route path="/forgotPassword" element={<ForgotPassword />} />
             <Route path="/passwordReset" element={<ResetPassword />} />
             <Route path="userProfile" element={<UserProfile />} />
