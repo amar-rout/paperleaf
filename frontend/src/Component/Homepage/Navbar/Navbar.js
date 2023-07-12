@@ -307,7 +307,7 @@ const Navbar = () => {
                     </div>
                 </nav>
                 <header className="bg-warning-subtle top-0 py-1 shadow-sm">
-                    <div className="container nav-scroller">
+                    <div className="container-fluid nav-scroller">
                         <nav className="nav navcat-link position-relative pt-1" aria-label="Secondary navigation">
                             {/* <NavCatLink className="nav-link ps-0 pe-4" to="/category/browseAll">All products</NavCatLink> */}
                             <NavCatLink className="nav-link ps-0 pe-4" to="/category/newCollections">
