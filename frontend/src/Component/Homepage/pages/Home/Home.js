@@ -166,7 +166,7 @@ const Home = () => {
                                             </li> */}
                                         </ul>
                                     </div>
-                                    <div className="tab-content" id="pills-tabContent">
+                                    <div className="tab-content mt-3" id="pills-tabContent">
                                         <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabIndex="0">
                                             <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
                                         </div>
