@@ -336,27 +336,14 @@ const Products = () => {
                                             <div class="modal fade text-center" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered modal-fullscreen">
                                                     <div class="modal-content">
-                                                        {/* data-bs-backdrop="static" data-bs-keyboard="false" */}
                                                         <div class="modal-header bg-body" style={{ backgroundColor: 'transparent !important' }}>
                                                             <h1 class="modal-title fs-6 small text-dark" id="staticBackdropLabel">
                                                                 <small>{product.name}</small>
                                                             </h1>
-                                                            {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                                                onClick={() => setModalImgInfo("")}>
-                                                            </button> */}
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                                            <button type="button" class="btn-close text-danger" data-bs-dismiss="modal" aria-label="Close"
                                                                 style={{ right: '10px' }} onClick={() => setModalImgInfo("")}>
                                                             </button>
                                                         </div>
-
-
-
-                                                        {/* <div class="modal-body"> */}
-                                                        {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                                        onClick={() => setModalImgInfo("")}></button> */}
-                                                        {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                                    style={{ right: '10px' }}
-                                                    onClick={() => setModalImgInfo("")}></button> */}
                                                         <div className='modal-body'>
                                                             <div className='img_container'>
                                                                 <div class="zoom_outer">
@@ -366,19 +353,11 @@ const Products = () => {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        {/* <button type="button" class="btn btn-light" style={{ position: 'absolute', bottom: '10px', right: '10px' }}
-                                                    onClick={() => setModalImgInfo("")}
-                                                    data-bs-dismiss="modal">Close</button> */}
-                                                        {/* </div> */}
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
+                                                            <button type="button" class="btn btn-danger"
                                                                 onClick={() => setModalImgInfo("")}
                                                                 data-bs-dismiss="modal">Close</button>
-                                                            {/* <button type="button" class="btn btn-primary">Understood</button> */}
                                                         </div>
-                                                        {/* <button type="button" class="btn btn-light" style={{ bottom: '10px', right: '10px' }}
-                                                    onClick={() => setModalImgInfo("")}
-                                                    data-bs-dismiss="modal">Close</button> */}
                                                     </div>
                                                 </div>
                                             </div>
