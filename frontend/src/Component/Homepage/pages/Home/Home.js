@@ -149,7 +149,7 @@ const Home = () => {
                                     <div className="mb-2 ">
                                         <ul className="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
                                             <li className="nav-item mx-2" role="presentation">
-                                                <button className="nav-link bg-transparent p-0 m-0 mb-3 text-muted active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+                                                <button className="nav-link bg-transparent p-0 m-0 mb-3 text-muted active heading" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
                                                     New in Store
                                                     {/* <span class="position-relative">
                                                         <span className="fs-4 text-dark text-decoration-underline">Privacy Policy</span>
