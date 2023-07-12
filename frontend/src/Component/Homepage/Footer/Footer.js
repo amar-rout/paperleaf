@@ -149,8 +149,8 @@ const Footer = () => {
                                 {/* </ul>
                             </div>
                         </div> */}
-                        <div className="ps-2 pe-2 d-md-none"><hr /></div>
-                        <div className="col-lg-2 col-md-3 col-6 my-md-5">
+                        {/* <div className="ps-2 pe-2 d-md-none"><hr /></div> */}
+                        <div className="col-6 col-md-4 my-md-5">
                             <h6 className="widget-title text-muted"><strong>About</strong></h6>
                             <ul className="footer-list mb-sm-5 mb-md-0">
                                 <li><a href="/about">About Us</a></li>
@@ -163,7 +163,7 @@ const Footer = () => {
                                 <li><a href="/faqs">FAQs</a></li> */}
                             </ul>
                         </div>
-                        <div className="col-lg-2 col-md-3 col-6 my-md-5">
+                        <div className="col-6 col-md-4 my-md-5">
                             <h6 className="widget-title text-muted"><strong>My Account</strong></h6>
                             <ul className="footer-list mb-sm-5 mb-md-0" style={{ listStyleType: 'none' }}>
                                 <li><a href="/login">Sign In</a></li>
@@ -173,8 +173,11 @@ const Footer = () => {
                                 <li><a href="/trackOrder">Track My Order</a></li> */}
                                 <li><a href="/help">Help</a></li>
                             </ul>
-                            <div className="font-md mb-md-5 mb-lg-0">
-                                <h6 className="text-muted"><small>Follow us on:</small></h6>
+                            
+                        </div>
+                        <div className="col-6 col-md-4 my-md-5">
+                        <div className="font-md mb-md-5 mb-lg-0">
+                                <h6 className="text-muted fw-bold"><small>Follow us on:</small></h6>
                                 <ul className="d-flex list-unstyled" style={{ listStyle: 'outside none none' }}>
                                     <li className="ms-3">
                                         <a className="link-dark btn btn-default bg-body text-dark" href="https://www.instagram.com/invites/contact/?i=dlbeee92r9o5&utm_content=pc8jl5z">
