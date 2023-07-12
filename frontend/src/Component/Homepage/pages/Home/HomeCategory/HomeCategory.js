@@ -11,7 +11,7 @@ const HomeCategory = () => {
         <section className="album py-5 bg-light-subtle">
             <div className="container">
                 <h4 className="pb-5 text-center">
-                    <span className="border-bottom border-2">Browse all categories</span>
+                    <span className="border-bottom border-2 heading fs-2">Browse all categories</span>
                 </h4>
                 <div className="text-center d-flex justify-content-center row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 g-2 g-sm-2 g-md-3 g-lg-4">
                     <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dupattas')}>
