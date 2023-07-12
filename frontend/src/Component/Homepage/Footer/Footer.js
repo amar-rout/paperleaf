@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
 
-    const [loginUser, setLoginUser] = useState({});
+    const [loginUser, setLoginUser] = useState(null);
 
     useEffect(() => {
         setLoginUser(JSON.parse(localStorage.getItem('user')));
@@ -173,7 +173,7 @@ const Footer = () => {
                         <div className="col-6 col-md-4 my-md-5">
                             <h6 className="widget-title text-muted"><strong>My Account</strong></h6>
                             <ul className="footer-list mb-sm-5 mb-md-0" style={{ listStyleType: 'none' }}>
-                                {!loginUser && loginUser === undefined ?
+                                {loginUser === null ?
                                     <li><a href="/login">Sign In</a></li>
                                     :
                                     <>
