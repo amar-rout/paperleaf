@@ -97,6 +97,10 @@ input[type="email"]:focus {
     padding-left: 4px;
 }
 
+.whatsappChat .whatsappChatText {
+    display: none !important;
+}
+
 .whatsappChat:hover .whatsappChatText {
     display: inline !important;
     padding-left: 4px;
