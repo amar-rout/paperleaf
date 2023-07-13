@@ -9,7 +9,8 @@ const Footer = () => {
 
     useEffect(() => {
         setLoginUser(JSON.parse(localStorage.getItem('user')));
-    }, [setLoginUser]);
+        console.log(loginUser);
+    }, [setLoginUser, loginUser]);
 
     return (
         <footer className="main" style={{ boxShadow: '0px -0.25rem 8px 2px rgba(0, 0, 0, 0.2)' }}>

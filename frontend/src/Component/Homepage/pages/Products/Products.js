@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import $ from 'jquery';
+// import $ from 'jquery';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,6 +9,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 // import { htmlToText } from 'html-to-text';
 import Moment from 'react-moment';
 import 'moment/locale/fr';
+
+// import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
@@ -20,7 +23,6 @@ import './Products.css';
 // import RecentlyViewedProducts from '../Home/RecentlyViewedProducts/RecentlyViewedProducts';
 
 const Products = () => {
-
     let currINR = new Intl.NumberFormat('en-IN', {
         style: 'currency',
         currency: 'INR',
@@ -100,25 +102,44 @@ const Products = () => {
         dispatch(clearState());
     }, [dispatch, id, productID]);
 
-    useEffect(() => {
-        $('.modal').on('shown.bs.modal', function () {
-            window.location.hash = "modal";
-        });
-        $('.close-icon').on('click', function () {
-            $(this).closest('.card').fadeOut();
-        });
-        $(window).on('hashchange', function (event) {
-            if (window.location.hash !== "#modal") {
-                window.location.hash = "";
-                $('.close').click();
-            }
-        });
-    }, []);
+    // useEffect(() => {
+    //     $('.modal').on('shown.bs.modal', function () {
+    //         window.location.hash = "modal";
+    //     });
+    //     $('.close-icon').on('click', function () {
+    //         $(this).closest('.card').fadeOut();
+    //     });
+    //     $(window).on('hashchange', function (event) {
+    //         if (window.location.hash !== "#modal") {
+    //             window.location.hash = "";
+    //             $('.close').click();
+    //         }
+    //     });
+    // }, []);
 
     const handleAddCart = (id, quantity) => {
         dispatch(addCartAsync({ pId: id, qty: quantity }));
     }
-
+    // useEffect(() => {
+    //     const handlePopstate = () => {
+            // Close the Bootstrap modal when the back button is pressed
+            // const modalElement = document.getElementById('staticBackdrop1');
+            // if (modalElement) {
+            //   const modal = modalElement;
+            //   if (modal) {
+            //     modal.hide();
+            //   }
+            // }
+    //         document.body.removeAttribute("class");
+    //         document.body.removeAttribute("style");
+    //       };
+      
+    //       window.addEventListener('popstate', handlePopstate);
+      
+    //       return () => {
+    //         window.removeEventListener('popstate', handlePopstate);
+    //       };
+    //   }, []);
     // const handleStarRate = () => {
     //     if (product) {
     //         return (
@@ -333,14 +354,14 @@ const Products = () => {
                                             </Slider>
                                             {/* Modal Start */}
                                             {/* <div> */}
-                                            <div class="modal fade text-center" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal fade text-center" data-bs-backdrop="static" data-bs-keyboard="false" id="staticBackdrop1" role="dialog" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered modal-fullscreen">
                                                     <div class="modal-content">
                                                         <div class="modal-header bg-body" style={{ backgroundColor: 'transparent !important' }}>
                                                             <h1 class="modal-title fs-6 small text-dark" id="staticBackdropLabel">
                                                                 <small>{product.name}</small>
                                                             </h1>
-                                                            <button type="button" class="btn-close text-danger" data-bs-dismiss="modal" aria-label="Close"
+                                                            <button type="button" class="btn-close modal-open text-danger" data-bs-dismiss="modal" aria-label="Close"
                                                                 style={{ right: '10px' }} onClick={() => setModalImgInfo("")}>
                                                             </button>
                                                         </div>
@@ -348,7 +369,7 @@ const Products = () => {
                                                             <div className='img_container'>
                                                                 <div class="zoom_outer">
                                                                     <div id="zoom">
-                                                                        <img src={`/assets/${modalImgInfo}`} alt={`${modalImgInfo}`} style={{ width: '100%', height: 'auto' }} />
+                                                                        <img src={`/assets/${modalImgInfo}`} alt={`${modalImgInfo}`} />
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -14,8 +14,8 @@
     cursor: grab;
 }
 div#zoom>img {
-    width: 100%;
-    height: auto;
+    /* width: 100%; */
+    height: 100vh;
 }
 
 .cat-btn {

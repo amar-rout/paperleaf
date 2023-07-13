@@ -15,6 +15,7 @@ Third Terminal
 1. cd admin
 2. npm install
 3. npm start
+# cd backend && npm install && 
 # && cd ../admin && npm install && npm run build
 # On git bash
 # git add . && git commit -m "m" && git push paperleaf
