@@ -109,7 +109,7 @@ const Login = () => {
                             <div className="position-relative">
                                 <i className="bi bi-envelope fs-lg position-absolute top-50 start-0 translate-middle-y text-dark opacity-80 ms-3"></i>
                                 <input className="form-control form-control-lg px-4 ps-5 py-3 border-1 border-secondary rounded rounded-3 mb-3 fs-6 text-decoration-none shadow-none"
-                                    type="text" name="email" value={user.email} onChange={handleChange} placeholder="Ener your Email or Phone" required={true}
+                                    type="text" name="email" value={user.email} onChange={handleChange} placeholder="Enter your Email" required={true}
                                     style={{ minHeight: "48px !important" }} />
                             </div>
                         </div>

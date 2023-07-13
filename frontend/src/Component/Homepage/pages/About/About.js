@@ -39,7 +39,7 @@ const About = () => {
                             Wear Confidence Today
                         </div>
                         <p className="mt-3">
-                            Every woman is beautiful... Inner beauty turns the heart & outer beauty burns the head! So be your own kind of beautiful…
+                            Every woman is beautiful... Inner beauty turns the heart & outer beauty turns the head! So be your own kind of beautiful…
                         </p>
                         <p>
                             Our brand is a handcrafted clothing brand level that specializes in creating premium clothing for women of all ages. We use only the finest materials and craftsmanship to create our designs, which are stylist and functional at the same time.
