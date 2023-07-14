@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
@@ -13,7 +13,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 // React-tostify
-import {ToastContainer} from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 // import "slick-carousel/slick/slick.css";
@@ -71,56 +71,56 @@ const PageNotFound = () => {
 };
 
 function App() {
-
+  
   return (
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Homepage />}>
-            <Route index element={<Home />} />
-            <Route path='/home' element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/shipping" element={<Shipping/>} />
-            <Route path="/returning" element={<Returning />} />
-            <Route path="/search" element={<Search />} />
-            {/* <Route path="/category" element={<Category />} /> */}
-            <Route exact path="/category/:id" element={<CategoryItems />} />
-            {/* <Route exact path="/category/:id/page/:id" element={<CategoryItems />} /> */}
-            <Route path="products/:id" element={<Products />}/>
-            <Route path="user" element={<User />}>
-              <Route index element={<UserProfile />} />
-              <Route path="profile" element={<UserProfile />} />
-              <Route path="orders" element={<UserOrders />} />
-              <Route path="address" element={<UserAddress />} />
-              <Route path="addAddress" element={<AddAddress />} />
-              <Route path="editAddress" element={<EditAddress />} />
-              <Route path="notifications" element={<UserNotification />} />
-              <Route path="settings" element={<UserSetting />}/>
-              <Route path="paymentMethods" element={<UserPayment />} />
-              <Route path="*" element={<ComingSoon />} />
-            </Route>
-            <Route path="/carts" element={<Cart />} />
-            <Route path="/checkout" element={<CheckoutNew />} />
-            <Route path="/checkout/success" element={<OrderSuccess />} />
-            <Route path="/wishlists" element={<Wishlist />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            {/* <Route path="/register" element={<RegisterM />} /> */}
-            <Route path="/forgotPassword" element={<ForgotPassword />} />
-            <Route path="/passwordReset" element={<ResetPassword />} />
-            <Route path="userProfile" element={<UserProfile />} />
-            <Route path="help" element={<Help />} />
-            <Route path="faqs" element={<Help />} />
-            <Route path="termsConditions" element={<TermsConditions />} />
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Homepage />}>
+          <Route index element={<Home />} />
+          <Route path='/home' element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/shipping" element={<Shipping />} />
+          <Route path="/returning" element={<Returning />} />
+          <Route path="/search" element={<Search />} />
+          {/* <Route path="/category" element={<Category />} /> */}
+          <Route exact path="/category/:id" element={<CategoryItems />} />
+          {/* <Route exact path="/category/:id/page/:id" element={<CategoryItems />} /> */}
+          <Route path="products/:id" element={<Products />} />
+          <Route path="user" element={<User />}>
+            <Route index element={<UserProfile />} />
+            <Route path="profile" element={<UserProfile />} />
+            <Route path="orders" element={<UserOrders />} />
+            <Route path="address" element={<UserAddress />} />
+            <Route path="addAddress" element={<AddAddress />} />
+            <Route path="editAddress" element={<EditAddress />} />
+            <Route path="notifications" element={<UserNotification />} />
+            <Route path="settings" element={<UserSetting />} />
+            <Route path="paymentMethods" element={<UserPayment />} />
+            <Route path="*" element={<ComingSoon />} />
           </Route>
-          <Route path="underConstruction" element={<UnderConstruction />} />
-          <Route path="noMatch" element={<ComingSoon />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-        <ToastContainer />
-      </div>
+          <Route path="/carts" element={<Cart />} />
+          <Route path="/checkout" element={<CheckoutNew />} />
+          <Route path="/checkout/success" element={<OrderSuccess />} />
+          <Route path="/wishlists" element={<Wishlist />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          {/* <Route path="/register" element={<RegisterM />} /> */}
+          <Route path="/forgotPassword" element={<ForgotPassword />} />
+          <Route path="/passwordReset" element={<ResetPassword />} />
+          <Route path="userProfile" element={<UserProfile />} />
+          <Route path="help" element={<Help />} />
+          <Route path="faqs" element={<Help />} />
+          <Route path="termsConditions" element={<TermsConditions />} />
+        </Route>
+        <Route path="underConstruction" element={<UnderConstruction />} />
+        <Route path="noMatch" element={<ComingSoon />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+      <ToastContainer />
+    </div>
   );
 }
 

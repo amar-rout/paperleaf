@@ -1,11 +1,12 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 
 import Navbar from "./Navbar/Navbar"
 import Footer from "./Footer/Footer";
 
 import "./Homepage.css"
 
-const Homepage = (user) => {
+const Homepage = () => {
+    
     return (
         <div className="homepage">
             <Navbar />

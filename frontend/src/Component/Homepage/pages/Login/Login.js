@@ -48,6 +48,17 @@ const Login = () => {
     };
 
     useEffect(() => {
+        setLoading(true);
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user && user.token !== null) {
+            navigate(-1);
+        }
+        return(
+            setLoading(false)
+        )
+    }, [navigate]);
+
+    useEffect(() => {
         return () => {
             dispatch(clearState());
         };
@@ -152,9 +163,9 @@ const Login = () => {
                         </div>
                         <div className="d-flex justify-content-between align-items center">
                             { !loading ?
-                                <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fw-semibold" type="button" onClick={login}>Login</button>
+                                <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fs-6 fw-semibold" type="button" onClick={login}>Login</button>
                                 :
-                                <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fw-semibold" type="button" disabled>
+                                <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fs-6 fw-semibold" type="button" disabled>
                                     <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                     Loading...
                                 </button>

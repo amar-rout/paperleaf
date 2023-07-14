@@ -32,8 +32,6 @@ const Navbar = () => {
 
     // const location = useLocation();
 
-    // const [loginUser, setLoginUser] = useState({});
-
     // useEffect(() => {
     //     dispatch(clearState());
     // }, [dispatch]);
