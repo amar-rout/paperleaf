@@ -36,9 +36,9 @@ const RecentlyViewedProducts = () => {
                         <span className="border-bottom border-2">Recently Viewed products</span>
                     </h4>
                     {/* <Slider {...settings}> */}
-                        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2 g-sm-3 g-md-4 g-lg-2">
-                            <div class="col">
-                                <div class="card p-0 m-0 shadow-sm rounded-4">
+                        <div class="mx-1 row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2 g-sm-3 g-md-4 g-lg-2">
+                            <div class="col p-0 m-0">
+                                <div class="card p-0 m-0 shadow-sm rounded-4 border-0">
                                     <div class="position-relative">
                                         <button type="button" class="btn btn-sm btn-default bg-light position-absolute top-0 end-0 p-2 mt-1 me-1 shadow opacity-75 rounded-circle">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

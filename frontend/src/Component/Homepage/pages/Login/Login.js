@@ -48,6 +48,17 @@ const Login = () => {
     };
 
     useEffect(() => {
+        setLoading(true);
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user && user.token !== null) {
+            navigate(-1);
+        }
+        return(
+            setLoading(false)
+        )
+    }, [navigate]);
+
+    useEffect(() => {
         return () => {
             dispatch(clearState());
         };
@@ -61,7 +72,13 @@ const Login = () => {
         if (loginStatus === "LOADED") {
             dispatch(clearState());
             setLoading(false);
-            navigate('/');
+            // navigate('/home');
+            if (window.history.state && window.history.state.idx > 0) {
+                navigate(-1);
+            } else {
+                navigate('/home', { replace: true }); 
+                // the current entry in the history stack will be replaced with the new one with { replace: true }
+            }
         }
         if (loginStatus === "ERROR") {
             setErrorMessage(loginErrorMessage);
@@ -103,7 +120,7 @@ const Login = () => {
                             <div className="position-relative">
                                 <i className="bi bi-envelope fs-lg position-absolute top-50 start-0 translate-middle-y text-dark opacity-80 ms-3"></i>
                                 <input className="form-control form-control-lg px-4 ps-5 py-3 border-1 border-secondary rounded rounded-3 mb-3 fs-6 text-decoration-none shadow-none"
-                                    type="text" name="email" value={user.email} onChange={handleChange} placeholder="Ener your Email or Phone" required={true}
+                                    type="text" name="email" value={user.email} onChange={handleChange} placeholder="Enter your Email" required={true}
                                     style={{ minHeight: "48px !important" }} />
                             </div>
                         </div>
@@ -146,9 +163,9 @@ const Login = () => {
                         </div>
                         <div className="d-flex justify-content-between align-items center">
                             { !loading ?
-                                <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fw-semibold" type="button" onClick={login}>Login</button>
+                                <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fs-6 fw-semibold" type="button" onClick={login}>Login</button>
                                 :
-                                <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fw-semibold" type="button" disabled>
+                                <button className="btn btn-md btn-default btn-warning w-100 my-2 py-3 rounded rounded-3 fs-6 fw-semibold" type="button" disabled>
                                     <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                     Loading...
                                 </button>

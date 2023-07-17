@@ -22,7 +22,7 @@ import "./Navbar.css";
 const Navbar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const loginUser = JSON.parse(localStorage.getItem("user"));
+    const loginUser = JSON.parse(localStorage.getItem('user'));
     const cartCount = useSelector(getCartCount);
     const wishlistCount = useSelector(getWishlistCount);
 
@@ -31,18 +31,17 @@ const Navbar = () => {
 
     // const location = useLocation();
 
-    // const [loginUser, setLoginUser] = useState({});
-
     // useEffect(() => {
     //     dispatch(clearState());
     // }, [dispatch]);
 
     // useEffect(() => {
-    //     // const user = JSON.parse(localStorage.getItem('user'));
-    //     if ( user ) {
+    //     const user = JSON.parse(localStorage.getItem('user'));
+    //     if ( !user === undefined ) {
     //         setLoginUser(user);
+    //         console.log(loginUser);
     //     }
-    // });
+    // }, []);
 
     useEffect(() => {
         axios.get('/api/category/')
@@ -59,7 +58,7 @@ const Navbar = () => {
                 }
             });
 
-        axios.get('/api/collection/')
+        axios.get('/api/collection/all')
             .then(response => {
                 setCollections(response.data);
             }).catch(error => {
@@ -76,7 +75,7 @@ const Navbar = () => {
 
     const handleLogout = () => {
         dispatch(logout());
-        navigate('/');
+        navigate('/home');
     };
 
     return (
@@ -98,7 +97,7 @@ const Navbar = () => {
             </header> */}
             <div className="sticky-top bg-dark">
                 <nav className="navbar navbar-expand-lg navbar-body border-bottom" aria-label="Offcanvas navbar large">
-                    <div className="container py-1">
+                    <div className="container-fluid py-1">
                         {/* <div className="d-grid align-items-center" style={{ gridTemplateColumns: '1fr 1fr 8fr' }}> */}
                         <div className="d-flex flex-0 justify-content-between align-items-center w-100">
                             <div className="d-flex justify-content-start align-items-center">
@@ -183,7 +182,7 @@ const Navbar = () => {
                             </div>
                             {/* <img src="/assets/images/logo/logo-1.png" alt="logo" className="nav-logo-img" /> */}
                             <div className="d-flex justify-content-center align-items-center">
-                                <img src="/assets/images/logo/logo-1.png" alt="logo" className="nav-logo-img" />
+                                <Link to="/"><img src="/assets/images/logo/Logo-1.png" alt="logo" className="nav-logo-img" /></Link>
                                 {/* <img src="/assets/images/logo/logo-2.png" alt="logo" className="nav-logo-img d-md-none me-2 mt-1" style={{ width: '32px', height: '32px' }} /> */}
                             </div>
                             <div className="d-flex justify-content-end align-items-right">
@@ -227,7 +226,7 @@ const Navbar = () => {
                                     </button>
 
                                     {
-                                        !loginUser ?
+                                        !loginUser || loginUser === undefined || loginUser === null ?
                                             <>
                                                 <a href="/login" className="d-block link-dark text-decoration-none ms-2 me-2 rounded-circle p-1">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -240,6 +239,7 @@ const Navbar = () => {
                                                 <div className="dropdown position-relative ms-2 me-2">
                                                     <a href="/" className="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                                         <img src={`${loginUser.image}`} alt={`${loginUser.image}`} width="36" height="36" className="rounded-circle border border-1 border-secondary" style={{ maxWidth: '36px', objectFit:'cover' }} />
+                                                        {/* <img src={`/assets/${loginUser.image}`} alt={`${loginUser.image}`} width="36" height="36" className="rounded-circle border border-1 border-secondary" style={{ maxWidth: '36px', objectFit: 'cover' }} /> */}
                                                     </a>
                                                     <ul className="dropdown-menu dropdown-menu-end my-3 text-small shadow text-overflow-hidden">
                                                         <li>
@@ -305,7 +305,7 @@ const Navbar = () => {
                     </div>
                 </nav>
                 <header className="bg-warning-subtle top-0 py-1 shadow-sm">
-                    <div className="container nav-scroller">
+                    <div className="container-fluid nav-scroller">
                         <nav className="nav navcat-link position-relative pt-1" aria-label="Secondary navigation">
                             {/* <NavCatLink className="nav-link ps-0 pe-4" to="/category/browseAll">All products</NavCatLink> */}
                             <NavCatLink className="nav-link ps-0 pe-4" to="/category/newCollections">

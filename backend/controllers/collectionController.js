@@ -17,6 +17,21 @@ export const getAllCollection = asyncHandler(async (req, res) => {
 });
 
 // @desc Get all orders
+// @route GET /api/collections/
+// @access Private
+export const getCollections = asyncHandler(async (req, res) => {
+    const collections = await ColletionModel.find({
+        published: true
+    });
+    if (collections) {
+        res.json(collections);
+    } else {
+        res.status(404);
+        throw new Error('Collection not found');
+    }
+});
+
+// @desc Get all orders
 // @route GET /api/orders/:id
 // @access Private
 export const getCollectionById = asyncHandler(async (req, res) => {

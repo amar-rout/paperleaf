@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js';
 import $ from "jquery";
 
-import './SliderView.css';
+// import './SliderView.css';
 
 const SliderView = () => {
 
@@ -205,84 +205,14 @@ const SliderView = () => {
                 {/* </div>
                 </div> */}
                 <div className='carousel-item active'>
-                    <div className="card">
-                        <div className="bg-info-subtle px-3 py-3"
-                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
-                            <div className="mt-3">
-                                {/* <span className="h3 text-brand fw-semibold lh-1">Deals of the Day.</span><br />
-                                <p className="fs-6 fw-semibold">Limited quantities.</p> */}
-                                <div className='px-1'>
-                                    {/* <p className="fs-5 fs-md-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
-                                    <p className="fs-4 fs-md-3 fw-bold lh-1">Super Value Deals</p>
-                                    <p className="fs-2 fs-md-1 fw-bold lh-1 ls-1 text-success">On All Products</p>
-                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br />upto 20% off</small></p> */}
-                                    <p className="fs-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
-                                    <p className="fs-3 fw-bold lh-1">Super Value Deals</p>
-                                    <p className="fs-1 fw-bold lh-1 ls-1 text-success">Great Collection</p>
-                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br /> upto 20% off</small></p>
-                                </div>
-                            </div>
-                            <div className="">
-                                <div className="pt-2 mt-5">
-                                    {/* <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a> */}
-                                    <a href="/" className="btn btn-outline-info carousel_btn text-dark">Shop Now <i className="bi bi-arrow-right arrow_right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <img src='/assets/images/productImages/background_1.jpg' alt='carousel images'
+                        style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
                 </div>
-                <div className='carousel-item'>
-                    <div className="card">
-                        <div className="bg-danger-subtle px-3 px-md-5 py-3"
-                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
-                            <div className="mt-3">
-                                <div className='px-1'>
-                                    {/* <p className="fs-6 fs-md-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
-                                    <p className="fs-4 fs-md-3 fw-bold lh-1">Super Value Deals</p>
-                                    <p className="fs-2 fs-md-1 fw-bold lh-1 ls-1 text-success">On All Products</p>
-                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br />upto 20% off</small></p> */}
-                                    <p className="fs-5 fw-bold lh-1 ls-1 text-muted"><small>Hot promotions 1</small></p>
-                                    <p className="fs-3 fw-bold lh-1">Fashion Trending</p>
-                                    <p className="fs-1 fw-bold lh-1 ls-1 text-success">Great Collection</p>
-                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br /> upto 20% off</small></p>
-                                </div>
-                            </div>
-                            <div className="">
-                                <div className="pt-2 mt-5">
-                                    {/* <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a> */}
-                                    <a href="/" className="btn btn-outline-danger carousel_btn text-dark">Shop Now <i className="bi bi-arrow-right arrow_right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className='carousel-item'>
-                    <div className="card">
-                        <div className="bg-success-subtle px-3 px-md-5 py-3"
-                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
-                            <div className="mt-3">
-                                <div className='px-1'>
-                                    {/* <p className="fs-6 fs-md-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
-                                    <p className="fs-4 fs-md-3 fw-bold lh-1">Super Value Deals</p>
-                                    <p className="fs-2 fs-md-1 fw-bold lh-1 ls-1 text-success">On All Products</p>
-                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br />upto 20% off</small></p> */}
-                                    {/* <button className='btn btn-success mt-5'>SHOP NOW</button> */}
-                                    <p className="fs-5 fw-bold lh-1 ls-1 text-muted"><small>Hot promotions 2</small></p>
-                                    <p className="fs-3 fw-bold lh-1">Fashion Trending</p>
-                                    <p className="fs-1 fw-bold lh-1 ls-1 text-success">Great Collection</p>
-                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br /> upto 20% off</small></p>
-                                </div>
-                            </div>
-                            <div className="">
-                                <div className="pt-2 mt-5">
-                                    {/* <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a> */}
-                                    <a href="/" className="btn btn-outline-success carousel_btn text-dark">Shop Now <i className="bi bi-arrow-right arrow_right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className='carousel-item'>
+                {/* <div className='carousel-item'>
+                    <img src='/assets/images/productImages/background_1.jpg' alt='carousel images'
+                        style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
+                </div> */}
+                {/* <div className='carousel-item active'>
                     <div className="card">
                         <div className="bg-warning-subtle px-3 px-md-5 py-3"
                             style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
@@ -292,7 +222,6 @@ const SliderView = () => {
                                     <p className="fs-3 fw-bold lh-1">Fashion Trending</p>
                                     <p className="fs-1 fw-bold lh-1 ls-1 text-success">Great Collection</p>
                                     <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br /> upto 20% off</small></p>
-                                    {/* <button className='btn btn-success mt-5'>SHOP NOW</button> */}
                                 </div>
                             </div>
                             <div className="">
@@ -302,8 +231,103 @@ const SliderView = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className='carousel-item'>
+                </div> */}
+                {/* <div className='carousel-item'>
+                    <div className="card">
+                        <div className="bg-info-subtle px-3 py-3"
+                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
+                            <div className="mt-3">
+                                <div className='px-1'> */}
+                {/* <p className="fs-5 fs-md-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
+                                    <p className="fs-4 fs-md-3 fw-bold lh-1">Super Value Deals</p>
+                                    <p className="fs-2 fs-md-1 fw-bold lh-1 ls-1 text-success">On All Products</p>
+                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br />upto 20% off</small></p> */}
+                {/* <p className="fs-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
+                                    <p className="fs-3 fw-bold lh-1">Super Value Deals</p>
+                                    <p className="fs-1 fw-bold lh-1 ls-1 text-success">Great Collection</p>
+                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br /> upto 20% off</small></p>
+                                </div>
+                            </div>
+                            <div className="">
+                                <div className="pt-2 mt-5">
+                                    {/* <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a> */}
+                {/* <a href="/" className="btn btn-outline-info carousel_btn text-dark">Shop Now <i className="bi bi-arrow-right arrow_right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> */}
+                {/* <div className='carousel-item'>
+                    <div className="card">
+                        <div className="bg-danger-subtle px-3 px-md-5 py-3"
+                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
+                            <div className="mt-3">
+                                <div className='px-1'> */}
+                {/* <p className="fs-6 fs-md-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
+                                    <p className="fs-4 fs-md-3 fw-bold lh-1">Super Value Deals</p>
+                                    <p className="fs-2 fs-md-1 fw-bold lh-1 ls-1 text-success">On All Products</p>
+                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br />upto 20% off</small></p> */}
+                {/* <p className="fs-5 fw-bold lh-1 ls-1 text-muted"><small>Hot promotions 1</small></p>
+                                    <p className="fs-3 fw-bold lh-1">Fashion Trending</p>
+                                    <p className="fs-1 fw-bold lh-1 ls-1 text-success">Great Collection</p>
+                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br /> upto 20% off</small></p>
+                                </div>
+                            </div>
+                            <div className="">
+                                <div className="pt-2 mt-5">
+                                    {/* <a href="/" className="btn btn-outline-dark">Shop Now <i className="bi bi-arrow-right"></i></a> */}
+                {/* <a href="/" className="btn btn-outline-danger carousel_btn text-dark">Shop Now <i className="bi bi-arrow-right arrow_right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> */}
+                {/* <div className='carousel-item'>
+                    <div className="card">
+                        <div className="bg-success-subtle px-3 px-md-5 py-3"
+                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
+                            <div className="mt-3">
+                                <div className='px-1'> */}
+                {/* <p className="fs-6 fs-md-5 fw-bold lh-1 ls-1 text-muted"><small>Trade in offer</small></p>
+                                    <p className="fs-4 fs-md-3 fw-bold lh-1">Super Value Deals</p>
+                                    <p className="fs-2 fs-md-1 fw-bold lh-1 ls-1 text-success">On All Products</p>
+                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br />upto 20% off</small></p> */}
+                {/* <button className='btn btn-success mt-5'>SHOP NOW</button> */}
+                {/* <p className="fs-5 fw-bold lh-1 ls-1 text-muted"><small>Hot promotions 2</small></p>
+                                    <p className="fs-3 fw-bold lh-1">Fashion Trending</p>
+                                    <p className="fs-1 fw-bold lh-1 ls-1 text-success">Great Collection</p>
+                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br /> upto 20% off</small></p>
+                                </div>
+                            </div>
+                            <div className="">
+                                <div className="pt-2 mt-5">
+                                    <a href="/" className="btn btn-outline-success carousel_btn text-dark">Shop Now <i className="bi bi-arrow-right arrow_right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> */}
+                {/* <div className='carousel-item'>
+                    <div className="card">
+                        <div className="bg-warning-subtle px-3 px-md-5 py-3"
+                            style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
+                            <div className="mt-3">
+                                <div className='px-1'>
+                                <p className="fs-5 fw-bold lh-1 ls-1 text-muted"><small>Hot promotions 3</small></p>
+                                    <p className="fs-3 fw-bold lh-1">Fashion Trending</p>
+                                    <p className="fs-1 fw-bold lh-1 ls-1 text-success">Great Collection</p>
+                                    <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br /> upto 20% off</small></p>
+                                </div>
+                            </div>
+                            <div className="">
+                                <div className="pt-2 mt-5">
+                                    <a href="/" className="btn btn-outline-warning carousel_btn text-dark">Shop Now <i className="bi bi-arrow-right arrow_right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> */}
+                {/* <div className='carousel-item'>
                     <div className="card">
                         <div className="bg-primary-subtle px-3 px-md-5 py-3"
                             style={{ backgroundImage: "url('/assets/images/productImages/product1.png')", backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: 'contain', visibility: "visible" }}>
@@ -313,7 +337,6 @@ const SliderView = () => {
                                     <p className="fs-3 fw-bold lh-1">Fashion Trending</p>
                                     <p className="fs-1 fw-bold lh-1 ls-1 text-success">Great Collection</p>
                                     <p className="fs-6 fw-semibold lh-1"><small>Save more with coupons & <br /> upto 20% off</small></p>
-                                    {/* <button className='btn btn-success mt-5'>SHOP NOW</button> */}
                                 </div>
                             </div>
                             <div className="">
@@ -323,7 +346,7 @@ const SliderView = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 {/* <div className='carousel-item'>
                     <div className="card">
                         <div className="bg-info-subtle px-3 px-md-5 py-3"
@@ -415,7 +438,7 @@ const SliderView = () => {
                         </div>
                     </div> */}
             </div>
-            <div className="position-absolute end-0 translate-middle carousel_control">
+            {/* <div className="position-absolute end-0 translate-middle carousel_control">
                 <button className="carousel-control-prev me-5" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>
@@ -424,7 +447,7 @@ const SliderView = () => {
                     <span className="carousel-control-next-icon" aria-hidden="true"></span>
                     <span className="visually-hidden">Next</span>
                 </button>
-            </div>
+            </div> */}
         </div>
         // </div>
     )

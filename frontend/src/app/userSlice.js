@@ -43,15 +43,15 @@ export const userVerifyAsync = createAsyncThunk(
     USER_VERIFY,
     async (arg, thunkAPI) => {
         try {
-            const token = JSON.parse(loggedUser).token;
+            const token = JSON.parse(localStorage.getItem('user')).token;
             const config = {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
                 },
             };
-            const response = await axios.get(`api/users/validateToken`, config);
-            console.log(response.data);
+            const response = await axios.get('/api/users/validateToken', config);
+            // console.log(response.data);
             localStorage.setItem('user', JSON.stringify(response.data));
             return thunkAPI.fulfillWithValue(JSON.stringify(response.data));
         } catch (error) {

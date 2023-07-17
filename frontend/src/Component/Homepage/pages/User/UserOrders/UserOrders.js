@@ -55,7 +55,7 @@ const UserOrders = () => {
     useEffect(() => {
         setLoading(true);
         const user = JSON.parse(localStorage.getItem('user'));
-        axios.get(`${process.env.REACT_APP_SERVER_URL}/api/orders/myorders`, {
+        axios.get(`/api/orders/myorders`, {
             "headers": {
                 "authorization": `Bearer ${user.token}`,
             }
@@ -100,7 +100,7 @@ const UserOrders = () => {
 
     const handleComment = () => {
         const user = JSON.parse(localStorage.getItem("user"));
-        axios.post(`${process.env.REACT_APP_SERVER_URL}/api/products/reviews/${prodReview.pId}`, comment, {
+        axios.post(`/api/products/reviews/${prodReview.pId}`, comment, {
             "headers": {
                 "authorization": `Bearer ${user.token}`,
             }
@@ -148,7 +148,7 @@ const UserOrders = () => {
                             </select> */}
                         </div>
                         {
-                            orders.length <= 0 ?
+                            orders && orders.length <= 0 ?
                                 <div className="text-center pt-5">
                                     <p>You haven't made any orders yet.</p>
                                 </div>
@@ -157,7 +157,7 @@ const UserOrders = () => {
                                 <div className="card border-0 m-0">
                                     <div className="card-body p-0 m-0">
                                         <div className="accordion accordion-alt accordion-orders p-0 m-0" id="orders">
-                                            {
+                                            { orders &&
                                                 orders.map((order, index) => {
                                                     return (
                                                         <div key={order._id} className="accordion-item border-top mb-0">
@@ -197,7 +197,7 @@ const UserOrders = () => {
                                                                             order.orderItems.map((orderItem) => {
                                                                                 return (
                                                                                     <div key={orderItem._id} className="mx-1">
-                                                                                        <img src={`${orderItem.image}`} width="48" alt="Product" />
+                                                                                        <img src={`/assets${orderItem.image}`} width="48" alt="Product" />
                                                                                     </div>
                                                                                 )
                                                                             })
@@ -256,7 +256,7 @@ const UserOrders = () => {
                                                                                                         <div className="d-flex justify-content-between align-items-center">
                                                                                                             <div className='d-flex justify-content-start align-items-center'>
                                                                                                                 <a className="d-inline-block flex-shrink-0 bg-light-subtle rounded-1 p-0" href="shop-single.html">
-                                                                                                                    <img src={`${orderItem.image}`} width={64} height={64} alt="Product" />
+                                                                                                                    <img src={`/assets${orderItem.image}`} width={64} height={64} alt="Product" />
                                                                                                                 </a>
                                                                                                                 <div className="ps-3 ps-sm-4">
                                                                                                                     <h4 className="fs-6 mb-2">

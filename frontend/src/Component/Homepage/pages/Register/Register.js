@@ -63,7 +63,7 @@ const Register = () => {
     useEffect(() => {
         if (registerStatus === "LOADED") {
             dispatch(clearState());
-            navigate("/");
+            navigate("/home");
         }
         if (registerStatus === "ERROR") {
             setErrorMessage(registerErrorMessage);
@@ -112,7 +112,7 @@ const Register = () => {
                             <div className="col-12 col-md-4">
                                 <label className="form-label">First name *</label>
                                 <input className="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-3 mb-3 text-decoration-none shadow-none"
-                                    type="text" name="fname" value={user.fname} onChange={handleChange} placeholder="Ener your first name"
+                                    type="text" name="fname" value={user.fname} onChange={handleChange} placeholder="Enter your first name"
                                 />
                             </div>
                             <div className="col-12 col-md-4">
@@ -130,7 +130,7 @@ const Register = () => {
                             <div className="col-12 col-md-12">
                                 <label className="form-label">Email *</label>
                                 <input className="form-control form-control-lg border-1 border-secondary py-3 px-4 fs-6 rounded-3 mb-3 text-decoration-none shadow-none"
-                                    type="text" name="email" value={user.email} onChange={handleChange} placeholder="Ener your Email or Phone" required
+                                    type="text" name="email" value={user.email} onChange={handleChange} placeholder="Enter your Email or Phone" required
                                 />
                             </div>
                             <div className="col-12 col-md-6">

@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import $ from 'jquery';
+// import $ from 'jquery';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ReactStars from "react-rating-stars-component";
+// import ReactStars from "react-rating-stars-component";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { htmlToText } from 'html-to-text';
+// import { htmlToText } from 'html-to-text';
 import Moment from 'react-moment';
 import 'moment/locale/fr';
+
+// import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
@@ -20,7 +23,6 @@ import './Products.css';
 // import RecentlyViewedProducts from '../Home/RecentlyViewedProducts/RecentlyViewedProducts';
 
 const Products = () => {
-
     let currINR = new Intl.NumberFormat('en-IN', {
         style: 'currency',
         currency: 'INR',
@@ -48,9 +50,6 @@ const Products = () => {
     }];
 
     const navigate = useNavigate();
-    const serverURL = process.env.REACT_APP_SERVER_URL;
-    // const serverURL = "http://192.168.29.28:5010";
-    // 192.168.29.28";
 
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -103,25 +102,44 @@ const Products = () => {
         dispatch(clearState());
     }, [dispatch, id, productID]);
 
-    useEffect(() => {
-        $('.modal').on('shown.bs.modal', function () {
-            window.location.hash = "modal";
-        });
-        $('.close-icon').on('click', function () {
-            $(this).closest('.card').fadeOut();
-        });
-        $(window).on('hashchange', function (event) {
-            if (window.location.hash !== "#modal") {
-                window.location.hash = "";
-                $('.close').click();
-            }
-        });
-    }, []);
+    // useEffect(() => {
+    //     $('.modal').on('shown.bs.modal', function () {
+    //         window.location.hash = "modal";
+    //     });
+    //     $('.close-icon').on('click', function () {
+    //         $(this).closest('.card').fadeOut();
+    //     });
+    //     $(window).on('hashchange', function (event) {
+    //         if (window.location.hash !== "#modal") {
+    //             window.location.hash = "";
+    //             $('.close').click();
+    //         }
+    //     });
+    // }, []);
 
     const handleAddCart = (id, quantity) => {
         dispatch(addCartAsync({ pId: id, qty: quantity }));
     }
-
+    // useEffect(() => {
+    //     const handlePopstate = () => {
+            // Close the Bootstrap modal when the back button is pressed
+            // const modalElement = document.getElementById('staticBackdrop1');
+            // if (modalElement) {
+            //   const modal = modalElement;
+            //   if (modal) {
+            //     modal.hide();
+            //   }
+            // }
+    //         document.body.removeAttribute("class");
+    //         document.body.removeAttribute("style");
+    //       };
+      
+    //       window.addEventListener('popstate', handlePopstate);
+      
+    //       return () => {
+    //         window.removeEventListener('popstate', handlePopstate);
+    //       };
+    //   }, []);
     // const handleStarRate = () => {
     //     if (product) {
     //         return (
@@ -140,6 +158,89 @@ const Products = () => {
     //         return null;
     //     }
     // }
+
+    var scale = 1,
+        maxScale = 5.0625,
+        minScale = 1,
+        panning = false,
+        pointX = 0,
+        pointY = 0,
+        start = { x: 0, y: 0 },
+        zoom = document.getElementById("zoom");
+
+    if (zoom !== null) {
+
+        function setTransform() {
+            zoom.style.transform = "translate(" + pointX + "px, " + pointY + "px) scale(" + scale + ")";
+        }
+
+        zoom.onmousedown = function (e) {
+            e.preventDefault();
+            start = { x: e.clientX - pointX, y: e.clientY - pointY };
+            panning = true;
+
+            console.log("Client X: " + e.clientX + " | Client Y: " + e.clientY);
+            console.log("Point X: " + pointX + " | Point Y: " + pointY);
+            console.log("Panning : " + panning);
+            console.log("Scale: " + scale);
+            console.log("Start X: " + start.x + " | Start Y: " + start.y);
+        }
+
+        zoom.onmouseup = function (e) {
+            panning = false;
+
+            console.log("Client X: " + e.clientX + " | Client Y: " + e.clientY);
+            console.log("Point X: " + pointX + " | Point Y: " + pointY);
+            console.log("Panning : " + panning);
+            console.log("Scale: " + scale);
+            console.log("Start X: " + start.x + " | Start Y: " + start.y);
+        }
+
+        zoom.onmousemove = function (e) {
+            e.preventDefault();
+            if (!panning) {
+                return;
+            }
+            pointX = (e.clientX - start.x);
+            pointY = (e.clientY - start.y);
+
+            console.log("Client X: " + e.clientX + " | Client Y: " + e.clientY);
+            console.log("Point X: " + pointX + " | Point Y: " + pointY);
+            console.log("Panning : " + panning);
+            console.log("Scale: " + scale);
+            console.log("Start X: " + start.x + " | Start Y: " + start.y);
+
+            setTransform();
+        }
+
+        zoom.onwheel = function (e) {
+            e.preventDefault();
+            var xs = (e.clientX - pointX) / scale,
+                ys = (e.clientY - pointY) / scale,
+                delta = (e.wheelDelta ? e.wheelDelta : -e.deltaY);
+            // (delta > 0) ? (scale *= 1.5) : (scale /= 2);
+            if (scale !== maxScale) {
+                if (delta > 0) {
+                    scale *= 1.5;
+                }
+            }
+            if (scale !== minScale) {
+                if (delta < 0) {
+                    scale /= 1.5;
+                }
+            }
+            console.log("Delta: " + delta);
+            pointX = e.clientX - xs * scale;
+            pointY = e.clientY - ys * scale;
+
+            console.log("Client X: " + e.clientX + " | Client Y: " + e.clientY);
+            console.log("Point X: " + pointX + " | Point Y: " + pointY);
+            console.log("Panning : " + panning);
+            console.log("Scale: " + scale);
+            console.log("Start X: " + start.x + " | Start Y: " + start.y);
+            setTransform();
+        }
+    }
 
     return (
         <>
@@ -226,17 +327,17 @@ const Products = () => {
                                             >
                                                 <div>
                                                     <img className='px-1'
-                                                        src={`${serverURL}${product.image}`}
+                                                        src={`/assets${product.image}`}
                                                         onClick={() => setModalImgInfo(product.image)}
-                                                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                                        data-bs-toggle="modal" data-bs-target="#staticBackdrop1"
                                                         alt="product" style={{ width: "100%", height: "auto" }} />
                                                 </div>
                                                 {product.images && product.images.map((image) => {
                                                     return (
                                                         <div>
                                                             <img className='px-1'
-                                                                src={`${serverURL}${image}`}
-                                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                                                src={`/assets${image}`}
+                                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop1"
                                                                 onClick={() => setModalImgInfo(image)}
                                                                 alt="product" style={{ width: "100%", height: "auto" }} />
                                                         </div>
@@ -251,6 +352,36 @@ const Products = () => {
                                             })} */}
 
                                             </Slider>
+                                            {/* Modal Start */}
+                                            {/* <div> */}
+                                            <div class="modal fade text-center" data-bs-backdrop="static" data-bs-keyboard="false" id="staticBackdrop1" role="dialog" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-body" style={{ backgroundColor: 'transparent !important' }}>
+                                                            <h1 class="modal-title fs-6 small text-dark" id="staticBackdropLabel">
+                                                                <small>{product.name}</small>
+                                                            </h1>
+                                                            <button type="button" class="btn-close modal-open text-danger" data-bs-dismiss="modal" aria-label="Close"
+                                                                style={{ right: '10px' }} onClick={() => setModalImgInfo("")}>
+                                                            </button>
+                                                        </div>
+                                                        <div className='modal-body'>
+                                                            <div className='img_container'>
+                                                                <div class="zoom_outer">
+                                                                    <div id="zoom">
+                                                                        <img src={`/assets/${modalImgInfo}`} alt={`${modalImgInfo}`} />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                onClick={() => setModalImgInfo("")}
+                                                                data-bs-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="col-12 col-md-5">
@@ -474,51 +605,7 @@ const Products = () => {
                                     </div>
                                     {/* </div> */}
                                     {/* Modal End */}
-                                    {/* Modal Start */}
-                                    {/* <div> */}
-                                    <div class="modal fade text-center" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                {/* data-bs-backdrop="static" data-bs-keyboard="false" */}
-                                                {/* <div class="modal-header bg-body" style={{ backgroundColor: 'transparent !important'}}> */}
-                                                {/* <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                                        onClick={() => setModalImgInfo("")}></button> */}
-                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                                style={{ right: '10px' }}
-                                                onClick={() => setModalImgInfo("")}>
-                                            </button> */}
-                                                {/* </div> */}
 
-
-
-                                                {/* <div class="modal-body"> */}
-                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                                        onClick={() => setModalImgInfo("")}></button> */}
-                                                {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                                                    style={{ right: '10px' }}
-                                                    onClick={() => setModalImgInfo("")}></button> */}
-                                                <div class="zoom_outer">
-                                                    <div id="zoom">
-                                                        <img src={`${serverURL}${modalImgInfo}`} alt="zoom" style={{ width: '100%', height: 'auto' }} />
-                                                    </div>
-                                                </div>
-                                                {/* <button type="button" class="btn btn-light" style={{ position: 'absolute', bottom: '10px', right: '10px' }}
-                                                    onClick={() => setModalImgInfo("")}
-                                                    data-bs-dismiss="modal">Close</button> */}
-                                                {/* </div> */}
-                                                {/* <div class="modal-footer">
-                                                     <button type="button" class="btn btn-secondary"
-                                                        onClick={() => setModalImgInfo("")}
-                                                        data-bs-dismiss="modal">Close</button> 
-                                                {/* <button type="button" class="btn btn-primary">Understood</button> */}
-                                                {/* </div> */}
-                                                {/* <button type="button" class="btn btn-light" style={{ bottom: '10px', right: '10px' }}
-                                                    onClick={() => setModalImgInfo("")}
-                                                    data-bs-dismiss="modal">Close</button> */}
-                                            </div>
-                                        </div>
-                                    </div>
                                     {/* </div> */}
                                     {/* Modal End */}
 
@@ -1017,10 +1104,10 @@ const Products = () => {
                                                     <img src="/assets/images/catImages/dupattas_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
                                                     <h6 className="category-txt fw-normal pt-2 category-text">Dupattas</h6>
                                                 </button>
-                                                <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dress')}>
+                                                {/* <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Dress')}>
                                                     <img src="/assets/images/catImages/dress_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
                                                     <h6 className="category-txt fw-normal pt-2">Dress</h6>
-                                                </button>
+                                                </button> */}
                                                 <button className="category-btn col btn btn-default cat-btn" onClick={() => navigate('/category/Fabrics')}>
                                                     <img src="/assets/images/catImages/fabrics_square.png" className="category_product_image border mb-2 mb-md-3" alt="" />
                                                     <h6 className="category-txt fw-normal pt-2">Fabrics</h6>

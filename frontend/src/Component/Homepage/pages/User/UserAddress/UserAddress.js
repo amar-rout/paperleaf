@@ -18,7 +18,7 @@ const UserAddress = () => {
         const user = JSON.parse(localStorage.getItem("user"));
         setLoginUser(user);
         setAddresses(user.address);
-        console.log("Addr " + addresses);
+        // console.log("Addr " + addresses);
     }, [setLoginUser, setAddresses]);
 
     // const handleEditAddress = (id) => {

@@ -86,12 +86,12 @@ const Home = () => {
             {/* <span className="fs-6 fw-semibold ls-2" style={{ color: "rgba(200, 160, 40)" }}> */}
             {/* rgb(234, 255, 150) */}
             {/* ⚡️  */}
-            <div className="container">
-                <div className="col-12 col-md-6">
+            {/* <div className="container"> */}
+                {/* <div className="col-12 col-md-6">
                     <h6 className="my-3 my-md-5 h5">
                         <span className="text-dark">Welcome to <span style={{ color: "rgba(200, 160, 40)" }}>Paperleaf</span></span>
                     </h6>
-                </div>
+                </div> */}
                 {/* <div className="col-6">
                     <button className="carousel-control-prev" type="button" data-bs-target="/carouselExampleControls" data-bs-slide="prev">
                         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -102,7 +102,7 @@ const Home = () => {
                         <span className="visually-hidden">Next</span>
                     </button>
                 </div> */}
-            </div>
+            {/* </div> */}
 
             {loading ?
                 <div className="progress">
@@ -111,7 +111,7 @@ const Home = () => {
                 :
                 <>
                     {/* <HomeCarousel /> */}
-                    <div className="container mb-5">
+                    <div className="mt-3 mb-5">
                         <SliderView />
                     </div>
                     <HomeCategory />
@@ -147,9 +147,9 @@ const Home = () => {
                                 </div> */}
                                 <div className="col-12 col-md-12 mb-2">
                                     <div className="mb-2 ">
-                                        <ul className="nav nav-tabs nav-pills mb-3" id="pills-tab" role="tablist">
-                                            <li className="nav-item mx-2" role="presentation">
-                                                <button className="nav-link bg-transparent p-0 m-0 mb-3 text-muted active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+                                        <ul className="nav nav-tabs nav-pills mb-3 my-3" id="pills-tab" role="tablist">
+                                            <li className="nav-item mx-2 my-3" role="presentation">
+                                                <button className="nav-link bg-transparent p-0 m-0 mb-3 text-muted active fs-2 heading" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
                                                     New in Store
                                                     {/* <span class="position-relative">
                                                         <span className="fs-4 text-dark text-decoration-underline">Privacy Policy</span>
@@ -166,7 +166,7 @@ const Home = () => {
                                             </li> */}
                                         </ul>
                                     </div>
-                                    <div className="tab-content" id="pills-tabContent">
+                                    <div className="tab-content mt-3" id="pills-tabContent">
                                         <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabIndex="0">
                                             <HomeTopRatedProducts title="Top Products" topProducts={topRatedProduct} />
                                         </div>
@@ -577,10 +577,10 @@ const SectionInfo = () => {
                             <i className="bi bi-arrow-repeat fs-2" style={{ color: '#e5c07b' }}></i>
                             <div className="ms-2 ms-md-4 " style={{ color: '#abb2bf' }}>
                                 <p className="mb-1 small fw-bold">
-                                    FREE RETURNS
+                                    EXCHANGE
                                 </p>
                                 <p className="mb-0 small">
-                                    Return money within 30 days
+                                    Easy exchange within 15 days
                                 </p>
                             </div>
                         </div>

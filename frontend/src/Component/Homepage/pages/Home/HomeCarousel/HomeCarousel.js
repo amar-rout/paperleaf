@@ -49,7 +49,7 @@ const HomeCarousel = () => {
                             <p>Some representative placeholder content for the second slide.</p>
                         </div>
                     </div>
-                    <div className="carousel-item">
+                    {/* <div className="carousel-item">
                         <div className="image-wrapper">
                             <img src="./assets/images/bannerImages/banner-2.jpeg" className="d-block carousel-item-image" alt="..." />
                         </div>
@@ -57,8 +57,8 @@ const HomeCarousel = () => {
                             <h5>3 slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p>
                         </div>
-                    </div>
-                    <div className="carousel-item">
+                    </div> */}
+                    {/* <div className="carousel-item">
                         <div className="image-wrapper">
                             <img src="./assets/images/bannerImages/banner-2.jpeg" className="d-block carousel-item-image" alt="..." />
                         </div>
@@ -66,8 +66,8 @@ const HomeCarousel = () => {
                             <h5>4 slide label</h5>
                             <p>Some representative placeholder content for the third slide.</p>
                         </div>
-                    </div>
-                    <div className="carousel-item">
+                    </div> */}
+                    {/* <div className="carousel-item">
                         <div className="image-wrapper">
                             <img src="./assets/images/bannerImages/banner-2.jpeg" className="d-block carousel-item-image" alt="..." />
                         </div>
@@ -75,8 +75,8 @@ const HomeCarousel = () => {
                             <h5>5 slide label</h5>
                             <p>Some representative placeholder content for the third slide.</p>
                         </div>
-                    </div>
-                    <div className="carousel-item">
+                    </div> */}
+                    {/* <div className="carousel-item">
                         <div className="image-wrapper">
                             <img src="./assets/images/bannerImages/banner-2.jpeg" className="d-block carousel-item-image" alt="..." />
                         </div>
@@ -84,8 +84,8 @@ const HomeCarousel = () => {
                             <h5>6 slide label</h5>
                             <p>Some representative placeholder content for the third slide.</p>
                         </div>
-                    </div>
-                    <div className="carousel-item">
+                    </div> */}
+                    {/* <div className="carousel-item">
                         <div className="image-wrapper">
                             <img src="./assets/images/bannerImages/banner-2.jpeg" className="d-block carousel-item-image" alt="..." />
                         </div>
@@ -93,8 +93,8 @@ const HomeCarousel = () => {
                             <h5>7 slide label</h5>
                             <p>Some representative placeholder content for the third slide.</p>
                         </div>
-                    </div>
-                    <div className="carousel-item">
+                    </div> */}
+                    {/* <div className="carousel-item">
                         <div className="image-wrapper">
                             <img src="./assets/images/bannerImages/banner-2.jpeg" className="d-block carousel-item-image" alt="..." />
                         </div>
@@ -102,8 +102,8 @@ const HomeCarousel = () => {
                             <h5>8 slide label</h5>
                             <p>Some representative placeholder content for the third slide.</p>
                         </div>
-                    </div>
-                    <div className="carousel-item">
+                    </div> */}
+                    {/* <div className="carousel-item">
                         <div className="image-wrapper">
                             <img src="./assets/images/bannerImages/banner-2.jpeg" className="d-block carousel-item-image" alt="..." />
                         </div>
@@ -111,8 +111,8 @@ const HomeCarousel = () => {
                             <h5>9 slide label</h5>
                             <p>Some representative placeholder content for the third slide.</p>
                         </div>
-                    </div>
-                    <div className="carousel-item">
+                    </div> */}
+                    {/* <div className="carousel-item">
                         <div className="image-wrapper">
                             <img src="./assets/images/bannerImages/banner-2.jpeg" className="d-block carousel-item-image" alt="..." />
                         </div>
@@ -120,16 +120,16 @@ const HomeCarousel = () => {
                             <h5>10 slide label</h5>
                             <p>Some representative placeholder content for the third slide.</p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
-                <button className="d-none d-sm-inline carousel-control-prev " type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+                {/* <button className="d-none d-sm-inline carousel-control-prev " type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
                     <span className="carousel-control-prev-icon " aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>
                 </button>
                 <button className="d-none d-sm-inline carousel-control-next " type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
                     <span className="carousel-control-next-icon " aria-hidden="true"></span>
                     <span className="visually-hidden">Next</span>
-                </button>
+                </button> */}
 
 
                 {/* <button className="d-none d-sm-inline carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
