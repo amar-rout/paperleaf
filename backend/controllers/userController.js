@@ -36,6 +36,20 @@ export const authUser = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc Get all users
+// @route GET /api/users/all
+// @access Private
+export const getAllUsers = asyncHandler(async (req, res) => {
+
+  const users = await UserModel.find({});
+  if (users) {
+      res.json(users);
+  } else {
+      res.status(404);
+      throw new Error('Users not found');
+  }
+});
+
 
 export const updateUserPassword = asyncHandler(async (req, res) => {
   const { currPassword, newPassword } = req.body;

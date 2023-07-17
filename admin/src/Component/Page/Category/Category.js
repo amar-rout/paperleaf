@@ -12,9 +12,9 @@ function Category() {
     const value = e.target.value;
     setCategoryData(prev => ({ ...prev, [name]: value }))
   }
-  const addCategoryURL = "http://localhost:5010/api/category/";
-  const getCategoryURL = "http://localhost:5010/api/category/";
-  const getProductURL = "http://localhost:5010/api/products/";
+  const addCategoryURL = "/api/category/";
+  const getCategoryURL = "/api/category/";
+  const getProductURL = "/api/products/";
 
   const getCategory = () => {
     axios.get(getCategoryURL)

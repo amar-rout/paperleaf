@@ -10,7 +10,8 @@ import {
   resetPassword,
   addAddress,
   editAddress,
-  deleteAddressById
+  deleteAddressById,
+  getAllUsers
 } from '../controllers/userController.js';
 import { isAdmin, protect } from '../middleware/authMiddleware.js';
 
@@ -19,7 +20,7 @@ const router = express.Router();
 router.post('/login', authUser);
 
 router.get('/validateToken', protect, validateToken);
-
+router.get('/all', protect, isAdmin, getAllUsers);
 router.route('/:id?').post(registerUser).get(protect, isAdmin, getUsersAdmin);
 router.route('/profile/addAddress').patch(protect, addAddress);
 router.route('/profile/editAddress/:id').patch(protect, editAddress);

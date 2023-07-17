@@ -6,7 +6,6 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 
 import {
-    selectUser,
     logout
 } from "../../../app/userSlice";
 

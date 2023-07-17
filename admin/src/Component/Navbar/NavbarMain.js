@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, Outlet, useMatch, useResolvedPath } from 'react-router-dom';
 // import Footer from '../Footer/Footer';
 import './NavbarMain.css';
 
 const NavbarMain = () => {
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("admin_user")));
     return (
         <>
             <nav className="navbar bg-body fixed-top shadow">
@@ -14,6 +15,31 @@ const NavbarMain = () => {
                             <i className="bi bi-list display-6"></i>
                         </button>
                         <a className="navbar-brand text-uppercase ms-2" href="/">Paperleaf</a>
+                    </div>
+                    <div className='text-end me-3'>
+                        <div className='d-flex justify-content-between align-items-center'>
+                            <div class="dropdown-left dropdown me-3 me-md-5">
+                                <a href='/' class="link-dark text-decoration-none rounded-circle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <i class="bi bi-bell h5 fw-normal"></i>
+                                    <span class="position-absolute top-0 start-100 mt-1 translate-middle p-1 bg-danger border border-light rounded-circle">
+                                        <span class="visually-hidden">New alerts</span>
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="/">Menu item</a></li>
+                                </ul>
+                            </div>
+                            <div className="dropdown">
+                                <a href="/" className="link-dark text-decoration-none dropdown-toggle h5" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {user.name}
+                                </a>
+                                <ul className="dropdown-menu dropdown-menu-end text-small shadow" style={{}}>
+                                    <li>
+                                        <a className="dropdown-item" href="/">Sign out</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     {/* <div className=''>
                         <div className="dropdown">
@@ -31,19 +57,7 @@ const NavbarMain = () => {
                         </div>
                     </div> */}
                     {/* <div className="navbar-nav"> */}
-                    <div className="dropdown">
-                        <a href="/" className="link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
-                        </a>
-                        <ul className="dropdown-menu dropdown-menu-end text-small shadow" style={{}}>
-                            <li><a className="dropdown-item" href="/">Profile</a></li>
-                            <li><a className="dropdown-item" href="/">Settings</a></li>
-                            <li><hr className="dropdown-divider" /></li>
-                            <li>
-                                <a className="dropdown-item" href="/">Sign out</a>
-                            </li>
-                        </ul>
-                    </div>
+
                     {/* </div> */}
 
                     {/* <form className="d-flex mt-3" role="search">
@@ -233,7 +247,7 @@ const NavbarMain = () => {
                             <div className="text-center mt-5">
                                 <p className='lh-2'>
                                     Copyright &copy; {new Date().getFullYear()} All rights reserved
-                                    <br/>
+                                    <br />
                                     This site is made with <i className="icon-heart" aria-hidden="true"></i> by <a href="http://techrestoreservice.com" target="_blank">TechRestore Services</a>
                                 </p>
                             </div>
