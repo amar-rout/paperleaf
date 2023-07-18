@@ -27,6 +27,7 @@
     "react-bootstrap": "^2.7.2",
     "react-bs-datatable": "^3.10.0",
     "react-dom": "^18.2.0",
+    "react-export-table-to-excel": "^1.0.6",
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^1.3.0",
     "react-icons": "^4.10.1",

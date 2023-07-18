@@ -33,4 +33,6 @@ router.route('/:id/deliver').put(protect, isAdmin, putUpdateOrderToDelivered);
 
 router.route('/:id').get(protect, getOrderById);
 
+// router.route('/all').get(protect, isAdmin, getAllOrders);
+
 export default router;
