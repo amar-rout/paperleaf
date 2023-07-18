@@ -12,6 +12,7 @@ Second terminal
 
 Third Terminal
 
+
 1. cd admin
 2. npm install
 3. npm start
