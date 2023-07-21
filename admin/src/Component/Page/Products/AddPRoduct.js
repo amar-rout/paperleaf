@@ -55,10 +55,9 @@ const AddProduct = () => {
 
   useEffect(() => {
     // getCategory();
-    axios.get(getCategoryURL)
+    axios.get('/api/category/')
       .then(response => {
         setCategories(response.data);
-        console.log(categories);
       }).catch(error => {
         if (error.response) {
           toast.dismiss()
@@ -70,7 +69,7 @@ const AddProduct = () => {
           toast.error(error.message)
         }
       })
-  }, [setCategories]);
+  }, [categories]);
 
   // const getCategory = () => {
     // axios.get(getCategoryURL)
@@ -90,8 +89,8 @@ const AddProduct = () => {
     //   })
   // }
 
-  const addNewProductURL = `${serverURL}/api/products`;
-  const imageUploadURL = `${serverURL}/api/upload`;
+  const addNewProductURL = `/api/products`;
+  const imageUploadURL = `https://www.paperleaf.co.in/api/upload`;
   let file = null;
   // let temp_file = null;
   let files = null;

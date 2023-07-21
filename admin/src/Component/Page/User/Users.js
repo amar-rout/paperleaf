@@ -415,7 +415,7 @@ const Users = () => {
                   <div className='row align-items-center'>
                     <div className='col-3 col-md-3 d-flex fs-6 fs-md-5 justify-content-center justify-content-md-start'>
                       {/* Showing {lowerLimit + 1} to {upperLimit} of {users.length} records */}
-                      Showing {lowerLimit + 1} to {upperLimit} of {users.length} records
+                      {lowerLimit + 1} to {upperLimit} of {users.length}
                     </div>
                     {/* <div className='col-12 col-md-3'></div> */}
                     <div className='col-9 col-md-9 mt-0'>

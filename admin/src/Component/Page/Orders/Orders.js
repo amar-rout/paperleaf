@@ -13,7 +13,7 @@ const Orders = () => {
   const [orderFilter, setOrderFilter] = useState({ userName: "" });
   const [expand, setExpand] = useState(false);
   const [itemExpand, setItemExpand] = useState(false);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
   const [pages, setPages] = useState(0);
   const [page, setPage] = useState(0);
   const [id, setId] = useState("");
@@ -191,9 +191,8 @@ const Orders = () => {
                             setOrdersTable(col.slice(lowerLimit, orders.length > event.target.value ? event.target.value : orders.length));
                           }}
                         >
-                          <option value="5">05</option>
                           <option value="10">10</option>
-                          <option value="20">20</option>
+                          <option value="25">20</option>
                           <option value="50">50</option>
                           <option value="100">100</option>
                         </select>
@@ -226,7 +225,7 @@ const Orders = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="table-responsive">
+                  <div className="table-responsive-sm">
                     <table className="table align-items-center text-center align-middle table-sticky" id="use">
                       <thead className="">
                         <tr className='text-start ms-2' style={{ backgroundColor: 'lightBlue' }}>
@@ -236,6 +235,7 @@ const Orders = () => {
                           <th className='p-3'>Created On</th>
                           <th className='p-3'>Order Items</th>
                           <th className='p-3'>Payment Method</th>
+                          <th className='p-3'>Payment ID</th>
                           <th className='p-3'>Payment Status</th>
                           <th className='p-3'>Shipment Status</th>
                           <th className='p-3'>Delivery Status</th>
@@ -249,7 +249,7 @@ const Orders = () => {
                           <td colSpan="9"></td>
                         </tr> */}
                         {ordersTable.map((order, index) => {
-                          const { _id, orderId, createdAt, paymentMethod, paymentStatus, orderItems, address } = order;
+                          const { _id, orderId, createdAt, paymentId, paymentMethod, paymentStatus, orderItems, address } = order;
 
                           return (
                             <>
@@ -288,6 +288,14 @@ const Orders = () => {
                                   </td>
 
                                 }
+                                <td className='ls-1 text-capitalize'>
+                                  <span data-bs-toggle="tooltip" data-bs-placement="top"
+                                    data-bs-custom-class="custom-tooltip"
+                                    data-bs-title="This top tooltip is themed via CSS variables."
+                                  >
+                                    {paymentId}
+                                  </span>
+                                </td>
                                 {paymentStatus === 'success' ?
                                   <td className='ls-1 text-capitalize' style={{ backgroundColor: '#b2e7f142' }}>
                                     <span className='badge fs-6 fw-normal'
@@ -366,19 +374,22 @@ const Orders = () => {
                                   </div> */}
                                 </td>
                                 <td className='text-end'>
-                                  <div class="dropdown">
+                                  <div class="dropdown position-relative">
                                     <button class="btn btn-default" style={{ backgroundColor: '#b2e7f142' }} type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                       <i class="bi bi-three-dots-vertical"></i>
                                     </button>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu dropdown-menu-end position-absolute px-2 px-md-3">
                                       <li><h6 class="dropdown-header">Shipment</h6></li>
-                                      <li><a class="dropdown-item" href="#">Shipped</a></li>
+                                      <li><a class="dropdown-item" href="#"><i class="bi bi-truck-flatbed me-2"></i> Shipped</a></li>
+                                      <li><a class="dropdown-item" href="#"><i class="bi bi-truck me-2"></i> In Transit</a></li>
                                       <li><hr class="dropdown-divider" /></li>
                                       <li><h6 class="dropdown-header">Delivery</h6></li>
-                                      <li><a class="dropdown-item" href="#">Delivery Status</a></li>
+                                      <li><a class="dropdown-item" href="#"><i class="bi bi-box2 me-2"></i> Out for delivery</a></li>
+                                      <li><a class="dropdown-item" href="#"><i class="bi bi-box2-heart me-2"></i> Delivered</a></li>
                                       <li><hr class="dropdown-divider" /></li>
                                       <li><h6 class="dropdown-header">Invoice</h6></li>
-                                      <li><a class="dropdown-item" href="#">Show Invoice</a></li>
+                                      <li><a class="dropdown-item" href="#"><i class="bi bi-receipt me-2"></i>Show Invoice </a></li>
+                                      <li><a class="dropdown-item" href="#"><i class="bi bi-send me-2"></i> Send Invoice </a></li>
                                       {/* <li><a class="dropdown-item" href="#">Send Invoice</a></li> */}
                                     </ul>
                                   </div>
@@ -495,7 +506,7 @@ const Orders = () => {
                   </div>
                   <div className='row align-items-center'>
                     <div className='col-3 col-md-3 d-flex fs-6 fs-md-5 justify-content-center justify-content-md-start'>
-                      Showing {lowerLimit + 1} to {upperLimit} of {pages === 1 ? upperLimit < orders.length ? upperLimit : orders.length : orders.length} records
+                      {lowerLimit + 1} to {upperLimit} of {pages === 1 ? upperLimit < orders.length ? upperLimit : orders.length : orders.length}
                     </div>
                     <div className='col-9 col-md-9 mt-0'>
                       <nav aria-label="Page navigation example d-flex justify-content-end align-items-center">
